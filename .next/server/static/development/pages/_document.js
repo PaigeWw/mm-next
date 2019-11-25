@@ -1557,7 +1557,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/Users/paige/Desktop/workspace/nextjs/pages/_document.js";
+var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/pages/_document.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 
