@@ -6,7 +6,6 @@ export default props => {
 		<Button
 			variant="primary"
 			padding="0"
-			{...props}
 			height="1.13rem"
 			width="9.6rem"
 			sx={{

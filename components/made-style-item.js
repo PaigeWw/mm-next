@@ -12,9 +12,12 @@ export default props => {
 			bg="#E7E7E7"
 			sx={{
 				cursor: "pointer",
+				position: "relative",
 				"&:hover": {
-					position: "relative",
-					background: "#fff"
+					background: "#fff",
+					"& .tools": {
+						visibility: "visible"
+					}
 				}
 			}}
 		>
@@ -38,7 +41,13 @@ export default props => {
 				flexDirection="column"
 				justifyContent="space-between"
 				height="1.5rem"
-				sx={{ position: "absolute", right: "0.3rem", top: "0.3rem" }}
+				className="tools"
+				sx={{
+					position: "absolute",
+					right: "0.3rem",
+					top: "0.3rem",
+					visibility: "hidden"
+				}}
 			>
 				<Image
 					src="./4/edit.png"
@@ -47,6 +56,9 @@ export default props => {
 						minWidth: "14px",
 						minHeight: "14px"
 					}}
+					onClick={() => {
+						props.openEditBox()
+					}}
 				/>
 				<Image
 					src="./4/bigger.png"
@@ -54,6 +66,10 @@ export default props => {
 						width: "0.3rem",
 						minWidth: "14px",
 						minHeight: "14px"
+					}}
+					onClick={() => {
+						console.log("bigger-click")
+						props.openBigBox()
 					}}
 				/>
 				<Image

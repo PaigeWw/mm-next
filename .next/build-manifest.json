@@ -16,7 +16,7 @@
       "static/runtime/polyfills.js",
       "static/runtime/polyfills.js.map"
     ],
-    "/made": [
+    "/mine": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]
