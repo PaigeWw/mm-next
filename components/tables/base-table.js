@@ -3,13 +3,20 @@ import { Flex, Text, Box, Image } from "rebass"
 import Column from "../column"
 
 const Title = props => (
-	<Flex width="100%" justifyContent="space-around">
+	<thead
+		width="100%"
+		justifyContent="space-around"
+		style={{ background: "#FFF0E5" }}
+	>
 		{props.titles.map((title, key) => (
-			<Column width={title.width} key={`${title.name}-${key}`}>
+			<th
+				style={{ color: title.isHide ? "#FFF0E5" : "#000" }}
+				key={`${title.name}-${key}`}
+			>
 				{title.name}
-			</Column>
+			</th>
 		))}
-	</Flex>
+	</thead>
 )
 export const ProductInfo = props => (
 	<Flex alignItems="baseline" flexDirection="column">
@@ -25,32 +32,45 @@ export const ProductInfo = props => (
 	</Flex>
 )
 export const TableLine = props => (
-	<Flex
-		style={{ width: "100%", border: "1px solid #000" }}
-		bg="#fff"
+	<tr
+		style={{ width: "100%", border: "1px solid #000", background: "#fff" }}
 		alignItems="center"
+		justifyContent="space-between"
 	>
-		{props.children}
-		<Box>
-			<Image width="0.3rem" src="/5/edit.png" />
-			<Image width="0.3rem" src="/5/1.png" />
-			<Image width="0.3rem" src="/5/2.png" />
-			<Image width="0.3rem" src="/7/bigger.png" />
-		</Box>
-	</Flex>
+		{props.children.map ? (
+			props.children.map(child => (
+				<td style={{ textAlign: "start" }}>{child}</td>
+			))
+		) : (
+			<td>{props.children}</td>
+		)}
+		{props.noEdit ? null : (
+			<td justifyContent="space-around">
+				<Image width="0.3rem" src="/5/edit.png" />
+				<Image width="0.3rem" src="/5/1.png" />
+				<Image width="0.3rem" src="/5/2.png" />
+				<Image width="0.3rem" src="/7/bigger.png" />
+			</td>
+		)}
+	</tr>
 )
 export default props => {
+	const styleProps = props.sx
+	const tbStyleProps = props.tbSx
 	return (
-		<Flex
-			width={[1]}
-			flexDirection="column"
-			sx={{
-				cursor: "pointer",
-				background: "#FFF0E5"
+		<table
+			frame="void"
+			style={{
+				border: "1px",
+				margin: "0 18px 18px 18px",
+				background: "#fff",
+				borderCollapse: "collapse",
+				...styleProps
 			}}
+			flexDirection="column"
 		>
 			<Title titles={props.titles} />
-			<Box style={{ margin: "0 18px 18px 18px" }}>{props.children}</Box>
-		</Flex>
+			<tbody style={{ ...tbStyleProps }}>{props.children}</tbody>
+		</table>
 	)
 }

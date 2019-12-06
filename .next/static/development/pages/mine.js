@@ -64,29 +64,89 @@ function IndexPage() {
     },
     __self: this
   }, __jsx("title", {
-    className: "jsx-585737216",
+    className: "jsx-1708391394",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 6
     },
     __self: this
   }, "MR MISS"), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
-    id: "585737216",
+    id: "1708391394",
     __self: this
-  }, "body,html,#__next{height:100%;margin:0;font-size:0.14rem;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9wYWlnZS9EZXNrdG9wL3dvcmtzcGFjZS9tbS1uZXh0L2NvbXBvbmVudHMvaGVhZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNc0IsQUFLa0IsWUFDSCxTQUNTLGtCQUNuQiIsImZpbGUiOiIvVXNlcnMvcGFpZ2UvRGVza3RvcC93b3Jrc3BhY2UvbW0tbmV4dC9jb21wb25lbnRzL2hlYWQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgSGVhZCBmcm9tIFwibmV4dC9oZWFkXCJcblxuZnVuY3Rpb24gSW5kZXhQYWdlKCkge1xuXHRyZXR1cm4gKFxuXHRcdDxIZWFkPlxuXHRcdFx0PHRpdGxlPk1SIE1JU1M8L3RpdGxlPlxuXHRcdFx0PHN0eWxlIGdsb2JhbCBqc3g+e2Bcblx0XHRcdFx0Ym9keSxcblx0XHRcdFx0aHRtbCxcblx0XHRcdFx0I19fbmV4dCB7XG5cdFx0XHRcdFx0aGVpZ2h0OiAxMDAlO1xuXHRcdFx0XHRcdG1hcmdpbjogMDtcblx0XHRcdFx0XHRmb250LXNpemU6IDAuMTRyZW07XG5cdFx0XHRcdH1cblx0XHRcdGB9PC9zdHlsZT5cblx0XHRcdDxzY3JpcHRcblx0XHRcdFx0ZGFuZ2Vyb3VzbHlTZXRJbm5lckhUTUw9e3tcblx0XHRcdFx0XHRfX2h0bWw6IGBmdW5jdGlvbiByZXNpemVGb250U2l6ZSgpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IGRvY0VsID0gZG9jdW1lbnQuZG9jdW1lbnRFbGVtZW50O1xuICAgICAgICAgICAgICAgICAgICAgICAgY29uc3QgeyBjbGllbnRXaWR0aCB9ID0gZG9jRWw7XG4gICAgICAgICAgICAgICAgICAgICAgICBpZiAoIWNsaWVudFdpZHRoKSByZXR1cm47XG4gICAgICAgICAgICAgICAgICAgICAgICBjb25zdCBmcyA9IDEwMCAqIChjbGllbnRXaWR0aCAvIDE5MjApO1xuICAgICAgICAgICAgICAgICAgICAgICAgZG9jRWwuc3R5bGUuZm9udFNpemUgPSBmcyArICdweCc7XG4gICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgd2luZG93Lm9ubG9hZCA9IHJlc2l6ZUZvbnRTaXplXG4gICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbnJlc2l6ZSA9IHJlc2l6ZUZvbnRTaXplO2Bcblx0XHRcdFx0fX1cblx0XHRcdD48L3NjcmlwdD5cblx0XHQ8L0hlYWQ+XG5cdClcbn1cblxuZXhwb3J0IGRlZmF1bHQgSW5kZXhQYWdlXG4iXX0= */\n/*@ sourceURL=/Users/paige/Desktop/workspace/mm-next/components/head.js */"), __jsx("script", {
+  }, "body,html,#__next{height:100%;margin:0;font-size:0.14rem;}input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;}input[type=\"number\"]{-moz-appearance:textfield;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9wYWlnZS9EZXNrdG9wL3dvcmtzcGFjZS9tbS1uZXh0L2NvbXBvbmVudHMvaGVhZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNc0IsQUFLa0IsQUFNYSxBQUdFLFlBUmxCLFNBQ1MsR0FLbkIsRUFHQSxhQVBBIiwiZmlsZSI6Ii9Vc2Vycy9wYWlnZS9EZXNrdG9wL3dvcmtzcGFjZS9tbS1uZXh0L2NvbXBvbmVudHMvaGVhZC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBIZWFkIGZyb20gXCJuZXh0L2hlYWRcIlxuXG5mdW5jdGlvbiBJbmRleFBhZ2UoKSB7XG5cdHJldHVybiAoXG5cdFx0PEhlYWQ+XG5cdFx0XHQ8dGl0bGU+TVIgTUlTUzwvdGl0bGU+XG5cdFx0XHQ8c3R5bGUgZ2xvYmFsIGpzeD57YFxuXHRcdFx0XHRib2R5LFxuXHRcdFx0XHRodG1sLFxuXHRcdFx0XHQjX19uZXh0IHtcblx0XHRcdFx0XHRoZWlnaHQ6IDEwMCU7XG5cdFx0XHRcdFx0bWFyZ2luOiAwO1xuXHRcdFx0XHRcdGZvbnQtc2l6ZTogMC4xNHJlbTtcblx0XHRcdFx0fVxuXHRcdFx0XHRpbnB1dDo6LXdlYmtpdC1vdXRlci1zcGluLWJ1dHRvbixcblx0XHRcdFx0aW5wdXQ6Oi13ZWJraXQtaW5uZXItc3Bpbi1idXR0b24ge1xuXHRcdFx0XHRcdMKgLXdlYmtpdC1hcHBlYXJhbmNlOiBub25lO1xuXHRcdFx0XHR9XG5cdFx0XHRcdGlucHV0W3R5cGU9XCJudW1iZXJcIl0ge1xuXHRcdFx0XHRcdMKgLW1vei1hcHBlYXJhbmNlOiB0ZXh0ZmllbGQ7XG5cdFx0XHRcdH1cblx0XHRcdGB9PC9zdHlsZT5cblx0XHRcdDxzY3JpcHRcblx0XHRcdFx0ZGFuZ2Vyb3VzbHlTZXRJbm5lckhUTUw9e3tcblx0XHRcdFx0XHRfX2h0bWw6IGBmdW5jdGlvbiByZXNpemVGb250U2l6ZSgpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IGRvY0VsID0gZG9jdW1lbnQuZG9jdW1lbnRFbGVtZW50O1xuICAgICAgICAgICAgICAgICAgICAgICAgY29uc3QgeyBjbGllbnRXaWR0aCB9ID0gZG9jRWw7XG4gICAgICAgICAgICAgICAgICAgICAgICBpZiAoIWNsaWVudFdpZHRoKSByZXR1cm47XG4gICAgICAgICAgICAgICAgICAgICAgICBjb25zdCBmcyA9IDEwMCAqIChjbGllbnRXaWR0aCAvIDE5MjApO1xuICAgICAgICAgICAgICAgICAgICAgICAgZG9jRWwuc3R5bGUuZm9udFNpemUgPSBmcyArICdweCc7XG4gICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgd2luZG93Lm9ubG9hZCA9IHJlc2l6ZUZvbnRTaXplXG4gICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbnJlc2l6ZSA9IHJlc2l6ZUZvbnRTaXplO2Bcblx0XHRcdFx0fX1cblx0XHRcdD48L3NjcmlwdD5cblx0XHQ8L0hlYWQ+XG5cdClcbn1cblxuZXhwb3J0IGRlZmF1bHQgSW5kZXhQYWdlXG4iXX0= */\n/*@ sourceURL=/Users/paige/Desktop/workspace/mm-next/components/head.js */"), __jsx("script", {
     dangerouslySetInnerHTML: {
       __html: "function resizeFontSize() {\n                        const docEl = document.documentElement;\n                        const { clientWidth } = docEl;\n                        if (!clientWidth) return;\n                        const fs = 100 * (clientWidth / 1920);\n                        docEl.style.fontSize = fs + 'px';\n                    }\n                    window.onload = resizeFontSize\n                    window.onresize = resizeFontSize;"
     },
-    className: "jsx-585737216",
+    className: "jsx-1708391394",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 23
     },
     __self: this
   }));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (IndexPage);
+
+/***/ }),
+
+/***/ "./components/manage/index.js":
+/*!************************************!*\
+  !*** ./components/manage/index.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_tabs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-tabs */ "./node_modules/react-tabs/esm/index.js");
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rebass */ "./node_modules/rebass/dist/index.esm.js");
+var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/manage/index.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (props) {
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: this
+  }, __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_1__["Tabs"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: this
+  }, __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_1__["TabList"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    },
+    __self: this
+  }, __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_1__["Tab"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    },
+    __self: this
+  }, "CHANNEL LIST"), __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_1__["Tab"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 10
+    },
+    __self: this
+  }, "CUSTOMER LIST")), __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_1__["TabPanel"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    },
+    __self: this
+  })));
+});
 
 /***/ }),
 
@@ -308,6 +368,88 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 /***/ }),
 
+/***/ "./components/number-input.js":
+/*!************************************!*\
+  !*** ./components/number-input.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rebass */ "./node_modules/rebass/dist/index.esm.js");
+/* harmony import */ var _rebass_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @rebass/forms */ "./node_modules/@rebass/forms/dist/index.esm.js");
+var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/number-input.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+var ArrowButton = function ArrowButton(props) {
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    justifyContent: "center",
+    alignItems: "center",
+    variant: "primary",
+    padding: "0.16rem 0",
+    width: "0.2rem",
+    height: "0.2rem",
+    sx: {
+      color: "#000",
+      borderRadius: 0,
+      // transform: `rotateZ(${props.deg}deg)`,
+      cursor: "pointer"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: this
+  }, props.text);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (function (props) {
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    alignItems: "center",
+    mr: "10px",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
+    },
+    __self: this
+  }, __jsx(ArrowButton, {
+    text: "\u25B2",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 27
+    },
+    __self: this
+  }), __jsx(_rebass_forms__WEBPACK_IMPORTED_MODULE_2__["Input"], {
+    type: "number",
+    width: "0.3rem",
+    height: "0.16rem",
+    sx: {
+      apearance: "none"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: this
+  }), __jsx(ArrowButton, {
+    text: "\u25BC",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: this
+  }));
+});
+
+/***/ }),
+
 /***/ "./components/show-style.js":
 /*!**********************************!*\
   !*** ./components/show-style.js ***!
@@ -398,32 +540,62 @@ var Item = function Item(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductInfo", function() { return ProductInfo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TableLine", function() { return TableLine; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rebass */ "./node_modules/rebass/dist/index.esm.js");
-/* harmony import */ var _column__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../column */ "./components/column.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptors */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rebass */ "./node_modules/rebass/dist/index.esm.js");
+/* harmony import */ var _column__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../column */ "./components/column.js");
+
+
+
+
+
+
+
 var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/tables/base-table.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
+
+function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(source).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
+
 
 
 
 
 var Title = function Title(props) {
-  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  return __jsx("thead", {
     width: "100%",
     justifyContent: "space-around",
+    style: {
+      background: "#FFF0E5"
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 6
     },
     __self: this
   }, props.titles.map(function (title, key) {
-    return __jsx(_column__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      width: title.width,
+    return __jsx("th", {
+      style: {
+        color: title.isHide ? "#FFF0E5" : "#000"
+      },
       key: "".concat(title.name, "-").concat(key),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 8
+        lineNumber: 12
       },
       __self: this
     }, title.name);
@@ -431,113 +603,134 @@ var Title = function Title(props) {
 };
 
 var ProductInfo = function ProductInfo(props) {
-  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Flex"], {
     alignItems: "baseline",
     flexDirection: "column",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 22
     },
     __self: this
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Text"], {
     fontSize: "0.18rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 23
     },
     __self: this
-  }, props.styleNum), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  }, props.styleNum), __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Text"], {
     fontSize: "0.14rem",
     style: {
       lineHeight: "0.34rem"
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 24
     },
     __self: this
   }, props.made));
 };
 var TableLine = function TableLine(props) {
-  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  return __jsx("tr", {
     style: {
       width: "100%",
-      border: "1px solid #000"
+      border: "1px solid #000",
+      background: "#fff"
     },
-    bg: "#fff",
     alignItems: "center",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 28
-    },
-    __self: this
-  }, props.children, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 34
-    },
-    __self: this
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
-    width: "0.3rem",
-    src: "/5/edit.png",
+    justifyContent: "space-between",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 35
     },
     __self: this
-  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+  }, props.children.map ? props.children.map(function (child) {
+    return __jsx("td", {
+      style: {
+        textAlign: "start"
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 42
+      },
+      __self: this
+    }, child);
+  }) : __jsx("td", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 45
+    },
+    __self: this
+  }, props.children), props.noEdit ? null : __jsx("td", {
+    justifyContent: "space-around",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Image"], {
+    width: "0.3rem",
+    src: "/5/edit.png",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
+    },
+    __self: this
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Image"], {
     width: "0.3rem",
     src: "/5/1.png",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
+      lineNumber: 50
     },
     __self: this
-  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Image"], {
     width: "0.3rem",
     src: "/5/2.png",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 37
+      lineNumber: 51
     },
     __self: this
-  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Image"], {
     width: "0.3rem",
     src: "/7/bigger.png",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 52
     },
     __self: this
   })));
 };
 /* harmony default export */ __webpack_exports__["default"] = (function (props) {
-  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-    width: [1],
+  var styleProps = props.sx;
+  var tbStyleProps = props.tbSx;
+  return __jsx("table", {
+    frame: "void",
+    style: _objectSpread({
+      border: "1px",
+      margin: "0 18px 18px 18px",
+      background: "#fff",
+      borderCollapse: "collapse"
+    }, styleProps),
     flexDirection: "column",
-    sx: {
-      cursor: "pointer",
-      background: "#FFF0E5"
-    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 44
+      lineNumber: 61
     },
     __self: this
   }, __jsx(Title, {
     titles: props.titles,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 52
+      lineNumber: 72
     },
     __self: this
-  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-    style: {
-      margin: "0 18px 18px 18px"
-    },
+  }), __jsx("tbody", {
+    style: _objectSpread({}, tbStyleProps),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 53
+      lineNumber: 73
     },
     __self: this
   }, props.children));
@@ -567,8 +760,11 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 /* harmony default export */ __webpack_exports__["default"] = (function (props) {
   return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    justifyContent: "space-between",
     sx: {
       cursor: "pointer",
+      height: "100%",
       background: "#FFF0E5"
     },
     __source: {
@@ -578,6 +774,10 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     __self: this
   }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["default"], {
     titles: [{
+      name: "00",
+      width: "2/22",
+      isHide: true
+    }, {
       name: "PICTRUE",
       width: "2/22"
     }, {
@@ -598,29 +798,37 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     }],
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 16
     },
     __self: this
   }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["TableLine"], {
-    justifyContent: "space-between",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 27
     },
     __self: this
-  }, __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: {
+      position: "absolute"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: this
+  }, "01"), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
     width: "2rem",
     imgWidth: "0.95rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 29
     },
     __self: this
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
     flexDirection: "column",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 30
     },
     __self: this
   }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
@@ -628,7 +836,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     made: "2110 YE GREEN/2001 YE GREEN",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 31
     },
     __self: this
   }), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
@@ -636,7 +844,898 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     made: "2110 YE GREEN",
     __source: {
       fileName: _jsxFileName,
+      lineNumber: 35
+    },
+    __self: this
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: this
+  }, "$6.7"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39
+    },
+    __self: this
+  }, "$6.7")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 41
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 42
+    },
+    __self: this
+  }, "OCT 20,2019"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 43
+    },
+    __self: this
+  }, "OCT 20,2019")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 45
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46
+    },
+    __self: this
+  }, "TOPS"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 47
+    },
+    __self: this
+  }, "BOTTOMS"))), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["TableLine"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: {
+      position: "absolute"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: this
+  }, "01"), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: this
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 53
+    },
+    __self: this
+  }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    styleNum: "VERSION Y2003",
+    made: "2110 YE GREEN/2001 YE GREEN",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 54
+    },
+    __self: this
+  }), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    styleNum: "VERSION K2009",
+    made: "2110 YE GREEN",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 58
+    },
+    __self: this
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 60
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 61
+    },
+    __self: this
+  }, "$6.7"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 62
+    },
+    __self: this
+  }, "$6.7")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 64
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 65
+    },
+    __self: this
+  }, "OCT 20,2019"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 66
+    },
+    __self: this
+  }, "OCT 20,2019")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 68
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 69
+    },
+    __self: this
+  }, "TOPS"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 70
+    },
+    __self: this
+  }, "BOTTOMS"))), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["TableLine"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 73
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: {
+      position: "absolute"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 74
+    },
+    __self: this
+  }, "01"), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 75
+    },
+    __self: this
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 76
+    },
+    __self: this
+  }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    styleNum: "VERSION Y2003",
+    made: "2110 YE GREEN/2001 YE GREEN",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 77
+    },
+    __self: this
+  }), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    styleNum: "VERSION K2009",
+    made: "2110 YE GREEN",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 81
+    },
+    __self: this
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 83
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 84
+    },
+    __self: this
+  }, "$6.7"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 85
+    },
+    __self: this
+  }, "$6.7")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 87
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 88
+    },
+    __self: this
+  }, "OCT 20,2019"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 89
+    },
+    __self: this
+  }, "OCT 20,2019")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 91
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 92
+    },
+    __self: this
+  }, "TOPS"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 93
+    },
+    __self: this
+  }, "BOTTOMS")))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    variant: "primary",
+    height: "1.13rem",
+    width: "19.2rem",
+    bg: "#000",
+    color: "#fff",
+    padding: "0",
+    sx: {
+      borderRadius: 0,
+      fontSize: "0.27rem",
+      cursor: "pointer"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 97
+    },
+    __self: this
+  }, "GENERATE ORDERS"));
+});
+
+/***/ }),
+
+/***/ "./components/tables/order-table.js":
+/*!******************************************!*\
+  !*** ./components/tables/order-table.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rebass */ "./node_modules/rebass/dist/index.esm.js");
+/* harmony import */ var _base_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./base-table */ "./components/tables/base-table.js");
+/* harmony import */ var _show_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../show-style */ "./components/show-style.js");
+/* harmony import */ var _number_input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../number-input */ "./components/number-input.js");
+var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/tables/order-table.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (props) {
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    sx: {
+      cursor: "pointer",
+      height: "100%",
+      background: "#FFF0E5"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    sx: {
+      padding: "0 18px 18px 18px"
+    },
+    alignItems: "stretch",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: this
+  }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    sx: {
+      margin: "0",
+      marginRight: "1px"
+    },
+    titles: [{
+      name: "00",
+      width: "2/22",
+      isHide: true
+    }, {
+      name: "SECTION NUMBER",
+      width: "2/22"
+    }, {
+      name: "COLOUR",
+      width: "4/22"
+    }, {
+      name: "IMAGE",
+      width: "1/22"
+    }, {
+      name: "SIZE",
+      width: "2/22"
+    }],
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 19
+    },
+    __self: this
+  }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["TableLine"], {
+    noEdit: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
       lineNumber: 30
+    },
+    __self: this
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: this
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32
+    },
+    __self: this
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    },
+    __self: this
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    justifyContent: "space-between",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    mr: "10px",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 35
+    },
+    __self: this
+  }, "XS"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    mr: "10px",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: this
+  }, "S"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    mr: "10px",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37
+    },
+    __self: this
+  }, "M"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    mr: "10px",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: this
+  }, "L"))), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["TableLine"], {
+    noEdit: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 41
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 42
+    },
+    __self: this
+  }, "01"), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    styleNum: "XSJHFH00928",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 43
+    },
+    __self: this
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 44
+    },
+    __self: this
+  }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    made: "2110 YE GREEN",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 45
+    },
+    __self: this
+  }), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    made: "2110 YE GREEN",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46
+    },
+    __self: this
+  })), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: this
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    justifyContent: "space-between",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
+    },
+    __self: this
+  }, __jsx(_number_input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: this
+  }), __jsx(_number_input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: this
+  }), __jsx(_number_input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: this
+  }), __jsx(_number_input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 53
+    },
+    __self: this
+  }))), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["TableLine"], {
+    noEdit: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 56
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 57
+    },
+    __self: this
+  }, "01"), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    styleNum: "XSJHFH00928",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 58
+    },
+    __self: this
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 59
+    },
+    __self: this
+  }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    made: "2110 YE GREEN",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 60
+    },
+    __self: this
+  }), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    made: "2110 YE GREEN",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 61
+    },
+    __self: this
+  })), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 63
+    },
+    __self: this
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    justifyContent: "space-between",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 64
+    },
+    __self: this
+  }, __jsx(_number_input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 65
+    },
+    __self: this
+  }), __jsx(_number_input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 66
+    },
+    __self: this
+  }), __jsx(_number_input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 67
+    },
+    __self: this
+  }), __jsx(_number_input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 68
+    },
+    __self: this
+  })))), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    sx: {
+      height: "100%",
+      margin: "0"
+    },
+    tbSx: {
+      border: "1px solid #000",
+      borderLeft: "none",
+      borderRight: "none"
+    },
+    titles: [{
+      name: "PACKAGES",
+      width: "2/22"
+    }],
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 73
+    },
+    __self: this
+  }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["TableLine"], {
+    noEdit: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 82
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    justifyContent: "center",
+    alignItems: "center",
+    sx: {
+      width: "100%",
+      height: "100%"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 83
+    },
+    __self: this
+  }, __jsx(_number_input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 88
+    },
+    __self: this
+  })))), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    sx: {
+      height: "100%",
+      margin: "0"
+    },
+    tbSx: {
+      border: "1px solid #000",
+      borderLeft: "none",
+      borderRight: "none"
+    },
+    titles: [{
+      name: "QUANTITY",
+      width: "2/22"
+    }, {
+      name: "PRICE",
+      width: "4/22"
+    }, {
+      name: "TOTAL AMOUN",
+      width: "1/22"
+    }, {
+      name: "DELETE",
+      width: "2/22"
+    }],
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 92
+    },
+    __self: this
+  }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["TableLine"], {
+    hasDel: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 106
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 107
+    },
+    __self: this
+  }, "10"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 108
+    },
+    __self: this
+  }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    made: "2110 YE GREEN",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 109
+    },
+    __self: this
+  }), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    made: "2110 YE GREEN",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 110
+    },
+    __self: this
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 112
+    },
+    __self: this
+  }, "$65.78")), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["TableLine"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 114
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 115
+    },
+    __self: this
+  }, "10"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 116
+    },
+    __self: this
+  }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    made: "2110 YE GREEN",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 117
+    },
+    __self: this
+  }), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["ProductInfo"], {
+    made: "2110 YE GREEN",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 118
+    },
+    __self: this
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 120
+    },
+    __self: this
+  }, "$65.78")))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    variant: "primary",
+    height: "1.13rem",
+    width: "19.2rem",
+    bg: "#000",
+    color: "#fff",
+    padding: "0",
+    sx: {
+      borderRadius: 0,
+      fontSize: "0.27rem",
+      cursor: "pointer"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 125
+    },
+    __self: this
+  }, "COMPLETE"));
+});
+
+/***/ }),
+
+/***/ "./components/tables/send-table.js":
+/*!*****************************************!*\
+  !*** ./components/tables/send-table.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rebass */ "./node_modules/rebass/dist/index.esm.js");
+/* harmony import */ var _base_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./base-table */ "./components/tables/base-table.js");
+/* harmony import */ var _show_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../show-style */ "./components/show-style.js");
+var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/tables/send-table.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (props) {
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "stretch",
+    height: "100%",
+    sx: {
+      cursor: "pointer",
+      background: "#FFF0E5"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: this
+  }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    titles: [{
+      name: "00",
+      width: "2/22",
+      isHide: true
+    }, {
+      name: "DATE",
+      width: "2/22"
+    }, {
+      name: "STYLE PREVIEW",
+      width: "2/22"
+    }, {
+      name: "QUANTITY",
+      width: "4/22"
+    }, {
+      name: "PRICE",
+      width: "1/22"
+    }, {
+      name: "ACTION",
+      width: "5/22"
+    }],
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: this
+  }, __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["TableLine"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: {
+      position: "absolute"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: this
+  }, "02"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: this
+  }, "OCT 20,2019"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32
+    },
+    __self: this
+  }, "OCT 20,2019")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    justifyContent: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: this
+  }, __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 35
+    },
+    __self: this
+  }), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: this
+  }), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37
+    },
+    __self: this
+  }), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
     },
     __self: this
   })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
@@ -644,62 +1743,269 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     alignItems: "center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
-    },
-    __self: this
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 33
-    },
-    __self: this
-  }, "$6.7"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 34
-    },
-    __self: this
-  }, "$6.7")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-    flexDirection: "column",
-    alignItems: "center",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 36
-    },
-    __self: this
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 37
-    },
-    __self: this
-  }, "OCT 20,2019"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 38
-    },
-    __self: this
-  }, "OCT 20,2019")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-    flexDirection: "column",
-    alignItems: "center",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 40
-    },
-    __self: this
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
       lineNumber: 41
     },
     __self: this
-  }, "TOPS"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 42
     },
     __self: this
-  }, "BOTTOMS")))));
+  }, "50"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 43
+    },
+    __self: this
+  }, "50")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    textAlign: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 45
+    },
+    __self: this
+  }, "$126.7")), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["TableLine"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: {
+      position: "absolute"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
+    },
+    __self: this
+  }, "02"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: this
+  }, "OCT 20,2019"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: this
+  }, "OCT 20,2019")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    justifyContent: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 54
+    },
+    __self: this
+  }, __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 55
+    },
+    __self: this
+  }), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 56
+    },
+    __self: this
+  }), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 57
+    },
+    __self: this
+  }), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 58
+    },
+    __self: this
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    alignItems: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 61
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 62
+    },
+    __self: this
+  }, "50"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 63
+    },
+    __self: this
+  }, "50")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    textAlign: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 65
+    },
+    __self: this
+  }, "$126.7")), __jsx(_base_table__WEBPACK_IMPORTED_MODULE_2__["TableLine"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 67
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    style: {
+      position: "absolute"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 68
+    },
+    __self: this
+  }, "02"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 69
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 70
+    },
+    __self: this
+  }, "OCT 20,2019"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 71
+    },
+    __self: this
+  }, "OCT 20,2019")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    justifyContent: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 73
+    },
+    __self: this
+  }, __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 74
+    },
+    __self: this
+  }), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 75
+    },
+    __self: this
+  }), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 76
+    },
+    __self: this
+  }), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "2rem",
+    imgWidth: "0.95rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 77
+    },
+    __self: this
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    alignItems: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 80
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 81
+    },
+    __self: this
+  }, "50"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 82
+    },
+    __self: this
+  }, "50")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    textAlign: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 84
+    },
+    __self: this
+  }, "$126.7"))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 87
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    variant: "primary",
+    height: "1.13rem",
+    width: "9.6rem",
+    bg: "#000",
+    color: "#fff",
+    padding: "0",
+    sx: {
+      borderRadius: 0,
+      fontSize: "0.27rem",
+      cursor: "pointer"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 88
+    },
+    __self: this
+  }, "GENERATE ORDERS"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    variant: "primary",
+    height: "1.13rem",
+    width: "9.6rem",
+    bg: "#000",
+    color: "#fff",
+    padding: "0",
+    sx: {
+      borderRadius: 0,
+      fontSize: "0.27rem",
+      cursor: "pointer"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 103
+    },
+    __self: this
+  }, "GENERATE ORDERS")));
 });
 
 /***/ }),
@@ -759,6 +2065,17 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/create */ "./
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/define-properties */ "./node_modules/core-js/library/fn/object/define-properties.js");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js":
 /*!*******************************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js ***!
@@ -770,6 +2087,39 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/define-proper
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-descriptor */ "./node_modules/core-js/library/fn/object/get-own-property-descriptor.js");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-descriptors */ "./node_modules/core-js/library/fn/object/get-own-property-descriptors.js");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-symbols */ "./node_modules/core-js/library/fn/object/get-own-property-symbols.js");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-prototype-of.js":
 /*!********************************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-prototype-of.js ***!
@@ -778,6 +2128,17 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/define-proper
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! core-js/library/fn/object/get-prototype-of */ "./node_modules/core-js/library/fn/object/get-prototype-of.js");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/keys.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/keys */ "./node_modules/core-js/library/fn/object/keys.js");
 
 /***/ }),
 
@@ -911,6 +2272,36 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 module.exports = _createClass;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _defineProperty; });
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
 
 /***/ }),
 
@@ -3406,6 +4797,413 @@ var weakMemoize = function weakMemoize(func) {
 
 /***/ }),
 
+/***/ "./node_modules/@rebass/forms/dist/index.esm.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@rebass/forms/dist/index.esm.js ***!
+  \******************************************************/
+/*! exports provided: Label, Input, Select, Textarea, Radio, Checkbox, Slider, Switch */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Label", function() { return Label; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Input", function() { return Input; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Select", function() { return Select; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Textarea", function() { return Textarea; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Radio", function() { return Radio; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Checkbox", function() { return Checkbox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Slider", function() { return Slider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Switch", function() { return Switch; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reflexbox__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reflexbox */ "./node_modules/reflexbox/dist/index.js");
+/* harmony import */ var reflexbox__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(reflexbox__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _styled_system_should_forward_prop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @styled-system/should-forward-prop */ "./node_modules/@styled-system/should-forward-prop/dist/index.esm.js");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
+
+
+var rebassProps = [].concat(_toConsumableArray(_styled_system_should_forward_prop__WEBPACK_IMPORTED_MODULE_2__["props"]), ['sx', 'variant']);
+var PRE = new RegExp("^(".concat(rebassProps.join('|'), ")$"));
+var MRE = /^m[trblxy]?$/;
+
+var getProps = function getProps(test) {
+  return function (props) {
+    var next = {};
+
+    for (var key in props) {
+      if (test(key || '')) next[key] = props[key];
+    }
+
+    return next;
+  };
+};
+
+var getSystemProps = getProps(function (k) {
+  return PRE.test(k);
+});
+var getMarginProps = getProps(function (k) {
+  return MRE.test(k);
+});
+var omitMarginProps = getProps(function (k) {
+  return !MRE.test(k);
+});
+
+var SVG = function SVG(_ref) {
+  var _ref$size = _ref.size,
+      size = _ref$size === void 0 ? 24 : _ref$size,
+      props = _objectWithoutProperties(_ref, ["size"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Box"], _extends({
+    as: "svg",
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24",
+    fill: "currentcolor"
+  }, props));
+};
+
+var Label = Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function (props, ref) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Flex"], _extends({
+    ref: ref,
+    as: "label",
+    tx: "forms",
+    variant: "label"
+  }, props, {
+    __css: {
+      width: '100%'
+    }
+  }));
+});
+var Input = Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function (props, ref) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Box"], _extends({
+    ref: ref,
+    as: "input",
+    type: "text",
+    tx: "forms",
+    variant: "input"
+  }, props, {
+    __css: {
+      display: 'block',
+      width: '100%',
+      p: 2,
+      appearance: 'none',
+      fontSize: 'inherit',
+      lineHeight: 'inherit',
+      border: '1px solid',
+      borderRadius: 'default',
+      color: 'inherit',
+      bg: 'transparent'
+    }
+  }));
+});
+
+var DownArrow = function DownArrow(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SVG, props, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M7 10l5 5 5-5z"
+  }));
+};
+
+var Select = Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function (props, ref) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Flex"], getMarginProps(props), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Box"], _extends({
+    ref: ref,
+    as: "select",
+    tx: "forms",
+    variant: "select"
+  }, omitMarginProps(props), {
+    __css: {
+      display: 'block',
+      width: '100%',
+      p: 2,
+      appearance: 'none',
+      fontSize: 'inherit',
+      lineHeight: 'inherit',
+      border: '1px solid',
+      borderRadius: 'default',
+      color: 'inherit',
+      bg: 'transparent'
+    }
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DownArrow, {
+    sx: {
+      ml: -28,
+      alignSelf: 'center',
+      pointerEvents: 'none'
+    }
+  }));
+});
+var Textarea = Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function (props, ref) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Box"], _extends({
+    ref: ref,
+    as: "textarea",
+    tx: "forms",
+    variant: "textarea"
+  }, props, {
+    __css: {
+      display: 'block',
+      width: '100%',
+      p: 2,
+      appearance: 'none',
+      fontSize: 'inherit',
+      lineHeight: 'inherit',
+      border: '1px solid',
+      borderRadius: 'default',
+      color: 'inherit',
+      bg: 'transparent'
+    }
+  }));
+});
+
+var RadioChecked = function RadioChecked(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SVG, props, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+  }));
+};
+
+var RadioUnchecked = function RadioUnchecked(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SVG, props, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+  }));
+};
+
+var RadioIcon = function RadioIcon(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RadioChecked, _extends({}, props, {
+    __css: {
+      display: 'none',
+      'input:checked ~ &': {
+        display: 'block'
+      }
+    }
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RadioUnchecked, _extends({}, props, {
+    __css: {
+      display: 'block',
+      'input:checked ~ &': {
+        display: 'none'
+      }
+    }
+  })));
+};
+
+var Radio = Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function (_ref2, ref) {
+  var className = _ref2.className,
+      sx = _ref2.sx,
+      _ref2$variant = _ref2.variant,
+      variant = _ref2$variant === void 0 ? 'radio' : _ref2$variant,
+      props = _objectWithoutProperties(_ref2, ["className", "sx", "variant"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Box"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Box"], _extends({
+    ref: ref,
+    as: "input",
+    type: "radio"
+  }, props, {
+    sx: {
+      position: 'absolute',
+      opacity: 0,
+      zIndex: -1,
+      width: 1,
+      height: 1,
+      overflow: 'hidden'
+    }
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Box"], _extends({
+    as: RadioIcon,
+    "aria-hidden": "true",
+    tx: "forms",
+    variant: variant,
+    className: className,
+    sx: sx
+  }, getSystemProps(props), {
+    __css: {
+      mr: 2,
+      borderRadius: 9999,
+      color: 'gray',
+      'input:checked ~ &': {
+        color: 'primary'
+      },
+      'input:focus ~ &': {
+        bg: 'highlight'
+      }
+    }
+  })));
+});
+
+var CheckboxChecked = function CheckboxChecked(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SVG, props, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+  }));
+};
+
+var CheckboxUnchecked = function CheckboxUnchecked(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SVG, props, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+  }));
+};
+
+var CheckboxIcon = function CheckboxIcon(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CheckboxChecked, _extends({}, props, {
+    __css: {
+      display: 'none',
+      'input:checked ~ &': {
+        display: 'block'
+      }
+    }
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CheckboxUnchecked, _extends({}, props, {
+    __css: {
+      display: 'block',
+      'input:checked ~ &': {
+        display: 'none'
+      }
+    }
+  })));
+};
+
+var Checkbox = Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function (_ref3, ref) {
+  var className = _ref3.className,
+      sx = _ref3.sx,
+      _ref3$variant = _ref3.variant,
+      variant = _ref3$variant === void 0 ? 'checkbox' : _ref3$variant,
+      props = _objectWithoutProperties(_ref3, ["className", "sx", "variant"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Box"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Box"], _extends({
+    ref: ref,
+    as: "input",
+    type: "checkbox"
+  }, props, {
+    sx: {
+      position: 'absolute',
+      opacity: 0,
+      zIndex: -1,
+      width: 1,
+      height: 1,
+      overflow: 'hidden'
+    }
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Box"], _extends({
+    as: CheckboxIcon,
+    "aria-hidden": "true",
+    tx: "forms",
+    variant: variant,
+    className: className,
+    sx: sx
+  }, getSystemProps(props), {
+    __css: {
+      mr: 2,
+      borderRadius: 4,
+      color: 'gray',
+      'input:checked ~ &': {
+        color: 'primary'
+      },
+      'input:focus ~ &': {
+        color: 'primary',
+        bg: 'highlight'
+      }
+    }
+  })));
+});
+var Slider = Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function (_ref4, ref) {
+  var props = _extends({}, _ref4);
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Box"], _extends({
+    ref: ref,
+    as: "input",
+    type: "range",
+    tx: "forms",
+    variant: "slider"
+  }, props, {
+    __css: {
+      display: 'block',
+      width: '100%',
+      height: 4,
+      my: 2,
+      cursor: 'pointer',
+      appearance: 'none',
+      borderRadius: 9999,
+      color: 'inherit',
+      bg: 'gray',
+      ':focus': {
+        outline: 'none',
+        color: 'primary'
+      },
+      '&::-webkit-slider-thumb': {
+        appearance: 'none',
+        width: 16,
+        height: 16,
+        bg: 'currentcolor',
+        border: 0,
+        borderRadius: 9999,
+        variant: 'forms.slider.thumb'
+      }
+    }
+  }));
+});
+var Switch = Object(react__WEBPACK_IMPORTED_MODULE_0__["forwardRef"])(function (_ref5, ref) {
+  var checked = _ref5.checked,
+      props = _objectWithoutProperties(_ref5, ["checked"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Box"], _extends({
+    ref: ref,
+    as: "button",
+    type: "button",
+    role: "switch",
+    tx: "forms",
+    variant: "switch",
+    "aria-checked": checked
+  }, props, {
+    __css: {
+      appearance: 'none',
+      m: 0,
+      p: 0,
+      width: 40,
+      height: 24,
+      color: 'primary',
+      bg: 'transparent',
+      border: '1px solid',
+      borderColor: 'primary',
+      borderRadius: 9999,
+      '&[aria-checked=true]': {
+        bg: 'primary'
+      },
+      ':focus': {
+        outline: 'none',
+        boxShadow: '0 0 0 2px'
+      }
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reflexbox__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+    "aria-hidden": true,
+    style: {
+      transform: checked ? 'translateX(16px)' : 'translateX(0)'
+    },
+    sx: {
+      mt: '-1px',
+      ml: '-1px',
+      width: 24,
+      height: 24,
+      borderRadius: 9999,
+      border: '1px solid',
+      borderColor: 'primary',
+      bg: 'background',
+      transitionProperty: 'transform',
+      transitionTimingFunction: 'ease-out',
+      transitionDuration: '0.1s',
+      variant: 'forms.switch.thumb'
+    }
+  }));
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/@styled-system/background/dist/index.esm.js":
 /*!******************************************************************!*\
   !*** ./node_modules/@styled-system/background/dist/index.esm.js ***!
@@ -4671,6 +6469,22 @@ module.exports = function create(P, D) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/library/fn/object/define-properties.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/core-js/library/fn/object/define-properties.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../modules/es6.object.define-properties */ "./node_modules/core-js/library/modules/es6.object.define-properties.js");
+var $Object = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Object;
+module.exports = function defineProperties(T, D) {
+  return $Object.defineProperties(T, D);
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/library/fn/object/define-property.js":
 /*!*******************************************************************!*\
   !*** ./node_modules/core-js/library/fn/object/define-property.js ***!
@@ -4687,6 +6501,48 @@ module.exports = function defineProperty(it, key, desc) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/library/fn/object/get-own-property-descriptor.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/core-js/library/fn/object/get-own-property-descriptor.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../modules/es6.object.get-own-property-descriptor */ "./node_modules/core-js/library/modules/es6.object.get-own-property-descriptor.js");
+var $Object = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Object;
+module.exports = function getOwnPropertyDescriptor(it, key) {
+  return $Object.getOwnPropertyDescriptor(it, key);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/fn/object/get-own-property-descriptors.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/core-js/library/fn/object/get-own-property-descriptors.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../modules/es7.object.get-own-property-descriptors */ "./node_modules/core-js/library/modules/es7.object.get-own-property-descriptors.js");
+module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Object.getOwnPropertyDescriptors;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/fn/object/get-own-property-symbols.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/core-js/library/fn/object/get-own-property-symbols.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../modules/es6.symbol */ "./node_modules/core-js/library/modules/es6.symbol.js");
+module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Object.getOwnPropertySymbols;
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/library/fn/object/get-prototype-of.js":
 /*!********************************************************************!*\
   !*** ./node_modules/core-js/library/fn/object/get-prototype-of.js ***!
@@ -4696,6 +6552,19 @@ module.exports = function defineProperty(it, key, desc) {
 
 __webpack_require__(/*! ../../modules/es6.object.get-prototype-of */ "./node_modules/core-js/library/modules/es6.object.get-prototype-of.js");
 module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Object.getPrototypeOf;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/fn/object/keys.js":
+/*!********************************************************!*\
+  !*** ./node_modules/core-js/library/fn/object/keys.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ../../modules/es6.object.keys */ "./node_modules/core-js/library/modules/es6.object.keys.js");
+module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/core-js/library/modules/_core.js").Object.keys;
 
 
 /***/ }),
@@ -6301,6 +8170,27 @@ module.exports = function (KEY, exec) {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/library/modules/_own-keys.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/core-js/library/modules/_own-keys.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// all object keys, includes non-enumerable and symbols
+var gOPN = __webpack_require__(/*! ./_object-gopn */ "./node_modules/core-js/library/modules/_object-gopn.js");
+var gOPS = __webpack_require__(/*! ./_object-gops */ "./node_modules/core-js/library/modules/_object-gops.js");
+var anObject = __webpack_require__(/*! ./_an-object */ "./node_modules/core-js/library/modules/_an-object.js");
+var Reflect = __webpack_require__(/*! ./_global */ "./node_modules/core-js/library/modules/_global.js").Reflect;
+module.exports = Reflect && Reflect.ownKeys || function ownKeys(it) {
+  var keys = gOPN.f(anObject(it));
+  var getSymbols = gOPS.f;
+  return getSymbols ? keys.concat(getSymbols(it)) : keys;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/library/modules/_property-desc.js":
 /*!****************************************************************!*\
   !*** ./node_modules/core-js/library/modules/_property-desc.js ***!
@@ -6934,6 +8824,20 @@ $export($export.S, 'Object', { create: __webpack_require__(/*! ./_object-create 
 
 /***/ }),
 
+/***/ "./node_modules/core-js/library/modules/es6.object.define-properties.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/core-js/library/modules/es6.object.define-properties.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__(/*! ./_export */ "./node_modules/core-js/library/modules/_export.js");
+// 19.1.2.3 / 15.2.3.7 Object.defineProperties(O, Properties)
+$export($export.S + $export.F * !__webpack_require__(/*! ./_descriptors */ "./node_modules/core-js/library/modules/_descriptors.js"), 'Object', { defineProperties: __webpack_require__(/*! ./_object-dps */ "./node_modules/core-js/library/modules/_object-dps.js") });
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/library/modules/es6.object.define-property.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/core-js/library/modules/es6.object.define-property.js ***!
@@ -6944,6 +8848,26 @@ $export($export.S, 'Object', { create: __webpack_require__(/*! ./_object-create 
 var $export = __webpack_require__(/*! ./_export */ "./node_modules/core-js/library/modules/_export.js");
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
 $export($export.S + $export.F * !__webpack_require__(/*! ./_descriptors */ "./node_modules/core-js/library/modules/_descriptors.js"), 'Object', { defineProperty: __webpack_require__(/*! ./_object-dp */ "./node_modules/core-js/library/modules/_object-dp.js").f });
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/modules/es6.object.get-own-property-descriptor.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/core-js/library/modules/es6.object.get-own-property-descriptor.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
+var toIObject = __webpack_require__(/*! ./_to-iobject */ "./node_modules/core-js/library/modules/_to-iobject.js");
+var $getOwnPropertyDescriptor = __webpack_require__(/*! ./_object-gopd */ "./node_modules/core-js/library/modules/_object-gopd.js").f;
+
+__webpack_require__(/*! ./_object-sap */ "./node_modules/core-js/library/modules/_object-sap.js")('getOwnPropertyDescriptor', function () {
+  return function getOwnPropertyDescriptor(it, key) {
+    return $getOwnPropertyDescriptor(toIObject(it), key);
+  };
+});
 
 
 /***/ }),
@@ -6962,6 +8886,26 @@ var $getPrototypeOf = __webpack_require__(/*! ./_object-gpo */ "./node_modules/c
 __webpack_require__(/*! ./_object-sap */ "./node_modules/core-js/library/modules/_object-sap.js")('getPrototypeOf', function () {
   return function getPrototypeOf(it) {
     return $getPrototypeOf(toObject(it));
+  };
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/modules/es6.object.keys.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/core-js/library/modules/es6.object.keys.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.14 Object.keys(O)
+var toObject = __webpack_require__(/*! ./_to-object */ "./node_modules/core-js/library/modules/_to-object.js");
+var $keys = __webpack_require__(/*! ./_object-keys */ "./node_modules/core-js/library/modules/_object-keys.js");
+
+__webpack_require__(/*! ./_object-sap */ "./node_modules/core-js/library/modules/_object-sap.js")('keys', function () {
+  return function keys(it) {
+    return $keys(toObject(it));
   };
 });
 
@@ -7302,6 +9246,39 @@ setToStringTag($Symbol, 'Symbol');
 setToStringTag(Math, 'Math', true);
 // 24.3.3 JSON[@@toStringTag]
 setToStringTag(global.JSON, 'JSON', true);
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/library/modules/es7.object.get-own-property-descriptors.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/core-js/library/modules/es7.object.get-own-property-descriptors.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// https://github.com/tc39/proposal-object-getownpropertydescriptors
+var $export = __webpack_require__(/*! ./_export */ "./node_modules/core-js/library/modules/_export.js");
+var ownKeys = __webpack_require__(/*! ./_own-keys */ "./node_modules/core-js/library/modules/_own-keys.js");
+var toIObject = __webpack_require__(/*! ./_to-iobject */ "./node_modules/core-js/library/modules/_to-iobject.js");
+var gOPD = __webpack_require__(/*! ./_object-gopd */ "./node_modules/core-js/library/modules/_object-gopd.js");
+var createProperty = __webpack_require__(/*! ./_create-property */ "./node_modules/core-js/library/modules/_create-property.js");
+
+$export($export.S, 'Object', {
+  getOwnPropertyDescriptors: function getOwnPropertyDescriptors(object) {
+    var O = toIObject(object);
+    var getDesc = gOPD.f;
+    var keys = ownKeys(O);
+    var result = {};
+    var i = 0;
+    var key, desc;
+    while (keys.length > i) {
+      desc = getDesc(O, key = keys[i++]);
+      if (desc !== undefined) createProperty(result, key, desc);
+    }
+    return result;
+  }
+});
 
 
 /***/ }),
@@ -11189,8 +13166,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-tabs */ "./node_modules/react-tabs/esm/index.js");
 /* harmony import */ var _components_nav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/nav */ "./components/nav.js");
 /* harmony import */ var _components_tables_collect_table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/tables/collect-table */ "./components/tables/collect-table.js");
+/* harmony import */ var _components_tables_order_table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/tables/order-table */ "./components/tables/order-table.js");
+/* harmony import */ var _components_tables_send_table__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/tables/send-table */ "./components/tables/send-table.js");
+/* harmony import */ var _components_manage_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/manage/index */ "./components/manage/index.js");
 var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/pages/mine.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
 
 
 
@@ -11207,28 +13190,42 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
     flexDirection: "column",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 13
-    },
-    __self: this
-  }, __jsx(_components_nav__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    },
-    __self: this
-  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-    flexDirection: "column",
+    height: "100%",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 15
     },
     __self: this
-  }, __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tabs"], {
+  }, __jsx(_components_nav__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 16
+    },
+    __self: this
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    sx: {
+      flexGrow: 1,
+      "& .react-tabs__tab-panel": {},
+      "& .react-tabs__tab-panel--selected": {
+        flexGrow: 1
+      }
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
+    },
+    __self: this
+  }, __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tabs"], {
+    defaultIndex: 1,
+    style: {
+      flexGrow: 1,
+      display: "flex",
+      flexDirection: "column"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 27
     },
     __self: this
   }, __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabList"], {
@@ -11245,11 +13242,10 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 31
     },
     __self: this
   }, __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], {
-    defaultFocus: true,
     style: {
       lineHeight: "0.8rem",
       flex: 1,
@@ -11257,7 +13253,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 44
     },
     __self: this
   }, "1 MY COLLECTION"), __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], {
@@ -11269,11 +13265,10 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 53
     },
     __self: this
   }, "2 PRODUCTION ORDER"), __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], {
-    defaultFocus: true,
     style: {
       lineHeight: "0.8rem",
       flex: 1,
@@ -11281,63 +13276,91 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50
+      lineNumber: 63
     },
     __self: this
   }, "3 ORDER SENT"), __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], {
-    defaultFocus: true,
     style: {
       lineHeight: "0.8rem",
       flex: 1,
       textAlign: "center"
     },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 60
-    },
-    __self: this
-  }, "4 MY ORDER")), __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 71
-    },
-    __self: this
-  }, __jsx(_components_tables_collect_table__WEBPACK_IMPORTED_MODULE_4__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 72
     },
     __self: this
+  }, "4 MY ORDER"), __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["Tab"], {
+    style: {
+      lineHeight: "0.8rem",
+      flex: 1,
+      textAlign: "center"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 81
+    },
+    __self: this
+  }, "USER MANAGEMENT")), __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 91
+    },
+    __self: this
+  }, __jsx(_components_tables_collect_table__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 92
+    },
+    __self: this
   })), __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74
+      lineNumber: 94
     },
     __self: this
-  }, __jsx("h2", {
+  }, __jsx(_components_tables_order_table__WEBPACK_IMPORTED_MODULE_5__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 75
+      lineNumber: 95
     },
     __self: this
-  }, "Any content 2")), __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], {
+  })), __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 97
+    },
+    __self: this
+  }, __jsx(_components_tables_send_table__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 98
+    },
+    __self: this
+  })), __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 100
     },
     __self: this
   }), __jsx(react_tabs__WEBPACK_IMPORTED_MODULE_2__["TabPanel"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 101
     },
     __self: this
-  })))));
+  }, __jsx(_components_manage_index__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 102
+    },
+    __self: this
+  }))))));
 });
 
 /***/ }),
 
-/***/ 2:
+/***/ 0:
 /*!***************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fmine&absolutePagePath=%2FUsers%2Fpaige%2FDesktop%2Fworkspace%2Fmm-next%2Fpages%2Fmine.js ***!
   \***************************************************************************************************************************************/
@@ -11360,5 +13383,5 @@ module.exports = dll_ce55a549e3439867a796;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[0,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=mine.js.map

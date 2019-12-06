@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Flex, Text, Box, Image, Button } from "rebass"
 import Head from "../components/nav"
-import BigBox from "../components/made-big-box"
+import BigBox from "../components/made-edit-box"
 import StyleItem from "../components/made-style-item"
 import SelectAssignTool from "../components/select-assign-tool"
 export default () => {
