@@ -1,15 +1,38 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
 import { Input } from "@rebass/forms"
 import Head from "../components/head"
+import request from "../utils/request.js"
+import useUserInfo from "../hooks/getUserInfo"
+import Router from "next/router"
 
 export default () => {
+	const [modal, setMadal] = useState(0) // 0, 1, 2, 3
+	const [account, setAccount] = useState("chanpin2@miss.com")
+	const [password, setPassword] = useState("123456")
+	const handleLogin = async () => {
+		const req = await request(
+			"user/login",
+			{
+				account: "chanpin3@miss.com",
+				password: "123456"
+			},
+			"post"
+		)
+		console.log(req)
+		if (req) {
+			Router.push("/main")
+		}
+	}
+	const userInfo = useUserInfo()
+	console.log(userInfo, "userInfo")
 	return (
 		<React.Fragment>
 			<Head></Head>
 			<Box height="100vh">
 				<Flex flexWrap="wrap" height={["100%", "62.5vh"]}>
 					<Flex
+						flexDirection="column"
 						justifyContent="space-between"
 						width={[1, 722 / 1920]}
 						height={["100%", "62.5vh"]}
@@ -44,6 +67,8 @@ export default () => {
 								width="3rem"
 								height="0.38rem"
 								id="username"
+								value={account}
+								onChange={e => setAccount(e.target.value)}
 								name="username"
 								type="text"
 							/>
@@ -68,6 +93,8 @@ export default () => {
 								id="password"
 								name="password"
 								type="password"
+								value={password}
+								onChange={e => setPassword(e.target.value)}
 							/>
 							<Button
 								variant="primary"
@@ -76,6 +103,7 @@ export default () => {
 								bg="#000000"
 								color="#ffffff"
 								mt={"5.8%"}
+								onClick={() => handleLogin()}
 								padding="0"
 								sx={{
 									borderRadius: 0,

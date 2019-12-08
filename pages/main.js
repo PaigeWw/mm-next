@@ -1,9 +1,23 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
-import { Input } from "@rebass/forms"
+import useUserInfo from "../hooks/getUserInfo"
 import Head from "../components/nav"
 import SelectBox from "../components/main-kind-box"
+
+import request from "../utils/request.js"
 export default () => {
+	const info = useUserInfo()
+	const [goosList, setgoosList] = useState([])
+
+	useEffect(() => {
+		const getGoodsList = async () => {
+			const req = await request("goods/getList", "get")
+			setgoosList(req)
+			console.log(req)
+		}
+		getGoodsList()
+	}, [])
+
 	return (
 		<React.Fragment>
 			<Flex
@@ -13,9 +27,9 @@ export default () => {
 			>
 				<Head></Head>
 				<Flex>
-					<SelectBox imgUrl="/2/1-1.png" />
-					<SelectBox imgUrl="/2/2-1.png" />
-					<SelectBox imgUrl="/2/3-1.png" />
+					{goosList.map(item => (
+						<SelectBox {...item} />
+					))}
 				</Flex>
 			</Flex>
 		</React.Fragment>

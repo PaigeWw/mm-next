@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
-import Head from "../components/nav"
+import Router from "next/router"
 
+import { baseUrl } from "../utils/helper"
 const SelectButton = props => (
 	<Button
 		variant="primary"
@@ -18,6 +19,9 @@ const SelectButton = props => (
 				background: "#FF8E6C"
 			}
 		}}
+		onClick={() => {
+			props.onSelect()
+		}}
 	>
 		{props.text}
 	</Button>
@@ -26,9 +30,13 @@ const SelectButton = props => (
 export default props => {
 	const [showSelect, setShowSelect] = useState(false)
 	return (
-		<React.Fragment>
+		<Box width={[1, 1 / 3]}>
+			<Flex alignItems="baseline" p="0.2rem 0.9rem">
+				<Text fontSize="0.22rem">{props.aliasName}</Text>
+				<Text fontSize="0.14rem">&nbsp; SERIES</Text>
+			</Flex>
 			<Box
-				width={[1, 1 / 3]}
+				width={[1]}
 				height="fit-content"
 				sx={{
 					position: "relative"
@@ -49,12 +57,17 @@ export default props => {
 						alignItems="center"
 						sx={{ position: "absolute" }}
 					>
-						<SelectButton text="INDEPENDENT MATCH" />
-						<SelectButton text="PICK EXISTING STYLES" />
+						<SelectButton
+							text="INDEPENDENT MATCH"
+							onSelect={() => {
+								Router.push(`/select?id=${props._id}`)
+							}}
+						/>
+						<SelectButton text="PICK EXISTING STYLES" onSelect={() => {}} />
 					</Flex>
 				) : null}
-				<Image width={[1, 1]} src={props.imgUrl} />
+				<Image width={[1, 1]} src={baseUrl + props.imgUrl} />
 			</Box>
-		</React.Fragment>
+		</Box>
 	)
 }

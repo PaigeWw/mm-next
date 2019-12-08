@@ -6,6 +6,7 @@ import Head from "../components/nav"
 import CollectTable from "../components/tables/collect-table"
 import OrderTable from "../components/tables/order-table"
 import SendTable from "../components/tables/send-table"
+import SelfOrderTable from "../components/tables/self-order-table"
 import Manage from "../components/manage/index"
 export default () => {
 	const [showBigBox, setShowBigBox] = useState(false)
@@ -25,7 +26,7 @@ export default () => {
 					}}
 				>
 					<Tabs
-						defaultIndex={1}
+						defaultIndex={3}
 						style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
 					>
 						<TabList
@@ -97,7 +98,9 @@ export default () => {
 						<TabPanel>
 							<SendTable />
 						</TabPanel>
-						<TabPanel></TabPanel>
+						<TabPanel>
+							<SelfOrderTable />
+						</TabPanel>
 						<TabPanel>
 							<Manage />
 						</TabPanel>

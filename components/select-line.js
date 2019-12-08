@@ -1,20 +1,33 @@
 import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
-import NavItem from "../components/nav-item"
+import { baseUrl } from "../utils/helper"
 
-const ImageBox = props => (
-	<Box
-		sx={{
-			"& :hover": {
-				background: "#FF8E6C"
-			}
-		}}
-	>
-		<Image src={props.src} p="0.68rem" sx={{ display: "block" }}></Image>
-	</Box>
-)
+const ImageBox = props => {
+	const { item, id, kind, row, col } = props
+	return (
+		<Box
+			sx={{
+				"& :hover": {
+					background: "#DCD0DC"
+				}
+			}}
+			onClick={e => {
+				console.dir(e.target.offsetTop)
+				props.onSelect(id, kind, e.target.offsetTop, col, item)
+			}}
+		>
+			<Image
+				bg={props.selected ? "#FF8E6C  !important" : "none"}
+				src={baseUrl + props.src}
+				p="0.68rem"
+				sx={{ display: "block", width: "1.88rem", boxSizing: "content-box" }}
+			></Image>
+		</Box>
+	)
+}
 export default props => {
 	const [showScroll, setShowScroll] = useState(false)
+	console.log(props.selectStyles)
 	return (
 		<Flex
 			width="100%"
@@ -28,12 +41,6 @@ export default props => {
 					}
 				}
 			}}
-			// onMouseOver={() => {
-			// 	setShowScroll(true)
-			// }}
-			// onMouseOut={() => {
-			// 	setShowScroll(false)
-			// }}
 		>
 			<Flex bg="#000" width="3.22rem" justifyContent="space-between">
 				<Flex flexGrow={1} alignItems="center" justifyContent="center">
@@ -56,8 +63,22 @@ export default props => {
 			</Flex>
 
 			<Flex flex={1}>
-				{props.data.map(item => (
-					<ImageBox src={item} />
+				{props.styles.map((item, index) => (
+					<ImageBox
+						item={item}
+						kind={props.kind}
+						col={index}
+						row={props.row}
+						onSelect={props.onSelect}
+						selected={
+							Array.isArray(props.selectStyles) &&
+							props.selectStyles.indexOf(item._id) > -1
+								? true
+								: false
+						}
+						src={item.imgUrl}
+						id={item._id}
+					/>
 				))}
 			</Flex>
 			<Flex bg="#000" width="3.22rem" justifyContent="space-between">

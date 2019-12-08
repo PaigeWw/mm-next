@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
 import Head from "../components/head"
 import NavItem from "../components/nav-item"
-export default () => {
+export default props => {
 	const [showNav, setShowNav] = useState(false)
+	const [showToast, setShowToast] = useState(false)
 	function closeShowNav() {
 		setShowNav(false)
 	}
@@ -13,7 +14,6 @@ export default () => {
 			window.removeEventListener("click", closeShowNav)
 		}
 	}, [])
-
 	return (
 		<React.Fragment>
 			<Flex justifyContent="space-between" width="100%">
