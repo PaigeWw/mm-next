@@ -17831,8 +17831,8 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
       cursor: "pointer"
     },
     onClick: function onClick() {
-      if (selectStyle.length > 0) {
-        next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/made");
+      if (selectStyles.length > 0) {
+        next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/made?id=".concat(selectStyles[0], "&id1=").concat(selectStyles[1].length > 1 ? selectStyles[1] : 0));
       } else {
         next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/made"); // setToast({ type: "error", info: "Please Select Style." })
       }

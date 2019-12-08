@@ -120,8 +120,12 @@ export default () => {
 					cursor: "pointer"
 				}}
 				onClick={() => {
-					if (selectStyle.length > 0) {
-						Router.push("/made")
+					if (selectStyles.length > 0) {
+						Router.push(
+							`/made?id=${selectStyles[0]}&id1=${
+								selectStyles[1].length > 1 ? selectStyles[1] : 0
+							}`
+						)
 					} else {
 						Router.push("/made")
 						// setToast({ type: "error", info: "Please Select Style." })
