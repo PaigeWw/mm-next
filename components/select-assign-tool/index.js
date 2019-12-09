@@ -26,15 +26,16 @@ const Pager = props => (
 
 export default props => {
 	const { sid, top, col, styleItem } = props.currentSeleted
-	const [showScroll, setShowScroll] = useState(false)
+	const [curChannelIndex, setCurChannelIndex] = useState(0)
 	const [channelList, setChannelList] = useState(false)
 	const [colorList, setColorList] = useState([])
 	const [paintList, setPaintList] = useState([])
+	const [sizeList, setSizeList] = useState([])
 	useEffect(() => {
 		const getChannels = async () => {
 			const req = await request("channel/getList", {}, "get")
 			setChannelList(req)
-			console.log(req)
+			console.log("getChannels", req)
 		}
 		getChannels()
 		// const getColors = async () => {
@@ -60,6 +61,7 @@ export default props => {
 				console.log("getStyle", req)
 				setPaintList(req.flowerColors)
 				setColorList(req.plainColors)
+				setSizeList(req.size.values)
 			}
 			getStyle()
 		}
@@ -87,6 +89,9 @@ export default props => {
 				break
 		}
 	}
+	const handleSelectChannelByIndex = index => {
+		setCurChannelIndex(index)
+	}
 	return (
 		<Flex
 			width="6.4rem"
@@ -105,12 +110,17 @@ export default props => {
 				styleNo={styleItem.styleNo}
 				channelList={channelList}
 				onClose={props.onClose}
+				curChannelIndex={curChannelIndex}
+				onSelectChannelByIndex={handleSelectChannelByIndex}
 			/>
 			<Flex flexDirection="column">
 				<Box width="100%" mb="0.4rem">
-					<Text mb="0.26rem">SIZE「CUP」</Text>
-					<Box width="100%" lineHeight="0.36rem">
-						<Flex width="100%" justifyContent="space-between">
+					<Text mb="0.1rem">SIZE「CUP」</Text>
+					<Flex width="100%" lineHeight="0.36rem">
+						{sizeList.map(size => (
+							<Text mr="0.2rem">{size.name}</Text>
+						))}
+						{/* <Flex width="100%" justifyContent="space-between">
 							<Text>85B</Text>
 							<Text>90B</Text>
 							<Text>85B</Text>
@@ -121,8 +131,8 @@ export default props => {
 							<Text>90B</Text>
 							<Text>85B</Text>
 							<Text>85B</Text>
-						</Flex>
-					</Box>
+						</Flex> */}
+					</Flex>
 				</Box>
 				<Box width="100%" mb="0.4rem">
 					<Flex justifyContent="space-between" alignItems="center">

@@ -357,7 +357,8 @@ var Title = function Title(props) {
 };
 
 var AisleButton = function AisleButton(props) {
-  var channelList = props.channelList;
+  var channelList = props.channelList,
+      curChannelIndex = props.curChannelIndex;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       showChannels = _useState[0],
@@ -382,14 +383,14 @@ var AisleButton = function AisleButton(props) {
       lineNumber: 32
     },
     __self: this
-  }, "ALSLE"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+  }, "ALSLE"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Box"], {
     variant: "primary",
     height: "0.32rem",
-    width: "0.88rem",
     bg: "#FF8E6C",
     color: "#000",
-    padding: "0",
     sx: {
+      textAlign: "center",
+      padding: "0 0.32rem",
       borderRadius: 0,
       fontSize: "0.14rem",
       cursor: "pointer"
@@ -402,18 +403,21 @@ var AisleButton = function AisleButton(props) {
       lineNumber: 43
     },
     __self: this
-  }, props.text)), showChannels ? __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
+  }, channelList.length > 0 ? channelList[curChannelIndex].code : "")), showChannels ? __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
     width: [1],
     __source: {
       fileName: _jsxFileName,
       lineNumber: 63
     },
     __self: this
-  }, channelList.map(function (channel) {
+  }, channelList.map(function (channel, index) {
     return __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Text"], {
       mr: "10px",
       sx: {
         cursor: "pointer"
+      },
+      onClick: function onClick() {
+        props.onSelectChannelByIndex(index);
       },
       __source: {
         fileName: _jsxFileName,
@@ -512,9 +516,9 @@ var Pager = function Pager(props) {
       col = _props$currentSeleted.col,
       styleItem = _props$currentSeleted.styleItem;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false),
-      showScroll = _useState[0],
-      setShowScroll = _useState[1];
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(0),
+      curChannelIndex = _useState[0],
+      setCurChannelIndex = _useState[1];
 
   var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false),
       channelList = _useState2[0],
@@ -527,6 +531,10 @@ var Pager = function Pager(props) {
   var _useState4 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
       paintList = _useState4[0],
       setPaintList = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
+      sizeList = _useState5[0],
+      setSizeList = _useState5[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
     var getChannels =
@@ -546,7 +554,7 @@ var Pager = function Pager(props) {
               case 2:
                 req = _context.sent;
                 setChannelList(req);
-                console.log(req);
+                console.log("getChannels", req);
 
               case 5:
               case "end":
@@ -607,8 +615,9 @@ var Pager = function Pager(props) {
                   console.log("getStyle", req);
                   setPaintList(req.flowerColors);
                   setColorList(req.plainColors);
+                  setSizeList(req.size.values);
 
-                case 8:
+                case 9:
                 case "end":
                   return _context2.stop();
               }
@@ -655,6 +664,10 @@ var Pager = function Pager(props) {
     }
   };
 
+  var handleSelectChannelByIndex = function handleSelectChannelByIndex(index) {
+    setCurChannelIndex(index);
+  };
+
   return __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
     width: "6.4rem",
     bg: "#fff",
@@ -669,23 +682,25 @@ var Pager = function Pager(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 91
+      lineNumber: 96
     },
     __self: this
   }, __jsx(_aisle_button__WEBPACK_IMPORTED_MODULE_4__["Title"], {
     styleNo: styleItem.styleNo,
     channelList: channelList,
     onClose: props.onClose,
+    curChannelIndex: curChannelIndex,
+    onSelectChannelByIndex: handleSelectChannelByIndex,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 104
+      lineNumber: 109
     },
     __self: this
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
     flexDirection: "column",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 109
+      lineNumber: 116
     },
     __self: this
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
@@ -693,94 +708,39 @@ var Pager = function Pager(props) {
     mb: "0.4rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 110
-    },
-    __self: this
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
-    mb: "0.26rem",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 111
-    },
-    __self: this
-  }, "SIZE\u300CCUP\u300D"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
-    width: "100%",
-    lineHeight: "0.36rem",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 112
-    },
-    __self: this
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
-    width: "100%",
-    justifyContent: "space-between",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 113
-    },
-    __self: this
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 114
-    },
-    __self: this
-  }, "85B"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 115
-    },
-    __self: this
-  }, "90B"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 116
-    },
-    __self: this
-  }, "85B"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
       lineNumber: 117
     },
     __self: this
-  }, "85B")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
+    mb: "0.1rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 118
+    },
+    __self: this
+  }, "SIZE\u300CCUP\u300D"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
     width: "100%",
-    justifyContent: "space-between",
+    lineHeight: "0.36rem",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 119
     },
     __self: this
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 120
-    },
-    __self: this
-  }, "85C"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 121
-    },
-    __self: this
-  }, "90B"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 122
-    },
-    __self: this
-  }, "85B"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 123
-    },
-    __self: this
-  }, "85B")))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
+  }, sizeList.map(function (size) {
+    return __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
+      mr: "0.2rem",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 121
+      },
+      __self: this
+    }, size.name);
+  }))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
     width: "100%",
     mb: "0.4rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 127
+      lineNumber: 137
     },
     __self: this
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
@@ -788,26 +748,26 @@ var Pager = function Pager(props) {
     alignItems: "center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 128
+      lineNumber: 138
     },
     __self: this
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 129
+      lineNumber: 139
     },
     __self: this
   }, "COLOUR"), " ", __jsx(Pager, {
     current: "01",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 129
+      lineNumber: 139
     },
     __self: this
   })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 131
+      lineNumber: 141
     },
     __self: this
   }, colorList.map(function (item) {
@@ -829,7 +789,7 @@ var Pager = function Pager(props) {
       height: "0.3rem",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 133
+        lineNumber: 143
       },
       __self: this
     });
@@ -838,7 +798,7 @@ var Pager = function Pager(props) {
     mb: "0.4rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 153
+      lineNumber: 163
     },
     __self: this
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
@@ -846,26 +806,26 @@ var Pager = function Pager(props) {
     alignItems: "center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 154
+      lineNumber: 164
     },
     __self: this
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 155
+      lineNumber: 165
     },
     __self: this
   }, "PRINT"), " ", __jsx(Pager, {
     current: "01",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 155
+      lineNumber: 165
     },
     __self: this
   })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 157
+      lineNumber: 167
     },
     __self: this
   }, paintList.map(function (item) {
@@ -888,7 +848,7 @@ var Pager = function Pager(props) {
       height: "0.3rem",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 159
+        lineNumber: 169
       },
       __self: this
     });
@@ -907,7 +867,7 @@ var Pager = function Pager(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 181
+      lineNumber: 191
     },
     __self: this
   }, "FINISH"));

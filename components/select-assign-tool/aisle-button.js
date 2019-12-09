@@ -23,7 +23,7 @@ export const Title = props => (
 )
 
 const AisleButton = props => {
-	const { channelList } = props
+	const { channelList, curChannelIndex } = props
 	const [showChannels, setShowChannels] = useState(false)
 
 	return (
@@ -40,14 +40,14 @@ const AisleButton = props => {
 				>
 					ALSLE
 				</Box>
-				<Button
+				<Box
 					variant="primary"
 					height="0.32rem"
-					width="0.88rem"
 					bg="#FF8E6C"
 					color="#000"
-					padding="0"
 					sx={{
+						textAlign: "center",
+						padding: "0 0.32rem",
 						borderRadius: 0,
 						fontSize: "0.14rem",
 						cursor: "pointer"
@@ -56,13 +56,19 @@ const AisleButton = props => {
 						setShowChannels(!showChannels)
 					}}
 				>
-					{props.text}
-				</Button>
+					{channelList.length > 0 ? channelList[curChannelIndex].code : ""}
+				</Box>
 			</Flex>
 			{showChannels ? (
 				<Flex width={[1]}>
-					{channelList.map(channel => (
-						<Text mr="10px" sx={{ cursor: "pointer" }}>
+					{channelList.map((channel, index) => (
+						<Text
+							mr="10px"
+							sx={{ cursor: "pointer" }}
+							onClick={() => {
+								props.onSelectChannelByIndex(index)
+							}}
+						>
 							{channel.name}
 						</Text>
 					))}
