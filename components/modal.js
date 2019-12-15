@@ -8,12 +8,13 @@ export default props => {
 			flexDirection="column"
 			fontSize="0.18rem"
 			color="#000"
-			p="0.5rem 0.7rem 0 0.7rem"
+			p="0.9rem"
 			sx={{
 				position: "absolute",
 				zIndex: 999999999,
 				top: "40px",
-				left: "calc(0.4rem)",
+				left: "50%",
+				transform: "translateX(-50%)",
 				margin: "0 auto",
 				boxShadow: "0px 14px 44px 5px rgba(0, 0, 0, 0.11)"
 			}}

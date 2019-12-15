@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -97,20 +97,21 @@ module.exports =
 /*!***************************************!*\
   !*** ./components/color-and-paint.js ***!
   \***************************************/
-/*! exports provided: Size, Color, Paint */
+/*! exports provided: PaintList, ColorList */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Size", function() { return Size; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Color", function() { return Color; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Paint", function() { return Paint; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PaintList", function() { return PaintList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ColorList", function() { return ColorList; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rebass */ "rebass");
 /* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rebass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/helper */ "./utils/helper.js");
 var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/color-and-paint.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -159,261 +160,146 @@ const Pager = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
   __self: undefined
 }, ">"));
 
-const AisleButton = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 25
-  },
-  __self: undefined
-}, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-  height: "0.32rem",
-  width: "0.88rem",
-  bg: "#000",
-  color: "#fff",
-  padding: "0",
-  textAlign: "center",
-  lineHeight: "0.32rem",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 26
-  },
-  __self: undefined
-}, "ALSLE"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-  variant: "primary",
-  height: "0.32rem",
-  width: "0.88rem",
-  bg: "#FF8E6C",
-  color: "#000",
-  padding: "0",
-  sx: {
-    borderRadius: 0,
-    fontSize: "0.14rem",
-    cursor: "pointer"
-  },
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 37
-  },
-  __self: undefined
-}, props.text));
-
-const Title = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-  width: "100%",
-  sx: {},
-  mb: "0.43rem",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 56
-  },
-  __self: undefined
-}, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 57
-  },
-  __self: undefined
-}, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  fontSize: "0.18rem",
-  fontWeight: "bolder",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 58
-  },
-  __self: undefined
-}, "SECTION NUMBER"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  fontSize: "0.1rem",
-  m: "0.16rem 0",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 61
-  },
-  __self: undefined
-}, "2010000XJLS"), __jsx(AisleButton, {
-  text: "A",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 64
-  },
-  __self: undefined
-})), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
-  src: "/3/close.png",
-  width: "0.23rem",
-  sx: {
-    position: "absolute",
-    right: "0.42rem",
-    top: "0.41rem"
-  },
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 66
-  },
-  __self: undefined
-}));
-
-const Size = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-  width: "100%",
-  mb: "0.4rem",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 75
-  },
-  __self: undefined
-}, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  mb: "0.26rem",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 76
-  },
-  __self: undefined
-}, "SIZE\u300CCUP\u300D"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-  width: "100%",
-  lineHeight: "0.36rem",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 77
-  },
-  __self: undefined
-}, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-  width: "100%",
-  justifyContent: "space-between",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 78
-  },
-  __self: undefined
-}, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 79
-  },
-  __self: undefined
-}, "85B"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 80
-  },
-  __self: undefined
-}, "90B"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 81
-  },
-  __self: undefined
-}, "85B"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 82
-  },
-  __self: undefined
-}, "85B")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-  width: "100%",
-  justifyContent: "space-between",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 84
-  },
-  __self: undefined
-}, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 85
-  },
-  __self: undefined
-}, "85C"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 86
-  },
-  __self: undefined
-}, "90B"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 87
-  },
-  __self: undefined
-}, "85B"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 88
-  },
-  __self: undefined
-}, "85B"))));
-const Color = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-  width: "100%",
-  mb: "0.4rem",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 95
-  },
-  __self: undefined
-}, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  mb: "0.26rem",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 96
-  },
-  __self: undefined
-}, "COLOUR"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-  justifyContent: "space-between",
-  alignItems: "center",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 97
-  },
-  __self: undefined
-}, __jsx(AisleButton, {
-  text: "A",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 98
-  },
-  __self: undefined
-}), " ", __jsx(Pager, {
-  current: "01",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 98
-  },
-  __self: undefined
-})));
-const Paint = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-  width: "100%",
-  mb: "0.4rem",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 104
-  },
-  __self: undefined
-}, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  mb: "0.26rem",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 105
-  },
-  __self: undefined
-}, "PRINT"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-  justifyContent: "space-between",
-  alignItems: "center",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 106
-  },
-  __self: undefined
-}, __jsx(AisleButton, {
-  text: "A",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 107
-  },
-  __self: undefined
-}), " ", __jsx(Pager, {
-  current: "01",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 107
-  },
-  __self: undefined
-})));
+const PaintList = props => {
+  const {
+    paintList,
+    handleSelect,
+    channelInfoList,
+    curChannelId
+  } = props;
+  const pIndex = channelInfoList.findIndex(x => x.channelId === curChannelId);
+  const usedPlainColorIds = pIndex >= 0 ? channelInfoList[pIndex].flowerColorIds : [];
+  if (paintList.length < 1) return null;
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+    width: "100%",
+    mb: "0.4rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32
+    },
+    __self: undefined
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    justifyContent: "space-between",
+    alignItems: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    },
+    __self: undefined
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: undefined
+  }, "PRINT"), " ", __jsx(Pager, {
+    current: "01",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: undefined
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    width: "5rem",
+    height: "1.5rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: undefined
+  }, paintList.map(item => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+    sx: {
+      backgroundClip: "content-box !important",
+      boxSizing: "content-box",
+      cursor: "pointer",
+      background: `url(${_utils_helper__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + item.value})`,
+      backgroundSize: "100% 100% ",
+      border: `1px ${usedPlainColorIds.indexOf(item.colorId) >= 0 ? "#000" : "#fff"} solid`
+    },
+    onClick: () => {
+      handleSelect(item, "paint");
+    },
+    mt: "0.2rem",
+    mr: "0.2rem",
+    p: "0.08rem",
+    width: "0.3rem",
+    height: "0.3rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: undefined
+  }))));
+};
+const ColorList = props => {
+  const {
+    colorList,
+    handleSelect,
+    channelInfoList,
+    curChannelId
+  } = props;
+  const cIndex = channelInfoList.findIndex(x => x.channelId === curChannelId);
+  const usedPlainColorIds = cIndex >= 0 ? channelInfoList[cIndex].plainColorIds : [];
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+    width: "100%",
+    mb: "0.4rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 70
+    },
+    __self: undefined
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    justifyContent: "space-between",
+    alignItems: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 71
+    },
+    __self: undefined
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 72
+    },
+    __self: undefined
+  }, "COLOUR"), " ", __jsx(Pager, {
+    current: "01",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 72
+    },
+    __self: undefined
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    width: "5rem",
+    height: "1.5rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 74
+    },
+    __self: undefined
+  }, colorList.map(item => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+    sx: {
+      cursor: "pointer",
+      boxSizing: "content-box",
+      backgroundClip: "content-box",
+      border: `1px ${usedPlainColorIds.indexOf(item.colorId) >= 0 ? "#000" : "#fff"} solid`
+    },
+    onClick: () => {
+      handleSelect(item, "color");
+    },
+    bg: item.value,
+    mt: "0.2rem",
+    mr: "0.2rem",
+    p: "0.08rem",
+    width: "0.3rem",
+    height: "0.3rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 76
+    },
+    __self: undefined
+  }))));
+};
 
 /***/ }),
 
@@ -480,10 +366,10 @@ function IndexPage() {
 
 /***/ }),
 
-/***/ "./components/made-edit-box.js":
-/*!*************************************!*\
-  !*** ./components/made-edit-box.js ***!
-  \*************************************/
+/***/ "./components/made-big-box.js":
+/*!************************************!*\
+  !*** ./components/made-big-box.js ***!
+  \************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -494,9 +380,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rebass */ "rebass");
 /* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rebass__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modal */ "./components/modal.js");
-/* harmony import */ var _color_and_paint__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./color-and-paint */ "./components/color-and-paint.js");
-var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/made-edit-box.js";
+/* harmony import */ var _show_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./show-style */ "./components/show-style.js");
+/* harmony import */ var _color_and_paint__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./color-and-paint */ "./components/color-and-paint.js");
+var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/made-big-box.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -506,26 +394,186 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     onClose: props.onClose,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
-    },
-    __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-    width: "15.4rem",
-    fontSize: "0.18rem",
-    color: "#000",
-    __source: {
-      fileName: _jsxFileName,
       lineNumber: 9
     },
     __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-    justifyContent: "space-between",
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+    width: "14rem",
+    fontSize: "0.18rem",
+    color: "#000",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 10
     },
     __self: undefined
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    justifyContent: "space-between",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    },
+    __self: undefined
+  }, __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "10.2rem",
+    height: "5.1rem",
+    imgWidth: "4.99rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    },
+    __self: undefined
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    flexDirection: "column",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    },
+    __self: undefined
+  }, __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "3.4rem",
+    height: "1.7rem",
+    imgWidth: "1.4rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 14
+    },
+    __self: undefined
+  }), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "3.4rem",
+    height: "1.7rem",
+    imgWidth: "1.4rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 15
+    },
+    __self: undefined
+  }), __jsx(_show_style__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    width: "3.4rem",
+    height: "1.7rem",
+    imgWidth: "1.4rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    },
+    __self: undefined
+  })))));
+});
+
+/***/ }),
+
+/***/ "./components/made-edit-box.js":
+/*!*************************************!*\
+  !*** ./components/made-edit-box.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/array/is-array */ "./node_modules/@babel/runtime-corejs2/core-js/array/is-array.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rebass */ "rebass");
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(rebass__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modal */ "./components/modal.js");
+/* harmony import */ var _color_and_paint__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./color-and-paint */ "./components/color-and-paint.js");
+/* harmony import */ var _utils_request_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/request.js */ "./utils/request.js");
+/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/helper */ "./utils/helper.js");
+
+var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/made-edit-box.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (props => {
+  const {
+    styleDetails,
+    curStyle
+  } = props;
+  let tempSelectedIds = [curStyle[0].value];
+  let tempSelectedImgs = [curStyle[0].imgUrl];
+
+  if (curStyle.length > 1) {
+    tempSelectedIds.push(curStyle[1].value);
+    tempSelectedImgs.push(curStyle[1].imgUrl);
+  } else {
+    tempSelectedIds.push(false);
+    tempSelectedImgs.push(false);
+  }
+
+  const {
+    0: curSelectedColorIds,
+    1: setCurSelectedColorIds
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(tempSelectedIds);
+  const {
+    0: curStyleIndex,
+    1: setCurStyleIndex
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0);
+  const {
+    0: curStyleImgs,
+    1: setCurStyleImgs
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(tempSelectedImgs); // const [colorList, setColorList] = useState(styleDetails[0].plainColors)
+
+  const handleSelect = (item, type) => {
+    if (item.colorId === curSelectedColorIds[curStyleIndex]) {
+      curSelectedColorIds[curStyleIndex] = false;
+      setCurSelectedColorIds([].concat(curSelectedColorIds));
+      curStyleImgs.splice(curStyleIndex, 1, false);
+      setCurStyleImgs([].concat(curStyleImgs));
+    } else {
+      curSelectedColorIds[curStyleIndex] = item.colorId;
+      setCurSelectedColorIds([].concat(curSelectedColorIds)); // setCurSelectedColorId()
+
+      switch (type) {
+        case "color":
+          const cIndex = styleDetails[curStyleIndex].plainColors.findIndex(x => x.colorId === item.colorId);
+          curStyleImgs.splice(curStyleIndex, 1, styleDetails[curStyleIndex].plainColors[cIndex].front);
+          setCurStyleImgs([].concat(curStyleImgs));
+          break;
+
+        case "paint":
+          const pIndex = styleDetails[curStyleIndex].flowerColors.findIndex(x => x.colorId === item.colorId);
+          curStyleImgs.splice(curStyleIndex, 1, styleDetails[curStyleIndex].flowerColors[pIndex].front);
+          setCurStyleImgs([].concat(curStyleImgs));
+          break;
+
+        default:
+          break;
+      }
+    }
+  }; // useEffect(() => {
+  // 	setCurSelectedColorId(false)
+  // }, [curStyleIndex])
+
+
+  return __jsx(_modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    onClose: props.onClose,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 70
+    },
+    __self: undefined
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Box"], {
+    width: "14rem",
+    fontSize: "0.18rem",
+    color: "#000",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 71
+    },
+    __self: undefined
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
+    justifyContent: "space-between",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 72
+    },
+    __self: undefined
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-evenly",
@@ -535,21 +583,27 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 73
     },
     __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  }, _babel_runtime_corejs2_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0___default()(styleDetails) && styleDetails.map((style, index) => __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
     width: "6.75rem",
-    height: "4.88rem",
+    padding: "1rem 0",
     alignItems: "center",
     justifyContent: "center",
+    sx: {
+      border: curStyleIndex === index ? "1px solid #000" : "1px solid #A0A0A0"
+    },
+    onClick: () => {
+      setCurStyleIndex(index);
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 84
     },
     __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
-    src: "/4/style2.png",
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Image"], {
+    src: _utils_helper__WEBPACK_IMPORTED_MODULE_6__["baseUrl"] + (curStyleImgs[index] ? curStyleImgs[index] : style.imgUrl),
     sx: {
       width: "3.79rem",
       minWidth: "14px",
@@ -557,51 +611,99 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 99
     },
     __self: undefined
-  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-    width: "6.75rem",
-    height: "4.88rem",
-    alignItems: "center",
-    justifyContent: "center",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 35
-    },
-    __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
-    src: "./4/style1.png",
-    sx: {
-      width: "3.89rem",
-      minWidth: "14px",
-      minHeight: "14px"
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 41
-    },
-    __self: undefined
-  }))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  })))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
     flexDirection: "column",
+    flexGrow: 1,
+    pl: "0.6rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 52
+      lineNumber: 130
     },
     __self: undefined
-  }, __jsx(_color_and_paint__WEBPACK_IMPORTED_MODULE_3__["Color"], {
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Box"], {
+    width: [1],
+    mb: "0.6rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 53
+      lineNumber: 131
     },
     __self: undefined
-  }), __jsx(_color_and_paint__WEBPACK_IMPORTED_MODULE_3__["Paint"], {
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Text"], {
+    fontSize: "0.18rem",
+    fontWeight: "bolder",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54
+      lineNumber: 132
     },
     __self: undefined
-  })))));
+  }, "SECTION NUMBER"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Text"], {
+    fontSize: "0.1rem",
+    m: "0.16rem 0",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 135
+    },
+    __self: undefined
+  }, styleDetails[curStyleIndex].styleNo)), __jsx(_color_and_paint__WEBPACK_IMPORTED_MODULE_4__["ColorList"], {
+    colorList: styleDetails[curStyleIndex].plainColors,
+    handleSelect: handleSelect,
+    curChannelId: 0,
+    channelInfoList: [{
+      channelId: 0,
+      plainColorIds: [curSelectedColorIds[curStyleIndex]]
+    }],
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 139
+    },
+    __self: undefined
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Box"], {
+    height: "0.3rem",
+    width: [1],
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 150
+    },
+    __self: undefined
+  }), __jsx(_color_and_paint__WEBPACK_IMPORTED_MODULE_4__["PaintList"], {
+    paintList: styleDetails[curStyleIndex].flowerColors,
+    handleSelect: handleSelect,
+    curChannelId: 0,
+    channelInfoList: [{
+      channelId: 0,
+      flowerColorIds: [curSelectedColorIds[curStyleIndex]]
+    }],
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 151
+    },
+    __self: undefined
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+    variant: "primary",
+    height: "0.7rem",
+    width: "100%",
+    bg: "#1B1B1B",
+    color: "#fff",
+    padding: "0",
+    mt: "0.7rem",
+    sx: {
+      borderRadius: 0,
+      fontSize: "0.14rem",
+      cursor: "pointer"
+    },
+    onClick: () => {
+      props.confirmMade(curSelectedColorIds, curStyleImgs);
+      props.onClose();
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 162
+    },
+    __self: undefined
+  }, "FINISH")))));
 });
 
 /***/ }),
@@ -615,16 +717,24 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rebass */ "rebass");
-/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rebass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/array/is-array */ "./node_modules/@babel/runtime-corejs2/core-js/array/is-array.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rebass */ "rebass");
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(rebass__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/helper */ "./utils/helper.js");
+
 var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/made-style-item.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (props => {
-  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  const {
+    styleList
+  } = props;
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-evenly",
@@ -643,11 +753,11 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 6
+      lineNumber: 7
     },
     __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
-    src: "/4/style2.png",
+  }, _babel_runtime_corejs2_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0___default()(styleList) && styleList.map(style => __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Image"], {
+    src: _utils_helper__WEBPACK_IMPORTED_MODULE_3__["baseUrl"] + style.imgUrl,
     sx: {
       width: "2.15rem",
       minWidth: "14px",
@@ -655,22 +765,10 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 27
     },
     __self: undefined
-  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
-    src: "./4/style1.png",
-    sx: {
-      width: "2.21rem",
-      minWidth: "14px",
-      minHeight: "14px"
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 32
-    },
-    __self: undefined
-  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
     flexDirection: "column",
     justifyContent: "space-between",
     height: "1.5rem",
@@ -683,10 +781,10 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 45
     },
     __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Image"], {
     src: "./4/edit.png",
     sx: {
       width: "0.3rem",
@@ -698,10 +796,10 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 52
+      lineNumber: 57
     },
     __self: undefined
-  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Image"], {
     src: "./4/bigger.png",
     sx: {
       width: "0.3rem",
@@ -714,19 +812,20 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 68
     },
     __self: undefined
-  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Image"], {
     src: "./4/collect.png",
     sx: {
       width: "0.3rem",
       minWidth: "14px",
       minHeight: "14px"
     },
+    onClick: props.onAddFavorite,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 75
+      lineNumber: 80
     },
     __self: undefined
   })));
@@ -757,12 +856,13 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     flexDirection: "column",
     fontSize: "0.18rem",
     color: "#000",
-    p: "0.5rem 0.7rem 0 0.7rem",
+    p: "0.9rem",
     sx: {
       position: "absolute",
       zIndex: 999999999,
       top: "40px",
-      left: "calc(0.4rem)",
+      left: "50%",
+      transform: "translateX(-50%)",
       margin: "0 auto",
       boxShadow: "0px 14px 44px 5px rgba(0, 0, 0, 0.11)"
     },
@@ -784,7 +884,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 22
     },
     __self: undefined
   }), props.children);
@@ -1017,521 +1117,92 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 /***/ }),
 
-/***/ "./components/select-assign-tool/aisle-button.js":
-/*!*******************************************************!*\
-  !*** ./components/select-assign-tool/aisle-button.js ***!
-  \*******************************************************/
-/*! exports provided: Title, default */
+/***/ "./components/show-style.js":
+/*!**********************************!*\
+  !*** ./components/show-style.js ***!
+  \**********************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Title", function() { return Title; });
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/extends */ "./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rebass */ "rebass");
 /* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(rebass__WEBPACK_IMPORTED_MODULE_2__);
 
-var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/select-assign-tool/aisle-button.js";
+var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/show-style.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
-const Title = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
-  width: "100%",
-  sx: {},
-  mb: "0.43rem",
+
+const Item = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
+  width: props.width,
+  height: props.height,
+  alignItems: "center",
+  justifyContent: "center",
   __source: {
     fileName: _jsxFileName,
     lineNumber: 4
   },
   __self: undefined
-}, __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Box"], {
-  width: [1],
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 5
-  },
-  __self: undefined
-}, __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Text"], {
-  fontSize: "0.18rem",
-  fontWeight: "bolder",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 6
-  },
-  __self: undefined
-}, "SECTION NUMBER"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Text"], {
-  fontSize: "0.1rem",
-  m: "0.16rem 0",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 9
-  },
-  __self: undefined
-}, props.styleNo), __jsx(AisleButton, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-  text: "A"
-}, props, {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 12
-  },
-  __self: undefined
-}))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Image"], {
-  src: "/3/close.png",
-  width: "0.23rem",
-  onClick: () => {
-    props.onClose();
-  },
+}, __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Image"], {
+  src: props.url,
   sx: {
-    position: "absolute",
-    right: "0.42rem",
-    top: "0.41rem"
+    width: props.imgWidth,
+    minWidth: "14px",
+    minHeight: "14px"
   },
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 14
+    lineNumber: 10
   },
   __self: undefined
 }));
 
-const AisleButton = props => {
-  const {
-    channelList,
-    curChannelIndex
-  } = props;
-  const {
-    0: showChannels,
-    1: setShowChannels
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
+/* harmony default export */ __webpack_exports__["default"] = (props => {
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    width: props.width,
+    height: props.width,
+    sx: {
+      cursor: "pointer"
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 22
     },
     __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Box"], {
-    height: "0.32rem",
-    width: "0.88rem",
-    bg: "#000",
-    color: "#fff",
-    padding: "0",
-    textAlign: "center",
-    lineHeight: "0.32rem",
+  }, __jsx(Item, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    url: "/4/style2.png",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 32
     },
     __self: undefined
-  }, "ALSLE"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Box"], {
-    variant: "primary",
-    height: "0.32rem",
-    bg: "#FF8E6C",
-    color: "#000",
-    sx: {
-      textAlign: "center",
-      padding: "0 0.32rem",
-      borderRadius: 0,
-      fontSize: "0.14rem",
-      cursor: "pointer"
-    },
-    onClick: () => {
-      setShowChannels(!showChannels);
-    },
+  })), __jsx(Item, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    url: "/4/style1.png",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 43
+      lineNumber: 33
     },
     __self: undefined
-  }, channelList.length > 0 ? channelList[curChannelIndex].code : "")), showChannels ? __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
-    width: [1],
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 63
-    },
-    __self: undefined
-  }, channelList.map((channel, index) => __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Text"], {
-    mr: "10px",
-    sx: {
-      cursor: "pointer"
-    },
-    onClick: () => {
-      props.onSelectChannelByIndex(index);
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 65
-    },
-    __self: undefined
-  }, channel.name))) : null);
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (AisleButton);
+  })));
+});
 
 /***/ }),
 
-/***/ "./components/select-assign-tool/index.js":
-/*!************************************************!*\
-  !*** ./components/select-assign-tool/index.js ***!
-  \************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/array/is-array.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/array/is-array.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rebass */ "rebass");
-/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rebass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _aisle_button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./aisle-button */ "./components/select-assign-tool/aisle-button.js");
-/* harmony import */ var _utils_request_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/request.js */ "./utils/request.js");
-/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/helper */ "./utils/helper.js");
-var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/select-assign-tool/index.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-
-
-
-
-
-const PagerButton = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-  width: "0.26rem",
-  height: "0.26rem",
-  bg: "#000",
-  p: "0",
-  sx: {
-    borderRadius: 0
-  },
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 7
-  },
-  __self: undefined
-}, props.children);
-
-const Pager = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 18
-  },
-  __self: undefined
-}, __jsx(PagerButton, {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 19
-  },
-  __self: undefined
-}, "<"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-  bg: "#EEEEEE",
-  lineHeight: "0.26rem",
-  width: "0.53rem",
-  textAlign: "center",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 20
-  },
-  __self: undefined
-}, props.current), __jsx(PagerButton, {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 23
-  },
-  __self: undefined
-}, ">"));
-
-/* harmony default export */ __webpack_exports__["default"] = (props => {
-  const {
-    sid,
-    top,
-    col,
-    styleItem
-  } = props.currentSeleted;
-  const {
-    0: curChannelIndex,
-    1: setCurChannelIndex
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
-  const {
-    0: channelList,
-    1: setChannelList
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  const {
-    0: colorList,
-    1: setColorList
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  const {
-    0: paintList,
-    1: setPaintList
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  const {
-    0: sizeList,
-    1: setSizeList
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    const getChannels = async () => {
-      const req = await Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_3__["default"])("channel/getList", {}, "get");
-      setChannelList(req);
-      console.log("getChannels", req);
-    };
-
-    getChannels(); // const getColors = async () => {
-    // 	const req = await request("color/getList", { type: "0" }, "get")
-    // 	if (!req) return
-    // 	setColorList(req)
-    // 	console.log(req)
-    // }
-    // getColors()
-    // const getPaints = async () => {
-    // 	const req = await request("color/getList", { type: "1" }, "get")
-    // 	if (!req) return
-    // 	setPaintList(req)
-    // }
-    // getPaints()
-  }, []);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    if (props.currentSeleted) {
-      const getStyle = async () => {
-        const req = await Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_3__["default"])("style/detail", {
-          _id: sid
-        }, "get");
-        if (!req) return;
-        console.log("getStyle", req);
-        setPaintList(req.flowerColors);
-        setColorList(req.plainColors);
-        setSizeList(req.size.values);
-      };
-
-      getStyle();
-    }
-  }, [props.currentSeleted]);
-  let left = (col + 2) * 3.2;
-
-  if (left > 19.2 - 6.4) {
-    left = (col - 1) * 3.2;
-  }
-
-  const handleSelect = (item, type) => {
-    switch (type) {
-      case "color":
-        const cIndex = colorList.findIndex(x => x._id === item._id);
-        colorList[cIndex].selected = !colorList[cIndex].selected; // colorList.splice(index, 1, item.selected=true)
-
-        setColorList([].concat(colorList));
-        break;
-
-      case "paint":
-        const pIndex = paintList.findIndex(x => x._id === item._id);
-        paintList[pIndex].selected = !paintList[pIndex].selected; // colorList.splice(index, 1, item.selected=true)
-
-        setPaintList([].concat(paintList));
-        break;
-
-      default:
-        break;
-    }
-  };
-
-  const handleSelectChannelByIndex = index => {
-    setCurChannelIndex(index);
-  };
-
-  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-    width: "6.4rem",
-    bg: "#fff",
-    flexDirection: "column",
-    fontSize: "0.18rem",
-    color: "#000",
-    p: "0.5rem 0.7rem 0 0.7rem",
-    sx: {
-      position: "absolute",
-      top: `${top}px`,
-      left: `${left}rem`
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 96
-    },
-    __self: undefined
-  }, __jsx(_aisle_button__WEBPACK_IMPORTED_MODULE_2__["Title"], {
-    styleNo: styleItem.styleNo,
-    channelList: channelList,
-    onClose: props.onClose,
-    curChannelIndex: curChannelIndex,
-    onSelectChannelByIndex: handleSelectChannelByIndex,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 109
-    },
-    __self: undefined
-  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-    flexDirection: "column",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 116
-    },
-    __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-    width: "100%",
-    mb: "0.4rem",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 117
-    },
-    __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    mb: "0.1rem",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 118
-    },
-    __self: undefined
-  }, "SIZE\u300CCUP\u300D"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-    width: "100%",
-    lineHeight: "0.36rem",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 119
-    },
-    __self: undefined
-  }, sizeList.map(size => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    mr: "0.2rem",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 121
-    },
-    __self: undefined
-  }, size.name)))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-    width: "100%",
-    mb: "0.4rem",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 137
-    },
-    __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-    justifyContent: "space-between",
-    alignItems: "center",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 138
-    },
-    __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 139
-    },
-    __self: undefined
-  }, "COLOUR"), " ", __jsx(Pager, {
-    current: "01",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 139
-    },
-    __self: undefined
-  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 141
-    },
-    __self: undefined
-  }, colorList.map(item => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-    sx: {
-      cursor: "pointer",
-      boxSizing: "content-box",
-      backgroundClip: "content-box",
-      border: `1px ${item.selected ? "#000" : "#fff"} solid`
-    },
-    onClick: () => {
-      handleSelect(item, "color");
-    },
-    bg: item.value,
-    mt: "0.2rem",
-    mr: "0.2rem",
-    p: "0.08rem",
-    width: "0.3rem",
-    height: "0.3rem",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 143
-    },
-    __self: undefined
-  })))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-    width: "100%",
-    mb: "0.4rem",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 163
-    },
-    __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-    justifyContent: "space-between",
-    alignItems: "center",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 164
-    },
-    __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 165
-    },
-    __self: undefined
-  }, "PRINT"), " ", __jsx(Pager, {
-    current: "01",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 165
-    },
-    __self: undefined
-  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 167
-    },
-    __self: undefined
-  }, paintList.map(item => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
-    sx: {
-      backgroundClip: "content-box !important",
-      boxSizing: "content-box",
-      cursor: "pointer",
-      background: `url(${_utils_helper__WEBPACK_IMPORTED_MODULE_4__["baseUrl"] + item.value})`,
-      backgroundSize: "100% 100% ",
-      border: `1px ${item.selected ? "#000" : "#fff"} solid`
-    },
-    onClick: () => {
-      handleSelect(item, "paint");
-    },
-    mt: "0.2rem",
-    mr: "0.2rem",
-    p: "0.08rem",
-    width: "0.3rem",
-    height: "0.3rem",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 169
-    },
-    __self: undefined
-  }))))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-    variant: "primary",
-    height: "0.7rem",
-    width: "6.4rem",
-    bg: "#1B1B1B",
-    color: "#fff",
-    padding: "0",
-    ml: "-0.7rem",
-    sx: {
-      borderRadius: 0,
-      fontSize: "0.14rem",
-      cursor: "pointer"
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 191
-    },
-    __self: undefined
-  }, "FINISH"));
-});
+module.exports = __webpack_require__(/*! core-js/library/fn/array/is-array */ "core-js/library/fn/array/is-array");
 
 /***/ }),
 
@@ -1605,8 +1276,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rebass__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_nav__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/nav */ "./components/nav.js");
 /* harmony import */ var _components_made_edit_box__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/made-edit-box */ "./components/made-edit-box.js");
-/* harmony import */ var _components_made_style_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/made-style-item */ "./components/made-style-item.js");
-/* harmony import */ var _components_select_assign_tool__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/select-assign-tool */ "./components/select-assign-tool/index.js");
+/* harmony import */ var _components_made_big_box__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/made-big-box */ "./components/made-big-box.js");
+/* harmony import */ var _components_made_style_item__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/made-style-item */ "./components/made-style-item.js");
+/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/helper */ "./utils/helper.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _utils_request_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/request.js */ "./utils/request.js");
 var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/pages/made.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -1615,7 +1290,15 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
+
+ // import SelectAssignTool from "../components/select-assign-tool"
+
 /* harmony default export */ __webpack_exports__["default"] = (() => {
+  const {
+    0: styleDetails,
+    1: setStyleDetails
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
   const {
     0: showBigBox,
     1: setShowBigBox
@@ -1624,24 +1307,111 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     0: showEditBox,
     1: setShowEditBox
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const {
+    0: curItemIndex,
+    1: setCurItemIndex
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  const {
+    0: styleInitData,
+    1: setStyleInitData
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([[], [], [], [], [], []]);
+  const boxNos = [0, 1, 2, 3, 4, 5];
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    const getStyleDetails = async () => {
+      let query = Object(_utils_helper__WEBPACK_IMPORTED_MODULE_6__["getPageQuery"])();
+      console.log(query);
+      let reqList = [];
+      const req = await Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_8__["default"])("style/detail", {
+        _id: query.id
+      }, "get");
+      reqList.push(req);
+
+      for (let i = 0; i < 6; i++) {
+        styleInitData[i].push({
+          imgUrl: req.imgUrl,
+          value: false
+        });
+      }
+
+      if (query.id1) {
+        const req1 = await Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_8__["default"])("style/detail", {
+          _id: query.id1
+        }, "get");
+        reqList.push(req1);
+
+        for (let i = 0; i < 6; i++) {
+          styleInitData[i].push({
+            imgUrl: req1.imgUrl,
+            value: false
+          });
+        }
+      }
+
+      setStyleInitData([].concat(styleInitData));
+      setStyleDetails(reqList);
+    };
+
+    getStyleDetails();
+  }, []);
+
+  const handleConfirmMade = (colorIds, imgUrls) => {
+    console.log(colorIds, imgUrls);
+    if (!colorIds[0]) return;
+    styleInitData[curItemIndex] = [{
+      colorId: colorIds[0],
+      imgUrl: imgUrls[0]
+    }];
+
+    if (styleDetails.length > 1) {
+      if (!colorIds[1]) return;
+      styleInitData[curItemIndex].push({
+        colorId: colorIds[1],
+        imgUrl: imgUrls[1]
+      });
+    }
+
+    setStyleInitData([].concat(styleInitData));
+  };
+
+  const handleAddFavorite = async index => {
+    if (!styleInitData[index][0].colorId) return;
+    let params = [{
+      styleId: styleDetails[0]._id,
+      colorId: styleInitData[index][0].colorId
+    }];
+
+    if (styleDetails.length > 1) {
+      if (!styleInitData[index][1].colorId) return;
+      params.push({
+        styleId: styleDetails[1]._id,
+        colorId: styleInitData[index][1].colorId
+      });
+    }
+
+    const res = await Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_8__["default"])("/user/addFavorite", {
+      styleAndColor: params
+    }, "post");
+    console.log(res);
+  };
+
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
     flexDirection: "column",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 79
     },
     __self: undefined
   }, __jsx(_components_nav__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 80
     },
     __self: undefined
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
     flexDirection: "column",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 81
     },
     __self: undefined
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
@@ -1654,75 +1424,53 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     height: "1.12rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 82
     },
     __self: undefined
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 91
     },
     __self: undefined
   }, "TOPS"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 92
     },
     __self: undefined
   }, "BOTTOMS")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
     flexWrap: "wrap",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 94
     },
     __self: undefined
-  }, __jsx(_components_made_style_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, styleInitData.map((style, index) => __jsx(_components_made_style_item__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    key: `${index}-style`,
+    styleList: style,
     openBigBox: () => {
       setShowBigBox(true);
     },
-    openEditBox: () => setShowEditBox(true),
+    onAddFavorite: () => {
+      handleAddFavorite(index);
+    },
+    openEditBox: () => {
+      setShowEditBox(true);
+      setCurItemIndex(index);
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 96
     },
     __self: undefined
-  }), __jsx(_components_made_style_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 34
-    },
-    __self: undefined
-  }), __jsx(_components_made_style_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 35
-    },
-    __self: undefined
-  }), __jsx(_components_made_style_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 36
-    },
-    __self: undefined
-  }), __jsx(_components_made_style_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 37
-    },
-    __self: undefined
-  }), __jsx(_components_made_style_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 38
-    },
-    __self: undefined
-  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  }))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
     fontSize: "0.27rem",
     color: "#fff",
     justifyContent: "",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 112
     },
     __self: undefined
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
@@ -1737,9 +1485,12 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
       borderRadius: 0,
       cursor: "pointer"
     },
+    onClick: () => {
+      next_router__WEBPACK_IMPORTED_MODULE_7___default.a.back();
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 41
+      lineNumber: 113
     },
     __self: undefined
   }, "< RETURN"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
@@ -1754,18 +1505,33 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
       borderRadius: 0,
       cursor: "pointer"
     },
+    onClick: () => {
+      next_router__WEBPACK_IMPORTED_MODULE_7___default.a.push("/mine");
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 56
+      lineNumber: 131
     },
     __self: undefined
-  }, "COMPLETE"))), showBigBox ? __jsx(_components_made_edit_box__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "COMPLETE"))), showBigBox ? __jsx(_components_made_big_box__WEBPACK_IMPORTED_MODULE_4__["default"], {
     onClose: () => {
       setShowBigBox(false);
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74
+      lineNumber: 152
+    },
+    __self: undefined
+  }) : null, showEditBox ? __jsx(_components_made_edit_box__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    styleDetails: styleDetails,
+    curStyle: styleInitData[curItemIndex],
+    confirmMade: handleConfirmMade,
+    onClose: () => {
+      setShowEditBox(false);
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 159
     },
     __self: undefined
   }) : null));
@@ -1825,6 +1591,12 @@ instance.interceptors.request.use(config => {
    */
   const token = localStorage.token;
   config.headers.Authorization = `Bearer ${token}`;
+
+  if (config.method === "post") {
+    config.headers["content-type"] = "application/json";
+  }
+
+  console.log(config);
   return config;
 }, error => _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0___default.a.reject(error));
 instance.interceptors.response.use(response => {
@@ -1852,15 +1624,13 @@ const handleErrorStatus = (status, message) => {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ((url = "", data = {}, method = "get", origin = false, api) => {
-  var postData = new FormData();
-
-  for (var prop in data) {
-    postData.append(prop, data[prop]);
-  }
-
+  // var postData = new FormData()
+  // for (var prop in data) {
+  // 	postData.append(prop, data[prop])
+  // }
   const options = method.toLowerCase() === "get" ? {
     params: data
-  } : postData;
+  } : data;
   return instance[method](url, options).then(res => {
     return res.data;
   }).catch(err => {
@@ -1872,7 +1642,7 @@ const handleErrorStatus = (status, message) => {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!*****************************!*\
   !*** multi ./pages/made.js ***!
   \*****************************/
@@ -1892,6 +1662,17 @@ module.exports = __webpack_require__(/*! /Users/paige/Desktop/workspace/mm-next/
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
+
+/***/ }),
+
+/***/ "core-js/library/fn/array/is-array":
+/*!****************************************************!*\
+  !*** external "core-js/library/fn/array/is-array" ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/array/is-array");
 
 /***/ }),
 
@@ -1925,6 +1706,17 @@ module.exports = require("core-js/library/fn/promise");
 /***/ (function(module, exports) {
 
 module.exports = require("next/head");
+
+/***/ }),
+
+/***/ "next/router":
+/*!******************************!*\
+  !*** external "next/router" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next/router");
 
 /***/ }),
 

@@ -16,6 +16,10 @@ instance.interceptors.request.use(
 		 */
 		const token = localStorage.token
 		config.headers.Authorization = `Bearer ${token}`
+		if (config.method === "post") {
+			config.headers["content-type"] = "application/json"
+		}
+		console.log(config)
 		return config
 	},
 	error => Promise.reject(error)
@@ -48,11 +52,11 @@ const handleErrorStatus = (status, message) => {
 }
 
 export default (url = "", data = {}, method = "get", origin = false, api) => {
-	var postData = new FormData()
-	for (var prop in data) {
-		postData.append(prop, data[prop])
-	}
-	const options = method.toLowerCase() === "get" ? { params: data } : postData
+	// var postData = new FormData()
+	// for (var prop in data) {
+	// 	postData.append(prop, data[prop])
+	// }
+	const options = method.toLowerCase() === "get" ? { params: data } : data
 
 	return instance[method](url, options)
 		.then(res => {

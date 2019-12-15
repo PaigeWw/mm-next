@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
-
+import { baseUrl } from "../utils/helper"
 const PagerButton = props => (
 	<Button
 		width="0.26rem"
@@ -21,90 +21,79 @@ const Pager = props => (
 		<PagerButton>{">"}</PagerButton>
 	</Flex>
 )
-const AisleButton = props => (
-	<Flex>
-		<Box
-			height="0.32rem"
-			width="0.88rem"
-			bg="#000"
-			color="#fff"
-			padding="0"
-			textAlign="center"
-			lineHeight="0.32rem"
-		>
-			ALSLE
-		</Box>
-		<Button
-			variant="primary"
-			height="0.32rem"
-			width="0.88rem"
-			bg="#FF8E6C"
-			color="#000"
-			padding="0"
-			sx={{
-				borderRadius: 0,
-				fontSize: "0.14rem",
-				cursor: "pointer"
-			}}
-		>
-			{props.text}
-		</Button>
-	</Flex>
-)
 
-const Title = props => (
-	<Flex width="100%" sx={{}} mb="0.43rem">
-		<Box>
-			<Text fontSize="0.18rem" fontWeight="bolder">
-				SECTION NUMBER
-			</Text>
-			<Text fontSize="0.1rem" m="0.16rem 0">
-				2010000XJLS
-			</Text>
-			<AisleButton text="A" />
-		</Box>
-		<Image
-			src="/3/close.png"
-			width="0.23rem"
-			sx={{ position: "absolute", right: "0.42rem", top: "0.41rem" }}
-		></Image>
-	</Flex>
-)
-
-export const Size = props => (
-	<Box width="100%" mb="0.4rem">
-		<Text mb="0.26rem">SIZE「CUP」</Text>
-		<Box width="100%" lineHeight="0.36rem">
-			<Flex width="100%" justifyContent="space-between">
-				<Text>85B</Text>
-				<Text>90B</Text>
-				<Text>85B</Text>
-				<Text>85B</Text>
+export const PaintList = props => {
+	const { paintList, handleSelect, channelInfoList, curChannelId } = props
+	const pIndex = channelInfoList.findIndex(x => x.channelId === curChannelId)
+	const usedPlainColorIds =
+		pIndex >= 0 ? channelInfoList[pIndex].flowerColorIds : []
+	if (paintList.length < 1) return null
+	return (
+		<Box width="100%" mb="0.4rem">
+			<Flex justifyContent="space-between" alignItems="center">
+				<Text>PRINT</Text> <Pager current="01" />
 			</Flex>
-			<Flex width="100%" justifyContent="space-between">
-				<Text>85C</Text>
-				<Text>90B</Text>
-				<Text>85B</Text>
-				<Text>85B</Text>
+			<Flex width="5rem" height="1.5rem">
+				{paintList.map(item => (
+					<Box
+						sx={{
+							backgroundClip: "content-box !important",
+							boxSizing: "content-box",
+							cursor: "pointer",
+							background: `url(${baseUrl + item.value})`,
+							backgroundSize: "100% 100% ",
+							border: `1px ${
+								usedPlainColorIds.indexOf(item.colorId) >= 0 ? "#000" : "#fff"
+							} solid`
+						}}
+						onClick={() => {
+							handleSelect(item, "paint")
+						}}
+						mt="0.2rem"
+						mr="0.2rem"
+						p="0.08rem"
+						width="0.3rem"
+						height="0.3rem"
+					></Box>
+				))}
 			</Flex>
 		</Box>
-	</Box>
-)
+	)
+}
 
-export const Color = props => (
-	<Box width="100%" mb="0.4rem">
-		<Text mb="0.26rem">COLOUR</Text>
-		<Flex justifyContent="space-between" alignItems="center">
-			<AisleButton text="A" /> <Pager current="01" />
-		</Flex>
-	</Box>
-)
-
-export const Paint = props => (
-	<Box width="100%" mb="0.4rem">
-		<Text mb="0.26rem">PRINT</Text>
-		<Flex justifyContent="space-between" alignItems="center">
-			<AisleButton text="A" /> <Pager current="01" />
-		</Flex>
-	</Box>
-)
+export const ColorList = props => {
+	const { colorList, handleSelect, channelInfoList, curChannelId } = props
+	const cIndex = channelInfoList.findIndex(x => x.channelId === curChannelId)
+	const usedPlainColorIds =
+		cIndex >= 0 ? channelInfoList[cIndex].plainColorIds : []
+	return (
+		<Box width="100%" mb="0.4rem">
+			<Flex justifyContent="space-between" alignItems="center">
+				<Text>COLOUR</Text> <Pager current="01" />
+			</Flex>
+			<Flex width="5rem" height="1.5rem">
+				{colorList.map(item => (
+					<Box
+						sx={{
+							cursor: "pointer",
+							boxSizing: "content-box",
+							backgroundClip: "content-box",
+							border: `1px ${
+								usedPlainColorIds.indexOf(item.colorId) >= 0 ? "#000" : "#fff"
+							} solid`
+						}}
+						onClick={() => {
+							handleSelect(item, "color")
+						}}
+						bg={item.value}
+						mt="0.2rem"
+						mr="0.2rem"
+						p="0.08rem"
+						width="0.3rem"
+						height="0.3rem"
+					></Box>
+				))}
+			</Flex>
+		</Box>
+	)
+}

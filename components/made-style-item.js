@@ -1,7 +1,8 @@
 import React, { useEffect } from "react"
 import { Flex, Text, Box, Image } from "rebass"
-
+import { baseUrl } from "../utils/helper"
 export default props => {
+	const { styleList } = props
 	return (
 		<Flex
 			flexDirection="column"
@@ -21,22 +22,26 @@ export default props => {
 				}
 			}}
 		>
-			<Image
-				src="/4/style2.png"
-				sx={{
-					width: "2.15rem",
-					minWidth: "14px",
-					minHeight: "14px"
-				}}
-			/>
-			<Image
+			{Array.isArray(styleList) &&
+				styleList.map(style => (
+					<Image
+						src={baseUrl + style.imgUrl}
+						sx={{
+							width: "2.15rem",
+							minWidth: "14px",
+							minHeight: "14px"
+						}}
+					/>
+				))}
+
+			{/* <Image
 				src="./4/style1.png"
 				sx={{
 					width: "2.21rem",
 					minWidth: "14px",
 					minHeight: "14px"
 				}}
-			/>
+			/> */}
 			<Flex
 				flexDirection="column"
 				justifyContent="space-between"
@@ -79,6 +84,7 @@ export default props => {
 						minWidth: "14px",
 						minHeight: "14px"
 					}}
+					onClick={props.onAddFavorite}
 				/>
 			</Flex>
 		</Flex>

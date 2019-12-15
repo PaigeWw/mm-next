@@ -5,11 +5,38 @@ import Head from "../components/head"
 import request from "../utils/request.js"
 import useUserInfo from "../hooks/getUserInfo"
 import Router from "next/router"
-
+import Svg from "../components/svg"
 export default () => {
 	const [modal, setMadal] = useState(0) // 0, 1, 2, 3
+	const [svgColor, setSvgColor] = useState("#231815")
 	const [account, setAccount] = useState("chanpin2@miss.com")
 	const [password, setPassword] = useState("123456")
+	const showInfoList = [
+		{
+			signal: "AT MRMISS WE LOVE . . .",
+			leftColor: "#E74C39",
+			rightColor: "#231815",
+			imgUrl: "./1/t-1.png"
+		},
+		{
+			signal: "EVERY DESIGN",
+			leftColor: "#FF8E6C",
+			rightColor: "#B6141E",
+			imgUrl: "./1/t2.png"
+		},
+		{
+			signal: "EVERY PROJECT",
+			leftColor: "#434343",
+			rightColor: "#784E38",
+			imgUrl: "./1/t3.png"
+		},
+		{
+			signal: "EVERY PRO",
+			leftColor: "#000000",
+			rightColor: "#374E4B",
+			imgUrl: "./1/t4.png"
+		}
+	]
 	const handleLogin = async () => {
 		const req = await request(
 			"user/login",
@@ -26,6 +53,7 @@ export default () => {
 	}
 	const userInfo = useUserInfo()
 	console.log(userInfo, "userInfo")
+
 	return (
 		<React.Fragment>
 			<Head></Head>
@@ -114,11 +142,27 @@ export default () => {
 							</Button>
 						</Box>
 					</Flex>
-					<Box width={[1, 718 / 1920]} bg="gray"></Box>
-					<Box width={[1, 480 / 1920]} bg="black"></Box>
+					<Box width={[1, 718 / 1920]} bg="gray">
+						<Image
+							src={showInfoList[modal].imgUrl}
+							mr={"10px"}
+							sx={
+								{
+									// width: "0.18rem",
+									// minWidth: "14px",
+									// height: "0.18rem",
+									// minHeight: "14px"
+								}
+							}
+						/>
+					</Box>
+					<Box
+						width={[1, 480 / 1920]}
+						bg={showInfoList[modal].rightColor}
+					></Box>
 				</Flex>
 				<Flex flexWrap="wrap" height={[0, "37.5vh"]}>
-					<Box width={[1, 722 / 1920]} bg="#E74C39"></Box>
+					<Box width={[1, 722 / 1920]} bg={showInfoList[modal].leftColor}></Box>
 					<Flex
 						alignItems="center"
 						justifyContent="center"
@@ -127,19 +171,28 @@ export default () => {
 						fontSize="0.38rem"
 					>
 						<Flex flexDirection="column">
-							<Text
-								sx={{
-									textDecoration: "underline"
-								}}
-							>
-								AT MRMISS WE LOVE . . .
-							</Text>
-							<Text>EVERY DESIGN</Text>
-							<Text>EVERY PROJECT</Text>
-							<Text>EVERY PRO</Text>
+							{showInfoList.map((info, index) => (
+								<Text
+									sx={{
+										textDecoration: index === modal ? "underline" : "none"
+									}}
+									onMouseEnter={() => {
+										setMadal(index)
+									}}
+								>
+									{info.signal}
+								</Text>
+							))}
 						</Flex>
 					</Flex>
-					<Box width={[1, 480 / 1920]} bg="#DCDCDC"></Box>
+					<Flex
+						width={[1, 480 / 1920]}
+						bg="#DCDCDC"
+						justifyContent="center"
+						alignItems="center"
+					>
+						<Svg color={showInfoList[modal].rightColor} />
+					</Flex>
 				</Flex>
 			</Box>
 		</React.Fragment>

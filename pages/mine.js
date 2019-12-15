@@ -26,7 +26,7 @@ export default () => {
 					}}
 				>
 					<Tabs
-						defaultIndex={3}
+						defaultIndex={1}
 						style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
 					>
 						<TabList

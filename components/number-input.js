@@ -24,16 +24,17 @@ const ArrowButton = props => (
 export default props => {
 	return (
 		<Flex flexDirection="column" alignItems="center" mr="10px">
-			<ArrowButton text="▲" />
+			<ArrowButton text="▲" onClick={props.upValue} />
 			<Input
 				type="number"
 				width="0.3rem"
 				height="0.16rem"
+				value={props.value}
 				sx={{
 					apearance: "none"
 				}}
 			/>
-			<ArrowButton text="▼" />
+			<ArrowButton text="▼" onClick={props.downValue} />
 		</Flex>
 	)
 }

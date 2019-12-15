@@ -39,7 +39,12 @@ export const TableLine = props => (
 	>
 		{props.children.map ? (
 			props.children.map(child => (
-				<td style={{ textAlign: "center" }}>{child}</td>
+				<td
+					style={{ textAlign: "center", border: child.props.hasBorder }}
+					rowSpan={child.props.rowspan}
+				>
+					{child}
+				</td>
 			))
 		) : (
 			<td>{props.children}</td>

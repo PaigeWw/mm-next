@@ -7,7 +7,7 @@ import { Color, Paint } from "./color-and-paint"
 export default props => {
 	return (
 		<Modal onClose={props.onClose}>
-			<Box width="15.4rem" fontSize="0.18rem" color="#000">
+			<Box width="14rem" fontSize="0.18rem" color="#000">
 				<Flex justifyContent="space-between">
 					<MadeStyleItem width="10.2rem" height="5.1rem" imgWidth="4.99rem" />
 					<Flex flexDirection="column">

@@ -5,6 +5,7 @@ import ShowStyle from "../show-style"
 import InputNumber from "../number-input"
 
 export default props => {
+	const line = 2
 	return (
 		<Flex
 			flexDirection="column"
@@ -15,15 +16,26 @@ export default props => {
 				background: "#FFF0E5"
 			}}
 		>
-			<Flex sx={{ padding: "0 18px 18px 18px" }} alignItems="stretch">
+			<Box
+				sx={{
+					padding: "0 18px 18px 18px",
+					height: "max-content",
+					display: "table"
+				}}
+			>
 				<Table
-					sx={{ margin: "0", marginRight: "1px" }}
+					sx={{ margin: "0", marginRight: "1px", width: "100%" }}
 					titles={[
 						{ name: "00", width: "2/22", isHide: true },
 						{ name: "SECTION NUMBER", width: "2/22" },
 						{ name: "COLOUR", width: "4/22" },
 						{ name: "IMAGE", width: "1/22" },
-						{ name: "SIZE", width: "2/22" }
+						{ name: "SIZE", width: "2/22" },
+						{ name: "PACKAGES", width: "2/22" },
+						{ name: "QUANTITY", width: "2/22" },
+						{ name: "PRICE", width: "4/22" },
+						{ name: "TOTAL AMOUN", width: "1/22" },
+						{ name: "DELETE", width: "2/22" }
 					]}
 				>
 					<TableLine noEdit={true}>
@@ -37,8 +49,13 @@ export default props => {
 							<Text mr="10px">M</Text>
 							<Text mr="10px">L</Text>
 						</Flex>
+						<Text></Text>
+						<Text></Text>
+						<Text></Text>
+						<Text></Text>
+						<Text></Text>
 					</TableLine>
-					<TableLine noEdit={true}>
+					<TableLine>
 						<Text>01</Text>
 						<ProductInfo styleNum="XSJHFH00928" />
 						<Flex flexDirection="column">
@@ -52,58 +69,15 @@ export default props => {
 							<InputNumber />
 							<InputNumber />
 						</Flex>
-					</TableLine>
-					<TableLine noEdit={true}>
-						<Text>01</Text>
-						<ProductInfo styleNum="XSJHFH00928" />
-						<Flex flexDirection="column">
-							<ProductInfo made="2110 YE GREEN" />
-							<ProductInfo made="2110 YE GREEN" />
-						</Flex>
-						<ShowStyle width="2rem" imgWidth="0.95rem" />
-						<Flex justifyContent="space-between">
-							<InputNumber />
-							<InputNumber />
-							<InputNumber />
-							<InputNumber />
-						</Flex>
-					</TableLine>
-				</Table>
-
-				<Table
-					sx={{ height: "100%", margin: "0" }}
-					tbSx={{
-						border: "1px solid #000",
-						borderLeft: "none",
-						borderRight: "none"
-					}}
-					titles={[{ name: "PACKAGES", width: "2/22" }]}
-				>
-					<TableLine noEdit>
 						<Flex
+							rowspan={line}
+							hasBorder={"1px solid"}
 							justifyContent="center"
 							alignItems="center"
 							sx={{ width: "100%", height: "100%" }}
 						>
 							<InputNumber />
 						</Flex>
-					</TableLine>
-				</Table>
-				<Table
-					sx={{ height: "100%", margin: "0" }}
-					tbSx={{
-						border: "1px solid #000",
-						borderLeft: "none",
-						borderRight: "none"
-					}}
-					titles={[
-						{ name: "QUANTITY", width: "2/22" },
-						{ name: "PRICE", width: "4/22" },
-						{ name: "TOTAL AMOUN", width: "1/22" },
-						{ name: "DELETE", width: "2/22" }
-					]}
-				>
-					<TableLine hasDel>
 						<Text>10</Text>
 						<Flex flexDirection="column">
 							<ProductInfo made="2110 YE GREEN" />
@@ -112,6 +86,19 @@ export default props => {
 						<Text>$65.78</Text>
 					</TableLine>
 					<TableLine>
+						<Text>01</Text>
+						<ProductInfo styleNum="XSJHFH00928" />
+						<Flex flexDirection="column">
+							<ProductInfo made="2110 YE GREEN" />
+							<ProductInfo made="2110 YE GREEN" />
+						</Flex>
+						<ShowStyle width="2rem" imgWidth="0.95rem" />
+						<Flex justifyContent="space-between">
+							<InputNumber />
+							<InputNumber />
+							<InputNumber />
+							<InputNumber />
+						</Flex>
 						<Text>10</Text>
 						<Flex flexDirection="column">
 							<ProductInfo made="2110 YE GREEN" />
@@ -120,7 +107,7 @@ export default props => {
 						<Text>$65.78</Text>
 					</TableLine>
 				</Table>
-			</Flex>
+			</Box>
 
 			<Button
 				variant="primary"

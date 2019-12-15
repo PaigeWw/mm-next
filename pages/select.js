@@ -12,7 +12,7 @@ import request from "../utils/request.js"
 import { getPageQuery } from "../utils/helper"
 export default () => {
 	const info = useUserInfo()
-	console.log(info)
+	// console.log(info)
 	const [categoryList, setGategoryList] = useState([{ styles: [] }])
 	const [currentSeleted, setCurrentSeleted] = useState(false)
 	const [selectStyles, setSelectStyles] = useState([])
@@ -22,19 +22,15 @@ export default () => {
 	useEffect(() => {
 		const getGategoryList = async () => {
 			let query = getPageQuery()
-			console.log(query)
 
 			const req = await request("goods/detail", { _id: query.id }, "get")
 			if (!req) return
 			setGategoryList(req.category)
-			console.log(req)
 		}
 		getGategoryList()
 	}, [])
 	// const info = useUserInfo()
 	const handleSelectStyle = (sid, type, top, col, styleItem) => {
-		console.log("handleSelectStyle", sid)
-
 		let pos = selectStyles.indexOf(sid)
 		if (pos > -1) {
 			//已选中 则去除 选中
@@ -69,7 +65,6 @@ export default () => {
 			setSelectStyles([sid])
 			setSelectStylesType([type])
 		}
-		console.log("handleSelectStyle", { sid, type, top, col })
 	}
 	return (
 		<Flex flexDirection="column">
@@ -120,10 +115,11 @@ export default () => {
 					cursor: "pointer"
 				}}
 				onClick={() => {
+					// console.log('selectStylesselectStylesselectStyles')
 					if (selectStyles.length > 0) {
 						Router.push(
-							`/made?id=${selectStyles[0]}&id1=${
-								selectStyles[1].length > 1 ? selectStyles[1] : 0
+							`/made?id=${selectStyles[0]}${
+								selectStyles.length > 1 ? "&id1=" + selectStyles[1] : ""
 							}`
 						)
 					} else {

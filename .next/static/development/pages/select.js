@@ -1,5 +1,222 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/select.js"],{
 
+/***/ "./components/color-and-paint.js":
+/*!***************************************!*\
+  !*** ./components/color-and-paint.js ***!
+  \***************************************/
+/*! exports provided: PaintList, ColorList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PaintList", function() { return PaintList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ColorList", function() { return ColorList; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rebass */ "./node_modules/rebass/dist/index.esm.js");
+/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/helper */ "./utils/helper.js");
+var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/color-and-paint.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+var PagerButton = function PagerButton(props) {
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    width: "0.26rem",
+    height: "0.26rem",
+    bg: "#000",
+    p: "0",
+    sx: {
+      borderRadius: 0
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: this
+  }, props.children);
+};
+
+var Pager = function Pager(props) {
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    },
+    __self: this
+  }, __jsx(PagerButton, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
+    },
+    __self: this
+  }, "<"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    bg: "#EEEEEE",
+    lineHeight: "0.26rem",
+    width: "0.53rem",
+    textAlign: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: this
+  }, props.current), __jsx(PagerButton, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 21
+    },
+    __self: this
+  }, ">"));
+};
+
+var PaintList = function PaintList(props) {
+  var paintList = props.paintList,
+      handleSelect = props.handleSelect,
+      channelInfoList = props.channelInfoList,
+      curChannelId = props.curChannelId;
+  var pIndex = channelInfoList.findIndex(function (x) {
+    return x.channelId === curChannelId;
+  });
+  var usedPlainColorIds = pIndex >= 0 ? channelInfoList[pIndex].flowerColorIds : [];
+  if (paintList.length < 1) return null;
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+    width: "100%",
+    mb: "0.4rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    justifyContent: "space-between",
+    alignItems: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: this
+  }, "PRINT"), " ", __jsx(Pager, {
+    current: "01",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: this
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    width: "5rem",
+    height: "1.5rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: this
+  }, paintList.map(function (item) {
+    return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+      sx: {
+        backgroundClip: "content-box !important",
+        boxSizing: "content-box",
+        cursor: "pointer",
+        background: "url(".concat(_utils_helper__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + item.value, ")"),
+        backgroundSize: "100% 100% ",
+        border: "1px ".concat(usedPlainColorIds.indexOf(item.colorId) >= 0 ? "#000" : "#fff", " solid")
+      },
+      onClick: function onClick() {
+        handleSelect(item, "paint");
+      },
+      mt: "0.2rem",
+      mr: "0.2rem",
+      p: "0.08rem",
+      width: "0.3rem",
+      height: "0.3rem",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 38
+      },
+      __self: this
+    });
+  })));
+};
+var ColorList = function ColorList(props) {
+  var colorList = props.colorList,
+      handleSelect = props.handleSelect,
+      channelInfoList = props.channelInfoList,
+      curChannelId = props.curChannelId;
+  var cIndex = channelInfoList.findIndex(function (x) {
+    return x.channelId === curChannelId;
+  });
+  var usedPlainColorIds = cIndex >= 0 ? channelInfoList[cIndex].plainColorIds : [];
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+    width: "100%",
+    mb: "0.4rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 70
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    justifyContent: "space-between",
+    alignItems: "center",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 71
+    },
+    __self: this
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 72
+    },
+    __self: this
+  }, "COLOUR"), " ", __jsx(Pager, {
+    current: "01",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 72
+    },
+    __self: this
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+    width: "5rem",
+    height: "1.5rem",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 74
+    },
+    __self: this
+  }, colorList.map(function (item) {
+    return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+      sx: {
+        cursor: "pointer",
+        boxSizing: "content-box",
+        backgroundClip: "content-box",
+        border: "1px ".concat(usedPlainColorIds.indexOf(item.colorId) >= 0 ? "#000" : "#fff", " solid")
+      },
+      onClick: function onClick() {
+        handleSelect(item, "color");
+      },
+      bg: item.value,
+      mt: "0.2rem",
+      mr: "0.2rem",
+      p: "0.08rem",
+      width: "0.3rem",
+      height: "0.3rem",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 76
+      },
+      __self: this
+    });
+  })));
+};
+
+/***/ }),
+
 /***/ "./components/head.js":
 /*!****************************!*\
   !*** ./components/head.js ***!
@@ -448,8 +665,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rebass */ "./node_modules/rebass/dist/index.esm.js");
 /* harmony import */ var _aisle_button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./aisle-button */ "./components/select-assign-tool/aisle-button.js");
-/* harmony import */ var _utils_request_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/request.js */ "./utils/request.js");
-/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/helper */ "./utils/helper.js");
+/* harmony import */ var _color_and_paint__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../color-and-paint */ "./components/color-and-paint.js");
+/* harmony import */ var _utils_request_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/request.js */ "./utils/request.js");
+/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/helper */ "./utils/helper.js");
 
 
 var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/select-assign-tool/index.js";
@@ -459,55 +677,6 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
 
-
-var PagerButton = function PagerButton(props) {
-  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Button"], {
-    width: "0.26rem",
-    height: "0.26rem",
-    bg: "#000",
-    p: "0",
-    sx: {
-      borderRadius: 0
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 7
-    },
-    __self: this
-  }, props.children);
-};
-
-var Pager = function Pager(props) {
-  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 18
-    },
-    __self: this
-  }, __jsx(PagerButton, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 19
-    },
-    __self: this
-  }, "<"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
-    bg: "#EEEEEE",
-    lineHeight: "0.26rem",
-    width: "0.53rem",
-    textAlign: "center",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 20
-    },
-    __self: this
-  }, props.current), __jsx(PagerButton, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 23
-    },
-    __self: this
-  }, ">"));
-};
 
 /* harmony default export */ __webpack_exports__["default"] = (function (props) {
   var _props$currentSeleted = props.currentSeleted,
@@ -520,21 +689,29 @@ var Pager = function Pager(props) {
       curChannelIndex = _useState[0],
       setCurChannelIndex = _useState[1];
 
-  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false),
-      channelList = _useState2[0],
-      setChannelList = _useState2[1];
+  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])({}),
+      curChannelInfo = _useState2[0],
+      setCurChannelInfo = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
-      colorList = _useState3[0],
-      setColorList = _useState3[1];
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false),
+      channelList = _useState3[0],
+      setChannelList = _useState3[1];
 
   var _useState4 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
-      paintList = _useState4[0],
-      setPaintList = _useState4[1];
+      colorList = _useState4[0],
+      setColorList = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
-      sizeList = _useState5[0],
-      setSizeList = _useState5[1];
+      paintList = _useState5[0],
+      setPaintList = _useState5[1];
+
+  var _useState6 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
+      sizeList = _useState6[0],
+      setSizeList = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
+      channelInfoList = _useState7[0],
+      setChannelInfoList = _useState7[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
     var getChannels =
@@ -549,14 +726,13 @@ var Pager = function Pager(props) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_5__["default"])("channel/getList", {}, "get");
+                return Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_6__["default"])("channel/getList", {}, "get");
 
               case 2:
                 req = _context.sent;
-                setChannelList(req);
-                console.log("getChannels", req);
+                setChannelList(req); // console.log("getChannels", req)
 
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -569,19 +745,7 @@ var Pager = function Pager(props) {
       };
     }();
 
-    getChannels(); // const getColors = async () => {
-    // 	const req = await request("color/getList", { type: "0" }, "get")
-    // 	if (!req) return
-    // 	setColorList(req)
-    // 	console.log(req)
-    // }
-    // getColors()
-    // const getPaints = async () => {
-    // 	const req = await request("color/getList", { type: "1" }, "get")
-    // 	if (!req) return
-    // 	setPaintList(req)
-    // }
-    // getPaints()
+    getChannels();
   }, []);
   Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
     if (props.currentSeleted) {
@@ -597,7 +761,7 @@ var Pager = function Pager(props) {
               switch (_context2.prev = _context2.next) {
                 case 0:
                   _context2.next = 2;
-                  return Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_5__["default"])("style/detail", {
+                  return Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_6__["default"])("style/detail", {
                     _id: sid
                   }, "get");
 
@@ -612,12 +776,15 @@ var Pager = function Pager(props) {
                   return _context2.abrupt("return");
 
                 case 5:
-                  console.log("getStyle", req);
+                  // console.log("getStyle", req)
+                  setCurChannelIndex(0);
                   setPaintList(req.flowerColors);
                   setColorList(req.plainColors);
+                  setColorList(req.plainColors);
+                  setChannelInfoList(req.channels);
                   setSizeList(req.size.values);
 
-                case 9:
+                case 11:
                 case "end":
                   return _context2.stop();
               }
@@ -640,23 +807,40 @@ var Pager = function Pager(props) {
   }
 
   var handleSelect = function handleSelect(item, type) {
+    var curChannelId = channelList[curChannelIndex]._id;
+    var Index = channelInfoList.findIndex(function (x) {
+      return x.channelId === curChannelId;
+    }); // if (cIndex >= 0)
+
+    var curChannelInfo = Index >= 0 ? channelInfoList[Index] : {};
+
     switch (type) {
       case "color":
-        var cIndex = colorList.findIndex(function (x) {
-          return x._id === item._id;
-        });
-        colorList[cIndex].selected = !colorList[cIndex].selected; // colorList.splice(index, 1, item.selected=true)
+        // const cIndex = colorList.findIndex(x => x.colorId === item.colorId)
+        // colorList[cIndex].selected = !colorList[cIndex].selected
+        // colorList.splice(index, 1, item.selected=true)
+        // setColorList([].concat(colorList))
+        var cIndex = curChannelInfo.plainColorIds.indexOf(item.colorId); // console.log(cIndex)
 
-        setColorList([].concat(colorList));
+        if (cIndex < 0) {
+          curChannelInfo.plainColorIds.push(item.colorId);
+        } else {
+          curChannelInfo.plainColorIds.splice(cIndex, 1);
+        }
+
+        setChannelInfoList([].concat(channelInfoList));
         break;
 
       case "paint":
-        var pIndex = paintList.findIndex(function (x) {
-          return x._id === item._id;
-        });
-        paintList[pIndex].selected = !paintList[pIndex].selected; // colorList.splice(index, 1, item.selected=true)
+        var pIndex = curChannelInfo.flowerColorIds.indexOf(item.colorId);
 
-        setPaintList([].concat(paintList));
+        if (pIndex < 0) {
+          curChannelInfo.flowerColorIds.push(item.colorId);
+        } else {
+          curChannelInfo.flowerColorIds.splice(pIndex, 1);
+        }
+
+        setChannelInfoList([].concat(channelInfoList));
         break;
 
       default:
@@ -667,6 +851,30 @@ var Pager = function Pager(props) {
   var handleSelectChannelByIndex = function handleSelectChannelByIndex(index) {
     setCurChannelIndex(index);
   };
+
+  var handleCommitSelected = function handleCommitSelected(index) {
+    var curChannelId = channelList[curChannelIndex]._id;
+    var Index = channelInfoList.findIndex(function (x) {
+      return x.channelId === curChannelId;
+    }); // if (cIndex >= 0)
+
+    var curChannelInfo = Index >= 0 ? channelInfoList[Index] : {};
+    console.log({
+      _id: sid,
+      channelId: channelList[curChannelIndex]._id,
+      plainColorIds: curChannelInfo.plainColorIds,
+      flowerColorIds: curChannelInfo.flowerColorIds
+    });
+    var res = Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_6__["default"])("/style/assign", {
+      _id: sid,
+      channelId: channelList[curChannelIndex]._id,
+      plainColorIds: curChannelInfo.plainColorIds,
+      flowerColorIds: curChannelInfo.flowerColorIds
+    }, "post"); // setChannelInfoList(res.channels)
+    // console.log(res)
+  };
+
+  if (!channelList) return null; // console.log(channelList, curChannelIndex)
 
   return __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
     width: "6.4rem",
@@ -682,25 +890,26 @@ var Pager = function Pager(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 96
+      lineNumber: 110
     },
     __self: this
   }, __jsx(_aisle_button__WEBPACK_IMPORTED_MODULE_4__["Title"], {
     styleNo: styleItem.styleNo,
     channelList: channelList,
+    channelInfoList: channelInfoList,
     onClose: props.onClose,
     curChannelIndex: curChannelIndex,
     onSelectChannelByIndex: handleSelectChannelByIndex,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 109
+      lineNumber: 123
     },
     __self: this
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
     flexDirection: "column",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 116
+      lineNumber: 131
     },
     __self: this
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
@@ -708,14 +917,14 @@ var Pager = function Pager(props) {
     mb: "0.4rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 117
+      lineNumber: 132
     },
     __self: this
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
     mb: "0.1rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 118
+      lineNumber: 133
     },
     __self: this
   }, "SIZE\u300CCUP\u300D"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
@@ -723,7 +932,7 @@ var Pager = function Pager(props) {
     lineHeight: "0.36rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 119
+      lineNumber: 134
     },
     __self: this
   }, sizeList.map(function (size) {
@@ -731,128 +940,31 @@ var Pager = function Pager(props) {
       mr: "0.2rem",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 121
+        lineNumber: 136
       },
       __self: this
     }, size.name);
-  }))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
-    width: "100%",
-    mb: "0.4rem",
+  }))), __jsx(_color_and_paint__WEBPACK_IMPORTED_MODULE_5__["ColorList"], {
+    colorList: colorList,
+    handleSelect: handleSelect,
+    curChannelId: channelList[curChannelIndex]._id,
+    channelInfoList: channelInfoList,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 137
+      lineNumber: 140
     },
     __self: this
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
-    justifyContent: "space-between",
-    alignItems: "center",
+  }), __jsx(_color_and_paint__WEBPACK_IMPORTED_MODULE_5__["PaintList"], {
+    paintList: paintList,
+    handleSelect: handleSelect,
+    curChannelId: channelList[curChannelIndex]._id,
+    channelInfoList: channelInfoList,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 138
+      lineNumber: 146
     },
     __self: this
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 139
-    },
-    __self: this
-  }, "COLOUR"), " ", __jsx(Pager, {
-    current: "01",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 139
-    },
-    __self: this
-  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 141
-    },
-    __self: this
-  }, colorList.map(function (item) {
-    return __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
-      sx: {
-        cursor: "pointer",
-        boxSizing: "content-box",
-        backgroundClip: "content-box",
-        border: "1px ".concat(item.selected ? "#000" : "#fff", " solid")
-      },
-      onClick: function onClick() {
-        handleSelect(item, "color");
-      },
-      bg: item.value,
-      mt: "0.2rem",
-      mr: "0.2rem",
-      p: "0.08rem",
-      width: "0.3rem",
-      height: "0.3rem",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 143
-      },
-      __self: this
-    });
-  }))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
-    width: "100%",
-    mb: "0.4rem",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 163
-    },
-    __self: this
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
-    justifyContent: "space-between",
-    alignItems: "center",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 164
-    },
-    __self: this
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 165
-    },
-    __self: this
-  }, "PRINT"), " ", __jsx(Pager, {
-    current: "01",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 165
-    },
-    __self: this
-  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 167
-    },
-    __self: this
-  }, paintList.map(function (item) {
-    return __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
-      sx: {
-        backgroundClip: "content-box !important",
-        boxSizing: "content-box",
-        cursor: "pointer",
-        background: "url(".concat(_utils_helper__WEBPACK_IMPORTED_MODULE_6__["baseUrl"] + item.value, ")"),
-        backgroundSize: "100% 100% ",
-        border: "1px ".concat(item.selected ? "#000" : "#fff", " solid")
-      },
-      onClick: function onClick() {
-        handleSelect(item, "paint");
-      },
-      mt: "0.2rem",
-      mr: "0.2rem",
-      p: "0.08rem",
-      width: "0.3rem",
-      height: "0.3rem",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 169
-      },
-      __self: this
-    });
-  })))), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Button"], {
     variant: "primary",
     height: "0.7rem",
     width: "6.4rem",
@@ -865,9 +977,10 @@ var Pager = function Pager(props) {
       fontSize: "0.14rem",
       cursor: "pointer"
     },
+    onClick: handleCommitSelected,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 191
+      lineNumber: 153
     },
     __self: this
   }, "FINISH"));
@@ -17587,8 +17700,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var info = Object(_hooks_getUserInfo__WEBPACK_IMPORTED_MODULE_9__["default"])();
-  console.log(info);
+  var info = Object(_hooks_getUserInfo__WEBPACK_IMPORTED_MODULE_9__["default"])(); // console.log(info)
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([{
     styles: []
@@ -17629,27 +17741,25 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
             switch (_context.prev = _context.next) {
               case 0:
                 query = Object(_utils_helper__WEBPACK_IMPORTED_MODULE_11__["getPageQuery"])();
-                console.log(query);
-                _context.next = 4;
+                _context.next = 3;
                 return Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_10__["default"])("goods/detail", {
                   _id: query.id
                 }, "get");
 
-              case 4:
+              case 3:
                 req = _context.sent;
 
                 if (req) {
-                  _context.next = 7;
+                  _context.next = 6;
                   break;
                 }
 
                 return _context.abrupt("return");
 
-              case 7:
+              case 6:
                 setGategoryList(req.category);
-                console.log(req);
 
-              case 9:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -17666,7 +17776,6 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
   }, []); // const info = useUserInfo()
 
   var handleSelectStyle = function handleSelectStyle(sid, type, top, col, styleItem) {
-    console.log("handleSelectStyle", sid);
     var pos = selectStyles.indexOf(sid);
 
     if (pos > -1) {
@@ -17714,20 +17823,13 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
       setSelectStyles([sid]);
       setSelectStylesType([type]);
     }
-
-    console.log("handleSelectStyle", {
-      sid: sid,
-      type: type,
-      top: top,
-      col: col
-    });
   };
 
   return __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
     flexDirection: "column",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 75
+      lineNumber: 70
     },
     __self: this
   }, __jsx(_components_nav__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -17735,13 +17837,13 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     toast: toast,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 76
+      lineNumber: 71
     },
     __self: this
   }), __jsx(_components_select_bar__WEBPACK_IMPORTED_MODULE_6__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 72
     },
     __self: this
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
@@ -17751,7 +17853,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 73
     },
     __self: this
   }, categoryList.map(function (item, index) {
@@ -17764,7 +17866,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
       onSelect: handleSelectStyle,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 80
+        lineNumber: 75
       },
       __self: this
     });
@@ -17775,7 +17877,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 102
+      lineNumber: 97
     },
     __self: this
   }) : null), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Button"], {
@@ -17791,15 +17893,16 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
       cursor: "pointer"
     },
     onClick: function onClick() {
+      // console.log('selectStylesselectStylesselectStyles')
       if (selectStyles.length > 0) {
-        next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/made?id=".concat(selectStyles[0], "&id1=").concat(selectStyles[1].length > 1 ? selectStyles[1] : 0));
+        next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/made?id=".concat(selectStyles[0]).concat(selectStyles.length > 1 ? "&id1=" + selectStyles[1] : ""));
       } else {
         next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/made"); // setToast({ type: "error", info: "Please Select Style." })
       }
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 110
+      lineNumber: 105
     },
     __self: this
   }, "NEXT>"));
@@ -17865,6 +17968,12 @@ instance.interceptors.request.use(function (config) {
    */
   var token = localStorage.token;
   config.headers.Authorization = "Bearer ".concat(token);
+
+  if (config.method === "post") {
+    config.headers["content-type"] = "application/json";
+  }
+
+  console.log(config);
   return config;
 }, function (error) {
   return _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0___default.a.reject(error);
@@ -17899,15 +18008,13 @@ var handleErrorStatus = function handleErrorStatus(status, message) {
   var method = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "get";
   var origin = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
   var api = arguments.length > 4 ? arguments[4] : undefined;
-  var postData = new FormData();
-
-  for (var prop in data) {
-    postData.append(prop, data[prop]);
-  }
-
+  // var postData = new FormData()
+  // for (var prop in data) {
+  // 	postData.append(prop, data[prop])
+  // }
   var options = method.toLowerCase() === "get" ? {
     params: data
-  } : postData;
+  } : data;
   return instance[method](url, options).then(function (res) {
     return res.data;
   })["catch"](function (err) {

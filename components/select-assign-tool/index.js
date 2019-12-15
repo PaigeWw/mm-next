@@ -1,66 +1,38 @@
 import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
-import AisleButton, { Title } from "./aisle-button"
+import { Title } from "./aisle-button"
+import { ColorList, PaintList } from "../color-and-paint"
 import request from "../../utils/request.js"
 import { baseUrl } from "../../utils/helper"
-const PagerButton = props => (
-	<Button
-		width="0.26rem"
-		height="0.26rem"
-		bg="#000"
-		p="0"
-		sx={{ borderRadius: 0 }}
-	>
-		{props.children}
-	</Button>
-)
-const Pager = props => (
-	<Flex>
-		<PagerButton>{"<"}</PagerButton>
-		<Text bg="#EEEEEE" lineHeight="0.26rem" width="0.53rem" textAlign="center">
-			{props.current}
-		</Text>
-		<PagerButton>{">"}</PagerButton>
-	</Flex>
-)
 
 export default props => {
 	const { sid, top, col, styleItem } = props.currentSeleted
 	const [curChannelIndex, setCurChannelIndex] = useState(0)
+	const [curChannelInfo, setCurChannelInfo] = useState({})
 	const [channelList, setChannelList] = useState(false)
 	const [colorList, setColorList] = useState([])
 	const [paintList, setPaintList] = useState([])
 	const [sizeList, setSizeList] = useState([])
+	const [channelInfoList, setChannelInfoList] = useState([])
 	useEffect(() => {
 		const getChannels = async () => {
 			const req = await request("channel/getList", {}, "get")
 			setChannelList(req)
-			console.log("getChannels", req)
+			// console.log("getChannels", req)
 		}
 		getChannels()
-		// const getColors = async () => {
-		// 	const req = await request("color/getList", { type: "0" }, "get")
-		// 	if (!req) return
-		// 	setColorList(req)
-		// 	console.log(req)
-		// }
-		// getColors()
-
-		// const getPaints = async () => {
-		// 	const req = await request("color/getList", { type: "1" }, "get")
-		// 	if (!req) return
-		// 	setPaintList(req)
-		// }
-		// getPaints()
 	}, [])
 	useEffect(() => {
 		if (props.currentSeleted) {
 			const getStyle = async () => {
 				const req = await request("style/detail", { _id: sid }, "get")
 				if (!req) return
-				console.log("getStyle", req)
+				// console.log("getStyle", req)
+				setCurChannelIndex(0)
 				setPaintList(req.flowerColors)
 				setColorList(req.plainColors)
+				setColorList(req.plainColors)
+				setChannelInfoList(req.channels)
 				setSizeList(req.size.values)
 			}
 			getStyle()
@@ -72,18 +44,34 @@ export default props => {
 	}
 
 	const handleSelect = (item, type) => {
+		let curChannelId = channelList[curChannelIndex]._id
+		let Index = channelInfoList.findIndex(x => x.channelId === curChannelId)
+		// if (cIndex >= 0)
+		let curChannelInfo = Index >= 0 ? channelInfoList[Index] : {}
 		switch (type) {
 			case "color":
-				const cIndex = colorList.findIndex(x => x._id === item._id)
-				colorList[cIndex].selected = !colorList[cIndex].selected
+				// const cIndex = colorList.findIndex(x => x.colorId === item.colorId)
+				// colorList[cIndex].selected = !colorList[cIndex].selected
 				// colorList.splice(index, 1, item.selected=true)
-				setColorList([].concat(colorList))
+				// setColorList([].concat(colorList))
+
+				const cIndex = curChannelInfo.plainColorIds.indexOf(item.colorId)
+				// console.log(cIndex)
+				if (cIndex < 0) {
+					curChannelInfo.plainColorIds.push(item.colorId)
+				} else {
+					curChannelInfo.plainColorIds.splice(cIndex, 1)
+				}
+				setChannelInfoList([].concat(channelInfoList))
 				break
 			case "paint":
-				const pIndex = paintList.findIndex(x => x._id === item._id)
-				paintList[pIndex].selected = !paintList[pIndex].selected
-				// colorList.splice(index, 1, item.selected=true)
-				setPaintList([].concat(paintList))
+				const pIndex = curChannelInfo.flowerColorIds.indexOf(item.colorId)
+				if (pIndex < 0) {
+					curChannelInfo.flowerColorIds.push(item.colorId)
+				} else {
+					curChannelInfo.flowerColorIds.splice(pIndex, 1)
+				}
+				setChannelInfoList([].concat(channelInfoList))
 				break
 			default:
 				break
@@ -92,6 +80,32 @@ export default props => {
 	const handleSelectChannelByIndex = index => {
 		setCurChannelIndex(index)
 	}
+	const handleCommitSelected = index => {
+		let curChannelId = channelList[curChannelIndex]._id
+		let Index = channelInfoList.findIndex(x => x.channelId === curChannelId)
+		// if (cIndex >= 0)
+		let curChannelInfo = Index >= 0 ? channelInfoList[Index] : {}
+		console.log({
+			_id: sid,
+			channelId: channelList[curChannelIndex]._id,
+			plainColorIds: curChannelInfo.plainColorIds,
+			flowerColorIds: curChannelInfo.flowerColorIds
+		})
+		const res = request(
+			"/style/assign",
+			{
+				_id: sid,
+				channelId: channelList[curChannelIndex]._id,
+				plainColorIds: curChannelInfo.plainColorIds,
+				flowerColorIds: curChannelInfo.flowerColorIds
+			},
+			"post"
+		)
+		// setChannelInfoList(res.channels)
+		// console.log(res)
+	}
+	if (!channelList) return null
+	// console.log(channelList, curChannelIndex)
 	return (
 		<Flex
 			width="6.4rem"
@@ -109,6 +123,7 @@ export default props => {
 			<Title
 				styleNo={styleItem.styleNo}
 				channelList={channelList}
+				channelInfoList={channelInfoList}
 				onClose={props.onClose}
 				curChannelIndex={curChannelIndex}
 				onSelectChannelByIndex={handleSelectChannelByIndex}
@@ -120,73 +135,20 @@ export default props => {
 						{sizeList.map(size => (
 							<Text mr="0.2rem">{size.name}</Text>
 						))}
-						{/* <Flex width="100%" justifyContent="space-between">
-							<Text>85B</Text>
-							<Text>90B</Text>
-							<Text>85B</Text>
-							<Text>85B</Text>
-						</Flex>
-						<Flex width="100%" justifyContent="space-between">
-							<Text>85C</Text>
-							<Text>90B</Text>
-							<Text>85B</Text>
-							<Text>85B</Text>
-						</Flex> */}
 					</Flex>
 				</Box>
-				<Box width="100%" mb="0.4rem">
-					<Flex justifyContent="space-between" alignItems="center">
-						<Text>COLOUR</Text> <Pager current="01" />
-					</Flex>
-					<Flex>
-						{colorList.map(item => (
-							<Box
-								sx={{
-									cursor: "pointer",
-									boxSizing: "content-box",
-									backgroundClip: "content-box",
-									border: `1px ${item.selected ? "#000" : "#fff"} solid`
-								}}
-								onClick={() => {
-									handleSelect(item, "color")
-								}}
-								bg={item.value}
-								mt="0.2rem"
-								mr="0.2rem"
-								p="0.08rem"
-								width="0.3rem"
-								height="0.3rem"
-							></Box>
-						))}
-					</Flex>
-				</Box>
-				<Box width="100%" mb="0.4rem">
-					<Flex justifyContent="space-between" alignItems="center">
-						<Text>PRINT</Text> <Pager current="01" />
-					</Flex>
-					<Flex>
-						{paintList.map(item => (
-							<Box
-								sx={{
-									backgroundClip: "content-box !important",
-									boxSizing: "content-box",
-									cursor: "pointer",
-									background: `url(${baseUrl + item.value})`,
-									backgroundSize: "100% 100% ",
-									border: `1px ${item.selected ? "#000" : "#fff"} solid`
-								}}
-								onClick={() => {
-									handleSelect(item, "paint")
-								}}
-								mt="0.2rem"
-								mr="0.2rem"
-								p="0.08rem"
-								width="0.3rem"
-								height="0.3rem"
-							></Box>
-						))}
-					</Flex>
-				</Box>
+				<ColorList
+					colorList={colorList}
+					handleSelect={handleSelect}
+					curChannelId={channelList[curChannelIndex]._id}
+					channelInfoList={channelInfoList}
+				/>
+				<PaintList
+					paintList={paintList}
+					handleSelect={handleSelect}
+					curChannelId={channelList[curChannelIndex]._id}
+					channelInfoList={channelInfoList}
+				/>
 			</Flex>
 			<Button
 				variant="primary"
@@ -201,6 +163,7 @@ export default props => {
 					fontSize: "0.14rem",
 					cursor: "pointer"
 				}}
+				onClick={handleCommitSelected}
 			>
 				FINISH
 			</Button>
