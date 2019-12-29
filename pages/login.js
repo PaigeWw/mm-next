@@ -8,9 +8,9 @@ import Router from "next/router"
 import Svg from "../components/svg"
 export default () => {
 	const [modal, setMadal] = useState(0) // 0, 1, 2, 3
-	const [svgColor, setSvgColor] = useState("#231815")
-	const [account, setAccount] = useState("chanpin2@miss.com")
-	const [password, setPassword] = useState("123456")
+	const [svgColor, setSvgColor] = useState(false)
+	const [account, setAccount] = useState("")
+	const [password, setPassword] = useState("")
 	const showInfoList = [
 		{
 			signal: "AT MRMISS WE LOVE . . .",
@@ -41,8 +41,8 @@ export default () => {
 		const req = await request(
 			"user/login",
 			{
-				account: "chanpin3@miss.com",
-				password: "123456"
+				account: account,
+				password: password
 			},
 			"post"
 		)
@@ -65,6 +65,9 @@ export default () => {
 						width={[1, 722 / 1920]}
 						height={["100%", "62.5vh"]}
 						bg="white"
+						onMouseEnter={() => {
+							setSvgColor("#FFF")
+						}}
 					>
 						<Box
 							width="1.8rem"
@@ -144,25 +147,27 @@ export default () => {
 					</Flex>
 					<Box width={[1, 718 / 1920]} bg="gray">
 						<Image
+							minHeight="100%"
 							src={showInfoList[modal].imgUrl}
 							mr={"10px"}
-							sx={
-								{
-									// width: "0.18rem",
-									// minWidth: "14px",
-									// height: "0.18rem",
-									// minHeight: "14px"
-								}
-							}
 						/>
 					</Box>
 					<Box
+						onMouseEnter={() => {
+							setSvgColor(showInfoList[modal].rightColor)
+						}}
 						width={[1, 480 / 1920]}
 						bg={showInfoList[modal].rightColor}
 					></Box>
 				</Flex>
 				<Flex flexWrap="wrap" height={[0, "37.5vh"]}>
-					<Box width={[1, 722 / 1920]} bg={showInfoList[modal].leftColor}></Box>
+					<Box
+						width={[1, 722 / 1920]}
+						bg={showInfoList[modal].leftColor}
+						onMouseEnter={() => {
+							setSvgColor(showInfoList[modal].leftColor)
+						}}
+					></Box>
 					<Flex
 						alignItems="center"
 						justifyContent="center"
@@ -174,9 +179,11 @@ export default () => {
 							{showInfoList.map((info, index) => (
 								<Text
 									sx={{
+										cursor: "pointer",
 										textDecoration: index === modal ? "underline" : "none"
 									}}
 									onMouseEnter={() => {
+										setSvgColor(false)
 										setMadal(index)
 									}}
 								>
@@ -191,7 +198,7 @@ export default () => {
 						justifyContent="center"
 						alignItems="center"
 					>
-						<Svg color={showInfoList[modal].rightColor} />
+						<Svg color={svgColor ? svgColor : showInfoList[modal].rightColor} />
 					</Flex>
 				</Flex>
 			</Box>

@@ -1,8 +1,6 @@
 import React from "react"
-import { Flex, Text, Box, Button, Row, Column } from "rebass"
-import Table, { TableLine, ProductInfo } from "./base-table"
-import ShowStyle from "../show-style"
-import InputNumber from "../number-input"
+import { Flex, Text } from "rebass"
+import Table, { TableLine } from "./base-table"
 
 export default props => {
 	return (

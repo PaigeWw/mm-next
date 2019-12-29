@@ -8,10 +8,11 @@ import request from "../utils/request.js"
 import { baseUrl } from "../utils/helper"
 export default props => {
 	const { styleDetails, curStyle } = props
-	let tempSelectedIds = [curStyle[0].value]
+	console.log(styleDetails, curStyle)
+	let tempSelectedIds = [curStyle[0].colorId]
 	let tempSelectedImgs = [curStyle[0].imgUrl]
 	if (curStyle.length > 1) {
-		tempSelectedIds.push(curStyle[1].value)
+		tempSelectedIds.push(curStyle[1].colorId)
 		tempSelectedImgs.push(curStyle[1].imgUrl)
 	} else {
 		tempSelectedIds.push(false)
@@ -173,6 +174,7 @@ export default props => {
 								cursor: "pointer"
 							}}
 							onClick={() => {
+								if (styleDetails.length > 1 && !curStyleImgs[1]) return
 								props.confirmMade(curSelectedColorIds, curStyleImgs)
 								props.onClose()
 							}}

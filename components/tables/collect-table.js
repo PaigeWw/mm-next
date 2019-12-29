@@ -1,9 +1,105 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Flex, Text, Box, Button, Row, Column } from "rebass"
 import Table, { TableLine, ProductInfo } from "./base-table"
+
+import EditBox from "../made-edit-box"
 import ShowStyle from "../show-style"
+import request from "../../utils/request"
 export default props => {
-	return (
+	const [showEditBox, setShowEditBox] = useState(false)
+	const [editIndex, setEditIndex] = useState(0)
+	const mode = "POSITIVE"
+	const [collectList, setCollectList] = useState([])
+	const [collectDetailsList, setCollectDetailsList] = useState([])
+	const [selectList, setSelectList] = useState([])
+	const getCollectList = async () => {
+		const res = await request("/user/getFavoriteList")
+		// console.log("----res----", res)
+		if (!res) return
+		const data = res.map(item => {
+			let prodInfo = []
+			let price = []
+			let style = []
+			let colorInfo = []
+			let date = []
+			let details = []
+			let threeViews = item.styleAndColor.map(x => {
+				details.push(x.style)
+				prodInfo.push({
+					styleNo: x.style.styleNo,
+					id: x.style._id
+				})
+				price.push(x.style.price)
+				date.push(x.style.updateTime)
+				colorInfo.push({ colorId: x.color._id, imgUrl: x.front })
+				// let positive = x.
+				return { POSITIVE: x.front }
+				// style.push(item.styleNo)
+			})
+			collectDetailsList.push(details)
+			setCollectDetailsList([].concat(collectDetailsList))
+			return {
+				id: item._id,
+				colorInfo,
+				threeViews,
+				prodInfo,
+				price,
+				style,
+				date
+			}
+		})
+		setCollectList(data)
+	}
+	useEffect(() => {
+		getCollectList()
+	}, [])
+	const handleSelect = (index, item) => {
+		const pos = selectList.findIndex(x => x.index === index)
+		if (pos < 0) {
+			selectList.push({ index, ...item, details: collectDetailsList[index] })
+		} else {
+			selectList.splice(pos, 1)
+		}
+		setSelectList([].concat(selectList))
+	}
+	const handleDel = async (index, item) => {
+		console.log(item)
+		const res = await request("/user/deleteFavorite", { _id: item.id }, "post")
+		// console.log("res", res)
+		if (res) {
+			console.log("删除他，嘿嘿嘿")
+			collectList.splice(index, 1)
+			setCollectList([].concat(collectList))
+		}
+	}
+	const handleConfirmMade = async (colorIds, imgUrls) => {
+		// const res = await request("/user/updateFavorite", {  }, "post")
+		if (!colorIds[0]) return
+		let params = [
+			{
+				styleId: collectList[editIndex].prodInfo[0].id,
+				colorId: colorIds[0]
+			}
+		]
+
+		if (collectList[editIndex].length > 1) {
+			// if (! > 2) return
+			params.push({
+				styleId: collectList[editIndex].prodInfo[1].id,
+				colorId: colorIds[1]
+			})
+		}
+		const res = await request(
+			"/user/updateFavorite",
+			{ _id: collectList[editIndex].id, styleAndColor: params },
+			"post"
+		)
+		// setStyleDetails([].concat(styleDetails))
+		if (res) {
+			getCollectList()
+		}
+	}
+	return collectList.length > 0 ? (
 		<Flex
 			flexDirection="column"
 			justifyContent="space-between"
@@ -24,75 +120,61 @@ export default props => {
 					{ name: "EDIT", width: "5/22" }
 				]}
 			>
-				<TableLine>
-					<Text style={{ position: "absolute" }}>01</Text>
-					<ShowStyle width="2rem" imgWidth="0.95rem" />
-					<Flex flexDirection="column">
-						<ProductInfo
-							styleNum="VERSION Y2003"
-							made="2110 YE GREEN/2001 YE GREEN"
+				{collectList.map((collect, index) => (
+					<TableLine
+						isSelect={selectList.findIndex(x => index === x.index) >= 0}
+						haveSelect
+						onSelect={() => {
+							handleSelect(index, collect)
+						}}
+						haveDel
+						onDel={() => {
+							handleDel(index, collect)
+						}}
+						haveEdit
+						onEdit={() => {
+							setEditIndex(index)
+							setShowEditBox(true)
+						}}
+					>
+						<Text style={{ position: "absolute" }}>{index + 1}</Text>
+						<ShowStyle
+							// width="2rem"
+							key={collect.id}
+							imgWidth="0.95rem"
+							mode={mode}
+							threeViews={collect.threeViews}
+							border="none"
+							hideInfo
 						/>
-						<ProductInfo styleNum="VERSION K2009" made="2110 YE GREEN" />
-					</Flex>
-					<Flex flexDirection="column">
-						<Text>$6.7</Text>
-						<Text>$6.7</Text>
-					</Flex>
-					<Flex flexDirection="column">
-						<Text>OCT 20,2019</Text>
-						<Text>OCT 20,2019</Text>
-					</Flex>
-					<Flex flexDirection="column">
-						<Text>TOPS</Text>
-						<Text>BOTTOMS</Text>
-					</Flex>
-				</TableLine>
-				<TableLine>
-					<Text style={{ position: "absolute" }}>01</Text>
-					<ShowStyle width="2rem" imgWidth="0.95rem" />
-					<Flex flexDirection="column">
-						<ProductInfo
-							styleNum="VERSION Y2003"
-							made="2110 YE GREEN/2001 YE GREEN"
-						/>
-						<ProductInfo styleNum="VERSION K2009" made="2110 YE GREEN" />
-					</Flex>
-					<Flex flexDirection="column">
-						<Text>$6.7</Text>
-						<Text>$6.7</Text>
-					</Flex>
-					<Flex flexDirection="column">
-						<Text>OCT 20,2019</Text>
-						<Text>OCT 20,2019</Text>
-					</Flex>
-					<Flex flexDirection="column">
-						<Text>TOPS</Text>
-						<Text>BOTTOMS</Text>
-					</Flex>
-				</TableLine>
-				<TableLine>
-					<Text style={{ position: "absolute" }}>01</Text>
-					<ShowStyle width="2rem" imgWidth="0.95rem" />
-					<Flex flexDirection="column">
-						<ProductInfo
-							styleNum="VERSION Y2003"
-							made="2110 YE GREEN/2001 YE GREEN"
-						/>
-						<ProductInfo styleNum="VERSION K2009" made="2110 YE GREEN" />
-					</Flex>
-					<Flex flexDirection="column">
-						<Text>$6.7</Text>
-						<Text>$6.7</Text>
-					</Flex>
-					<Flex flexDirection="column">
-						<Text>OCT 20,2019</Text>
-						<Text>OCT 20,2019</Text>
-					</Flex>
-					<Flex flexDirection="column">
-						<Text>TOPS</Text>
-						<Text>BOTTOMS</Text>
-					</Flex>
-				</TableLine>
+						<Flex justifyContent="center">
+							<Box margin="8px 0">
+								{collect.prodInfo.map(prodInfo => (
+									<ProductInfo
+										styleNum={prodInfo.styleNo}
+										made="2110 YE GREEN/2001 YE GREEN"
+									/>
+								))}
+
+								{/* <ProductInfo styleNum="VERSION K2009" made="2110 YE GREEN" /> */}
+							</Box>
+						</Flex>
+						<Flex flexDirection="column">
+							{collect.price.map(price => (
+								<Text p="4px 0">{price}</Text>
+							))}
+						</Flex>
+						<Flex flexDirection="column">
+							{collect.date.map(date => (
+								<Text p="4px 0">{date}</Text>
+							))}
+						</Flex>
+						<Flex flexDirection="column">
+							<Text>TOPS</Text>
+							<Text>BOTTOMS</Text>
+						</Flex>
+					</TableLine>
+				))}
 			</Table>
 			<Button
 				variant="primary"
@@ -106,9 +188,22 @@ export default props => {
 					fontSize: "0.27rem",
 					cursor: "pointer"
 				}}
+				onClick={() => {
+					props.nextStep(selectList)
+				}}
 			>
 				GENERATE ORDERS
 			</Button>
+			{showEditBox ? (
+				<EditBox
+					styleDetails={collectDetailsList[editIndex]}
+					curStyle={collectList[editIndex].colorInfo}
+					confirmMade={handleConfirmMade}
+					onClose={() => {
+						setShowEditBox(false)
+					}}
+				/>
+			) : null}
 		</Flex>
-	)
+	) : null
 }

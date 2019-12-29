@@ -14,7 +14,7 @@ export default () => {
 	const [showEditBox, setShowEditBox] = useState(false)
 	const [curItemIndex, setCurItemIndex] = useState(0)
 	const [styleInitData, setStyleInitData] = useState([[], [], [], [], [], []])
-	const boxNos = [0, 1, 2, 3, 4, 5]
+	const [collectList, setCollectList] = useState([])
 	useEffect(() => {
 		const getStyleDetails = async () => {
 			let query = getPageQuery()
@@ -54,17 +54,22 @@ export default () => {
 
 	const handleAddFavorite = async index => {
 		if (!styleInitData[index][0].colorId) return
+		console.log(styleInitData[index][0])
 		let params = [
 			{
 				styleId: styleDetails[0]._id,
-				colorId: styleInitData[index][0].colorId
+				colorId: styleInitData[index][0].colorId,
+				front: styleInitData[index][0].imgUrl
 			}
 		]
+		collectList.push(index)
+		setCollectList([].concat(collectList))
 		if (styleDetails.length > 1) {
 			if (!styleInitData[index][1].colorId) return
 			params.push({
 				styleId: styleDetails[1]._id,
-				colorId: styleInitData[index][1].colorId
+				colorId: styleInitData[index][1].colorId,
+				front: styleInitData[index][1].imgUrl
 			})
 		}
 		const res = await request(
@@ -72,6 +77,7 @@ export default () => {
 			{ styleAndColor: params },
 			"post"
 		)
+		// setStyleDetails([].concat(styleDetails))
 		console.log(res)
 	}
 	return (
@@ -96,6 +102,8 @@ export default () => {
 							<StyleItem
 								key={`${index}-style`}
 								styleList={style}
+								index={index}
+								collected={collectList.indexOf(index) >= 0}
 								openBigBox={() => {
 									setShowBigBox(true)
 								}}
@@ -150,6 +158,8 @@ export default () => {
 				</Flex>
 				{showBigBox ? (
 					<BigBox
+						styleDetails={styleDetails}
+						curStyle={styleInitData[curItemIndex]}
 						onClose={() => {
 							setShowBigBox(false)
 						}}

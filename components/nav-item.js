@@ -13,9 +13,10 @@ export default props => {
 					background: "rgba(255, 255, 255, 0.5)"
 				}
 			}}
+			onClick={props.onLinkTo}
 		>
 			<Image
-				src="./1/password-icon.png"
+				src={props.url}
 				mr={"10px"}
 				sx={{
 					width: "0.18rem",

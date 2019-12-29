@@ -34,17 +34,21 @@ export default () => {
 		let pos = selectStyles.indexOf(sid)
 		if (pos > -1) {
 			//已选中 则去除 选中
+			console.log(selectStyles)
+			console.log(selectStylesType)
 			if (selectStyles.length > 1) {
 				let savePos = (pos + 1) % 2
+
 				setSelectStyles(selectStyles.slice(savePos, savePos + 1))
-				setSelectStyles(selectStylesType.slice(savePos, savePos + 1))
+				setSelectStylesType(selectStylesType.slice(savePos, savePos + 1))
 			} else {
 				setSelectStyles([])
 				setSelectStylesType([])
 			}
 			setCurrentSeleted(false)
 		} else {
-			//为选中 则 设置为选中
+			//未选中 则 设置为选中
+			console.log(selectStyles, type)
 			setCurrentSeleted({ sid, type, top, col, styleItem })
 			let topsPos = selectStylesType.indexOf("TOPS")
 			let bottomsPos = selectStylesType.indexOf("BOTTOMS")

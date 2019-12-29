@@ -1,7 +1,8 @@
 import axios from "axios"
-
+import { baseUrl } from "./helper"
 const instance = axios.create({
-	baseURL: "http://192.168.1.3:3000/api/",
+	// baseURL: "http://8.209.64.159:3006/api/",
+	baseURL: baseUrl + "api/",
 	// withCredentials: true,
 	timeout: 10000,
 	headers: {

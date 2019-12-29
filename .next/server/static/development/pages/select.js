@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -394,13 +394,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
         background: "rgba(255, 255, 255, 0.5)"
       }
     },
+    onClick: props.onLinkTo,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 6
     },
     __self: undefined
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
-    src: "./1/password-icon.png",
+    src: props.url,
     mr: "10px",
     sx: {
       width: "0.18rem",
@@ -410,14 +411,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 18
     },
     __self: undefined
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     fontSize: "0.14rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 28
     },
     __self: undefined
   }, props.name));
@@ -440,8 +441,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rebass__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/head */ "./components/head.js");
 /* harmony import */ var _components_nav_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/nav-item */ "./components/nav-item.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_4__);
 var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/nav.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -469,7 +473,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 20
     },
     __self: undefined
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
@@ -477,13 +481,13 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     width: "100%",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 21
     },
     __self: undefined
   }, __jsx(_components_head__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 22
     },
     __self: undefined
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
@@ -497,7 +501,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 23
     },
     __self: undefined
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
@@ -512,7 +516,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 33
     },
     __self: undefined
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
@@ -526,14 +530,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 42
     },
     __self: undefined
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     fontSize: "0.14rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50
+      lineNumber: 52
     },
     __self: undefined
   }, "HOME"))), showNav ? __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
@@ -555,35 +559,62 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54
+      lineNumber: 56
     },
     __self: undefined
   }, __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "MIME",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 72
+    url: "/icon/icon-01.svg",
+    onLinkTo: () => {
+      next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/mine");
     },
-    __self: undefined
-  }), __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ORDER",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 73
-    },
-    __self: undefined
-  }), __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "USER",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 74
     },
     __self: undefined
   }), __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "MY COLLECTION",
+    name: "ORDER",
+    url: "/icon/icon-02.svg",
+    onLinkTo: () => {
+      next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/mine?tab=3");
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 75
+      lineNumber: 81
+    },
+    __self: undefined
+  }), __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "USER",
+    url: "/icon/icon-03.svg",
+    onLinkTo: () => {
+      next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/mine?tab=4");
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 88
+    },
+    __self: undefined
+  }), __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "MY COLLECTION",
+    url: "/icon/icon-04.svg",
+    onLinkTo: () => {
+      next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/mine?tab=0");
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 95
+    },
+    __self: undefined
+  }), __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "PRODUCT MANAGER",
+    url: "/icon/icon-05.svg",
+    onLinkTo: () => {
+      next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/assign?tab=4");
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 102
     },
     __self: undefined
   })) : null);
@@ -700,6 +731,7 @@ const AisleButton = props => {
   }, "ALSLE"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Box"], {
     variant: "primary",
     height: "0.32rem",
+    lineHeight: "0.32rem",
     bg: "#FF8E6C",
     color: "#000",
     sx: {
@@ -717,15 +749,16 @@ const AisleButton = props => {
       lineNumber: 43
     },
     __self: undefined
-  }, channelList.length > 0 ? channelList[curChannelIndex].code : "")), showChannels ? __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
+  }, channelList.length > 0 ? channelList[curChannelIndex].code : "")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
     width: [1],
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 64
     },
     __self: undefined
   }, channelList.map((channel, index) => __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Text"], {
     mr: "10px",
+    lineHeight: "0.4rem",
     sx: {
       cursor: "pointer"
     },
@@ -734,10 +767,10 @@ const AisleButton = props => {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65
+      lineNumber: 66
     },
     __self: undefined
-  }, channel.name))) : null);
+  }, channel.name))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (AisleButton);
@@ -779,11 +812,8 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
   const {
     0: curChannelIndex,
     1: setCurChannelIndex
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
-  const {
-    0: curChannelInfo,
-    1: setCurChannelInfo
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({});
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0); // const [curChannelInfo, setCurChannelInfo] = useState({})
+
   const {
     0: channelList,
     1: setChannelList
@@ -840,6 +870,9 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
   const handleSelect = (item, type) => {
     let curChannelId = channelList[curChannelIndex]._id;
     let Index = channelInfoList.findIndex(x => x.channelId === curChannelId); // if (cIndex >= 0)
+
+    console.log("curChannelId", curChannelId);
+    console.log("Index", channelInfoList); // console.log("Index", channelInfoList[Index])
 
     let curChannelInfo = Index >= 0 ? channelInfoList[Index] : {};
 
@@ -917,7 +950,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 110
+      lineNumber: 113
     },
     __self: undefined
   }, __jsx(_aisle_button__WEBPACK_IMPORTED_MODULE_2__["Title"], {
@@ -929,14 +962,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     onSelectChannelByIndex: handleSelectChannelByIndex,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 123
+      lineNumber: 126
     },
     __self: undefined
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
     flexDirection: "column",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 131
+      lineNumber: 134
     },
     __self: undefined
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
@@ -944,14 +977,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     mb: "0.4rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 132
+      lineNumber: 135
     },
     __self: undefined
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     mb: "0.1rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 133
+      lineNumber: 136
     },
     __self: undefined
   }, "SIZE\u300CCUP\u300D"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
@@ -959,14 +992,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     lineHeight: "0.36rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 134
+      lineNumber: 137
     },
     __self: undefined
   }, sizeList.map(size => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     mr: "0.2rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 136
+      lineNumber: 139
     },
     __self: undefined
   }, size.name)))), __jsx(_color_and_paint__WEBPACK_IMPORTED_MODULE_3__["ColorList"], {
@@ -976,7 +1009,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     channelInfoList: channelInfoList,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 140
+      lineNumber: 143
     },
     __self: undefined
   }), __jsx(_color_and_paint__WEBPACK_IMPORTED_MODULE_3__["PaintList"], {
@@ -986,7 +1019,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     channelInfoList: channelInfoList,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 146
+      lineNumber: 149
     },
     __self: undefined
   })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
@@ -1005,7 +1038,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     onClick: handleCommitSelected,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 153
+      lineNumber: 156
     },
     __self: undefined
   }, "FINISH"));
@@ -1253,7 +1286,7 @@ const ImageBox = props => {
       }
     },
     onClick: e => {
-      console.dir(e.target.offsetTop);
+      // console.dir(e.target.offsetTop)
       props.onSelect(id, kind, e.target.offsetTop, col, item);
     },
     __source: {
@@ -1282,8 +1315,8 @@ const ImageBox = props => {
   const {
     0: showScroll,
     1: setShowScroll
-  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false);
-  console.log(props.selectStyles);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false); // console.log(props.selectStyles)
+
   return __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
     width: "100%",
     bg: "#DCDCDC",
@@ -1593,10 +1626,13 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
     if (pos > -1) {
       //已选中 则去除 选中
+      console.log(selectStyles);
+      console.log(selectStylesType);
+
       if (selectStyles.length > 1) {
         let savePos = (pos + 1) % 2;
         setSelectStyles(selectStyles.slice(savePos, savePos + 1));
-        setSelectStyles(selectStylesType.slice(savePos, savePos + 1));
+        setSelectStylesType(selectStylesType.slice(savePos, savePos + 1));
       } else {
         setSelectStyles([]);
         setSelectStylesType([]);
@@ -1604,7 +1640,8 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
       setCurrentSeleted(false);
     } else {
-      //为选中 则 设置为选中
+      //未选中 则 设置为选中
+      console.log(selectStyles, type);
       setCurrentSeleted({
         sid,
         type,
@@ -1640,7 +1677,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     flexDirection: "column",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 70
+      lineNumber: 74
     },
     __self: undefined
   }, __jsx(_components_nav__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -1648,13 +1685,13 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     toast: toast,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 71
+      lineNumber: 75
     },
     __self: undefined
   }), __jsx(_components_select_bar__WEBPACK_IMPORTED_MODULE_4__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 76
     },
     __self: undefined
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
@@ -1664,7 +1701,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 73
+      lineNumber: 77
     },
     __self: undefined
   }, categoryList.map((item, index) => __jsx(_components_select_line__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -1676,7 +1713,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     onSelect: handleSelectStyle,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 75
+      lineNumber: 79
     },
     __self: undefined
   })), currentSeleted && info.role === 1 ? __jsx(_components_select_assign_tool__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -1686,7 +1723,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 97
+      lineNumber: 101
     },
     __self: undefined
   }) : null), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
@@ -1711,7 +1748,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 105
+      lineNumber: 109
     },
     __self: undefined
   }, "NEXT>"));
@@ -1737,8 +1774,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const px2rem = px => `${px / (750 / 10)}rem`;
 const pptPx2rem = px => `${px / (1920 / 10)}rem`;
-const baseUrl = "http://192.168.1.3:3000/";
-const getPageQuery = () => Object(querystring__WEBPACK_IMPORTED_MODULE_0__["parse"])(window.location.href.split("?")[1]);
+const baseUrl = "http://8.209.64.159:3001/"; // export const baseUrl = "http://192.168.1.3:3000/"
+
+const getPageQuery = () => Object(querystring__WEBPACK_IMPORTED_MODULE_0__["parse"])(window.location.href.split("?")[1]); // const jjj =
 
 /***/ }),
 
@@ -1755,10 +1793,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helper */ "./utils/helper.js");
+
 
 
 const instance = axios__WEBPACK_IMPORTED_MODULE_1___default.a.create({
-  baseURL: "http://192.168.1.3:3000/api/",
+  // baseURL: "http://8.209.64.159:3006/api/",
+  baseURL: _helper__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + "api/",
   // withCredentials: true,
   timeout: 10000,
   headers: {
@@ -1822,7 +1863,7 @@ const handleErrorStatus = (status, message) => {
 
 /***/ }),
 
-/***/ 4:
+/***/ 6:
 /*!*******************************!*\
   !*** multi ./pages/select.js ***!
   \*******************************/

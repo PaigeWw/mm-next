@@ -1,5 +1,6 @@
 import React from "react"
 import { Flex, Text, Box, Image } from "rebass"
+import lodash from "lodash"
 import Column from "../column"
 
 const Title = props => (
@@ -19,7 +20,7 @@ const Title = props => (
 	</thead>
 )
 export const ProductInfo = props => (
-	<Flex alignItems="baseline" flexDirection="column">
+	<Flex alignItems="baseline" flexDirection="column" padding="4px 0">
 		<Text fontSize="0.18rem">{props.styleNum}</Text>
 		<Text
 			fontSize="0.14rem"
@@ -31,34 +32,61 @@ export const ProductInfo = props => (
 		</Text>
 	</Flex>
 )
-export const TableLine = props => (
-	<tr
-		style={{ width: "100%", border: "1px solid #000", background: "#fff" }}
-		alignItems="center"
-		justifyContent="space-between"
-	>
-		{props.children.map ? (
-			props.children.map(child => (
+export const TableLine = props => {
+	// console.log(props.children)
+	// console.log(lodash.compact(props.children))
+	return (
+		<tr
+			style={{ width: "100%", border: "1px solid #000", background: "#fff" }}
+			alignItems="center"
+		>
+			{lodash.compact(props.children).map(child => (
 				<td
-					style={{ textAlign: "center", border: child.props.hasBorder }}
+					style={{
+						textAlign: "center",
+						border: child.props.hasBorder
+					}}
 					rowSpan={child.props.rowspan}
 				>
 					{child}
 				</td>
-			))
-		) : (
-			<td>{props.children}</td>
-		)}
-		{props.noEdit ? null : (
-			<td justifyContent="space-around">
-				<Image width="0.3rem" src="/5/edit.png" />
-				<Image width="0.3rem" src="/5/1.png" />
-				<Image width="0.3rem" src="/5/2.png" />
-				<Image width="0.3rem" src="/7/bigger.png" />
-			</td>
-		)}
-	</tr>
-)
+			))}
+			{props.noEdit ? null : (
+				<td>
+					<Flex justifyContent="space-around" alignItems="center">
+						{props.haveEdit ? (
+							<Image
+								className="tool"
+								width="0.3rem"
+								src="/5/edit.png"
+								onClick={props.onEdit}
+							/>
+						) : null}
+						{props.haveSelect ? (
+							<Image
+								className="tool"
+								width="0.3rem"
+								src={props.isSelect ? "/5/1-1.png" : "/5/1.png"}
+								onClick={props.onSelect}
+							/>
+						) : null}
+						{props.haveDel ? (
+							<Image
+								className="tool"
+								width="0.3rem"
+								src="/5/2.png"
+								onClick={props.onDel}
+							/>
+						) : null}
+						{props.Bigger ? (
+							<Image className="tool" width="0.3rem" src="/7/bigger.png" />
+						) : null}
+					</Flex>
+				</td>
+			)}
+		</tr>
+	)
+}
 export default props => {
 	const styleProps = props.sx
 	const tbStyleProps = props.tbSx

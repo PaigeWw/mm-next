@@ -43,6 +43,7 @@ const AisleButton = props => {
 				<Box
 					variant="primary"
 					height="0.32rem"
+					lineHeight="0.32rem"
 					bg="#FF8E6C"
 					color="#000"
 					sx={{
@@ -59,21 +60,22 @@ const AisleButton = props => {
 					{channelList.length > 0 ? channelList[curChannelIndex].code : ""}
 				</Box>
 			</Flex>
-			{showChannels ? (
-				<Flex width={[1]}>
-					{channelList.map((channel, index) => (
-						<Text
-							mr="10px"
-							sx={{ cursor: "pointer" }}
-							onClick={() => {
-								props.onSelectChannelByIndex(index)
-							}}
-						>
-							{channel.name}
-						</Text>
-					))}
-				</Flex>
-			) : null}
+			{/* {showChannels ? ( */}
+			<Flex width={[1]}>
+				{channelList.map((channel, index) => (
+					<Text
+						mr="10px"
+						lineHeight="0.4rem"
+						sx={{ cursor: "pointer" }}
+						onClick={() => {
+							props.onSelectChannelByIndex(index)
+						}}
+					>
+						{channel.name}
+					</Text>
+				))}
+			</Flex>
+			{/* ) : null} */}
 		</>
 	)
 }

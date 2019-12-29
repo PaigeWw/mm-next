@@ -1,8 +1,10 @@
 import React, { useEffect } from "react"
 import { Flex, Text, Box, Image } from "rebass"
 import { baseUrl } from "../utils/helper"
+import SvgCollect from "./svgCollect"
 export default props => {
-	const { styleList } = props
+	const { styleList, collected, index } = props
+	console.log("collected", collected)
 	return (
 		<Flex
 			flexDirection="column"
@@ -77,10 +79,11 @@ export default props => {
 						props.openBigBox()
 					}}
 				/>
-				<Image
-					src="./4/collect.png"
+				<SvgCollect
+					color={collected ? "#FF8E6C" : "#231815"}
+					// collected={collected}
+					index={index}
 					sx={{
-						width: "0.3rem",
 						minWidth: "14px",
 						minHeight: "14px"
 					}}

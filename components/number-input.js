@@ -16,6 +16,7 @@ const ArrowButton = props => (
 			// transform: `rotateZ(${props.deg}deg)`,
 			cursor: "pointer"
 		}}
+		onClick={props.onClick}
 	>
 		{props.text}
 	</Flex>
@@ -27,11 +28,16 @@ export default props => {
 			<ArrowButton text="▲" onClick={props.upValue} />
 			<Input
 				type="number"
-				width="0.3rem"
-				height="0.16rem"
+				width="0.6rem"
+				height="0.4rem"
+				p="0"
+				textAlign="center"
 				value={props.value}
 				sx={{
 					apearance: "none"
+				}}
+				onChange={e => {
+					props.onChange(e.target.value)
 				}}
 			/>
 			<ArrowButton text="▼" onClick={props.downValue} />

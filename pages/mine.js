@@ -9,25 +9,46 @@ import SendTable from "../components/tables/send-table"
 import SelfOrderTable from "../components/tables/self-order-table"
 import Manage from "../components/manage/index"
 export default () => {
-	const [showBigBox, setShowBigBox] = useState(false)
+	const [tabSelectedIndex, setTabSelectedIndex] = useState(0)
+	const [selectStyles, setSelectStyles] = useState([])
 	const [showEditBox, setShowEditBox] = useState(false)
+	const handleSetTabSelectedIndex = index => {
+		setTabSelectedIndex(index)
+		// console.log("~~~~~~~~")
+	}
+	const handleSelectStyleToOrder = selectList => {
+		setSelectStyles(selectList)
+		setTabSelectedIndex(1)
+	}
+	const handleToSendedOrder = () => {
+		setTabSelectedIndex(4)
+	}
 	return (
 		<>
 			<Flex flexDirection="column" height="100%">
 				<Head></Head>
 				<Flex
 					flexDirection="column"
+					className="wrapper"
 					sx={{
 						flexGrow: 1,
-						"& .react-tabs__tab-panel": {},
-						"& .react-tabs__tab-panel--selected": {
-							flexGrow: 1
+						"&": {
+							".react-tabs__tab": {
+								background: "#000",
+								color: "#fff"
+							},
+							".react-tabs__tab--selected": {
+								flexGrow: 1,
+								background: "#FFC1AE !important",
+								color: "#000"
+							}
 						}
 					}}
 				>
 					<Tabs
-						defaultIndex={1}
+						selectedIndex={tabSelectedIndex}
 						style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
+						onSelect={handleSetTabSelectedIndex}
 					>
 						<TabList
 							style={{
@@ -90,13 +111,22 @@ export default () => {
 							</Tab>
 						</TabList>
 						<TabPanel>
-							<CollectTable />
+							<CollectTable nextStep={handleSelectStyleToOrder} />
 						</TabPanel>
 						<TabPanel>
-							<OrderTable />
+							<OrderTable
+								selectStyles={selectStyles}
+								nextStep={() => {
+									handleSetTabSelectedIndex(2)
+								}}
+							/>
 						</TabPanel>
 						<TabPanel>
-							<SendTable />
+							<SendTable
+								nextStep={() => {
+									handleSetTabSelectedIndex(3)
+								}}
+							/>
 						</TabPanel>
 						<TabPanel>
 							<SelfOrderTable />

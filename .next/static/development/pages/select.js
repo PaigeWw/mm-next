@@ -299,13 +299,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
         background: "rgba(255, 255, 255, 0.5)"
       }
     },
+    onClick: props.onLinkTo,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 6
     },
     __self: this
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
-    src: "./1/password-icon.png",
+    src: props.url,
     mr: "10px",
     sx: {
       width: "0.18rem",
@@ -315,14 +316,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 18
     },
     __self: this
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     fontSize: "0.14rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 28
     },
     __self: this
   }, props.name));
@@ -344,8 +345,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rebass */ "./node_modules/rebass/dist/index.esm.js");
 /* harmony import */ var _components_head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/head */ "./components/head.js");
 /* harmony import */ var _components_nav_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/nav-item */ "./components/nav-item.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_4__);
 var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/nav.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -372,7 +376,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 20
     },
     __self: this
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
@@ -380,13 +384,13 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     width: "100%",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 21
     },
     __self: this
   }, __jsx(_components_head__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 22
     },
     __self: this
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
@@ -400,7 +404,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 23
     },
     __self: this
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
@@ -415,7 +419,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 33
     },
     __self: this
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Image"], {
@@ -429,14 +433,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 42
     },
     __self: this
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
     fontSize: "0.14rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50
+      lineNumber: 52
     },
     __self: this
   }, "HOME"))), showNav ? __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
@@ -458,35 +462,62 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54
+      lineNumber: 56
     },
     __self: this
   }, __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "MIME",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 72
+    url: "/icon/icon-01.svg",
+    onLinkTo: function onLinkTo() {
+      next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/mine");
     },
-    __self: this
-  }), __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ORDER",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 73
-    },
-    __self: this
-  }), __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "USER",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 74
     },
     __self: this
   }), __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "MY COLLECTION",
+    name: "ORDER",
+    url: "/icon/icon-02.svg",
+    onLinkTo: function onLinkTo() {
+      next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/mine?tab=3");
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 75
+      lineNumber: 81
+    },
+    __self: this
+  }), __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "USER",
+    url: "/icon/icon-03.svg",
+    onLinkTo: function onLinkTo() {
+      next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/mine?tab=4");
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 88
+    },
+    __self: this
+  }), __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "MY COLLECTION",
+    url: "/icon/icon-04.svg",
+    onLinkTo: function onLinkTo() {
+      next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/mine?tab=0");
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 95
+    },
+    __self: this
+  }), __jsx(_components_nav_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "PRODUCT MANAGER",
+    url: "/icon/icon-05.svg",
+    onLinkTo: function onLinkTo() {
+      next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push("/assign?tab=4");
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 102
     },
     __self: this
   })) : null);
@@ -603,6 +634,7 @@ var AisleButton = function AisleButton(props) {
   }, "ALSLE"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Box"], {
     variant: "primary",
     height: "0.32rem",
+    lineHeight: "0.32rem",
     bg: "#FF8E6C",
     color: "#000",
     sx: {
@@ -620,16 +652,17 @@ var AisleButton = function AisleButton(props) {
       lineNumber: 43
     },
     __self: this
-  }, channelList.length > 0 ? channelList[curChannelIndex].code : "")), showChannels ? __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
+  }, channelList.length > 0 ? channelList[curChannelIndex].code : "")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
     width: [1],
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 63
+      lineNumber: 64
     },
     __self: this
   }, channelList.map(function (channel, index) {
     return __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Text"], {
       mr: "10px",
+      lineHeight: "0.4rem",
       sx: {
         cursor: "pointer"
       },
@@ -638,11 +671,11 @@ var AisleButton = function AisleButton(props) {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 65
+        lineNumber: 66
       },
       __self: this
     }, channel.name);
-  })) : null);
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (AisleButton);
@@ -687,31 +720,28 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(0),
       curChannelIndex = _useState[0],
-      setCurChannelIndex = _useState[1];
+      setCurChannelIndex = _useState[1]; // const [curChannelInfo, setCurChannelInfo] = useState({})
 
-  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])({}),
-      curChannelInfo = _useState2[0],
-      setCurChannelInfo = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false),
-      channelList = _useState3[0],
-      setChannelList = _useState3[1];
+  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(false),
+      channelList = _useState2[0],
+      setChannelList = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
+      colorList = _useState3[0],
+      setColorList = _useState3[1];
 
   var _useState4 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
-      colorList = _useState4[0],
-      setColorList = _useState4[1];
+      paintList = _useState4[0],
+      setPaintList = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
-      paintList = _useState5[0],
-      setPaintList = _useState5[1];
+      sizeList = _useState5[0],
+      setSizeList = _useState5[1];
 
   var _useState6 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
-      sizeList = _useState6[0],
-      setSizeList = _useState6[1];
-
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])([]),
-      channelInfoList = _useState7[0],
-      setChannelInfoList = _useState7[1];
+      channelInfoList = _useState6[0],
+      setChannelInfoList = _useState6[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
     var getChannels =
@@ -812,6 +842,9 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
       return x.channelId === curChannelId;
     }); // if (cIndex >= 0)
 
+    console.log("curChannelId", curChannelId);
+    console.log("Index", channelInfoList); // console.log("Index", channelInfoList[Index])
+
     var curChannelInfo = Index >= 0 ? channelInfoList[Index] : {};
 
     switch (type) {
@@ -890,7 +923,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 110
+      lineNumber: 113
     },
     __self: this
   }, __jsx(_aisle_button__WEBPACK_IMPORTED_MODULE_4__["Title"], {
@@ -902,14 +935,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     onSelectChannelByIndex: handleSelectChannelByIndex,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 123
+      lineNumber: 126
     },
     __self: this
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
     flexDirection: "column",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 131
+      lineNumber: 134
     },
     __self: this
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
@@ -917,14 +950,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     mb: "0.4rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 132
+      lineNumber: 135
     },
     __self: this
   }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
     mb: "0.1rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 133
+      lineNumber: 136
     },
     __self: this
   }, "SIZE\u300CCUP\u300D"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
@@ -932,7 +965,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     lineHeight: "0.36rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 134
+      lineNumber: 137
     },
     __self: this
   }, sizeList.map(function (size) {
@@ -940,7 +973,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
       mr: "0.2rem",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 136
+        lineNumber: 139
       },
       __self: this
     }, size.name);
@@ -951,7 +984,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     channelInfoList: channelInfoList,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 140
+      lineNumber: 143
     },
     __self: this
   }), __jsx(_color_and_paint__WEBPACK_IMPORTED_MODULE_5__["PaintList"], {
@@ -961,7 +994,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     channelInfoList: channelInfoList,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 146
+      lineNumber: 149
     },
     __self: this
   })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Button"], {
@@ -980,7 +1013,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     onClick: handleCommitSelected,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 153
+      lineNumber: 156
     },
     __self: this
   }, "FINISH"));
@@ -1225,7 +1258,7 @@ var ImageBox = function ImageBox(props) {
       }
     },
     onClick: function onClick(e) {
-      console.dir(e.target.offsetTop);
+      // console.dir(e.target.offsetTop)
       props.onSelect(id, kind, e.target.offsetTop, col, item);
     },
     __source: {
@@ -1253,9 +1286,9 @@ var ImageBox = function ImageBox(props) {
 /* harmony default export */ __webpack_exports__["default"] = (function (props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       showScroll = _useState[0],
-      setShowScroll = _useState[1];
+      setShowScroll = _useState[1]; // console.log(props.selectStyles)
 
-  console.log(props.selectStyles);
+
   return __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
     width: "100%",
     bg: "#DCDCDC",
@@ -17780,10 +17813,13 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
     if (pos > -1) {
       //已选中 则去除 选中
+      console.log(selectStyles);
+      console.log(selectStylesType);
+
       if (selectStyles.length > 1) {
         var savePos = (pos + 1) % 2;
         setSelectStyles(selectStyles.slice(savePos, savePos + 1));
-        setSelectStyles(selectStylesType.slice(savePos, savePos + 1));
+        setSelectStylesType(selectStylesType.slice(savePos, savePos + 1));
       } else {
         setSelectStyles([]);
         setSelectStylesType([]);
@@ -17791,7 +17827,8 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
       setCurrentSeleted(false);
     } else {
-      //为选中 则 设置为选中
+      //未选中 则 设置为选中
+      console.log(selectStyles, type);
       setCurrentSeleted({
         sid: sid,
         type: type,
@@ -17829,7 +17866,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     flexDirection: "column",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 70
+      lineNumber: 74
     },
     __self: this
   }, __jsx(_components_nav__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -17837,13 +17874,13 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     toast: toast,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 71
+      lineNumber: 75
     },
     __self: this
   }), __jsx(_components_select_bar__WEBPACK_IMPORTED_MODULE_6__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 76
     },
     __self: this
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
@@ -17853,7 +17890,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 73
+      lineNumber: 77
     },
     __self: this
   }, categoryList.map(function (item, index) {
@@ -17866,7 +17903,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
       onSelect: handleSelectStyle,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 75
+        lineNumber: 79
       },
       __self: this
     });
@@ -17877,7 +17914,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 97
+      lineNumber: 101
     },
     __self: this
   }) : null), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Button"], {
@@ -17902,7 +17939,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 105
+      lineNumber: 109
     },
     __self: this
   }, "NEXT>"));
@@ -17932,10 +17969,11 @@ var px2rem = function px2rem(px) {
 var pptPx2rem = function pptPx2rem(px) {
   return "".concat(px / (1920 / 10), "rem");
 };
-var baseUrl = "http://192.168.1.3:3000/";
+var baseUrl = "http://8.209.64.159:3001/"; // export const baseUrl = "http://192.168.1.3:3000/"
+
 var getPageQuery = function getPageQuery() {
   return Object(querystring__WEBPACK_IMPORTED_MODULE_0__["parse"])(window.location.href.split("?")[1]);
-};
+}; // const jjj =
 
 /***/ }),
 
@@ -17952,10 +17990,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helper */ "./utils/helper.js");
+
 
 
 var instance = axios__WEBPACK_IMPORTED_MODULE_1___default.a.create({
-  baseURL: "http://192.168.1.3:3000/api/",
+  // baseURL: "http://8.209.64.159:3006/api/",
+  baseURL: _helper__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + "api/",
   // withCredentials: true,
   timeout: 10000,
   headers: {
@@ -18026,7 +18067,7 @@ var handleErrorStatus = function handleErrorStatus(status, message) {
 
 /***/ }),
 
-/***/ 0:
+/***/ 3:
 /*!*******************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fselect&absolutePagePath=%2FUsers%2Fpaige%2FDesktop%2Fworkspace%2Fmm-next%2Fpages%2Fselect.js ***!
   \*******************************************************************************************************************************************/
@@ -18049,5 +18090,5 @@ module.exports = dll_ce55a549e3439867a796;
 
 /***/ })
 
-},[[0,"static/runtime/webpack.js"]]]);
+},[[3,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=select.js.map

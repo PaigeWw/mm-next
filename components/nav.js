@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
 import Head from "../components/head"
 import NavItem from "../components/nav-item"
+import Router from "next/router"
+
 export default props => {
 	const [showNav, setShowNav] = useState(false)
 	const [showToast, setShowToast] = useState(false)
@@ -69,10 +71,41 @@ export default props => {
 						bottom: 0
 					}}
 				>
-					<NavItem name="MIME"></NavItem>
-					<NavItem name="ORDER"></NavItem>
-					<NavItem name="USER"></NavItem>
-					<NavItem name="MY COLLECTION"></NavItem>
+					<NavItem
+						name="MIME"
+						url="/icon/icon-01.svg"
+						onLinkTo={() => {
+							Router.push("/mine")
+						}}
+					></NavItem>
+					<NavItem
+						name="ORDER"
+						url="/icon/icon-02.svg"
+						onLinkTo={() => {
+							Router.push("/mine?tab=3")
+						}}
+					></NavItem>
+					<NavItem
+						name="USER"
+						url="/icon/icon-03.svg"
+						onLinkTo={() => {
+							Router.push("/mine?tab=4")
+						}}
+					></NavItem>
+					<NavItem
+						name="MY COLLECTION"
+						url="/icon/icon-04.svg"
+						onLinkTo={() => {
+							Router.push("/mine?tab=0")
+						}}
+					></NavItem>
+					<NavItem
+						name="PRODUCT MANAGER"
+						url="/icon/icon-05.svg"
+						onLinkTo={() => {
+							Router.push("/assign?tab=4")
+						}}
+					></NavItem>
 				</Flex>
 			) : null}
 		</React.Fragment>

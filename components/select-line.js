@@ -12,7 +12,7 @@ const ImageBox = props => {
 				}
 			}}
 			onClick={e => {
-				console.dir(e.target.offsetTop)
+				// console.dir(e.target.offsetTop)
 				props.onSelect(id, kind, e.target.offsetTop, col, item)
 			}}
 		>
@@ -27,7 +27,7 @@ const ImageBox = props => {
 }
 export default props => {
 	const [showScroll, setShowScroll] = useState(false)
-	console.log(props.selectStyles)
+	// console.log(props.selectStyles)
 	return (
 		<Flex
 			width="100%"

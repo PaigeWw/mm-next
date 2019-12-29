@@ -8,7 +8,7 @@ import { baseUrl } from "../../utils/helper"
 export default props => {
 	const { sid, top, col, styleItem } = props.currentSeleted
 	const [curChannelIndex, setCurChannelIndex] = useState(0)
-	const [curChannelInfo, setCurChannelInfo] = useState({})
+	// const [curChannelInfo, setCurChannelInfo] = useState({})
 	const [channelList, setChannelList] = useState(false)
 	const [colorList, setColorList] = useState([])
 	const [paintList, setPaintList] = useState([])
@@ -47,6 +47,9 @@ export default props => {
 		let curChannelId = channelList[curChannelIndex]._id
 		let Index = channelInfoList.findIndex(x => x.channelId === curChannelId)
 		// if (cIndex >= 0)
+		console.log("curChannelId", curChannelId)
+		console.log("Index", channelInfoList)
+		// console.log("Index", channelInfoList[Index])
 		let curChannelInfo = Index >= 0 ? channelInfoList[Index] : {}
 		switch (type) {
 			case "color":
