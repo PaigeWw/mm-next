@@ -1,28 +1,41 @@
 import Head from "next/head"
+import { createGlobalStyle } from "styled-components"
+
+const Global = createGlobalStyle`
+body,
+html,
+#__next {
+    height: 100%;
+    margin: 0;
+    font-size: 0.14rem;
+}
+`
 
 function IndexPage() {
 	return (
-		<Head>
-			<title>MR MISS</title>
-			<style global jsx>{`
-				body,
-				html,
-				#__next {
-					height: 100%;
-					margin: 0;
-					font-size: 0.14rem;
-				}
-				input::-webkit-outer-spin-button,
-				input::-webkit-inner-spin-button {
-					 -webkit-appearance: none;
-				}
-				input[type="number"] {
-					 -moz-appearance: textfield;
-				}
-			`}</style>
-			<script
-				dangerouslySetInnerHTML={{
-					__html: `function resizeFontSize() {
+		<>
+			<Global></Global>
+			<Head>
+				<title>MR MISS</title>
+				<style global jsx>{`
+					body,
+					html,
+					#__next {
+						height: 100%;
+						margin: 0;
+						font-size: 0.14rem;
+					}
+					input::-webkit-outer-spin-button,
+					input::-webkit-inner-spin-button {
+						 -webkit-appearance: none;
+					}
+					input[type="number"] {
+						 -moz-appearance: textfield;
+					}
+				`}</style>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `function resizeFontSize() {
                         const docEl = document.documentElement;
                         const { clientWidth } = docEl;
                         if (!clientWidth) return;
@@ -31,9 +44,10 @@ function IndexPage() {
                     }
                     window.onload = resizeFontSize
                     window.onresize = resizeFontSize;`
-				}}
-			></script>
-		</Head>
+					}}
+				></script>
+			</Head>
+		</>
 	)
 }
 

@@ -8,32 +8,50 @@ const PagerButton = props => (
 		bg="#000"
 		p="0"
 		sx={{ borderRadius: 0 }}
+		{...props}
 	>
-		{props.children}
+		{/* {props.children} */}
 	</Button>
 )
 const Pager = props => (
 	<Flex>
-		<PagerButton>{"<"}</PagerButton>
+		<PagerButton
+			onClick={() => {
+				props.onChangePage(-1)
+			}}
+		>
+			{"<"}
+		</PagerButton>
 		<Text bg="#EEEEEE" lineHeight="0.26rem" width="0.53rem" textAlign="center">
 			{props.current}
 		</Text>
-		<PagerButton>{">"}</PagerButton>
+		<PagerButton
+			onClick={() => {
+				props.onChangePage(1)
+			}}
+		>
+			{">"}
+		</PagerButton>
 	</Flex>
 )
 
 export const PaintList = props => {
-	const { paintList, handleSelect, channelInfoList, curChannelId } = props
-	const pIndex = channelInfoList.findIndex(x => x.channelId === curChannelId)
-	const usedPlainColorIds =
-		pIndex >= 0 ? channelInfoList[pIndex].flowerColorIds : []
+	const { paintList, handleSelect, selectedList, onChangePage, page } = props
+	// const pIndex = channelInfoList.findIndex(x => x.channelId === curChannelId)
+	const usedPlainColorIds = selectedList.map(item => item._id)
 	if (paintList.length < 1) return null
 	return (
 		<Box width="100%" mb="0.4rem">
 			<Flex justifyContent="space-between" alignItems="center">
-				<Text>PRINT</Text> <Pager current="01" />
+				<Text>PRINT</Text>{" "}
+				<Pager
+					current={page}
+					onChangePage={changeNum => {
+						onChangePage(parseInt(page) + changeNum, 1)
+					}}
+				/>
 			</Flex>
-			<Flex width="5rem" height="1.5rem">
+			<Flex width="5rem" height="1.5rem" flexWrap="wrap">
 				{paintList.map(item => (
 					<Box
 						sx={{
@@ -43,7 +61,7 @@ export const PaintList = props => {
 							background: `url(${baseUrl + item.value})`,
 							backgroundSize: "100% 100% ",
 							border: `1px ${
-								usedPlainColorIds.indexOf(item.colorId) >= 0 ? "#000" : "#fff"
+								usedPlainColorIds.indexOf(item._id) >= 0 ? "#000" : "#fff"
 							} solid`
 						}}
 						onClick={() => {
@@ -62,16 +80,21 @@ export const PaintList = props => {
 }
 
 export const ColorList = props => {
-	const { colorList, handleSelect, channelInfoList, curChannelId } = props
-	const cIndex = channelInfoList.findIndex(x => x.channelId === curChannelId)
-	const usedPlainColorIds =
-		cIndex >= 0 ? channelInfoList[cIndex].plainColorIds : []
+	const { colorList, handleSelect, selectedList, onChangePage, page } = props
+	const usedPlainColorIds = selectedList.map(item => item._id)
+	console.log(usedPlainColorIds)
 	return (
 		<Box width="100%" mb="0.4rem">
 			<Flex justifyContent="space-between" alignItems="center">
-				<Text>COLOUR</Text> <Pager current="01" />
+				<Text>COLOUR</Text>{" "}
+				<Pager
+					current={page}
+					onChangePage={changeNum => {
+						onChangePage(parseInt(page) + changeNum, 0)
+					}}
+				/>
 			</Flex>
-			<Flex width="5rem" height="1.5rem">
+			<Flex width="5rem" height="1.5rem" flexWrap="wrap">
 				{colorList.map(item => (
 					<Box
 						sx={{
@@ -79,7 +102,7 @@ export const ColorList = props => {
 							boxSizing: "content-box",
 							backgroundClip: "content-box",
 							border: `1px ${
-								usedPlainColorIds.indexOf(item.colorId) >= 0 ? "#000" : "#fff"
+								usedPlainColorIds.indexOf(item._id) >= 0 ? "#000" : "#fff"
 							} solid`
 						}}
 						onClick={() => {

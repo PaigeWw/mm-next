@@ -8,10 +8,14 @@ import OrderTable from "../components/tables/order-table"
 import SendTable from "../components/tables/send-table"
 import SelfOrderTable from "../components/tables/self-order-table"
 import Manage from "../components/manage/index"
+import useUserInfo from "../hooks/getUserInfo"
 export default () => {
-	const [tabSelectedIndex, setTabSelectedIndex] = useState(0)
+	const [user, setUser] = useState(useUserInfo())
+	const [tabSelectedIndex, setTabSelectedIndex] = useState(4)
 	const [selectStyles, setSelectStyles] = useState([])
 	const [showEditBox, setShowEditBox] = useState(false)
+	console.log(user)
+	// console.log(userInfo)
 	const handleSetTabSelectedIndex = index => {
 		setTabSelectedIndex(index)
 		// console.log("~~~~~~~~")
@@ -23,6 +27,7 @@ export default () => {
 	const handleToSendedOrder = () => {
 		setTabSelectedIndex(4)
 	}
+
 	return (
 		<>
 			<Flex flexDirection="column" height="100%">

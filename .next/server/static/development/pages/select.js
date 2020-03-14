@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -104,58 +104,70 @@ module.exports =
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PaintList", function() { return PaintList; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ColorList", function() { return ColorList; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rebass */ "rebass");
-/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rebass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/helper */ "./utils/helper.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/parse-int */ "./node_modules/@babel/runtime-corejs2/core-js/parse-int.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/extends */ "./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rebass */ "rebass");
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(rebass__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/helper */ "./utils/helper.js");
+
+
 var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/color-and-paint.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
 
 
-const PagerButton = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+const PagerButton = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Button"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__["default"])({
   width: "0.26rem",
   height: "0.26rem",
   bg: "#000",
   p: "0",
   sx: {
     borderRadius: 0
-  },
+  }
+}, props, {
   __source: {
     fileName: _jsxFileName,
     lineNumber: 5
   },
   __self: undefined
-}, props.children);
+}));
 
-const Pager = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 16
-  },
-  __self: undefined
-}, __jsx(PagerButton, {
+const Pager = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
   __source: {
     fileName: _jsxFileName,
     lineNumber: 17
   },
   __self: undefined
-}, "<"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+}, __jsx(PagerButton, {
+  onClick: () => {
+    props.onChangePage(-1);
+  },
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 18
+  },
+  __self: undefined
+}, "<"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
   bg: "#EEEEEE",
   lineHeight: "0.26rem",
   width: "0.53rem",
   textAlign: "center",
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 18
+    lineNumber: 25
   },
   __self: undefined
 }, props.current), __jsx(PagerButton, {
+  onClick: () => {
+    props.onChangePage(1);
+  },
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 21
+    lineNumber: 28
   },
   __self: undefined
 }, ">"));
@@ -164,57 +176,62 @@ const PaintList = props => {
   const {
     paintList,
     handleSelect,
-    channelInfoList,
-    curChannelId
-  } = props;
-  const pIndex = channelInfoList.findIndex(x => x.channelId === curChannelId);
-  const usedPlainColorIds = pIndex >= 0 ? channelInfoList[pIndex].flowerColorIds : [];
+    selectedList,
+    onChangePage,
+    page
+  } = props; // const pIndex = channelInfoList.findIndex(x => x.channelId === curChannelId)
+
+  const usedPlainColorIds = selectedList.map(item => item._id);
   if (paintList.length < 1) return null;
-  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
     width: "100%",
     mb: "0.4rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 44
     },
     __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
     justifyContent: "space-between",
     alignItems: "center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33
+      lineNumber: 45
     },
     __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 46
     },
     __self: undefined
   }, "PRINT"), " ", __jsx(Pager, {
-    current: "01",
+    current: page,
+    onChangePage: changeNum => {
+      onChangePage(_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default()(page) + changeNum, 1);
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 47
     },
     __self: undefined
-  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
     width: "5rem",
     height: "1.5rem",
+    flexWrap: "wrap",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
+      lineNumber: 54
     },
     __self: undefined
-  }, paintList.map(item => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+  }, paintList.map(item => __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
     sx: {
       backgroundClip: "content-box !important",
       boxSizing: "content-box",
       cursor: "pointer",
-      background: `url(${_utils_helper__WEBPACK_IMPORTED_MODULE_2__["baseUrl"] + item.value})`,
+      background: `url(${_utils_helper__WEBPACK_IMPORTED_MODULE_4__["baseUrl"] + item.value})`,
       backgroundSize: "100% 100% ",
-      border: `1px ${usedPlainColorIds.indexOf(item.colorId) >= 0 ? "#000" : "#fff"} solid`
+      border: `1px ${usedPlainColorIds.indexOf(item._id) >= 0 ? "#000" : "#fff"} solid`
     },
     onClick: () => {
       handleSelect(item, "paint");
@@ -226,7 +243,7 @@ const PaintList = props => {
     height: "0.3rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 56
     },
     __self: undefined
   }))));
@@ -235,54 +252,59 @@ const ColorList = props => {
   const {
     colorList,
     handleSelect,
-    channelInfoList,
-    curChannelId
+    selectedList,
+    onChangePage,
+    page
   } = props;
-  const cIndex = channelInfoList.findIndex(x => x.channelId === curChannelId);
-  const usedPlainColorIds = cIndex >= 0 ? channelInfoList[cIndex].plainColorIds : [];
-  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+  const usedPlainColorIds = selectedList.map(item => item._id);
+  console.log(usedPlainColorIds);
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
     width: "100%",
     mb: "0.4rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 70
+      lineNumber: 87
     },
     __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
     justifyContent: "space-between",
     alignItems: "center",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 71
+      lineNumber: 88
     },
     __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Text"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 89
     },
     __self: undefined
   }, "COLOUR"), " ", __jsx(Pager, {
-    current: "01",
+    current: page,
+    onChangePage: changeNum => {
+      onChangePage(_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default()(page) + changeNum, 0);
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 72
+      lineNumber: 90
     },
     __self: undefined
-  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Flex"], {
     width: "5rem",
     height: "1.5rem",
+    flexWrap: "wrap",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74
+      lineNumber: 97
     },
     __self: undefined
-  }, colorList.map(item => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+  }, colorList.map(item => __jsx(rebass__WEBPACK_IMPORTED_MODULE_3__["Box"], {
     sx: {
       cursor: "pointer",
       boxSizing: "content-box",
       backgroundClip: "content-box",
-      border: `1px ${usedPlainColorIds.indexOf(item.colorId) >= 0 ? "#000" : "#fff"} solid`
+      border: `1px ${usedPlainColorIds.indexOf(item._id) >= 0 ? "#000" : "#fff"} solid`
     },
     onClick: () => {
       handleSelect(item, "color");
@@ -295,7 +317,7 @@ const ColorList = props => {
     height: "0.3rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 76
+      lineNumber: 99
     },
     __self: undefined
   }))));
@@ -318,30 +340,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/head */ "next/head");
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_3__);
 var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/head.js";
 
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
+const Global = styled_components__WEBPACK_IMPORTED_MODULE_3__["createGlobalStyle"]`
+body,
+html,
+#__next {
+    height: 100%;
+    margin: 0;
+    font-size: 0.14rem;
+}
+`;
+
 function IndexPage() {
-  return __jsx(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, __jsx(Global, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 5
+      lineNumber: 17
+    },
+    __self: this
+  }), __jsx(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
     },
     __self: this
   }, __jsx("title", {
-    className: "jsx-1708391394",
+    className: "jsx-3244151324",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 6
+      lineNumber: 19
     },
     __self: this
   }, "MR MISS"), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
-    id: "1708391394",
+    id: "3244151324",
     __self: this
-  }, "body,html,#__next{height:100%;margin:0;font-size:0.14rem;}input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;}input[type=\"number\"]{-moz-appearance:textfield;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9wYWlnZS9EZXNrdG9wL3dvcmtzcGFjZS9tbS1uZXh0L2NvbXBvbmVudHMvaGVhZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNc0IsQUFLa0IsQUFNYSxBQUdFLFlBUmxCLFNBQ1MsR0FLbkIsRUFHQSxhQVBBIiwiZmlsZSI6Ii9Vc2Vycy9wYWlnZS9EZXNrdG9wL3dvcmtzcGFjZS9tbS1uZXh0L2NvbXBvbmVudHMvaGVhZC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBIZWFkIGZyb20gXCJuZXh0L2hlYWRcIlxuXG5mdW5jdGlvbiBJbmRleFBhZ2UoKSB7XG5cdHJldHVybiAoXG5cdFx0PEhlYWQ+XG5cdFx0XHQ8dGl0bGU+TVIgTUlTUzwvdGl0bGU+XG5cdFx0XHQ8c3R5bGUgZ2xvYmFsIGpzeD57YFxuXHRcdFx0XHRib2R5LFxuXHRcdFx0XHRodG1sLFxuXHRcdFx0XHQjX19uZXh0IHtcblx0XHRcdFx0XHRoZWlnaHQ6IDEwMCU7XG5cdFx0XHRcdFx0bWFyZ2luOiAwO1xuXHRcdFx0XHRcdGZvbnQtc2l6ZTogMC4xNHJlbTtcblx0XHRcdFx0fVxuXHRcdFx0XHRpbnB1dDo6LXdlYmtpdC1vdXRlci1zcGluLWJ1dHRvbixcblx0XHRcdFx0aW5wdXQ6Oi13ZWJraXQtaW5uZXItc3Bpbi1idXR0b24ge1xuXHRcdFx0XHRcdMKgLXdlYmtpdC1hcHBlYXJhbmNlOiBub25lO1xuXHRcdFx0XHR9XG5cdFx0XHRcdGlucHV0W3R5cGU9XCJudW1iZXJcIl0ge1xuXHRcdFx0XHRcdMKgLW1vei1hcHBlYXJhbmNlOiB0ZXh0ZmllbGQ7XG5cdFx0XHRcdH1cblx0XHRcdGB9PC9zdHlsZT5cblx0XHRcdDxzY3JpcHRcblx0XHRcdFx0ZGFuZ2Vyb3VzbHlTZXRJbm5lckhUTUw9e3tcblx0XHRcdFx0XHRfX2h0bWw6IGBmdW5jdGlvbiByZXNpemVGb250U2l6ZSgpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IGRvY0VsID0gZG9jdW1lbnQuZG9jdW1lbnRFbGVtZW50O1xuICAgICAgICAgICAgICAgICAgICAgICAgY29uc3QgeyBjbGllbnRXaWR0aCB9ID0gZG9jRWw7XG4gICAgICAgICAgICAgICAgICAgICAgICBpZiAoIWNsaWVudFdpZHRoKSByZXR1cm47XG4gICAgICAgICAgICAgICAgICAgICAgICBjb25zdCBmcyA9IDEwMCAqIChjbGllbnRXaWR0aCAvIDE5MjApO1xuICAgICAgICAgICAgICAgICAgICAgICAgZG9jRWwuc3R5bGUuZm9udFNpemUgPSBmcyArICdweCc7XG4gICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgd2luZG93Lm9ubG9hZCA9IHJlc2l6ZUZvbnRTaXplXG4gICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbnJlc2l6ZSA9IHJlc2l6ZUZvbnRTaXplO2Bcblx0XHRcdFx0fX1cblx0XHRcdD48L3NjcmlwdD5cblx0XHQ8L0hlYWQ+XG5cdClcbn1cblxuZXhwb3J0IGRlZmF1bHQgSW5kZXhQYWdlXG4iXX0= */\n/*@ sourceURL=/Users/paige/Desktop/workspace/mm-next/components/head.js */"), __jsx("script", {
+  }, "body,html,#__next{height:100%;margin:0;font-size:0.14rem;}input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;}input[type=\"number\"]{-moz-appearance:textfield;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9wYWlnZS9EZXNrdG9wL3dvcmtzcGFjZS9tbS1uZXh0L2NvbXBvbmVudHMvaGVhZC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFtQnVCLEFBS21CLEFBTWEsQUFHRSxZQVJsQixTQUNTLEdBS25CLEVBR0EsYUFQQSIsImZpbGUiOiIvVXNlcnMvcGFpZ2UvRGVza3RvcC93b3Jrc3BhY2UvbW0tbmV4dC9jb21wb25lbnRzL2hlYWQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgSGVhZCBmcm9tIFwibmV4dC9oZWFkXCJcbmltcG9ydCB7IGNyZWF0ZUdsb2JhbFN0eWxlIH0gZnJvbSBcInN0eWxlZC1jb21wb25lbnRzXCJcblxuY29uc3QgR2xvYmFsID0gY3JlYXRlR2xvYmFsU3R5bGVgXG5ib2R5LFxuaHRtbCxcbiNfX25leHQge1xuICAgIGhlaWdodDogMTAwJTtcbiAgICBtYXJnaW46IDA7XG4gICAgZm9udC1zaXplOiAwLjE0cmVtO1xufVxuYFxuXG5mdW5jdGlvbiBJbmRleFBhZ2UoKSB7XG5cdHJldHVybiAoXG5cdFx0PD5cblx0XHRcdDxHbG9iYWw+PC9HbG9iYWw+XG5cdFx0XHQ8SGVhZD5cblx0XHRcdFx0PHRpdGxlPk1SIE1JU1M8L3RpdGxlPlxuXHRcdFx0XHQ8c3R5bGUgZ2xvYmFsIGpzeD57YFxuXHRcdFx0XHRcdGJvZHksXG5cdFx0XHRcdFx0aHRtbCxcblx0XHRcdFx0XHQjX19uZXh0IHtcblx0XHRcdFx0XHRcdGhlaWdodDogMTAwJTtcblx0XHRcdFx0XHRcdG1hcmdpbjogMDtcblx0XHRcdFx0XHRcdGZvbnQtc2l6ZTogMC4xNHJlbTtcblx0XHRcdFx0XHR9XG5cdFx0XHRcdFx0aW5wdXQ6Oi13ZWJraXQtb3V0ZXItc3Bpbi1idXR0b24sXG5cdFx0XHRcdFx0aW5wdXQ6Oi13ZWJraXQtaW5uZXItc3Bpbi1idXR0b24ge1xuXHRcdFx0XHRcdFx0wqAtd2Via2l0LWFwcGVhcmFuY2U6IG5vbmU7XG5cdFx0XHRcdFx0fVxuXHRcdFx0XHRcdGlucHV0W3R5cGU9XCJudW1iZXJcIl0ge1xuXHRcdFx0XHRcdFx0wqAtbW96LWFwcGVhcmFuY2U6IHRleHRmaWVsZDtcblx0XHRcdFx0XHR9XG5cdFx0XHRcdGB9PC9zdHlsZT5cblx0XHRcdFx0PHNjcmlwdFxuXHRcdFx0XHRcdGRhbmdlcm91c2x5U2V0SW5uZXJIVE1MPXt7XG5cdFx0XHRcdFx0XHRfX2h0bWw6IGBmdW5jdGlvbiByZXNpemVGb250U2l6ZSgpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IGRvY0VsID0gZG9jdW1lbnQuZG9jdW1lbnRFbGVtZW50O1xuICAgICAgICAgICAgICAgICAgICAgICAgY29uc3QgeyBjbGllbnRXaWR0aCB9ID0gZG9jRWw7XG4gICAgICAgICAgICAgICAgICAgICAgICBpZiAoIWNsaWVudFdpZHRoKSByZXR1cm47XG4gICAgICAgICAgICAgICAgICAgICAgICBjb25zdCBmcyA9IDEwMCAqIChjbGllbnRXaWR0aCAvIDE5MjApO1xuICAgICAgICAgICAgICAgICAgICAgICAgZG9jRWwuc3R5bGUuZm9udFNpemUgPSBmcyArICdweCc7XG4gICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgd2luZG93Lm9ubG9hZCA9IHJlc2l6ZUZvbnRTaXplXG4gICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbnJlc2l6ZSA9IHJlc2l6ZUZvbnRTaXplO2Bcblx0XHRcdFx0XHR9fVxuXHRcdFx0XHQ+PC9zY3JpcHQ+XG5cdFx0XHQ8L0hlYWQ+XG5cdFx0PC8+XG5cdClcbn1cblxuZXhwb3J0IGRlZmF1bHQgSW5kZXhQYWdlXG4iXX0= */\n/*@ sourceURL=/Users/paige/Desktop/workspace/mm-next/components/head.js */"), __jsx("script", {
     dangerouslySetInnerHTML: {
       __html: `function resizeFontSize() {
                         const docEl = document.documentElement;
@@ -353,13 +393,13 @@ function IndexPage() {
                     window.onload = resizeFontSize
                     window.onresize = resizeFontSize;`
     },
-    className: "jsx-1708391394",
+    className: "jsx-3244151324",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 36
     },
     __self: this
-  }));
+  })));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (IndexPage);
@@ -703,7 +743,7 @@ const Title = props => __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
 const AisleButton = props => {
   const {
     channelList,
-    curChannelIndex
+    curChannel
   } = props;
   const {
     0: showChannels,
@@ -749,25 +789,26 @@ const AisleButton = props => {
       lineNumber: 43
     },
     __self: undefined
-  }, channelList.length > 0 ? channelList[curChannelIndex].code : "")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
+  }, curChannel ? curChannel.code : "")), __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Flex"], {
     width: [1],
     __source: {
       fileName: _jsxFileName,
       lineNumber: 64
     },
     __self: undefined
-  }, channelList.map((channel, index) => __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Text"], {
+  }, channelList.length > 0 && channelList.map((channel, index) => __jsx(rebass__WEBPACK_IMPORTED_MODULE_2__["Text"], {
     mr: "10px",
     lineHeight: "0.4rem",
     sx: {
       cursor: "pointer"
     },
+    color: curChannel && channel._id === curChannel._id ? "#FF8E6C" : "#000",
     onClick: () => {
-      props.onSelectChannelByIndex(index);
+      props.onSelectChannel(channel);
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 67
     },
     __self: undefined
   }, channel.name))));
@@ -786,16 +827,41 @@ const AisleButton = props => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rebass */ "rebass");
-/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rebass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _aisle_button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./aisle-button */ "./components/select-assign-tool/aisle-button.js");
-/* harmony import */ var _color_and_paint__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../color-and-paint */ "./components/color-and-paint.js");
-/* harmony import */ var _utils_request_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/request.js */ "./utils/request.js");
-/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/helper */ "./utils/helper.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptors */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rebass */ "rebass");
+/* harmony import */ var rebass__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(rebass__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _aisle_button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./aisle-button */ "./components/select-assign-tool/aisle-button.js");
+/* harmony import */ var _color_and_paint__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../color-and-paint */ "./components/color-and-paint.js");
+/* harmony import */ var _utils_request_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../utils/request.js */ "./utils/request.js");
+/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../utils/helper */ "./utils/helper.js");
+
+
+
+
+
+
+
 var _jsxFileName = "/Users/paige/Desktop/workspace/mm-next/components/select-assign-tool/index.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
+
+function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(source).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
+
 
 
 
@@ -809,58 +875,109 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     col,
     styleItem
   } = props.currentSeleted;
+  const channelInfoList = [];
   const {
-    0: curChannelIndex,
-    1: setCurChannelIndex
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0); // const [curChannelInfo, setCurChannelInfo] = useState({})
-
+    0: curChannel,
+    1: setCurChannel
+  } = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])({});
   const {
     0: channelList,
     1: setChannelList
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])(false);
   const {
     0: colorList,
     1: setColorList
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])([]);
   const {
     0: paintList,
     1: setPaintList
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])([]);
   const {
     0: sizeList,
     1: setSizeList
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])([]);
   const {
-    0: channelInfoList,
-    1: setChannelInfoList
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    0: curChannelAssign,
+    1: setCurChannelAssign
+  } = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])({
+    plainColors: [],
+    flowerColors: []
+  });
+
+  const getColorList = async page => {
+    const req = await Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_11__["default"])("color/getList", {
+      type: 0,
+      page: page,
+      limit: 14
+    }, "get");
+    setColorList({
+      docs: req.docs,
+      page: req.page
+    }); // console.log("getChannels", req)
+  };
+
+  const getPaintList = async page => {
+    const req = await Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_11__["default"])("color/getList", {
+      type: 1,
+      page: page,
+      limit: 14
+    }, "get");
+    setPaintList({
+      docs: req.docs,
+      page: req.page
+    }); // console.log("getChannels", req)
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(() => {
     const getChannels = async () => {
-      const req = await Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_4__["default"])("channel/getList", {}, "get");
-      setChannelList(req); // console.log("getChannels", req)
+      const req = await Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_11__["default"])("channel/getList", {}, "get");
+      setChannelList(req.docs);
+
+      if (req.docs.length > 0) {
+        setCurChannel(req.docs[0]); // getChannelsAssign(sid, req.docs[0]._id)
+      }
     };
 
     getChannels();
+    getColorList();
+    getPaintList();
   }, []);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+  Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(() => {
     if (props.currentSeleted) {
       const getStyle = async () => {
-        const req = await Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_4__["default"])("style/detail", {
+        const req = await Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_11__["default"])("style/detail", {
           _id: sid
         }, "get");
-        if (!req) return; // console.log("getStyle", req)
+        if (!req) return; // setCurChannelIndex(0)
 
-        setCurChannelIndex(0);
-        setPaintList(req.flowerColors);
-        setColorList(req.plainColors);
-        setColorList(req.plainColors);
-        setChannelInfoList(req.channels);
         setSizeList(req.size.values);
       };
 
       getStyle();
     }
   }, [props.currentSeleted]);
+  Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(() => {
+    if (!curChannel._id) return;
+    console.log("curChannel->", curChannel.code);
+
+    const getChannelsAssign = async (styleId, channelId) => {
+      const req = await Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_11__["default"])("channel/getAssign", {
+        styleId,
+        channelId
+      }, "get");
+
+      if (!req) {
+        setCurChannelAssign({
+          plainColors: [],
+          flowerColors: []
+        });
+      } else {
+        setCurChannelAssign(req);
+      }
+    };
+
+    getChannelsAssign(sid, curChannel._id);
+  }, [curChannel]);
   let left = (col + 2) * 3.2;
 
   if (left > 19.2 - 6.4) {
@@ -868,41 +985,45 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
   }
 
   const handleSelect = (item, type) => {
-    let curChannelId = channelList[curChannelIndex]._id;
-    let Index = channelInfoList.findIndex(x => x.channelId === curChannelId); // if (cIndex >= 0)
-
-    console.log("curChannelId", curChannelId);
-    console.log("Index", channelInfoList); // console.log("Index", channelInfoList[Index])
-
-    let curChannelInfo = Index >= 0 ? channelInfoList[Index] : {};
-
     switch (type) {
       case "color":
-        // const cIndex = colorList.findIndex(x => x.colorId === item.colorId)
-        // colorList[cIndex].selected = !colorList[cIndex].selected
-        // colorList.splice(index, 1, item.selected=true)
-        // setColorList([].concat(colorList))
-        const cIndex = curChannelInfo.plainColorIds.indexOf(item.colorId); // console.log(cIndex)
+        const cIndex = curChannelAssign.plainColors.findIndex(x => x._id === item._id);
+        console.log("cIndex", cIndex);
 
         if (cIndex < 0) {
-          curChannelInfo.plainColorIds.push(item.colorId);
+          curChannelAssign.plainColors.push(item);
         } else {
-          curChannelInfo.plainColorIds.splice(cIndex, 1);
+          curChannelAssign.plainColors.splice(cIndex, 1);
         }
 
-        setChannelInfoList([].concat(channelInfoList));
+        const res = Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_11__["default"])("/channel/assign", {
+          styleId: sid,
+          channelId: curChannel._id,
+          plainColor: item._id
+        }, "post");
+        setCurChannelAssign(_objectSpread({}, curChannelAssign, {
+          plainColors: [].concat(curChannelAssign.plainColors)
+        }));
         break;
 
       case "paint":
-        const pIndex = curChannelInfo.flowerColorIds.indexOf(item.colorId);
+        const pIndex = curChannelAssign.flowerColors.findIndex(x => x._id === item._id);
+        console.log("cIndex", cIndex);
 
         if (pIndex < 0) {
-          curChannelInfo.flowerColorIds.push(item.colorId);
+          curChannelAssign.flowerColors.push(item);
         } else {
-          curChannelInfo.flowerColorIds.splice(pIndex, 1);
+          curChannelAssign.flowerColors.splice(pIndex, 1);
         }
 
-        setChannelInfoList([].concat(channelInfoList));
+        const res1 = Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_11__["default"])("/channel/assign", {
+          styleId: sid,
+          channelId: curChannel._id,
+          flowerColor: item._id
+        }, "post");
+        setCurChannelAssign(_objectSpread({}, curChannelAssign, {
+          flowerColors: [].concat(curChannelAssign.flowerColors)
+        }));
         break;
 
       default:
@@ -910,33 +1031,24 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     }
   };
 
-  const handleSelectChannelByIndex = index => {
-    setCurChannelIndex(index);
+  const handleSelectChannel = channel => {
+    setCurChannel(channel);
   };
 
-  const handleCommitSelected = index => {
-    let curChannelId = channelList[curChannelIndex]._id;
-    let Index = channelInfoList.findIndex(x => x.channelId === curChannelId); // if (cIndex >= 0)
+  const handleChangeColorPage = (page, type) => {
+    console.log(page, type);
 
-    let curChannelInfo = Index >= 0 ? channelInfoList[Index] : {};
-    console.log({
-      _id: sid,
-      channelId: channelList[curChannelIndex]._id,
-      plainColorIds: curChannelInfo.plainColorIds,
-      flowerColorIds: curChannelInfo.flowerColorIds
-    });
-    const res = Object(_utils_request_js__WEBPACK_IMPORTED_MODULE_4__["default"])("/style/assign", {
-      _id: sid,
-      channelId: channelList[curChannelIndex]._id,
-      plainColorIds: curChannelInfo.plainColorIds,
-      flowerColorIds: curChannelInfo.flowerColorIds
-    }, "post"); // setChannelInfoList(res.channels)
-    // console.log(res)
-  };
+    if (type === 0) {
+      getColorList(page);
+    } else {
+      getPaintList(page);
+    }
+  }; // const handleCommitSelected = index => {}
 
-  if (!channelList) return null; // console.log(channelList, curChannelIndex)
 
-  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  if (!channelList) return null;
+  console.log(curChannel);
+  return __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Flex"], {
     width: "6.4rem",
     bg: "#fff",
     flexDirection: "column",
@@ -950,79 +1062,83 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 113
+      lineNumber: 163
     },
     __self: undefined
-  }, __jsx(_aisle_button__WEBPACK_IMPORTED_MODULE_2__["Title"], {
+  }, __jsx(_aisle_button__WEBPACK_IMPORTED_MODULE_9__["Title"], {
     styleNo: styleItem.styleNo,
-    channelList: channelList,
-    channelInfoList: channelInfoList,
+    channelList: channelList // channelInfoList={curChannelAssign.plainColors}
+    ,
     onClose: props.onClose,
-    curChannelIndex: curChannelIndex,
-    onSelectChannelByIndex: handleSelectChannelByIndex,
+    curChannel: curChannel,
+    onSelectChannel: handleSelectChannel,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 126
+      lineNumber: 176
     },
     __self: undefined
-  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Flex"], {
     flexDirection: "column",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 134
+      lineNumber: 184
     },
     __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Box"], {
     width: "100%",
     mb: "0.4rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 135
+      lineNumber: 185
     },
     __self: undefined
-  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  }, __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Text"], {
     mb: "0.1rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 136
+      lineNumber: 186
     },
     __self: undefined
-  }, "SIZE\u300CCUP\u300D"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Flex"], {
+  }, "SIZE\u300CCUP\u300D"), __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Flex"], {
     width: "100%",
     lineHeight: "0.36rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 137
+      lineNumber: 187
     },
     __self: undefined
-  }, sizeList.map(size => __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Text"], {
+  }, sizeList.map(size => __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Text"], {
     mr: "0.2rem",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 139
+      lineNumber: 189
     },
     __self: undefined
-  }, size.name)))), __jsx(_color_and_paint__WEBPACK_IMPORTED_MODULE_3__["ColorList"], {
-    colorList: colorList,
+  }, size.name)))), __jsx(_color_and_paint__WEBPACK_IMPORTED_MODULE_10__["ColorList"], {
+    colorList: colorList.docs || [],
+    page: colorList.page,
     handleSelect: handleSelect,
-    curChannelId: channelList[curChannelIndex]._id,
-    channelInfoList: channelInfoList,
+    curChannelId: curChannel._id,
+    selectedList: curChannelAssign.plainColors,
+    onChangePage: handleChangeColorPage,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 143
+      lineNumber: 193
     },
     __self: undefined
-  }), __jsx(_color_and_paint__WEBPACK_IMPORTED_MODULE_3__["PaintList"], {
-    paintList: paintList,
+  }), __jsx(_color_and_paint__WEBPACK_IMPORTED_MODULE_10__["PaintList"], {
+    paintList: paintList.docs || [],
+    page: paintList.page,
     handleSelect: handleSelect,
-    curChannelId: channelList[curChannelIndex]._id,
-    channelInfoList: channelInfoList,
+    curChannelId: curChannel._id,
+    selectedList: curChannelAssign.flowerColors,
+    onChangePage: handleChangeColorPage,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 149
+      lineNumber: 201
     },
     __self: undefined
-  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+  })), __jsx(rebass__WEBPACK_IMPORTED_MODULE_8__["Button"], {
     variant: "primary",
     height: "0.7rem",
     width: "6.4rem",
@@ -1035,10 +1151,10 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
       fontSize: "0.14rem",
       cursor: "pointer"
     },
-    onClick: handleCommitSelected,
+    onClick: props.onClose,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 156
+      lineNumber: 210
     },
     __self: undefined
   }, "FINISH"));
@@ -1501,6 +1617,83 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/assign */ "co
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/define-properties */ "core-js/library/fn/object/define-properties");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/define-property */ "core-js/library/fn/object/define-property");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-descriptor */ "core-js/library/fn/object/get-own-property-descriptor");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-descriptors */ "core-js/library/fn/object/get-own-property-descriptors");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/get-own-property-symbols */ "core-js/library/fn/object/get-own-property-symbols");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/keys.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/object/keys */ "core-js/library/fn/object/keys");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/parse-int.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/parse-int.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/parse-int */ "core-js/library/fn/parse-int");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/promise.js":
 /*!****************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/core-js/promise.js ***!
@@ -1509,6 +1702,36 @@ module.exports = __webpack_require__(/*! core-js/library/fn/object/assign */ "co
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! core-js/library/fn/promise */ "core-js/library/fn/promise");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _defineProperty; });
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
 
 /***/ }),
 
@@ -1626,9 +1849,6 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
     if (pos > -1) {
       //已选中 则去除 选中
-      console.log(selectStyles);
-      console.log(selectStylesType);
-
       if (selectStyles.length > 1) {
         let savePos = (pos + 1) % 2;
         setSelectStyles(selectStyles.slice(savePos, savePos + 1));
@@ -1677,7 +1897,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     flexDirection: "column",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74
+      lineNumber: 72
     },
     __self: undefined
   }, __jsx(_components_nav__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -1685,13 +1905,13 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     toast: toast,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 75
+      lineNumber: 73
     },
     __self: undefined
   }), __jsx(_components_select_bar__WEBPACK_IMPORTED_MODULE_4__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 76
+      lineNumber: 74
     },
     __self: undefined
   }), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Box"], {
@@ -1701,7 +1921,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 75
     },
     __self: undefined
   }, categoryList.map((item, index) => __jsx(_components_select_line__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -1713,7 +1933,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     onSelect: handleSelectStyle,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 77
     },
     __self: undefined
   })), currentSeleted && info.role === 1 ? __jsx(_components_select_assign_tool__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -1723,7 +1943,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 101
+      lineNumber: 99
     },
     __self: undefined
   }) : null), __jsx(rebass__WEBPACK_IMPORTED_MODULE_1__["Button"], {
@@ -1748,7 +1968,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 109
+      lineNumber: 107
     },
     __self: undefined
   }, "NEXT>"));
@@ -1773,9 +1993,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(querystring__WEBPACK_IMPORTED_MODULE_0__);
 
 const px2rem = px => `${px / (750 / 10)}rem`;
-const pptPx2rem = px => `${px / (1920 / 10)}rem`;
-const baseUrl = "http://8.209.64.159:3001/"; // export const baseUrl = "http://192.168.1.3:3000/"
+const pptPx2rem = px => `${px / (1920 / 10)}rem`; // export const baseUrl = "http://8.209.64.159:3001/"
 
+const baseUrl = "http://192.168.8.109:3000/";
 const getPageQuery = () => Object(querystring__WEBPACK_IMPORTED_MODULE_0__["parse"])(window.location.href.split("?")[1]); // const jjj =
 
 /***/ }),
@@ -1852,7 +2072,9 @@ const handleErrorStatus = (status, message) => {
   const options = method.toLowerCase() === "get" ? {
     params: data
   } : data;
+  console.log(url, "url");
   return instance[method](url, options).then(res => {
+    console.log(res, "res,....");
     return res.data;
   }).catch(err => {
     // handleErrorStatus(code, err.message)
@@ -1863,7 +2085,7 @@ const handleErrorStatus = (status, message) => {
 
 /***/ }),
 
-/***/ 6:
+/***/ 7:
 /*!*******************************!*\
   !*** multi ./pages/select.js ***!
   \*******************************/
@@ -1916,6 +2138,83 @@ module.exports = require("core-js/library/fn/array/is-array");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/object/assign");
+
+/***/ }),
+
+/***/ "core-js/library/fn/object/define-properties":
+/*!**************************************************************!*\
+  !*** external "core-js/library/fn/object/define-properties" ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/define-properties");
+
+/***/ }),
+
+/***/ "core-js/library/fn/object/define-property":
+/*!************************************************************!*\
+  !*** external "core-js/library/fn/object/define-property" ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/define-property");
+
+/***/ }),
+
+/***/ "core-js/library/fn/object/get-own-property-descriptor":
+/*!************************************************************************!*\
+  !*** external "core-js/library/fn/object/get-own-property-descriptor" ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/get-own-property-descriptor");
+
+/***/ }),
+
+/***/ "core-js/library/fn/object/get-own-property-descriptors":
+/*!*************************************************************************!*\
+  !*** external "core-js/library/fn/object/get-own-property-descriptors" ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/get-own-property-descriptors");
+
+/***/ }),
+
+/***/ "core-js/library/fn/object/get-own-property-symbols":
+/*!*********************************************************************!*\
+  !*** external "core-js/library/fn/object/get-own-property-symbols" ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/get-own-property-symbols");
+
+/***/ }),
+
+/***/ "core-js/library/fn/object/keys":
+/*!*************************************************!*\
+  !*** external "core-js/library/fn/object/keys" ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/object/keys");
+
+/***/ }),
+
+/***/ "core-js/library/fn/parse-int":
+/*!***********************************************!*\
+  !*** external "core-js/library/fn/parse-int" ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/parse-int");
 
 /***/ }),
 
@@ -1982,6 +2281,17 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("rebass");
+
+/***/ }),
+
+/***/ "styled-components":
+/*!************************************!*\
+  !*** external "styled-components" ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("styled-components");
 
 /***/ }),
 

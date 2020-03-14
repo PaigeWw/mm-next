@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { Flex, Text, Box, Button, Row, Column } from "rebass"
+
 import Table, { TableLine, ProductInfo } from "./base-table"
-import ShowStyle from "../show-style"
 import InputNumber from "../number-input"
 import request from "../../utils/request"
+import StyleItem from "../commons/min-style-item"
 
 export default props => {
 	const { selectStyles } = props
@@ -21,6 +22,7 @@ export default props => {
 				x.details[0].price + (x.details.length > 1 ? x.details[1].price : 0)
 		}
 	})
+	// const [showOrderDetail, setShowOrderDetail] = useState(false)
 	const [orderData, setOrderData] = useState(initData)
 	const [packageCount, setPackageCount] = useState(1)
 	const handleChangePackageCount = num => {
@@ -107,13 +109,11 @@ export default props => {
 								<ProductInfo made="2110 YE GREEN" />
 								<ProductInfo made="2110 YE GREEN" />
 							</Flex>
-							<ShowStyle
-								key={collect.id}
-								imgWidth="0.95rem"
-								mode={"POSITIVE"}
-								threeViews={collect.threeViews}
-								border="none"
-								hideInfo
+							<StyleItem
+								key={`${index}-order-style-img`}
+								styleList={collect.styleList}
+								index={index}
+								tool={false}
 							/>
 							<Flex justifyContent="space-between">
 								{collect.details[0].size.values.map((size, sizeIndex) => (

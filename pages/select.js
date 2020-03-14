@@ -34,8 +34,6 @@ export default () => {
 		let pos = selectStyles.indexOf(sid)
 		if (pos > -1) {
 			//已选中 则去除 选中
-			console.log(selectStyles)
-			console.log(selectStylesType)
 			if (selectStyles.length > 1) {
 				let savePos = (pos + 1) % 2
 

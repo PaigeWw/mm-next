@@ -1,72 +1,116 @@
 import React, { useEffect, useState } from "react"
+// import ReactSVG from "../components/commons/react-svg"
+import StyleImg from "../components/commons/style-img"
 import { Flex, Text, Box, Image, Button } from "rebass"
 
 import Modal from "./modal"
 import { ColorList, PaintList } from "./color-and-paint"
 
 import request from "../utils/request.js"
-import { baseUrl } from "../utils/helper"
+// import { baseUrl } from "../utils/helper"
+
 export default props => {
-	const { styleDetails, curStyle } = props
-	console.log(styleDetails, curStyle)
-	let tempSelectedIds = [curStyle[0].colorId]
-	let tempSelectedImgs = [curStyle[0].imgUrl]
+	const { styleDetails, curStyle, userInfo } = props
+
+	let tempSelectedIds = [curStyle[0].colors]
+	// let tempSelectedImgs = [curStyle[0].imgUrl]
 	if (curStyle.length > 1) {
-		tempSelectedIds.push(curStyle[1].colorId)
-		tempSelectedImgs.push(curStyle[1].imgUrl)
+		tempSelectedIds.push(curStyle[1].colors)
+		// tempSelectedImgs.push(curStyle[1].imgUrl)
 	} else {
-		tempSelectedIds.push(false)
-		tempSelectedImgs.push(false)
+		tempSelectedIds.push([])
+		// tempSelectedImgs.push(false)
 	}
-	const [curSelectedColorIds, setCurSelectedColorIds] = useState(
-		tempSelectedIds
-	)
+	const [curSelectedColors, setCurSelectedColors] = useState(tempSelectedIds)
 	const [curStyleIndex, setCurStyleIndex] = useState(0)
-	const [curStyleImgs, setCurStyleImgs] = useState(tempSelectedImgs)
-	// const [colorList, setColorList] = useState(styleDetails[0].plainColors)
-	const handleSelect = (item, type) => {
-		if (item.colorId === curSelectedColorIds[curStyleIndex]) {
-			curSelectedColorIds[curStyleIndex] = false
-			setCurSelectedColorIds([].concat(curSelectedColorIds))
-			curStyleImgs.splice(curStyleIndex, 1, false)
-			setCurStyleImgs([].concat(curStyleImgs))
+	const [curStylesEditGroupIndex, setEditSvgGroupIndex] = useState([0, 0])
+	const [plainColors, setPlainColors] = useState({ docs: [] })
+	const [flowerColors, setFlowerColors] = useState({ docs: [] })
+	const [imgVals, setImgVals] = useState({ scale: 1, x: 0, y: 0 })
+	const getColorList = async page => {
+		const req = await request(
+			"color/getList",
+			{ type: 0, page, limit: 14 },
+			"get"
+		)
+		setPlainColors(req)
+		// console.log("getChannels", req)
+	}
+	const getPaintList = async page => {
+		const req = await request(
+			"color/getList",
+			{ type: 1, page, limit: 14 },
+			"get"
+		)
+		setFlowerColors(req)
+		// console.log("getChannels", req)
+	}
+
+	const handleChangeColorPage = (page, type) => {
+		console.log(page, type)
+		if (type === 0) {
+			getColorList(page)
 		} else {
-			curSelectedColorIds[curStyleIndex] = item.colorId
-			setCurSelectedColorIds([].concat(curSelectedColorIds))
-			// setCurSelectedColorId()
-			switch (type) {
-				case "color":
-					const cIndex = styleDetails[curStyleIndex].plainColors.findIndex(
-						x => x.colorId === item.colorId
-					)
-					curStyleImgs.splice(
-						curStyleIndex,
-						1,
-						styleDetails[curStyleIndex].plainColors[cIndex].front
-					)
-
-					setCurStyleImgs([].concat(curStyleImgs))
-					break
-				case "paint":
-					const pIndex = styleDetails[curStyleIndex].flowerColors.findIndex(
-						x => x.colorId === item.colorId
-					)
-
-					curStyleImgs.splice(
-						curStyleIndex,
-						1,
-						styleDetails[curStyleIndex].flowerColors[pIndex].front
-					)
-					setCurStyleImgs([].concat(curStyleImgs))
-					break
-				default:
-					break
-			}
+			getPaintList(page)
 		}
 	}
-	// useEffect(() => {
-	// 	setCurSelectedColorId(false)
-	// }, [curStyleIndex])
+	const handleSelect = item => {
+		console.log(curSelectedColors)
+		if (
+			curSelectedColors[curStyleIndex][curStylesEditGroupIndex] &&
+			item._id === curSelectedColors[curStyleIndex][curStylesEditGroupIndex]._id
+		) {
+		} else {
+			console.log(curStyle[curStyleIndex])
+			// let tempAttrs =
+			curSelectedColors[curStyleIndex].splice(curStylesEditGroupIndex, 1, item)
+			// console.log(curSelectedColors[curStyleIndex])
+			setCurSelectedColors([].concat(curSelectedColors))
+		}
+	}
+
+	useEffect(() => {
+		const getChannelsAssign = async (styleId, channelId) => {
+			const req = await request(
+				"channel/getAssign",
+				{
+					styleId,
+					channelId
+				},
+				"get"
+			)
+			if (!req) {
+				setPlainColors({
+					docs: [],
+					page: 1
+				})
+				setFlowerColors({
+					docs: [],
+					page: 1
+				})
+			} else {
+				setPlainColors({
+					docs: req.plainColors,
+					page: 1
+				})
+				setFlowerColors({
+					docs: req.flowerColors,
+					page: 1
+				})
+			}
+		}
+
+		if (userInfo.role === 0) {
+			// 客户
+			getChannelsAssign(sid, userInfo.channels[0])
+		} else {
+			// 产品经理
+			getColorList(1)
+			getPaintList(1)
+		}
+	}, [])
+
+	// useEffect(() => {}, [])
 	return (
 		<Modal onClose={props.onClose}>
 			<Box width="14rem" fontSize="0.18rem" color="#000">
@@ -88,6 +132,7 @@ export default props => {
 									alignItems="center"
 									justifyContent="center"
 									sx={{
+										position: "relative",
 										border:
 											curStyleIndex === index
 												? "1px solid #000"
@@ -97,40 +142,25 @@ export default props => {
 										setCurStyleIndex(index)
 									}}
 								>
-									<Image
-										src={
-											baseUrl +
-											(curStyleImgs[index] ? curStyleImgs[index] : style.imgUrl)
+									<StyleImg
+										width="3.79rem"
+										imgValsAttrs={style.attrs}
+										colors={curSelectedColors[index]}
+										svgId={style._id}
+										styleId={style._id}
+										shadowUrl={style.shadowUrl}
+										svgUrl={style.svgUrl}
+										onSetEditSvgGroupIndex={index =>
+											setEditSvgGroupIndex(index)
 										}
-										sx={{
-											width: "3.79rem",
-											minWidth: "14px",
-											minHeight: "14px"
-										}}
 									/>
 								</Flex>
 							))}
-						{/* 
-						<Flex
-							width="6.75rem"
-							height="4.88rem"
-							alignItems="center"
-							justifyContent="center"
-						>
-							<Image
-								src="./4/style1.png"
-								sx={{
-									width: "3.89rem",
-									minWidth: "14px",
-									minHeight: "14px"
-								}}
-							/>
-						</Flex> */}
 					</Flex>
 
 					<Flex flexDirection="column" flexGrow={1} pl="0.6rem">
 						<Box width={[1]} mb="0.6rem">
-							<Text fontSize="0.18rem" fontWeight="bolder">
+							<Text id="section" fontSize="0.18rem" fontWeight="bolder">
 								SECTION NUMBER
 							</Text>
 							<Text fontSize="0.1rem" m="0.16rem 0">
@@ -138,27 +168,21 @@ export default props => {
 							</Text>
 						</Box>
 						<ColorList
-							colorList={styleDetails[curStyleIndex].plainColors}
+							colorList={plainColors.docs || []}
 							handleSelect={handleSelect}
 							curChannelId={0}
-							channelInfoList={[
-								{
-									channelId: 0,
-									plainColorIds: [curSelectedColorIds[curStyleIndex]]
-								}
-							]}
+							selectedList={[curSelectedColors[curStyleIndex] || {}]}
+							page={plainColors.page}
+							onChangePage={handleChangeColorPage}
 						/>
 						<Box height="0.3rem" width={[1]} />
 						<PaintList
-							paintList={styleDetails[curStyleIndex].flowerColors}
+							paintList={flowerColors.docs || []}
 							handleSelect={handleSelect}
 							curChannelId={0}
-							channelInfoList={[
-								{
-									channelId: 0,
-									flowerColorIds: [curSelectedColorIds[curStyleIndex]]
-								}
-							]}
+							selectedList={[curSelectedColors[curStyleIndex] || {}]}
+							page={flowerColors.page}
+							onChangePage={handleChangeColorPage}
 						/>
 						<Button
 							variant="primary"
@@ -174,8 +198,9 @@ export default props => {
 								cursor: "pointer"
 							}}
 							onClick={() => {
-								if (styleDetails.length > 1 && !curStyleImgs[1]) return
-								props.confirmMade(curSelectedColorIds, curStyleImgs)
+								if (!curSelectedColors[0]) return
+								if (styleDetails.length > 1 && !curSelectedColors[1]) return
+								props.confirmMade(curSelectedColors)
 								props.onClose()
 							}}
 						>

@@ -1,8 +1,29 @@
-import React from "react"
-import { Flex, Text } from "rebass"
+import React, { useState } from "react"
+import { Flex, Text, Button } from "rebass"
 import Table, { TableLine } from "./base-table"
+import Modal from "../modal"
+import request from "../../utils/request"
 
 export default props => {
+	const infos = [
+		{ name: "name", width: "2/22" },
+		{ name: "account", width: "4/22" },
+		{ name: "password", width: "2/22" }
+	]
+	const [editUserInfo, setUserEditInfo] = useState(false)
+	const handleEditUser = values => {
+		setUserEditInfo({
+			...editUserInfo,
+			...values
+		})
+	}
+
+	const handleConfrim = async () => {
+		const res = await request("/user/update", { ...editUserInfo }, "post")
+		if (res) {
+			console.log("res", res)
+		}
+	}
 	return (
 		<Flex
 			flexDirection="column"
@@ -28,35 +49,71 @@ export default props => {
 						{ name: "OPERATING", width: "2/22" }
 					]}
 				>
-					<TableLine>
-						<Text>01</Text>
-						<Text>BENJM</Text>
-						<Text>A</Text>
-						<Text>XXYZX098</Text>
-						<Text>XXYZX098</Text>
-						<Text>May 3,2019</Text>
-						<Text>CLICK TO VIEW</Text>
-					</TableLine>
-					<TableLine>
-						<Text>02</Text>
-						<Text>BENJM</Text>
-						<Text>A</Text>
-						<Text>XXYZX098</Text>
-						<Text>XXYZX098</Text>
-						<Text>May 3,2019</Text>
-						<Text>CLICK TO VIEW</Text>
-					</TableLine>
-					<TableLine>
-						<Text>03</Text>
-						<Text>BENJM</Text>
-						<Text>A</Text>
-						<Text>XXYZX098</Text>
-						<Text>XXYZX098</Text>
-						<Text>May 3,2019</Text>
-						<Text>CLICK TO VIEW</Text>
-					</TableLine>
+					{props.userList.map((user, index) => {
+						return (
+							<TableLine
+								haveEdit
+								onEdit={() => {
+									setUserEditInfo({
+										_id: user._id,
+										name: user.name,
+										account: user.account,
+										password: user.password
+									})
+								}}
+								haveDel
+							>
+								<Text style={{ padding: "20px 0" }}>{index}</Text>
+								<Text>{user.name}</Text>
+
+								<Text>{user.account}</Text>
+								<Text>{user.password}</Text>
+								<Text>{user.channels[0].code}</Text>
+								<Text>{user.createTime}</Text>
+								<Text onClick={() => {}}>CLICK TO VIEW</Text>
+							</TableLine>
+						)
+					})}
 				</Table>
 			</Flex>
+			{editUserInfo ? (
+				<Modal
+					onClose={() => {
+						setUserEditInfo(false)
+					}}
+				>
+					{infos.map(info => (
+						<Flex justifyContent="space-between" pb="12px">
+							<Text mr="10px">{info.name.toUpperCase()}:</Text>
+							<input
+								value={editUserInfo[info.name]}
+								onChange={e => {
+									let values = { _id: editUserInfo._id }
+									values[info.name] = e.target.value
+									handleEditUser(values)
+								}}
+							/>
+						</Flex>
+					))}
+					<Button
+						variant="primary"
+						height="22px"
+						width="68px"
+						bg="#1B1B1B"
+						color="#fff"
+						padding="0"
+						mt="10px"
+						sx={{
+							borderRadius: 0,
+							fontSize: "14px",
+							cursor: "pointer"
+						}}
+						onClick={handleConfrim}
+					>
+						FINISH
+					</Button>
+				</Modal>
+			) : null}
 		</Flex>
 	)
 }

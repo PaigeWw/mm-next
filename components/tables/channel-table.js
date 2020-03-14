@@ -26,51 +26,25 @@ export default props => {
 						{ name: "VISIBLE PRODUCT CLASSIFICICATION", width: "2/22" }
 					]}
 				>
-					<TableLine noEdit>
-						<Text>01</Text>
-						<Text>A</Text>
-						<Text>
-							<input value={"通道名称"} />
-						</Text>
-						<Text>
-							<select>
-								<option>RMB</option>
-								<option>USD</option>
-								<option>ESD</option>
-							</select>
-						</Text>
-						<Text>CLICK TO VIEW</Text>
-					</TableLine>
-					<TableLine noEdit>
-						<Text>02</Text>
-						<Text>A</Text>
-						<Text>
-							<input value={"通道名称"} />
-						</Text>
-						<Text>
-							<select>
-								<option>RMB</option>
-								<option>USD</option>
-								<option>ESD</option>
-							</select>
-						</Text>
-						<Text>CLICK TO VIEW</Text>
-					</TableLine>
-					<TableLine noEdit>
-						<Text>02</Text>
-						<Text>A</Text>
-						<Text>
-							<input value={"通道名称"} />
-						</Text>
-						<Text>
-							<select>
-								<option>RMB</option>
-								<option>USD</option>
-								<option>ESD</option>
-							</select>
-						</Text>
-						<Text>CLICK TO VIEW</Text>
-					</TableLine>
+					{props.channelList.map((channel, index) => (
+						<TableLine noEdit>
+							<Text>{index}</Text>
+							<Text>{channel.code}</Text>
+							<Text style={{ padding: "20px 0" }}>
+								<input value={channel.name} />
+							</Text>
+							<Text>
+								<select>
+									<option>RMB</option>
+									<option>USD</option>
+									<option>ESD</option>
+								</select>
+							</Text>
+							<Text>
+								<a href={`./assign?channelId=${channel._id}`}>CLICK TO VIEW</a>
+							</Text>
+						</TableLine>
+					))}
 				</Table>
 			</Flex>
 		</Flex>

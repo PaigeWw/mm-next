@@ -58,9 +58,10 @@ export default (url = "", data = {}, method = "get", origin = false, api) => {
 	// 	postData.append(prop, data[prop])
 	// }
 	const options = method.toLowerCase() === "get" ? { params: data } : data
-
+	console.log(url, "url")
 	return instance[method](url, options)
 		.then(res => {
+			console.log(res, "res,....")
 			return res.data
 		})
 		.catch(err => {

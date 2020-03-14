@@ -11,8 +11,12 @@ const Title = props => (
 	>
 		{props.titles.map((title, key) => (
 			<th
-				style={{ color: title.isHide ? "#FFF0E5" : "#000" }}
+				style={{
+					color: title.isHide ? "#FFF0E5" : "#000",
+					border: props.haveBorder ? "1px solid #000" : "none"
+				}}
 				key={`${title.name}-${key}`}
+				colSpan={title.colspan}
 			>
 				{title.name}
 			</th>
@@ -40,17 +44,23 @@ export const TableLine = props => {
 			style={{ width: "100%", border: "1px solid #000", background: "#fff" }}
 			alignItems="center"
 		>
-			{lodash.compact(props.children).map(child => (
-				<td
-					style={{
-						textAlign: "center",
-						border: child.props.hasBorder
-					}}
-					rowSpan={child.props.rowspan}
-				>
-					{child}
-				</td>
-			))}
+			{lodash.flatten(lodash.compact(props.children)).map(child => {
+				// console.log(child)
+				return (
+					<td
+						style={{
+							textAlign: "center",
+							border: child.props.hasBorder
+						}}
+						align="center"
+						valign="middle"
+						rowSpan={child.props.rowspan}
+						colSpan={child.props.colspan}
+					>
+						{child}
+					</td>
+				)
+			})}
 			{props.noEdit ? null : (
 				<td>
 					<Flex justifyContent="space-around" alignItems="center">
@@ -79,7 +89,12 @@ export const TableLine = props => {
 							/>
 						) : null}
 						{props.Bigger ? (
-							<Image className="tool" width="0.3rem" src="/7/bigger.png" />
+							<Image
+								className="tool"
+								width="0.3rem"
+								src="/7/bigger.png"
+								onClick={props.onBiger}
+							/>
 						) : null}
 					</Flex>
 				</td>
@@ -90,6 +105,7 @@ export const TableLine = props => {
 export default props => {
 	const styleProps = props.sx
 	const tbStyleProps = props.tbSx
+	const haveBorder = props.hasBorder
 	return (
 		<table
 			frame="void"
@@ -102,7 +118,7 @@ export default props => {
 			}}
 			flexDirection="column"
 		>
-			<Title titles={props.titles} />
+			<Title titles={props.titles} haveBorder={haveBorder} />
 			<tbody style={{ ...tbStyleProps }}>{props.children}</tbody>
 		</table>
 	)

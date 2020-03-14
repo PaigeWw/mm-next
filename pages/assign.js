@@ -1,34 +1,77 @@
 import React, { useEffect, useState } from "react"
-import { Flex, Text, Box, Button, Image } from "rebass"
+import { Flex, Text, Box, Button, Image, Select } from "rebass"
 import useUserInfo from "../hooks/getUserInfo"
 import Head from "../components/nav"
 import AssginItem from "../components/assign-item"
 
 import request from "../utils/request.js"
+
+// 'channel/assignGoods'  channelId goodsId
+// 'channel/getAssignGoods'  channelId goodsId
 export default () => {
 	const info = useUserInfo()
 	const [goodsList, setGoodsList] = useState([])
 	const [channelList, setChannelList] = useState([])
-	const [currentChannel, setCurrentChannel] = useState(0)
+	const [assignCategoryList, setAssignCategoryList] = useState([])
+	const [currentChannel, setCurrentChannel] = useState({})
+	const [showChannels, setShowChannels] = useState(false)
 	useEffect(() => {
 		const getGoodsList = async () => {
-			const req = await request("goods/getList", "get")
+			const req = await request("goods/getList")
 			setGoodsList(req)
 			console.log(req)
 		}
 		getGoodsList()
 		const getChannels = async () => {
-			const req = await request("channel/getList", {}, "get")
-			setChannelList(req)
-			// console.log("getChannels", req)
+			const req = await request("user/getUserChannels")
+			setChannelList(req.channels)
+			if (req.channels.length > 0) {
+				setCurrentChannel(req.channels[0])
+			}
 		}
 		getChannels()
 	}, [])
+	useEffect(() => {
+		if (!currentChannel._id) return
+		const getAssignCategoryList = async () => {
+			const req = await request("channel/getAssignCategory", {
+				channelId: currentChannel._id
+			})
+			if (req) {
+				setAssignCategoryList(req.categories)
+			}
+
+			console.log(req)
+		}
+		getAssignCategoryList()
+	}, [currentChannel])
+
+	const handleAssignCategory = async (categoryId, toggle) => {
+		const res = await request(
+			"channel/assignCategory",
+			{
+				channelId: currentChannel._id,
+				categoryId
+			},
+			"post"
+		)
+		if (res) {
+			if (toggle) {
+				let index = assignCategoryList.indexOf(categoryId)
+				if (index >= 0) {
+					assignCategoryList.splice(index, 1)
+					setAssignCategoryList([...assignCategoryList])
+				}
+			} else {
+				setAssignCategoryList([...assignCategoryList, categoryId])
+			}
+		}
+	}
 	return (
 		<React.Fragment>
 			<Flex
 				height="100vh"
-				justifyContent="space-between"
+				// justifyContent="space-between"
 				flexDirection="column"
 			>
 				<Head></Head>
@@ -39,15 +82,57 @@ export default () => {
 							width={[1]}
 							pl="1.1rem"
 							lineHeight="1.14rem"
-							sx={{ height: "1.14rem" }}
+							sx={{
+								height: "1.14rem",
+								position: "relative",
+								cursor: "pointer"
+							}}
 							color="#fff"
+							onClick={() => {
+								setShowChannels(true)
+							}}
 						>
 							{/* {console.log(channelList)} */}
-							{`${channelList[currentChannel].code}(${channelList[currentChannel].name})`}
+							{`${currentChannel.code}(${currentChannel.name})`}
+							{showChannels ? (
+								<Box
+									sx={{
+										position: "absolute",
+										border: "1px solid #000",
+										top: "calc(0.507rem + 20px)"
+									}}
+									color="#000"
+									bg="#fff"
+								>
+									{channelList.map(channel => (
+										<Text
+											width="160px"
+											lineHeight="32px"
+											pl="12px"
+											sx={{
+												"&:hover": {
+													background: "#cccccc",
+													color: "#fff"
+												}
+											}}
+											onClick={e => {
+												e.nativeEvent.preventDefault()
+												e.nativeEvent.stopPropagation()
+												setCurrentChannel(channel)
+												setShowChannels(false)
+											}}
+										>{`${channel.code}(${channel.name})`}</Text>
+									))}
+								</Box>
+							) : null}
 						</Flex>
 					) : null}
 
-					<AssginItem goodsList={goodsList}></AssginItem>
+					<AssginItem
+						goodsList={goodsList}
+						assignCategoryList={assignCategoryList || []}
+						onAssignCategory={handleAssignCategory}
+					></AssginItem>
 				</Box>
 			</Flex>
 		</React.Fragment>

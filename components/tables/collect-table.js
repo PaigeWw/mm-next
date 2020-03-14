@@ -3,12 +3,12 @@ import { Flex, Text, Box, Button, Row, Column } from "rebass"
 import Table, { TableLine, ProductInfo } from "./base-table"
 
 import EditBox from "../made-edit-box"
-import ShowStyle from "../show-style"
+import StyleItem from "../commons/min-style-item"
 import request from "../../utils/request"
 export default props => {
 	const [showEditBox, setShowEditBox] = useState(false)
 	const [editIndex, setEditIndex] = useState(0)
-	const mode = "POSITIVE"
+	// const mode = "POSITIVE"
 	const [collectList, setCollectList] = useState([])
 	const [collectDetailsList, setCollectDetailsList] = useState([])
 	const [selectList, setSelectList] = useState([])
@@ -19,8 +19,9 @@ export default props => {
 		const data = res.map(item => {
 			let prodInfo = []
 			let price = []
-			let style = []
+			let styleList = []
 			let colorInfo = []
+			// let colorInfo = []
 			let date = []
 			let details = []
 			let threeViews = item.styleAndColor.map(x => {
@@ -31,10 +32,10 @@ export default props => {
 				})
 				price.push(x.style.price)
 				date.push(x.style.updateTime)
-				colorInfo.push({ colorId: x.color._id, imgUrl: x.front })
+				colorInfo.push(x.colorIds)
 				// let positive = x.
+				styleList.push({ style: x.style, colors: x.colorIds })
 				return { POSITIVE: x.front }
-				// style.push(item.styleNo)
 			})
 			collectDetailsList.push(details)
 			setCollectDetailsList([].concat(collectDetailsList))
@@ -44,15 +45,17 @@ export default props => {
 				threeViews,
 				prodInfo,
 				price,
-				style,
+				styleList,
 				date
 			}
 		})
 		setCollectList(data)
 	}
+
 	useEffect(() => {
 		getCollectList()
 	}, [])
+
 	const handleSelect = (index, item) => {
 		const pos = selectList.findIndex(x => x.index === index)
 		if (pos < 0) {
@@ -62,6 +65,7 @@ export default props => {
 		}
 		setSelectList([].concat(selectList))
 	}
+
 	const handleDel = async (index, item) => {
 		console.log(item)
 		const res = await request("/user/deleteFavorite", { _id: item.id }, "post")
@@ -99,6 +103,7 @@ export default props => {
 			getCollectList()
 		}
 	}
+	console.log("collectList", collectList)
 	return collectList.length > 0 ? (
 		<Flex
 			flexDirection="column"
@@ -138,15 +143,13 @@ export default props => {
 						}}
 					>
 						<Text style={{ position: "absolute" }}>{index + 1}</Text>
-						<ShowStyle
-							// width="2rem"
-							key={collect.id}
-							imgWidth="0.95rem"
-							mode={mode}
-							threeViews={collect.threeViews}
-							border="none"
-							hideInfo
+						<StyleItem
+							key={`${index}-style-img`}
+							styleList={collect.styleList}
+							index={index}
+							tool={false}
 						/>
+						{/* <Text>loading</Text> */}
 						<Flex justifyContent="center">
 							<Box margin="8px 0">
 								{collect.prodInfo.map(prodInfo => (

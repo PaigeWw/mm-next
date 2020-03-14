@@ -1,36 +1,45 @@
 import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Row, Column } from "rebass"
 import Table, { TableLine } from "./base-table"
-import ShowStyle from "../show-style"
+
 import request from "../../utils/request"
+import Modal from "../modal"
+import OrderDetail from "./order-detail"
+import StyleItem from "../commons/min-style-item"
 
 export default props => {
+	const [orderDetailMode, setOrderDetailMode] = useState({
+		visible: false,
+		detail: {}
+	})
 	const [orderList, setOrderList] = useState([])
 	const [orderDetailList, setOrderDetailList] = useState([])
 	const [selectList, setSelectList] = useState([])
 	const getOrderList = async () => {
 		const res = await request("/order/getMyList", { isSend: 0 })
-		// console.log("----res----", res)
+
 		if (!res) return
 		setOrderDetailList(res)
 		const data = res.map(order => {
 			let orderData = order.orderData
-			let threeViewsList = []
+			let styleListArr = []
+			let styleList = []
 			let quantity = 0
 			let price = 0
 			orderData.map(item => {
-				let threeViews = item.favorite.styleAndColor.map(x => {
-					return { POSITIVE: x.front }
+				styleList = item.favorite.styleAndColor.map(x => {
+					// styleList.push({ style: x.style, colors: x.colorIds })
+					return { style: x.styleId, colors: x.colorIds }
 				})
 				quantity += item.total
 				price += item.totalPrice
-				threeViewsList.push(threeViews)
+				styleListArr.push(styleList)
 			})
 
 			return {
 				quantity,
 				price,
-				threeViewsList,
+				styleListArr,
 				date: order.updateTime,
 				id: order._id
 			}
@@ -61,6 +70,17 @@ export default props => {
 			props.nextStep()
 		}
 	}
+	const handleDel = async index => {
+		console.log(orderList[index])
+		const res = await request(
+			"/order/delete",
+			{ _id: orderList[index].id },
+			"post"
+		)
+	}
+	const handleCheckDetail = index => {
+		setOrderDetailMode({ visible: true, detail: orderDetailList[index] })
+	}
 	return (
 		<Flex
 			flexDirection="column"
@@ -72,6 +92,15 @@ export default props => {
 				background: "#FFF0E5"
 			}}
 		>
+			{orderDetailMode.visible ? (
+				<Modal
+					onClose={() => {
+						setOrderDetailMode({ visible: false, detail: {} })
+					}}
+				>
+					<OrderDetail OrderDetail={orderDetailMode.detail} />
+				</Modal>
+			) : null}
 			<Table
 				titles={[
 					{ name: "00", width: "2/22", isHide: true },
@@ -99,19 +128,21 @@ export default props => {
 							// setEditIndex(index)
 							// setShowEditBox(true)
 						}}
+						Bigger
+						onBiger={() => {
+							handleCheckDetail(index)
+						}}
 					>
 						<Text style={{ position: "absolute" }}>{index + 1}</Text>
 						<Text>{order.date}</Text>
-						<Flex justifyContent="center">
-							{order.threeViewsList.map((item, index1) => (
-								<ShowStyle
-									padding="10px"
-									key={`order-${index}-${index1}`}
-									imgWidth="0.95rem"
-									mode={"POSITIVE"}
-									threeViews={item}
-									border="none"
-									hideInfo
+						<Flex justifyContent="flex-start">
+							{order.styleListArr.map(item => (
+								<StyleItem
+									margin={"1px"}
+									key={`${index}-style-img`}
+									styleList={item}
+									index={index}
+									tool={false}
 								/>
 							))}
 						</Flex>

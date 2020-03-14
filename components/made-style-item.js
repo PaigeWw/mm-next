@@ -1,10 +1,11 @@
 import React, { useEffect } from "react"
 import { Flex, Text, Box, Image } from "rebass"
-import { baseUrl } from "../utils/helper"
+
 import SvgCollect from "./svgCollect"
+import StyleImg from "./commons/style-img"
 export default props => {
-	const { styleList, collected, index } = props
-	console.log("collected", collected)
+	const { styleList, collected, index, tool, svgId } = props
+	console.log("collected", styleList)
 	return (
 		<Flex
 			flexDirection="column"
@@ -25,71 +26,65 @@ export default props => {
 			}}
 		>
 			{Array.isArray(styleList) &&
-				styleList.map(style => (
+				styleList.map((style, index) => (
+					<StyleImg
+						svgId={svgId}
+						styleId={style.style._id}
+						key={`style-img-${index}`}
+						width="2.21rem"
+						svgUrl={style.style.svgUrl}
+						shadowUrl={style.style.shadowUrl}
+						colors={style.colors}
+					/>
+				))}
+			{tool ? (
+				<Flex
+					flexDirection="column"
+					justifyContent="space-between"
+					height="1.5rem"
+					className="tools"
+					sx={{
+						position: "absolute",
+						right: "0.3rem",
+						top: "0.3rem",
+						visibility: "hidden"
+					}}
+				>
 					<Image
-						src={baseUrl + style.imgUrl}
+						src="./4/edit.png"
 						sx={{
-							width: "2.15rem",
+							width: "0.3rem",
 							minWidth: "14px",
 							minHeight: "14px"
 						}}
+						onClick={() => {
+							props.openEditBox()
+						}}
 					/>
-				))}
-
-			{/* <Image
-				src="./4/style1.png"
-				sx={{
-					width: "2.21rem",
-					minWidth: "14px",
-					minHeight: "14px"
-				}}
-			/> */}
-			<Flex
-				flexDirection="column"
-				justifyContent="space-between"
-				height="1.5rem"
-				className="tools"
-				sx={{
-					position: "absolute",
-					right: "0.3rem",
-					top: "0.3rem",
-					visibility: "hidden"
-				}}
-			>
-				<Image
-					src="./4/edit.png"
-					sx={{
-						width: "0.3rem",
-						minWidth: "14px",
-						minHeight: "14px"
-					}}
-					onClick={() => {
-						props.openEditBox()
-					}}
-				/>
-				<Image
-					src="./4/bigger.png"
-					sx={{
-						width: "0.3rem",
-						minWidth: "14px",
-						minHeight: "14px"
-					}}
-					onClick={() => {
-						console.log("bigger-click")
-						props.openBigBox()
-					}}
-				/>
-				<SvgCollect
-					color={collected ? "#FF8E6C" : "#231815"}
-					// collected={collected}
-					index={index}
-					sx={{
-						minWidth: "14px",
-						minHeight: "14px"
-					}}
-					onClick={props.onAddFavorite}
-				/>
-			</Flex>
+					<Image
+						src="./4/bigger.png"
+						sx={{
+							width: "0.3rem",
+							minWidth: "14px",
+							minHeight: "14px"
+						}}
+						onClick={() => {
+							console.log("bigger-click")
+							props.openBigBox()
+						}}
+					/>
+					<SvgCollect
+						color={collected ? "#FF8E6C" : "#231815"}
+						// collected={collected}
+						index={index}
+						sx={{
+							minWidth: "14px",
+							minHeight: "14px"
+						}}
+						onClick={props.onAddFavorite}
+					/>
+				</Flex>
+			) : null}
 		</Flex>
 	)
 }

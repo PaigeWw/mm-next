@@ -12,7 +12,9 @@ export default () => {
 	useEffect(() => {
 		const getGoodsList = async () => {
 			const req = await request("goods/getList", "get")
-			setgoosList(req)
+			if (req) {
+				setgoosList(req)
+			}
 			console.log(req)
 		}
 		getGoodsList()

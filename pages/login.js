@@ -7,6 +7,7 @@ import useUserInfo from "../hooks/getUserInfo"
 import Router from "next/router"
 import Svg from "../components/svg"
 export default () => {
+	const [demo, setDemo] = useState(0) // 0, 1, 2, 3
 	const [modal, setMadal] = useState(0) // 0, 1, 2, 3
 	const [svgColor, setSvgColor] = useState(false)
 	const [account, setAccount] = useState("")
@@ -37,7 +38,14 @@ export default () => {
 			imgUrl: "./1/t4.png"
 		}
 	]
+
+	useEffect(() => {
+		// setInterval(() => {
+		// 	setDemo(demo + 1)
+		// }, 1000)
+	}, [demo])
 	const handleLogin = async () => {
+		console.log("user/login")
 		const req = await request(
 			"user/login",
 			{
@@ -79,6 +87,7 @@ export default () => {
 								backgroundSize: "100% 100%"
 							}}
 						/>
+						<Box>{demo}</Box>
 						<Box padding="0 0 10% 10%">
 							<Flex alignItems="center" mb={"2%"}>
 								<Image

@@ -10,12 +10,11 @@ export default props => {
 			color="#000"
 			p="0.9rem"
 			sx={{
-				position: "absolute",
+				position: "fixed",
 				zIndex: 999999999,
-				top: "40px",
+				top: "50%",
 				left: "50%",
-				transform: "translateX(-50%)",
-				margin: "0 auto",
+				transform: "translate(-50%, -50%)",
 				boxShadow: "0px 14px 44px 5px rgba(0, 0, 0, 0.11)"
 			}}
 		>
