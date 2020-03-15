@@ -4,17 +4,19 @@ import { Flex, Text, Box, Button, Image } from "rebass"
 // import useUserInfo from "../hooks/getUserInfo"
 import Head from "../components/nav"
 import Table, { TableLine, ProductInfo } from "../components/tables/base-table"
-import ShowStyle from "../components/show-style"
+import StyleItem from "../components/commons/min-style-item"
 
 import request from "../utils/request.js"
 export default () => {
 	// const info = useUserInfo()
-	const [goosList, setGoosList] = useState([])
-	const collectList = [{}, {}]
+	const [favoriteList, setFavoriteList] = useState([])
+	const handleCollect = async favoriteId => {
+		const req = await request("user/selectFavoriteList", { favoriteId }, "post")
+	}
 	useEffect(() => {
 		const getGoodsList = async () => {
-			const req = await request("goods/getList", "get")
-			setGoosList(req)
+			const req = await request("user/selectFavoriteList")
+			setFavoriteList(req || [])
 			console.log(req)
 		}
 		getGoodsList()
@@ -23,18 +25,13 @@ export default () => {
 	return (
 		<React.Fragment>
 			<Head></Head>
-			<Flex
-				height="100vh"
-				justifyContent="space-between"
-				flexDirection="column"
-			>
+			<Flex height="100vh" flexDirection="column">
 				<Flex
 					style={{
 						display: "flex",
 						height: "0.8rem",
 						padding: "0",
 						margin: "0",
-						paddingTop: "0.6rem",
 						background: "#FFC1AE",
 						fontSize: "0.3rem",
 
@@ -46,6 +43,7 @@ export default () => {
 					EXISTING STYLE SELECTION
 				</Flex>
 				<Table
+					sx={{ margin: 0 }}
 					titles={[
 						{ name: "00", width: "2/22", isHide: true },
 						{ name: "PICTRUE", width: "2/22" },
@@ -54,16 +52,24 @@ export default () => {
 						{ name: "COLLECTION", width: "5/22" }
 					]}
 				>
-					{collectList.map(collect => (
+					{favoriteList.map((favorite, index) => (
 						<TableLine isSelect>
 							<Text style={{ position: "absolute" }}>01</Text>
-							<ShowStyle
-								width="2rem"
-								imgWidth="0.95rem"
-								mode={"POSITIVE"}
-								threeViews={[{}, {}]}
-								hideInfo
-							/>
+							<Flex justifyContent="center">
+								<StyleItem
+									rowspan={2}
+									hasBorder={"1px solid"}
+									margin={"1px"}
+									key={`${index}-style-img`}
+									styleList={favorite.styleAndColor.map(x => {
+										// styleList.push({ style: x.style, colors: x.colorIds })
+										return { style: x.style, colors: x.colorIds }
+									})}
+									index={index}
+									tool={false}
+								/>
+							</Flex>
+
 							<Flex flexDirection="column">
 								<ProductInfo
 									styleNum="VERSION Y2003"
@@ -74,6 +80,15 @@ export default () => {
 							<Flex flexDirection="column">
 								<Text>$6.7</Text>
 								<Text>$6.7</Text>
+							</Flex>
+							<Flex justifyContent="center">
+								<Text
+									onClick={e => {
+										handleCollect(favorite._id)
+									}}
+								>
+									收藏
+								</Text>
 							</Flex>
 						</TableLine>
 					))}

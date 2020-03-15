@@ -10,13 +10,9 @@ export default () => {
 	const [channelList, setChannelList] = useState([])
 	useEffect(() => {
 		const getUserChannels = async page => {
-			const req = await request(
-				"user/getUserChannels",
-				{ type: 0, page, limit: 14 },
-				"get"
-			)
-			setChannelList(req.channels)
-			setUserList(req.users)
+			const req = await request("user/getUserChannels", "get")
+			setChannelList(req.channels || [])
+			setUserList(req.users || [])
 			console.log("getUserChannels", req)
 		}
 		getUserChannels()

@@ -25,6 +25,7 @@ export default props => {
 			let date = []
 			let details = []
 			let threeViews = item.styleAndColor.map(x => {
+				if (!x.style) return
 				details.push(x.style)
 				prodInfo.push({
 					styleNo: x.style.styleNo,
