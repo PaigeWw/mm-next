@@ -28,7 +28,11 @@ export default props => {
 						margin: "0.9rem 0 0.9rem 0.9rem",
 						backgroundImage: 'url("/1/LOGO.png")',
 						backgroundRepeat: "no-repeat",
-						backgroundSize: "100% 100%"
+						backgroundSize: "100% 100%",
+						cursor: "pointer"
+					}}
+					onClick={() => {
+						Router.push("/")
 					}}
 				/>
 				<Flex
@@ -83,7 +87,12 @@ export default props => {
 						name="ORDER"
 						url="/icon/icon-02.svg"
 						onLinkTo={() => {
-							Router.push("/mine?tab=3")
+							Router.push({
+								pathname: "/mine",
+								query: {
+									tab: 3
+								}
+							})
 						}}
 					></NavItem>
 					{user.role === 1 ? (

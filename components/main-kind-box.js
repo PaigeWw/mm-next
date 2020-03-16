@@ -63,12 +63,15 @@ export default props => {
 								Router.push(`/select?id=${props._id}`)
 							}}
 						/>
-						<SelectButton
-							text="PICK EXISTING STYLES"
-							onSelect={() => {
-								Router.push(`/pick`)
-							}}
-						/>
+						{props.pick ? (
+							<SelectButton
+								text="PICK EXISTING STYLES"
+								onSelect={() => {
+									Router.push(`/pick`)
+								}}
+							/>
+						) : null}
+						}
 					</Flex>
 				) : null}
 				<Image width={[1, 1]} src={baseUrl + props.imgUrl} />

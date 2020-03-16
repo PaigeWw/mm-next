@@ -7,7 +7,6 @@ import useUserInfo from "../hooks/getUserInfo"
 import Router from "next/router"
 import Svg from "../components/svg"
 export default () => {
-	const [demo, setDemo] = useState(0) // 0, 1, 2, 3
 	const [modal, setMadal] = useState(0) // 0, 1, 2, 3
 	const [svgColor, setSvgColor] = useState(false)
 	const [account, setAccount] = useState("")
@@ -39,11 +38,6 @@ export default () => {
 		}
 	]
 
-	useEffect(() => {
-		// setInterval(() => {
-		// 	setDemo(demo + 1)
-		// }, 1000)
-	}, [demo])
 	const handleLogin = async () => {
 		console.log("user/login")
 		const req = await request(
@@ -56,7 +50,7 @@ export default () => {
 		)
 		console.log(req)
 		if (req) {
-			Router.push("/main")
+			Router.push("/")
 		}
 	}
 	const userInfo = useUserInfo()
