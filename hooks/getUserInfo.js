@@ -8,7 +8,6 @@ function useUserInfo() {
 	useEffect(() => {
 		;(async function getData() {
 			const data = await request("user/getCurrentUser")
-			console.log(data, "user info data")
 			setInfo(data)
 		})()
 	}, [])

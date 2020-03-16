@@ -16,6 +16,7 @@ export default () => {
 	const [currentChannel, setCurrentChannel] = useState({})
 	const [showChannels, setShowChannels] = useState(false)
 	useEffect(() => {
+		if (info.role !== 1) return
 		const getGoodsList = async () => {
 			const req = await request("goods/getList")
 			setGoodsList(req || [])
@@ -30,9 +31,9 @@ export default () => {
 			}
 		}
 		getChannels()
-	}, [])
+	}, [info])
 	useEffect(() => {
-		if (!currentChannel._id) return
+		if (!currentChannel._id || info.role !== 1) return
 		const getAssignCategoryList = async () => {
 			const req = await request("channel/getAssignCategory", {
 				channelId: currentChannel._id
@@ -40,11 +41,9 @@ export default () => {
 			if (req) {
 				setAssignCategoryList(req.categories)
 			}
-
-			console.log(req)
 		}
 		getAssignCategoryList()
-	}, [currentChannel])
+	}, [currentChannel, info])
 
 	const handleAssignCategory = async (categoryId, toggle) => {
 		if (toggle) {
@@ -79,72 +78,76 @@ export default () => {
 	}
 	return (
 		<React.Fragment>
-			<Flex
-				height="100vh"
-				// justifyContent="space-between"
-				flexDirection="column"
-			>
-				<Head></Head>
-				<Box width={[1]}>
-					{channelList.length > 0 ? (
-						<Flex
-							bg="#000000"
-							width={[1]}
-							pl="1.1rem"
-							lineHeight="1.14rem"
-							sx={{
-								height: "1.14rem",
-								position: "relative",
-								cursor: "pointer"
-							}}
-							color="#fff"
-							onClick={() => {
-								setShowChannels(true)
-							}}
-						>
-							{/* {console.log(channelList)} */}
-							{`${currentChannel.code}(${currentChannel.name})`}
-							{showChannels ? (
-								<Box
-									sx={{
-										position: "absolute",
-										border: "1px solid #000",
-										top: "calc(0.507rem + 20px)"
-									}}
-									color="#000"
-									bg="#fff"
-								>
-									{channelList.map(channel => (
-										<Text
-											width="160px"
-											lineHeight="32px"
-											pl="12px"
-											sx={{
-												"&:hover": {
-													background: "#cccccc",
-													color: "#fff"
-												}
-											}}
-											onClick={e => {
-												e.nativeEvent.preventDefault()
-												e.nativeEvent.stopPropagation()
-												setCurrentChannel(channel)
-												setShowChannels(false)
-											}}
-										>{`${channel.code}(${channel.name})`}</Text>
-									))}
-								</Box>
-							) : null}
-						</Flex>
-					) : null}
+			{info.role !== 1 ? (
+				<Text>No authority！</Text>
+			) : (
+				<Flex
+					height="100vh"
+					// justifyContent="space-between"
+					flexDirection="column"
+				>
+					<Head></Head>
+					<Box width={[1]}>
+						{channelList.length > 0 ? (
+							<Flex
+								bg="#000000"
+								width={[1]}
+								pl="1.1rem"
+								lineHeight="1.14rem"
+								sx={{
+									height: "1.14rem",
+									position: "relative",
+									cursor: "pointer"
+								}}
+								color="#fff"
+								onClick={() => {
+									setShowChannels(true)
+								}}
+							>
+								{/* {console.log(channelList)} */}
+								{`${currentChannel.code}(${currentChannel.name})`}
+								{showChannels ? (
+									<Box
+										sx={{
+											position: "absolute",
+											border: "1px solid #000",
+											top: "calc(0.507rem + 20px)"
+										}}
+										color="#000"
+										bg="#fff"
+									>
+										{channelList.map(channel => (
+											<Text
+												width="160px"
+												lineHeight="32px"
+												pl="12px"
+												sx={{
+													"&:hover": {
+														background: "#cccccc",
+														color: "#fff"
+													}
+												}}
+												onClick={e => {
+													e.nativeEvent.preventDefault()
+													e.nativeEvent.stopPropagation()
+													setCurrentChannel(channel)
+													setShowChannels(false)
+												}}
+											>{`${channel.code}(${channel.name})`}</Text>
+										))}
+									</Box>
+								) : null}
+							</Flex>
+						) : null}
 
-					<AssginItem
-						goodsList={goodsList}
-						assignCategoryList={assignCategoryList || []}
-						onAssignCategory={handleAssignCategory}
-					></AssginItem>
-				</Box>
-			</Flex>
+						<AssginItem
+							goodsList={goodsList}
+							assignCategoryList={assignCategoryList || []}
+							onAssignCategory={handleAssignCategory}
+						></AssginItem>
+					</Box>
+				</Flex>
+			)}
 		</React.Fragment>
 	)
 }

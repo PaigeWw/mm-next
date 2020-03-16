@@ -80,7 +80,9 @@ export default props => {
 						name="MIME"
 						url="/icon/icon-01.svg"
 						onLinkTo={() => {
-							Router.push("/mine")
+							Router.push("/mine").then(() => {
+								Router.reload()
+							})
 						}}
 					></NavItem>
 					<NavItem
@@ -92,6 +94,8 @@ export default props => {
 								query: {
 									tab: 3
 								}
+							}).then(() => {
+								Router.reload()
 							})
 						}}
 					></NavItem>
@@ -100,7 +104,9 @@ export default props => {
 							name="USER"
 							url="/icon/icon-03.svg"
 							onLinkTo={() => {
-								Router.push("/mine?tab=4")
+								Router.push("/mine?tab=4").then(() => {
+									Router.reload()
+								})
 							}}
 						></NavItem>
 					) : null}
@@ -109,7 +115,9 @@ export default props => {
 						name="MY COLLECTION"
 						url="/icon/icon-04.svg"
 						onLinkTo={() => {
-							Router.push("/mine?tab=0")
+							Router.push("/mine?tab=0").then(() => {
+								Router.reload()
+							})
 						}}
 					></NavItem>
 					{user.role === 1 ? (
@@ -117,7 +125,7 @@ export default props => {
 							name="PRODUCT MANAGER"
 							url="/icon/icon-05.svg"
 							onLinkTo={() => {
-								Router.push("/assign?tab=4")
+								Router.push("/assign")
 							}}
 						></NavItem>
 					) : null}
