@@ -8,15 +8,10 @@ function useUserInfo() {
 	useEffect(() => {
 		;(async function getData() {
 			const data = await request("user/getCurrentUser")
-			console.log(data, "data")
-			if (data) {
-				setInfo(data)
-			} else {
-				Router.push("/login")
-			}
+			console.log(data, "user info data")
+			setInfo(data)
 		})()
 	}, [])
-
 	return info
 }
 

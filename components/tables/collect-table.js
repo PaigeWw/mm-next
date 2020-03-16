@@ -24,26 +24,34 @@ export default props => {
 			// let colorInfo = []
 			let date = []
 			let details = []
-			let threeViews = item.styleAndColor.map(x => {
+			item.styleAndColor.map(x => {
 				if (!x.style) return
 				details.push(x.style)
-				prodInfo.push({
-					styleNo: x.style.styleNo,
-					id: x.style._id
-				})
+
 				price.push(x.style.price)
 				date.push(x.style.updateTime)
-				colorInfo.push(x.colorIds)
+				colorInfo.push({ colors: x.colorIds })
+				let text = ""
+				x.colorIds.map((color, index) => {
+					if (index) {
+						text += "/"
+					}
+					text = color.code
+				})
+				prodInfo.push({
+					styleNo: x.style.styleNo,
+					categoryName: x.style.categoryName,
+					color: text,
+					id: x.style._id
+				})
 				// let positive = x.
 				styleList.push({ style: x.style, colors: x.colorIds })
-				return { POSITIVE: x.front }
 			})
 			collectDetailsList.push(details)
 			setCollectDetailsList([].concat(collectDetailsList))
 			return {
 				id: item._id,
 				colorInfo,
-				threeViews,
 				prodInfo,
 				price,
 				styleList,
@@ -68,7 +76,7 @@ export default props => {
 	}
 
 	const handleDel = async (index, item) => {
-		console.log(item)
+		// console.log(item)
 		const res = await request("/user/deleteFavorite", { _id: item.id }, "post")
 		// console.log("res", res)
 		if (res) {
@@ -77,21 +85,22 @@ export default props => {
 			setCollectList([].concat(collectList))
 		}
 	}
-	const handleConfirmMade = async (colorIds, imgUrls) => {
+	const handleConfirmMade = async colorIds => {
 		// const res = await request("/user/updateFavorite", {  }, "post")
+		// console.log(collectList[editIndex])
 		if (!colorIds[0]) return
 		let params = [
 			{
 				styleId: collectList[editIndex].prodInfo[0].id,
-				colorId: colorIds[0]
+				colorIds: colorIds[0].map(x => x._id)
 			}
 		]
 
-		if (collectList[editIndex].length > 1) {
+		if (collectList[editIndex].styleList.length > 1) {
 			// if (! > 2) return
 			params.push({
 				styleId: collectList[editIndex].prodInfo[1].id,
-				colorId: colorIds[1]
+				colorIds: colorIds[1].map(x => x._id)
 			})
 		}
 		const res = await request(
@@ -104,7 +113,7 @@ export default props => {
 			getCollectList()
 		}
 	}
-	console.log("collectList", collectList)
+	console.log("rateInfo", props.rate)
 	return collectList.length > 0 ? (
 		<Flex
 			flexDirection="column"
@@ -120,7 +129,7 @@ export default props => {
 					{ name: "00", width: "2/22", isHide: true },
 					{ name: "PICTRUE", width: "2/22" },
 					{ name: "PRODUCT INFOMATION", width: "4/22" },
-					{ name: "PRICE", width: "1/22" },
+					{ name: `PRICE/${props.rate.sign}`, width: "1/22" },
 					{ name: "DATE", width: "2/22" },
 					{ name: "STYLE", width: "1/22" },
 					{ name: "EDIT", width: "5/22" }
@@ -156,7 +165,7 @@ export default props => {
 								{collect.prodInfo.map(prodInfo => (
 									<ProductInfo
 										styleNum={prodInfo.styleNo}
-										made="2110 YE GREEN/2001 YE GREEN"
+										made={prodInfo.color}
 									/>
 								))}
 
@@ -165,7 +174,7 @@ export default props => {
 						</Flex>
 						<Flex flexDirection="column">
 							{collect.price.map(price => (
-								<Text p="4px 0">{price}</Text>
+								<Text p="4px 0">{props.rate.val * price}</Text>
 							))}
 						</Flex>
 						<Flex flexDirection="column">
@@ -174,8 +183,9 @@ export default props => {
 							))}
 						</Flex>
 						<Flex flexDirection="column">
-							<Text>TOPS</Text>
-							<Text>BOTTOMS</Text>
+							{collect.prodInfo.map(prodInfo => (
+								<Text>{prodInfo.categoryName}</Text>
+							))}
 						</Flex>
 					</TableLine>
 				))}
@@ -200,6 +210,7 @@ export default props => {
 			</Button>
 			{showEditBox ? (
 				<EditBox
+					userInfo={props.userInfo}
 					styleDetails={collectDetailsList[editIndex]}
 					curStyle={collectList[editIndex].colorInfo}
 					confirmMade={handleConfirmMade}

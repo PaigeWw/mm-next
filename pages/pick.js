@@ -5,21 +5,81 @@ import { Flex, Text, Box, Button, Image } from "rebass"
 import Head from "../components/nav"
 import Table, { TableLine, ProductInfo } from "../components/tables/base-table"
 import StyleItem from "../components/commons/min-style-item"
+import SvgCollect from "../components/svgCollect"
 
 import request from "../utils/request.js"
 export default () => {
 	// const info = useUserInfo()
 	const [favoriteList, setFavoriteList] = useState([])
+	const [mySelectFavorite, setMySelectFavorite] = useState([])
 	const handleCollect = async favoriteId => {
-		const req = await request("user/selectFavoriteList", { favoriteId }, "post")
+		const req = await request(
+			"user/addSelectFavorite",
+			{ _id: favoriteId },
+			"post"
+		)
+		if (req) {
+			// console.log({ id: req.id })
+			setMySelectFavorite([...mySelectFavorite, { id: req.extend }])
+		}
 	}
 	useEffect(() => {
 		const getGoodsList = async () => {
 			const req = await request("user/selectFavoriteList")
-			setFavoriteList(req || [])
-			console.log(req)
+			const data = req.map(item => {
+				let prodInfo = []
+				let price = []
+				let styleList = []
+				let colorInfo = []
+				let colorTexts = []
+				// let colorInfo = []
+				let date = []
+				let details = []
+				item.styleAndColor.map(x => {
+					if (!x.style) return
+					details.push(x.style)
+
+					price.push(x.style.price)
+					date.push(x.style.updateTime)
+					colorInfo.push({ colors: x.colorIds })
+					let text = ""
+					x.colorIds.map((color, index) => {
+						if (index) {
+							text += "/"
+						}
+						text = color.code
+					})
+					prodInfo.push({
+						styleNo: x.style.styleNo,
+						categoryName: x.style.categoryName,
+						color: text,
+						id: x.style._id
+					})
+					// let positive = x.
+					styleList.push({ style: x.style, colors: x.colorIds })
+				})
+				// collectDetailsList.push(details)
+				// setCollectDetailsList([].concat(collectDetailsList))
+				return {
+					_id: item._id,
+					colorInfo,
+					prodInfo,
+					price,
+					styleList,
+					date
+				}
+			})
+			// setCollectList(data)
+			setFavoriteList(data || [])
+			// console.log(req)
 		}
 		getGoodsList()
+		const getMyList = async () => {
+			const req = await request("user/getMySelectFavorite")
+			setMySelectFavorite(req || [])
+			// console.log(req)
+		}
+		getMyList()
 	}, [])
 
 	return (
@@ -52,46 +112,60 @@ export default () => {
 						{ name: "COLLECTION", width: "5/22" }
 					]}
 				>
-					{favoriteList.map((favorite, index) => (
-						<TableLine isSelect>
-							<Text style={{ position: "absolute" }}>01</Text>
-							<Flex justifyContent="center">
-								<StyleItem
-									rowspan={2}
-									hasBorder={"1px solid"}
-									margin={"1px"}
-									key={`${index}-style-img`}
-									styleList={favorite.styleAndColor.map(x => {
-										// styleList.push({ style: x.style, colors: x.colorIds })
-										return { style: x.style, colors: x.colorIds }
-									})}
-									index={index}
-									tool={false}
-								/>
-							</Flex>
+					{favoriteList.map((favorite, index) => {
+						let selected = mySelectFavorite.find(x => x.id === favorite._id)
+						return (
+							<TableLine isSelect>
+								<Text style={{ position: "absolute" }}>{`${index + 1}`}</Text>
+								<Flex justifyContent="center">
+									<StyleItem
+										width="100px"
+										rowspan={2}
+										hasBorder={"1px solid"}
+										margin={"1px"}
+										key={`${index}-style-img`}
+										styleList={favorite.styleList}
+										index={index}
+										tool={false}
+									/>
+								</Flex>
 
-							<Flex flexDirection="column">
-								<ProductInfo
-									styleNum="VERSION Y2003"
-									made="2110 YE GREEN/2001 YE GREEN"
-								/>
-								<ProductInfo styleNum="VERSION K2009" made="2110 YE GREEN" />
-							</Flex>
-							<Flex flexDirection="column">
-								<Text>$6.7</Text>
-								<Text>$6.7</Text>
-							</Flex>
-							<Flex justifyContent="center">
-								<Text
-									onClick={e => {
-										handleCollect(favorite._id)
-									}}
-								>
-									收藏
-								</Text>
-							</Flex>
-						</TableLine>
-					))}
+								<Flex justifyContent="center">
+									<Box margin="8px 0">
+										{favorite.prodInfo.map(prodInfo => (
+											<ProductInfo
+												styleNum={prodInfo.styleNo}
+												made={prodInfo.color}
+											/>
+										))}
+
+										{/* <ProductInfo styleNum="VERSION K2009" made="2110 YE GREEN" /> */}
+									</Box>
+								</Flex>
+								<Flex flexDirection="column">
+									{/* <Text>$€¥6.7</Text> */}
+									{favorite.price.map(price => (
+										<Text p="4px 0">{price}</Text>
+									))}
+								</Flex>
+								<Flex justifyContent="center">
+									<SvgCollect
+										color={selected ? "#FF8E6C" : "#231815"}
+										width="30px"
+										// collected={collected}
+										index={index}
+										sx={{
+											minWidth: "14px",
+											minHeight: "14px"
+										}}
+										onClick={e => {
+											selected ? null : handleCollect(favorite._id)
+										}}
+									/>
+								</Flex>
+							</TableLine>
+						)
+					})}
 				</Table>
 			</Flex>
 		</React.Fragment>

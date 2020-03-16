@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { Flex, Text, Box, Image } from "rebass"
-
+import { ReactSVG } from "react-svg"
 export default props => {
 	return (
 		<Flex
@@ -15,14 +15,12 @@ export default props => {
 			}}
 			onClick={props.onLinkTo}
 		>
-			<Image
+			<ReactSVG
 				src={props.url}
-				mr={"10px"}
-				sx={{
-					width: "0.18rem",
-					minWidth: "14px",
-					height: "0.18rem",
-					minHeight: "14px"
+				color="#ffffff"
+				style={{
+					height: "36px",
+					width: "36px"
 				}}
 			/>
 			<Text fontSize="0.14rem">{props.name}</Text>

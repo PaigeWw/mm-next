@@ -18,17 +18,20 @@ export default () => {
 	const [selectStyles, setSelectStyles] = useState([])
 	const [selectStylesType, setSelectStylesType] = useState([])
 	const [showToast, setShowToast] = useState(false)
-	const [toast, setToast] = useState({})
+	const [queryKey, setQueryKey] = useState(false)
 	useEffect(() => {
 		const getGategoryList = async () => {
 			let query = getPageQuery()
-
-			const req = await request("goods/detail", { _id: query.id }, "get")
+			let options = { _id: query.id }
+			if (queryKey) {
+				options.tag = queryKey
+			}
+			const req = await request("goods/detail", options, "get")
 			if (!req) return
 			setGategoryList(req.category)
 		}
 		getGategoryList()
-	}, [])
+	}, [queryKey])
 	// const info = useUserInfo()
 	const handleSelectStyle = (sid, type, top, col, styleItem) => {
 		let pos = selectStyles.indexOf(sid)
@@ -68,10 +71,13 @@ export default () => {
 			setSelectStylesType([type])
 		}
 	}
+	const handleChangeQuery = e => {
+		setQueryKey(e.target.value)
+	}
 	return (
 		<Flex flexDirection="column">
-			<Head showToast={showToast} toast={toast}></Head>
-			<SelectBar></SelectBar>
+			<Head></Head>
+			<SelectBar onChangeQuery={handleChangeQuery}></SelectBar>
 			<Box mt="40px" sx={{ position: "relative" }}>
 				{categoryList.map((item, index) => (
 					<SelectLine
@@ -83,18 +89,6 @@ export default () => {
 						onSelect={handleSelectStyle}
 					></SelectLine>
 				))}
-				{/* <SelectLine
-					kind="TOPS"
-					data={["/3/1.png", "/3/1.png", "/3/1.png", "/3/1.png"]}
-				></SelectLine>
-				<SelectLine
-					kind="BOTTOMS"
-					data={["/3/4.png", "/3/4.png", "/3/4.png", "/3/4.png"]}
-				></SelectLine>
-				<SelectLine
-					kind="TOPS"
-					data={["/3/2.png", "/3/2.png", "/3/2.png", "/3/2.png"]}
-				></SelectLine> */}
 				{currentSeleted && info.role === 1 ? (
 					<SelectAssignTool
 						currentSeleted={currentSeleted}
@@ -120,7 +114,7 @@ export default () => {
 					// console.log('selectStylesselectStylesselectStyles')
 					if (selectStyles.length > 0) {
 						Router.push(
-							`/made?id=${selectStyles[0]}${
+							`/made?type=${selectStylesType[0]}&id=${selectStyles[0]}${
 								selectStyles.length > 1 ? "&id1=" + selectStyles[1] : ""
 							}`
 						)

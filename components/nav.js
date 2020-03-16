@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
 import Head from "../components/head"
 import NavItem from "../components/nav-item"
+import getUserInfo from "../hooks/getUserInfo"
 import Router from "next/router"
 
 export default props => {
+	const user = getUserInfo()
 	const [showNav, setShowNav] = useState(false)
-	const [showToast, setShowToast] = useState(false)
 	function closeShowNav() {
 		setShowNav(false)
 	}
@@ -85,13 +86,16 @@ export default props => {
 							Router.push("/mine?tab=3")
 						}}
 					></NavItem>
-					<NavItem
-						name="USER"
-						url="/icon/icon-03.svg"
-						onLinkTo={() => {
-							Router.push("/mine?tab=4")
-						}}
-					></NavItem>
+					{user.role === 1 ? (
+						<NavItem
+							name="USER"
+							url="/icon/icon-03.svg"
+							onLinkTo={() => {
+								Router.push("/mine?tab=4")
+							}}
+						></NavItem>
+					) : null}
+
 					<NavItem
 						name="MY COLLECTION"
 						url="/icon/icon-04.svg"
@@ -99,13 +103,15 @@ export default props => {
 							Router.push("/mine?tab=0")
 						}}
 					></NavItem>
-					<NavItem
-						name="PRODUCT MANAGER"
-						url="/icon/icon-05.svg"
-						onLinkTo={() => {
-							Router.push("/assign?tab=4")
-						}}
-					></NavItem>
+					{user.role === 1 ? (
+						<NavItem
+							name="PRODUCT MANAGER"
+							url="/icon/icon-05.svg"
+							onLinkTo={() => {
+								Router.push("/assign?tab=4")
+							}}
+						></NavItem>
+					) : null}
 				</Flex>
 			) : null}
 		</React.Fragment>

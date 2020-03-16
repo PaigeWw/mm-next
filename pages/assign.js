@@ -47,22 +47,32 @@ export default () => {
 	}, [currentChannel])
 
 	const handleAssignCategory = async (categoryId, toggle) => {
-		const res = await request(
-			"channel/assignCategory",
-			{
-				channelId: currentChannel._id,
-				categoryId
-			},
-			"post"
-		)
-		if (res) {
-			if (toggle) {
+		if (toggle) {
+			const res1 = await request(
+				"channel/unAssignCategory",
+				{
+					channelId: currentChannel._id,
+					categoryId
+				},
+				"post"
+			)
+			if (res1) {
 				let index = assignCategoryList.indexOf(categoryId)
 				if (index >= 0) {
 					assignCategoryList.splice(index, 1)
 					setAssignCategoryList([...assignCategoryList])
 				}
-			} else {
+			}
+		} else {
+			const res = await request(
+				"channel/assignCategory",
+				{
+					channelId: currentChannel._id,
+					categoryId
+				},
+				"post"
+			)
+			if (res) {
 				setAssignCategoryList([...assignCategoryList, categoryId])
 			}
 		}

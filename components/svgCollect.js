@@ -1,9 +1,10 @@
 import React from "react"
 
 export default props => {
-	const { color, index } = props
+	const { color, index, width } = props
 	return (
 		<svg
+			width={width}
 			id="图层_1"
 			data-name="图层 1"
 			xmlns="http://www.w3.org/2000/svg"

@@ -82,7 +82,7 @@ export const PaintList = props => {
 export const ColorList = props => {
 	const { colorList, handleSelect, selectedList, onChangePage, page } = props
 	const usedPlainColorIds = selectedList.map(item => item._id)
-	console.log(usedPlainColorIds)
+	// console.log(usedPlainColorIds)
 	return (
 		<Box width="100%" mb="0.4rem">
 			<Flex justifyContent="space-between" alignItems="center">

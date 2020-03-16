@@ -108,6 +108,7 @@ export default props => {
 	const haveBorder = props.hasBorder
 	return (
 		<table
+			id={props.id}
 			frame="void"
 			style={{
 				border: "1px",

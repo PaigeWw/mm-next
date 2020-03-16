@@ -6,7 +6,7 @@ import StyleItem from "../commons/min-style-item"
 // import request from "../../utils/request"
 
 export default props => {
-	const { OrderDetail } = props
+	const { OrderDetail, rate = { val: 1, sign: "$" } } = props
 	const line = props.OrderDetail.orderData.length
 	// const {orderData} = OrderDetail
 	console.log(OrderDetail)
@@ -38,6 +38,7 @@ export default props => {
 				}}
 			>
 				<Table
+					id={"one-order-detail"}
 					hasBorder={"1px solid"}
 					sx={{ margin: "0", marginRight: "1px", width: "100%" }}
 					titles={[
@@ -48,8 +49,8 @@ export default props => {
 						{ name: "SIZE", width: "2/22", colspan: sizeInfoMaxLength },
 						{ name: "PACKAGES", width: "2/22" },
 						{ name: "QUANTITY", width: "2/22" },
-						{ name: "PRICE", width: "4/22" },
-						{ name: "TOTAL AMOUN", width: "1/22" }
+						{ name: `PRICE/${rate.sign}`, width: "4/22" },
+						{ name: `TOTAL AMOUN/${rate.sign}`, width: "1/22" }
 					]}
 				>
 					{orderData.map((item, index) => (
@@ -60,7 +61,7 @@ export default props => {
 								</Text>
 								<ProductInfo
 									rowspan={2}
-									styleNum="XSJHFH00928"
+									styleNum={item._id}
 									hasBorder={"1px solid"}
 								/>
 								<Flex
@@ -68,21 +69,34 @@ export default props => {
 									flexDirection="column"
 									hasBorder={"1px solid"}
 								>
-									<ProductInfo made="2110 YE GREEN" />
-									<ProductInfo made="2110 YE GREEN" />
-								</Flex>
-								<StyleItem
-									rowspan={2}
-									hasBorder={"1px solid"}
-									margin={"1px"}
-									key={`${index}-style-img`}
-									styleList={item.favorite.styleAndColor.map(x => {
-										// styleList.push({ style: x.style, colors: x.colorIds })
-										return { style: x.styleId, colors: x.colorIds }
+									{item.favorite.styleAndColor.map(x => {
+										return x.colorIds.map(c => (
+											<ProductInfo made={c.code}></ProductInfo>
+										))
 									})}
-									index={index}
-									tool={false}
-								/>
+								</Flex>
+								{props.imgToUrl ? (
+									<a
+										rowspan={2}
+										href={`./demo?id=${item.favorite._id}&rid=${OrderDetail._id}`}
+									>
+										款式图
+									</a>
+								) : (
+									<StyleItem
+										rowspan={2}
+										hasBorder={"1px solid"}
+										margin={"1px"}
+										key={`${index}-style-img`}
+										styleList={item.favorite.styleAndColor.map(x => {
+											// styleList.push({ style: x.style, colors: x.colorIds })
+											return { style: x.styleId, colors: x.colorIds }
+										})}
+										index={index}
+										tool={false}
+									/>
+								)}
+
 								{item.sizeInfo.map(size => (
 									<Flex
 										flexDirection="column"
@@ -111,10 +125,12 @@ export default props => {
 									hasBorder={"1px solid"}
 									flexDirection="column"
 								>
-									{item.signalPrice}
+									{item.favorite.styleAndColor.map(x => (
+										<Text>{x.styleId.price * rate.val}</Text>
+									))}
 								</Flex>
 								<Text rowspan={2} hasBorder={"1px solid"}>
-									{item.totalPrice}
+									{item.totalPrice * rate.val}
 								</Text>
 							</TableLine>
 							<TableLine noEdit key={`selectline-1-${item._id}`}>

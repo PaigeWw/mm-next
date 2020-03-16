@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
-import { Flex, Text, Box, Image, Button } from "rebass"
+import { Flex } from "rebass"
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
+import request from "../utils/request"
 
 import Head from "../components/nav"
 import CollectTable from "../components/tables/collect-table"
@@ -9,24 +10,62 @@ import SendTable from "../components/tables/send-table"
 import SelfOrderTable from "../components/tables/self-order-table"
 import Manage from "../components/manage/index"
 import useUserInfo from "../hooks/getUserInfo"
+import useRateInfo from "../hooks/getRateInfo"
+import { getPageQuery } from "../utils/helper"
+
 export default () => {
-	const [user, setUser] = useState(useUserInfo())
-	const [tabSelectedIndex, setTabSelectedIndex] = useState(4)
+	const rateInfo = useRateInfo()
+	const [userInfo, setUserInfo] = useState({})
+	const user = useUserInfo()
+	const [tabSelectedIndex, setTabSelectedIndex] = useState(0)
 	const [selectStyles, setSelectStyles] = useState([])
-	const [showEditBox, setShowEditBox] = useState(false)
-	console.log(user)
-	// console.log(userInfo)
+	const [isEditOrder, setIsEditOder] = useState(false)
+
 	const handleSetTabSelectedIndex = index => {
 		setTabSelectedIndex(index)
 		// console.log("~~~~~~~~")
 	}
+	useEffect(() => {
+		if (!user) {
+			return
+		}
+		// console.log(userInfo.channels, "channels")
+		async function get() {
+			let obj = { ...user }
+			if (obj.role !== 1 && obj.channels) {
+				const data1 = await request("channel/detail", {
+					_id: obj.channels[0]
+				})
+				obj.currency = data1.currency
+			} else {
+				obj.currency = 1
+			}
+			setUserInfo(obj)
+			// setUser(obj)
+			console.log("---userInfo---", obj)
+		}
+		get()
+	}, [user])
 	const handleSelectStyleToOrder = selectList => {
 		setSelectStyles(selectList)
 		setTabSelectedIndex(1)
+		setIsEditOder(false)
 	}
-	const handleToSendedOrder = () => {
-		setTabSelectedIndex(4)
+
+	const handleEditOrder = order => {
+		setIsEditOder(order._id)
+		setSelectStyles(order.orderData)
+		setTabSelectedIndex(1)
 	}
+	useEffect(() => {
+		const query = getPageQuery()
+		if (query.tab) {
+			console.log("query.tab", query.tab)
+			setTabSelectedIndex(parseInt(query.tab))
+		} else {
+			setTabSelectedIndex(0)
+		}
+	}, [])
 
 	return (
 		<>
@@ -105,21 +144,29 @@ export default () => {
 							>
 								4 MY ORDER
 							</Tab>
-							<Tab
-								style={{
-									lineHeight: "0.8rem",
-									flex: 1,
-									textAlign: "center"
-								}}
-							>
-								USER MANAGEMENT
-							</Tab>
+							{userInfo.role === 1 ? (
+								<Tab
+									style={{
+										lineHeight: "0.8rem",
+										flex: 1,
+										textAlign: "center"
+									}}
+								>
+									USER MANAGEMENT
+								</Tab>
+							) : null}
 						</TabList>
 						<TabPanel>
-							<CollectTable nextStep={handleSelectStyleToOrder} />
+							<CollectTable
+								userInfo={userInfo}
+								rate={userInfo && rateInfo[userInfo.currency]}
+								nextStep={handleSelectStyleToOrder}
+							/>
 						</TabPanel>
 						<TabPanel>
 							<OrderTable
+								rate={userInfo && rateInfo[userInfo.currency]}
+								isEditOrder={isEditOrder}
 								selectStyles={selectStyles}
 								nextStep={() => {
 									handleSetTabSelectedIndex(2)
@@ -128,17 +175,21 @@ export default () => {
 						</TabPanel>
 						<TabPanel>
 							<SendTable
+								rate={userInfo && rateInfo[userInfo.currency]}
+								onEditOrder={handleEditOrder}
 								nextStep={() => {
 									handleSetTabSelectedIndex(3)
 								}}
 							/>
 						</TabPanel>
 						<TabPanel>
-							<SelfOrderTable />
+							<SelfOrderTable rate={userInfo && rateInfo[userInfo.currency]} />
 						</TabPanel>
-						<TabPanel>
-							<Manage />
-						</TabPanel>
+						{userInfo.role === 1 ? (
+							<TabPanel>
+								<Manage />
+							</TabPanel>
+						) : null}
 					</Tabs>
 				</Flex>
 			</Flex>

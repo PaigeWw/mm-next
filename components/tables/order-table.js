@@ -7,34 +7,81 @@ import request from "../../utils/request"
 import StyleItem from "../commons/min-style-item"
 
 export default props => {
-	const { selectStyles } = props
+	const { selectStyles, isEditOrder, rate } = props
 	const line = props.selectStyles.length
-	console.log(selectStyles)
-	const initData = selectStyles.map(x => {
-		let sizeInfo = x.details[0].size.values.map(item => ({ ...item, num: 0 }))
-		console.log()
-		return {
-			favoriteId: x.id,
-			sizeInfo: sizeInfo,
-			total: 0,
-			totalPrice: 0,
-			signalPrice:
-				x.details[0].price + (x.details.length > 1 ? x.details[1].price : 0)
-		}
-	})
+	let initData = {
+		orderData: [],
+		selectStyles: [...selectStyles]
+	}
+	if (isEditOrder) {
+		initData.orderData = selectStyles.map((x, index) => {
+			// let sizeInfo = x.details[0].size.values.map(item => ({ ...item, num: 0 }))
+			// console.log()
+			let stylePrice = x.favorite.styleAndColor[0].styleId.price
+			x.favorite.styleAndColor.length > 1
+				? (stylePrice += x.favorite.styleAndColor[1].styleId.price)
+				: null
+
+			let styleList = []
+			let prodInfo = []
+			x.favorite.styleAndColor.map(item => {
+				styleList.push({
+					style: item.styleId,
+					colors: item.colorIds
+				})
+				let text = ""
+				item.colorIds.map((c, index) => {
+					if (index > 0) {
+						text = text + "/" + c.code
+					} else {
+						text = c.code
+					}
+				})
+				prodInfo.push({
+					styleNo: item.styleId.styleNo,
+					color: text
+				})
+			})
+			initData.selectStyles[index] = { styleList, prodInfo }
+			return {
+				favoriteId: x.favoriteId,
+				sizeInfo: x.sizeInfo,
+				total: x.total,
+				totalPrice: x.totalPrice,
+				signalPrice: stylePrice
+			}
+		})
+	} else {
+		initData.orderData = selectStyles.map(x => {
+			let sizeInfo = x.details[0].size.values.map(item => ({ ...item, num: 0 }))
+			// console.log()
+			return {
+				favoriteId: x.id,
+				sizeInfo: sizeInfo,
+				total: 0,
+				totalPrice: 0,
+				signalPrice:
+					x.details[0].price + (x.details.length > 1 ? x.details[1].price : 0)
+			}
+		})
+	}
+
 	// const [showOrderDetail, setShowOrderDetail] = useState(false)
-	const [orderData, setOrderData] = useState(initData)
+	const [orderData, setOrderData] = useState(initData.orderData)
+	const [styleData, setStyleData] = useState(initData.selectStyles)
+	console.log(styleData)
 	const [packageCount, setPackageCount] = useState(1)
 	const handleChangePackageCount = num => {
 		if (num < 1) return
 		setPackageCount(num)
 		orderData.map((order, index) => {
 			order.total = getItemsTotal(index) * num
+			order.totalPrice = (order.signalPrice * order.total).toFixed(2)
 		})
 		setOrderData([].concat(orderData))
 	}
 	const handleChangeOrder = (styleIndex, sizeIndex, num) => {
-		console.log(num)
+		// console.log(num)
 		if (num < 0) return
 		orderData[styleIndex].sizeInfo[sizeIndex].num = parseInt(num, 10)
 		let allNumSum = getItemsTotal(styleIndex)
@@ -55,8 +102,26 @@ export default props => {
 			return count
 		}
 	}
+	const handleUpdateOrder = async () => {
+		const res = await request(
+			"/order/update",
+			{
+				_id: isEditOrder,
+				packageCount,
+				orderData
+			},
+			"post"
+		)
+		if (res) {
+			props.nextStep()
+		}
+	}
 
 	const handleSubmitOrder = async () => {
+		if (isEditOrder) {
+			handleUpdateOrder()
+			return
+		}
 		const res = await request(
 			"/order/add",
 			{
@@ -69,6 +134,7 @@ export default props => {
 			props.nextStep()
 		}
 	}
+
 	return (
 		<Flex
 			flexDirection="column"
@@ -96,18 +162,23 @@ export default props => {
 						{ name: "SIZE", width: "2/22" },
 						{ name: "PACKAGES", width: "2/22" },
 						{ name: "QUANTITY", width: "2/22" },
-						{ name: "PRICE", width: "4/22" },
-						{ name: "TOTAL AMOUN", width: "1/22" },
+						{ name: `PRICE/${rate.sign}`, width: "4/22" },
+						{ name: `TOTAL AMOUN/${rate.sign}`, width: "1/22" },
 						{ name: "DELETE", width: "2/22" }
 					]}
 				>
-					{selectStyles.map((collect, index) => (
+					{styleData.map((collect, index) => (
 						<TableLine haveDel key={`selectline-${collect.id}`}>
 							<Text>{index}</Text>
-							<ProductInfo styleNum="XSJHFH00928" />
 							<Flex flexDirection="column">
-								<ProductInfo made="2110 YE GREEN" />
-								<ProductInfo made="2110 YE GREEN" />
+								{collect.prodInfo.map(x => (
+									<ProductInfo styleNum={x.styleNo} />
+								))}
+							</Flex>
+							<Flex flexDirection="column">
+								{collect.prodInfo.map(x => (
+									<ProductInfo made={x.color} />
+								))}
 							</Flex>
 							<StyleItem
 								key={`${index}-order-style-img`}
@@ -116,14 +187,14 @@ export default props => {
 								tool={false}
 							/>
 							<Flex justifyContent="space-between">
-								{collect.details[0].size.values.map((size, sizeIndex) => (
+								{orderData[index].sizeInfo.map((size, sizeIndex) => (
 									<Flex flexDirection="column">
 										<Text mr="10px">{size.name}</Text>
 										<InputNumber
 											value={orderData[index].sizeInfo[sizeIndex].num}
 											onChange={num => {
 												handleChangeOrder(index, sizeIndex, num)
-												console.log(collect.id, size.name, num)
+												// console.log(collect.id, size.name, num)
 											}}
 											upValue={() => {
 												handleChangeOrder(
@@ -142,11 +213,6 @@ export default props => {
 										/>
 									</Flex>
 								))}
-								{/* {console.log(collect.details[0].size)}
-								<Flex flexDirection="column">
-									<Text mr="10px">S</Text>
-									<InputNumber />
-								</Flex> */}
 							</Flex>
 							{index > 0 ? null : (
 								<Flex
@@ -174,8 +240,10 @@ export default props => {
 							)}
 
 							<Text>{orderData[index].total}</Text>
-							<Flex flexDirection="column">{orderData[index].signalPrice}</Flex>
-							<Text>{orderData[index].totalPrice}</Text>
+							<Flex flexDirection="column">
+								{orderData[index].signalPrice * rate.val}
+							</Flex>
+							<Text>{orderData[index].totalPrice * rate.val}</Text>
 						</TableLine>
 					))}
 				</Table>

@@ -84,10 +84,11 @@ export default () => {
 								margin: "10% 0 0 10%",
 								backgroundImage: 'url("/1/LOGO.png")',
 								backgroundRepeat: "no-repeat",
-								backgroundSize: "100% 100%"
+								backgroundSize: "100% 100%",
+								minWidth: "90px",
+								minHeight: "26.5px"
 							}}
 						/>
-						<Box>{demo}</Box>
 						<Box padding="0 0 10% 10%">
 							<Flex alignItems="center" mb={"2%"}>
 								<Image
@@ -106,6 +107,8 @@ export default () => {
 							<Input
 								width="3rem"
 								height="0.38rem"
+								minHeight="28px"
+								minWidth="200px"
 								id="username"
 								value={account}
 								onChange={e => setAccount(e.target.value)}
@@ -130,6 +133,8 @@ export default () => {
 							<Input
 								width="3rem"
 								height="0.38rem"
+								minHeight="28px"
+								minWidth="200px"
 								id="password"
 								name="password"
 								type="password"
@@ -140,6 +145,8 @@ export default () => {
 								variant="primary"
 								width="1.34rem"
 								height="0.38rem"
+								minHeight="28px"
+								minWidth="80px"
 								bg="#000000"
 								color="#ffffff"
 								mt={"5.8%"}
@@ -154,7 +161,7 @@ export default () => {
 							</Button>
 						</Box>
 					</Flex>
-					<Box width={[1, 718 / 1920]} bg="gray">
+					<Box width={[0, 718 / 1920]} bg="gray">
 						<Image
 							minHeight="100%"
 							src={showInfoList[modal].imgUrl}
@@ -169,9 +176,13 @@ export default () => {
 						bg={showInfoList[modal].rightColor}
 					></Box>
 				</Flex>
-				<Flex flexWrap="wrap" height={[0, "37.5vh"]}>
+				<Flex
+					flexWrap="wrap"
+					height={[0, "37.5vh"]}
+					style={{ overflow: "hidden" }}
+				>
 					<Box
-						width={[1, 722 / 1920]}
+						width={[0, 722 / 1920]}
 						bg={showInfoList[modal].leftColor}
 						onMouseEnter={() => {
 							setSvgColor(showInfoList[modal].leftColor)
@@ -180,7 +191,7 @@ export default () => {
 					<Flex
 						alignItems="center"
 						justifyContent="center"
-						width={[1, 718 / 1920]}
+						width={[0, 718 / 1920]}
 						bg="white"
 						fontSize="0.38rem"
 					>
@@ -202,7 +213,7 @@ export default () => {
 						</Flex>
 					</Flex>
 					<Flex
-						width={[1, 480 / 1920]}
+						width={[0, 480 / 1920]}
 						bg="#DCDCDC"
 						justifyContent="center"
 						alignItems="center"

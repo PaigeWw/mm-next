@@ -44,7 +44,7 @@ export default props => {
 										sx={{
 											background: isSelected ? "#FFC1AE" : "",
 											"&:hover": {
-												background: "#FFC1AE"
+												background: "#cccccc"
 											}
 										}}
 										onClick={e => {

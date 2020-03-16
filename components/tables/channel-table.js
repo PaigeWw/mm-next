@@ -34,10 +34,10 @@ export default props => {
 								<input value={channel.name} />
 							</Text>
 							<Text>
-								<select>
-									<option>RMB</option>
-									<option>USD</option>
-									<option>ESD</option>
+								<select value={channel.currency}>
+									<option value="0">RMB</option>
+									<option value="1">USD</option>
+									<option value="2">ESD</option>
 								</select>
 							</Text>
 							<Text>

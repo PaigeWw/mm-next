@@ -14,7 +14,8 @@ import { baseUrl } from "../utils/helper"
 // import SelectAssignTool from "../components/select-assign-tool"
 export default () => {
 	const userInfo = useUserInfo()
-	console.log(userInfo, "userInfo")
+
+	const [styleType, setStyleType] = useState("")
 	const [styleDetails, setStyleDetails] = useState([])
 	const [showBigBox, setShowBigBox] = useState(false)
 	const [showEditBox, setShowEditBox] = useState(false)
@@ -22,8 +23,14 @@ export default () => {
 	const [styleInitData, setStyleInitData] = useState([[], [], [], [], [], []])
 	const [collectList, setCollectList] = useState([])
 	useEffect(() => {
+		let query = getPageQuery()
+		if (query.id1 && query.type === "BOTTOMS") {
+			let temp = query.id
+			query.id = query.id1
+			query.id1 = temp
+		}
+		setStyleType(query.type)
 		const getStyleDetails = async () => {
-			let query = getPageQuery()
 			console.log(query)
 			let reqList = []
 			const req = await request("style/detail", { _id: query.id }, "get")
@@ -108,8 +115,14 @@ export default () => {
 						width="19.2rem"
 						height="1.12rem"
 					>
-						<Text>TOPS</Text>
-						<Text>BOTTOMS</Text>
+						{styleDetails.length > 1 ? (
+							<>
+								<Text>TOPS</Text>
+								<Text>BOTTOMS</Text>
+							</>
+						) : (
+							<Text>{styleType}</Text>
+						)}
 					</Flex>
 					<Flex flexWrap="wrap">
 						{styleInitData.map((style, index) => (

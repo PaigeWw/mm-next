@@ -87,9 +87,24 @@ export default props => {
 					height="0.38rem"
 					sx={{ border: "1px solid #000" }}
 				>
-					<RadioInTab name={"curTab"} value="SOUTHERN" id="SOUTHERN" />
-					<RadioInTab name={"curTab"} value="NORTH" id="NORTH" />
-					<RadioInTab name={"curTab"} value="CENTER" id="CENTER" />
+					<RadioInTab
+						onClick={props.onChangeQuery}
+						name={"curTab"}
+						value="SOUTHERN"
+						id="SOUTHERN"
+					/>
+					<RadioInTab
+						onClick={props.onChangeQuery}
+						name={"curTab"}
+						value="NORTH"
+						id="NORTH"
+					/>
+					<RadioInTab
+						onClick={props.onChangeQuery}
+						name={"curTab"}
+						value="CENTER"
+						id="CENTER"
+					/>
 				</Flex>
 			</Flex>
 		</Flex>

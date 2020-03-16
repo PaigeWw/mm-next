@@ -12,6 +12,7 @@ import request from "../utils/request.js"
 export default props => {
 	const { styleDetails, curStyle, userInfo } = props
 
+	console.log({ styleDetails, curStyle, userInfo })
 	let tempSelectedIds = [curStyle[0].colors]
 	// let tempSelectedImgs = [curStyle[0].imgUrl]
 	if (curStyle.length > 1) {
@@ -55,19 +56,30 @@ export default props => {
 		}
 	}
 	const handleSelect = item => {
-		console.log(curSelectedColors)
+		// console.log(curSelectedColors)
 		if (
 			curSelectedColors[curStyleIndex][curStylesEditGroupIndex] &&
 			item._id === curSelectedColors[curStyleIndex][curStylesEditGroupIndex]._id
 		) {
 		} else {
-			console.log(curStyle[curStyleIndex])
+			// console.log(curStyle[curStyleIndex])
 			// let tempAttrs =
 			curSelectedColors[curStyleIndex].splice(curStylesEditGroupIndex, 1, item)
 			// console.log(curSelectedColors[curStyleIndex])
 			setCurSelectedColors([].concat(curSelectedColors))
 		}
 	}
+
+	useEffect(() => {
+		if (userInfo.role === 1) {
+			// 产品经理
+			getColorList(1)
+			getPaintList(1)
+		} else {
+			// 客户
+			// getChannelsAssign(curStyle[0]._id, userInfo.channels[0])
+		}
+	}, [])
 
 	useEffect(() => {
 		const getChannelsAssign = async (styleId, channelId) => {
@@ -100,17 +112,18 @@ export default props => {
 			}
 		}
 
-		if (userInfo.role === 0) {
-			// 客户
-			getChannelsAssign(sid, userInfo.channels[0])
-		} else {
+		if (userInfo.role === 1) {
 			// 产品经理
-			getColorList(1)
-			getPaintList(1)
+			// getColorList(1)
+			// getPaintList(1)
+		} else {
+			// 客户
+			console.log(styleDetails)
+			console.log(curStyleIndex)
+			console.log(styleDetails[curStyleIndex])
+			getChannelsAssign(styleDetails[curStyleIndex]._id, userInfo.channels[0])
 		}
-	}, [])
-
-	// useEffect(() => {}, [])
+	}, [curStyleIndex])
 	return (
 		<Modal onClose={props.onClose}>
 			<Box width="14rem" fontSize="0.18rem" color="#000">

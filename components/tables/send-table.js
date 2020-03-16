@@ -8,6 +8,7 @@ import OrderDetail from "./order-detail"
 import StyleItem from "../commons/min-style-item"
 
 export default props => {
+	const { rate } = props
 	const [orderDetailMode, setOrderDetailMode] = useState({
 		visible: false,
 		detail: {}
@@ -98,7 +99,7 @@ export default props => {
 						setOrderDetailMode({ visible: false, detail: {} })
 					}}
 				>
-					<OrderDetail OrderDetail={orderDetailMode.detail} />
+					<OrderDetail OrderDetail={orderDetailMode.detail} rate={rate} />
 				</Modal>
 			) : null}
 			<Table
@@ -107,7 +108,7 @@ export default props => {
 					{ name: "DATE", width: "2/22" },
 					{ name: "STYLE PREVIEW", width: "2/22" },
 					{ name: "QUANTITY", width: "4/22" },
-					{ name: "PRICE", width: "1/22" },
+					{ name: `PRICE/${rate.sign}`, width: "1/22" },
 					{ name: "ACTION", width: "5/22" }
 				]}
 			>
@@ -125,8 +126,7 @@ export default props => {
 						}}
 						haveEdit
 						onEdit={() => {
-							// setEditIndex(index)
-							// setShowEditBox(true)
+							props.onEditOrder(orderDetailList[index])
 						}}
 						Bigger
 						onBiger={() => {
@@ -147,7 +147,7 @@ export default props => {
 							))}
 						</Flex>
 						<Text textAlign="center">{order.quantity}</Text>
-						<Text textAlign="center">{order.price}</Text>
+						<Text textAlign="center">{order.price * rate.val}</Text>
 					</TableLine>
 				))}
 			</Table>
