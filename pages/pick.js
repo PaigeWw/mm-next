@@ -108,7 +108,7 @@ export default () => {
 						{ name: "00", width: "2/22", isHide: true },
 						{ name: "PICTRUE", width: "2/22" },
 						{ name: "PRODUCT INFOMATION", width: "4/22" },
-						{ name: "PRICE", width: "1/22" },
+						{ name: "PRICE(汇率问题处理中)", width: "1/22" },
 						{ name: "COLLECTION", width: "5/22" }
 					]}
 				>

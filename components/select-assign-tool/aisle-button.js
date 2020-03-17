@@ -10,6 +10,11 @@ export const Title = props => (
 				{props.styleNo}
 			</Text>
 			<AisleButton text="A" {...props} />
+			{props.channelList.length > 0 ? null : (
+				<Text mt="4px">
+					Ask your administrator to assign you the channels you manage.
+				</Text>
+			)}
 		</Box>
 		<Image
 			src="/3/close.png"

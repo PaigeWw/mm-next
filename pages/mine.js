@@ -14,7 +14,7 @@ import useRateInfo from "../hooks/getRateInfo"
 import { getPageQuery } from "../utils/helper"
 
 export default () => {
-	const rateInfo = useRateInfo()
+	const rateInfo = useRateInfo() || []
 	const [userInfo, setUserInfo] = useState({})
 	const user = useUserInfo()
 	const [tabSelectedIndex, setTabSelectedIndex] = useState(0)
@@ -117,7 +117,6 @@ export default () => {
 								1 MY COLLECTION
 							</Tab>
 							<Tab
-								defaultFocus={true}
 								style={{
 									lineHeight: "0.8rem",
 									flex: 1,

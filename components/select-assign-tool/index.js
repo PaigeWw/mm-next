@@ -6,10 +6,9 @@ import request from "../../utils/request.js"
 import { baseUrl } from "../../utils/helper"
 
 export default props => {
-	const { sid, top, col, styleItem } = props.currentSeleted
-	const channelInfoList = []
+	const { sid, top, col, styleItem, channels = [] } = props.currentSeleted
 	const [curChannel, setCurChannel] = useState({})
-	const [channelList, setChannelList] = useState(false)
+	const [channelList, setChannelList] = useState([])
 	const [colorList, setColorList] = useState([])
 	const [paintList, setPaintList] = useState([])
 	const [sizeList, setSizeList] = useState([])
@@ -38,9 +37,12 @@ export default props => {
 	useEffect(() => {
 		const getChannels = async () => {
 			const req = await request("channel/getList", {}, "get")
-			setChannelList(req.docs)
-			if (req.docs.length > 0) {
-				setCurChannel(req.docs[0])
+			const assignChannelList = req.docs.filter(
+				x => channels.indexOf(x._id) > -1
+			)
+			setChannelList(assignChannelList)
+			if (assignChannelList.length > 0) {
+				setCurChannel(assignChannelList[0])
 				// getChannelsAssign(sid, req.docs[0]._id)
 			}
 		}
@@ -181,49 +183,53 @@ export default props => {
 				curChannel={curChannel}
 				onSelectChannel={handleSelectChannel}
 			/>
-			<Flex flexDirection="column">
-				<Box width="100%" mb="0.4rem">
-					<Text mb="0.1rem">SIZE「CUP」</Text>
-					<Flex width="100%" lineHeight="0.36rem">
-						{sizeList.map(size => (
-							<Text mr="0.2rem">{size.name}</Text>
-						))}
+			{channelList.length > 0 ? (
+				<>
+					<Flex flexDirection="column">
+						<Box width="100%" mb="0.4rem">
+							<Text mb="0.1rem">SIZE「CUP」</Text>
+							<Flex width="100%" lineHeight="0.36rem">
+								{sizeList.map(size => (
+									<Text mr="0.2rem">{size.name}</Text>
+								))}
+							</Flex>
+						</Box>
+						<ColorList
+							colorList={colorList.docs || []}
+							page={colorList.page}
+							handleSelect={handleSelect}
+							curChannelId={curChannel._id}
+							selectedList={curChannelAssign.plainColors}
+							onChangePage={handleChangeColorPage}
+						/>
+						<PaintList
+							paintList={paintList.docs || []}
+							page={paintList.page}
+							handleSelect={handleSelect}
+							curChannelId={curChannel._id}
+							selectedList={curChannelAssign.flowerColors}
+							onChangePage={handleChangeColorPage}
+						/>
 					</Flex>
-				</Box>
-				<ColorList
-					colorList={colorList.docs || []}
-					page={colorList.page}
-					handleSelect={handleSelect}
-					curChannelId={curChannel._id}
-					selectedList={curChannelAssign.plainColors}
-					onChangePage={handleChangeColorPage}
-				/>
-				<PaintList
-					paintList={paintList.docs || []}
-					page={paintList.page}
-					handleSelect={handleSelect}
-					curChannelId={curChannel._id}
-					selectedList={curChannelAssign.flowerColors}
-					onChangePage={handleChangeColorPage}
-				/>
-			</Flex>
-			<Button
-				variant="primary"
-				height="0.7rem"
-				width="6.4rem"
-				bg="#1B1B1B"
-				color="#fff"
-				padding="0"
-				ml="-0.7rem"
-				sx={{
-					borderRadius: 0,
-					fontSize: "0.14rem",
-					cursor: "pointer"
-				}}
-				onClick={props.onClose}
-			>
-				FINISH
-			</Button>
+					<Button
+						variant="primary"
+						height="0.7rem"
+						width="6.4rem"
+						bg="#1B1B1B"
+						color="#fff"
+						padding="0"
+						ml="-0.7rem"
+						sx={{
+							borderRadius: 0,
+							fontSize: "0.14rem",
+							cursor: "pointer"
+						}}
+						onClick={props.onClose}
+					>
+						FINISH
+					</Button>
+				</>
+			) : null}
 		</Flex>
 	)
 }

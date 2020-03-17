@@ -18,7 +18,7 @@ export default () => {
 			console.log(req)
 		}
 		getGoodsList()
-	}, [])
+	}, [info])
 
 	return (
 		<React.Fragment>
@@ -30,7 +30,7 @@ export default () => {
 				<Head></Head>
 				<Flex>
 					{goosList.map(item => (
-						<SelectBox {...item} />
+						<SelectBox {...item} pick={info.role !== 1} />
 					))}
 				</Flex>
 			</Flex>

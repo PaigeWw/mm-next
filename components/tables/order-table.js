@@ -24,6 +24,7 @@ export default props => {
 
 			let styleList = []
 			let prodInfo = []
+			let price = []
 			x.favorite.styleAndColor.map(item => {
 				styleList.push({
 					style: item.styleId,
@@ -41,8 +42,9 @@ export default props => {
 					styleNo: item.styleId.styleNo,
 					color: text
 				})
+				price.push(item.styleId.price)
 			})
-			initData.selectStyles[index] = { styleList, prodInfo }
+			initData.selectStyles[index] = { styleList, prodInfo, price }
 			return {
 				favoriteId: x.favoriteId,
 				sizeInfo: x.sizeInfo,
@@ -241,7 +243,9 @@ export default props => {
 
 							<Text>{orderData[index].total}</Text>
 							<Flex flexDirection="column">
-								{orderData[index].signalPrice * rate.val}
+								{collect.price.map(price => (
+									<Text p="4px 0">{props.rate.val * price}</Text>
+								))}
 							</Flex>
 							<Text>{orderData[index].totalPrice * rate.val}</Text>
 						</TableLine>

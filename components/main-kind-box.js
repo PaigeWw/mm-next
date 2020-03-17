@@ -53,7 +53,7 @@ export default props => {
 						bg="rgba(0,0,0,0.5)"
 						width="100%"
 						height="100%"
-						justifyContent="space-evenly"
+						justifyContent={props.pick ? "space-evenly" : "center"}
 						alignItems="center"
 						sx={{ position: "absolute" }}
 					>
@@ -71,7 +71,6 @@ export default props => {
 								}}
 							/>
 						) : null}
-						}
 					</Flex>
 				) : null}
 				<Image width={[1, 1]} src={baseUrl + props.imgUrl} />
