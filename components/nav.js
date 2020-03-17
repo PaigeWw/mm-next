@@ -73,7 +73,10 @@ export default props => {
 						zIndex: 9999999,
 						right: 0,
 						top: 0,
-						bottom: 0
+						bottom: 0,
+						"& .cls-1": {
+							fill: "#fff"
+						}
 					}}
 				>
 					<NavItem
@@ -129,6 +132,14 @@ export default props => {
 							}}
 						></NavItem>
 					) : null}
+					<NavItem
+						name="Logout"
+						url="/icon/icon-04.svg"
+						onLinkTo={() => {
+							localStorage.clear()
+							Router.push("/login")
+						}}
+					></NavItem>
 				</Flex>
 			) : null}
 		</React.Fragment>

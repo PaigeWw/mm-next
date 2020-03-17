@@ -49,7 +49,7 @@ export default () => {
 			"post"
 		)
 		console.log(req)
-		if (req) {
+		if (req && req.role % 2 === 1) {
 			Router.push("/")
 		}
 	}

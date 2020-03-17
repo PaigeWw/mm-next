@@ -9,6 +9,9 @@ function useUserInfo() {
 		;(async function getData() {
 			const data = await request("user/getCurrentUser")
 			setInfo(data)
+			if (!data) {
+				Router.push("/login")
+			}
 		})()
 	}, [])
 	return info
