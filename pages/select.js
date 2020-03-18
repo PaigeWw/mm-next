@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
 import Router from "next/router"
+import { toast, ToastContainer } from "react-nextjs-toast"
 
 import Head from "../components/nav"
 import SelectBar from "../components/select-bar"
@@ -77,6 +78,7 @@ export default () => {
 	return (
 		<Flex flexDirection="column">
 			<Head></Head>
+
 			<SelectBar onChangeQuery={handleChangeQuery}></SelectBar>
 			<Box mt="40px" sx={{ position: "relative" }}>
 				{categoryList.map((item, index) => (
@@ -91,6 +93,7 @@ export default () => {
 				))}
 				{currentSeleted && info.role === 1 ? (
 					<SelectAssignTool
+						channels={info.channels}
 						currentSeleted={currentSeleted}
 						onClose={() => {
 							setCurrentSeleted(false)
@@ -119,13 +122,17 @@ export default () => {
 							}`
 						)
 					} else {
-						Router.push("/made")
+						toast.notify("Please select a style.", {
+							duration: 5,
+							type: "warning"
+						})
 						// setToast({ type: "error", info: "Please Select Style." })
 					}
 				}}
 			>
 				NEXT>
 			</Button>
+			<ToastContainer />
 		</Flex>
 	)
 }

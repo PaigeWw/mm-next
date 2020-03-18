@@ -38,7 +38,7 @@ export default props => {
 		const getChannels = async () => {
 			const req = await request("channel/getList", {}, "get")
 			const assignChannelList = req.docs.filter(
-				x => channels.indexOf(x._id) > -1
+				x => channels.indexOf(x._id) < 0
 			)
 			setChannelList(assignChannelList)
 			if (assignChannelList.length > 0) {
