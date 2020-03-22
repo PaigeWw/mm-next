@@ -1,7 +1,7 @@
 import React from "react"
 import { Flex, Text, Box, Image } from "rebass"
 import lodash from "lodash"
-import Column from "../column"
+import { SortableContainer, SortableElement } from "react-sortable-hoc"
 
 const Title = props => (
 	<thead
@@ -102,6 +102,45 @@ export const TableLine = props => {
 		</tr>
 	)
 }
+
+export const SortableTable = props => {
+	const styleProps = props.sx
+	const tbStyleProps = props.tbSx
+	const haveBorder = props.hasBorder
+	const sortProps = props.sort
+	const SortableList = SortableContainer(() => {
+		return (
+			<tbody id="sortable-parent" style={{ ...tbStyleProps }}>
+				{props.children}
+			</tbody>
+		)
+	})
+	return (
+		<table
+			id={props.id}
+			frame="void"
+			style={{
+				border: "1px",
+				margin: "0 18px 18px 18px",
+				background: "#fff",
+				borderCollapse: "collapse",
+				...styleProps
+			}}
+			flexDirection="column"
+		>
+			<Title titles={props.titles} haveBorder={haveBorder} />
+			<SortableList
+				helperContainer={() => {
+					return document.getElementById("sortable-parent")
+				}}
+				helperClass="sortable-helper"
+				pressDelay={200}
+				{...sortProps}
+			/>
+		</table>
+	)
+}
+
 export default props => {
 	const styleProps = props.sx
 	const tbStyleProps = props.tbSx

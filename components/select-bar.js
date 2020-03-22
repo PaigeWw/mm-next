@@ -1,7 +1,11 @@
-import React, { useEffect } from "react"
+import React, { useState } from "react"
 import { Flex, Button, Text, Box, Image } from "rebass"
 import { Input, Label, Radio } from "@rebass/forms"
-
+const tags = [
+	{ name: "AREA", list: ["SOUTHERN", "NORTH", "CENTER"] },
+	{ name: "STYLE", list: ["SIMPLE"] },
+	{ name: "AGE", list: ["YOUNG", "MATURE"] }
+]
 const TabButton = props => (
 	<Button
 		variant="primary"
@@ -17,6 +21,7 @@ const TabButton = props => (
 				background: "#FF8E6C"
 			}
 		}}
+		{...props}
 	>
 		{props.text}
 	</Button>
@@ -52,6 +57,7 @@ const RadioInTab = props => (
 	</Box>
 )
 export default props => {
+	const [tagGroup, setTagGroup] = useState(tags[0])
 	return (
 		<Flex
 			alignItems="center"
@@ -74,12 +80,18 @@ export default props => {
 				name="username"
 				type="text"
 				placeholder="STYLE NUMBER"
+				onChange={e => props.onChangeQuery({ styleNo: e.target.value })}
 			/>
 			<Flex flexDirection="column">
 				<Flex>
-					<TabButton text="AREA" />
-					<TabButton text="STYLE" />
-					<TabButton text="AGE" />
+					{tags.map(({ name }, index) => (
+						<TabButton
+							text={name}
+							onClick={e => {
+								setTagGroup(tags[index])
+							}}
+						/>
+					))}
 				</Flex>
 				<Flex
 					alignItems="center"
@@ -87,24 +99,14 @@ export default props => {
 					height="0.38rem"
 					sx={{ border: "1px solid #000" }}
 				>
-					<RadioInTab
-						onClick={props.onChangeQuery}
-						name={"curTab"}
-						value="SOUTHERN"
-						id="SOUTHERN"
-					/>
-					<RadioInTab
-						onClick={props.onChangeQuery}
-						name={"curTab"}
-						value="NORTH"
-						id="NORTH"
-					/>
-					<RadioInTab
-						onClick={props.onChangeQuery}
-						name={"curTab"}
-						value="CENTER"
-						id="CENTER"
-					/>
+					{tagGroup.list.map(tag => (
+						<RadioInTab
+							onClick={e => props.onChangeQuery({ tags: tag })}
+							name={"curTab"}
+							value={tag}
+							id={tag}
+						/>
+					))}
 				</Flex>
 			</Flex>
 		</Flex>

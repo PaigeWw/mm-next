@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import { instance2 } from "../utils/request"
+import request from "../utils/request"
 // import Router from "next/router"
 
 // 汇率信息
@@ -13,19 +13,21 @@ function useRateInfo() {
 
 	useEffect(() => {
 		;(async function getData() {
-			const data = axios.get("https://api.exchangeratesapi.io/latest?base=USD")
+			//../system/detail
+			const data = await request("system/detail")
+
 			console.log(data, "data")
-			if (data && data.rates) {
+			if (data && data.length) {
 				setRate([
-					{ val: data.rates["CNY"], sign: "¥" }, //CNY
-					{ val: data.rates["USD"], sign: "$" }, // USD
-					{ val: data.rates["EUR"], sign: "€" } //EUR
+					{ val: 1, sign: "¥" }, //CNY
+					{ val: data[0].meiyuan, sign: "$" }, // USD
+					{ val: data[0].ouyuan, sign: "€" } //EUR
 				])
 			} else {
 				setRate([
-					{ val: 6.9873018732, sign: "¥" }, //CNY
-					{ val: 1, sign: "$" }, // USD
-					{ val: 0.9005763689, sign: "€" } //EUR
+					{ val: 1, sign: "¥" }, //CNY
+					{ val: 6.9, sign: "$" }, // USD
+					{ val: 7.6, sign: "€" } // EUR
 				])
 			}
 		})()

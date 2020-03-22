@@ -13,7 +13,7 @@ export default () => {
 			const req = await request("user/getUserChannels", "get")
 			setChannelList(req.channels || [])
 			setUserList(req.users || [])
-			console.log("getUserChannels", req)
+			// console.log("getUserChannels", req)
 		}
 		getUserChannels()
 	}, [])

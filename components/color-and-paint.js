@@ -1,6 +1,23 @@
-import React, { useEffect, useState } from "react"
-import { Flex, Text, Box, Button, Image } from "rebass"
+import React from "react"
+import { Flex, Text, Box, Button, Input } from "rebass"
 import { baseUrl } from "../utils/helper"
+
+const SerachInput = props => {
+	return (
+		<input
+			onChange={props.onChange}
+			style={{
+				height: "100%",
+				width: "3rem",
+				background: "no-repeat",
+				backgroundSize: "14px 14px",
+				backgroundImage: "url(/3/search.png)",
+				backgroundPosition: "100% center"
+			}}
+		/>
+	)
+}
+
 const PagerButton = props => (
 	<Button
 		width="0.26rem"
@@ -36,14 +53,26 @@ const Pager = props => (
 )
 
 export const PaintList = props => {
-	const { paintList, handleSelect, selectedList, onChangePage, page } = props
+	const {
+		paintList,
+		handleSelect,
+		selectedList,
+		onChangePage,
+		page,
+		onSearch
+	} = props
 	// const pIndex = channelInfoList.findIndex(x => x.channelId === curChannelId)
 	const usedPlainColorIds = selectedList.map(item => item._id)
-	if (paintList.length < 1) return null
+	// if (paintList.length < 1) return null
 	return (
 		<Box width="100%" mb="0.4rem">
+			<Text mb="8px">PRINT</Text>{" "}
 			<Flex justifyContent="space-between" alignItems="center">
-				<Text>PRINT</Text>{" "}
+				<SerachInput
+					onChange={e => {
+						onSearch({ code: e.target.value, type: 1 })
+					}}
+				/>
 				<Pager
 					current={page}
 					onChangePage={changeNum => {
@@ -80,13 +109,25 @@ export const PaintList = props => {
 }
 
 export const ColorList = props => {
-	const { colorList, handleSelect, selectedList, onChangePage, page } = props
+	const {
+		colorList,
+		handleSelect,
+		selectedList,
+		onChangePage,
+		page,
+		onSearch
+	} = props
 	const usedPlainColorIds = selectedList.map(item => item._id)
 	// console.log(usedPlainColorIds)
 	return (
 		<Box width="100%" mb="0.4rem">
+			<Text mb="8px">COLOUR</Text>
 			<Flex justifyContent="space-between" alignItems="center">
-				<Text>COLOUR</Text>{" "}
+				<SerachInput
+					onChange={e => {
+						onSearch({ code: e.target.value, type: 0 })
+					}}
+				/>
 				<Pager
 					current={page}
 					onChangePage={changeNum => {

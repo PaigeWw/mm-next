@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 // import ReactSVG from "../components/commons/react-svg"
 import StyleImg from "../components/commons/style-img"
-import { Flex, Text, Box, Image, Button } from "rebass"
+import { Flex, Text, Box, Button } from "rebass"
 
 import Modal from "./modal"
 import { ColorList, PaintList } from "./color-and-paint"
@@ -12,7 +12,6 @@ import request from "../utils/request.js"
 export default props => {
 	const { styleDetails, curStyle, userInfo } = props
 
-	console.log({ styleDetails, curStyle, userInfo })
 	let tempSelectedIds = [curStyle[0].colors]
 	// let tempSelectedImgs = [curStyle[0].imgUrl]
 	if (curStyle.length > 1) {
@@ -24,35 +23,91 @@ export default props => {
 	}
 	const [curSelectedColors, setCurSelectedColors] = useState(tempSelectedIds)
 	const [curStyleIndex, setCurStyleIndex] = useState(0)
+	const [assignInfoSource, setAssignInfoSource] = useState({})
+	const [assignInfo, setAssignInfo] = useState({})
 	const [curStylesEditGroupIndex, setEditSvgGroupIndex] = useState([0, 0])
 	const [plainColors, setPlainColors] = useState({ docs: [] })
 	const [flowerColors, setFlowerColors] = useState({ docs: [] })
-	const [imgVals, setImgVals] = useState({ scale: 1, x: 0, y: 0 })
+	const [pcode, setPcode] = useState("")
+	const [fcode, setFcode] = useState("")
 	const getColorList = async page => {
-		const req = await request(
-			"color/getList",
-			{ type: 0, page, limit: 14 },
-			"get"
-		)
-		setPlainColors(req)
+		let options = { type: 0, page: page, limit: 14 }
+		if (pcode) {
+			options.code = pcode
+		}
+		const req = await request("color/getList", options, "get")
+		setPlainColors({ docs: req.docs, page: req.page })
 		// console.log("getChannels", req)
 	}
 	const getPaintList = async page => {
-		const req = await request(
-			"color/getList",
-			{ type: 1, page, limit: 14 },
-			"get"
-		)
-		setFlowerColors(req)
+		let options = { type: 1, page: page, limit: 14 }
+		if (fcode) {
+			options.code = fcode
+		}
+		const req = await request("color/getList", options, "get")
+		setFlowerColors({ docs: req.docs, page: req.page })
 		// console.log("getChannels", req)
 	}
-
+	useEffect(() => {
+		if (userInfo.role === 1) {
+			getColorList(1)
+		} else {
+			if (assignInfoSource && assignInfoSource.plainColors) {
+				let ans = assignInfoSource.plainColors.filter(
+					x => x.code.indexOf(pcode) > -1
+				)
+				setAssignInfo({
+					...assignInfo,
+					plainColors: ans
+				})
+				handleChangeColorPage(1, 0)
+			}
+		}
+	}, [pcode])
+	useEffect(() => {
+		if (assignInfo.plainColors) {
+			handleChangeColorPage(1, 0)
+			handleChangeColorPage(1, 1)
+		}
+	}, [assignInfo])
+	useEffect(() => {
+		if (userInfo.role === 1) {
+			getPaintList(1)
+		} else {
+			if (assignInfoSource && assignInfoSource.flowerColors) {
+				let ans = assignInfoSource.flowerColors.filter(
+					x => x.code.indexOf(fcode) > -1
+				)
+				setAssignInfo({
+					...assignInfo,
+					flowerColors: ans
+				})
+				handleChangeColorPage(1, 1)
+			}
+		}
+	}, [fcode])
 	const handleChangeColorPage = (page, type) => {
 		console.log(page, type)
-		if (type === 0) {
-			getColorList(page)
+		if (userInfo.role === 1) {
+			if (type === 0) {
+				getColorList(page)
+			} else {
+				getPaintList(page)
+			}
 		} else {
-			getPaintList(page)
+			if (type === 0) {
+				setPlainColors({
+					docs: assignInfo.plainColors.slice((page - 1) * 14, page * 14),
+					page: page
+				})
+			} else {
+				setFlowerColors({
+					docs: assignInfo.flowerColors.slice((page - 1) * 14, page * 14),
+					page: page
+				})
+			}
+
+			// setAssignInfo(req)
 		}
 	}
 	const handleSelect = item => {
@@ -102,13 +157,15 @@ export default props => {
 				})
 			} else {
 				setPlainColors({
-					docs: req.plainColors,
+					docs: req.plainColors.slice(0, 14),
 					page: 1
 				})
 				setFlowerColors({
-					docs: req.flowerColors,
+					docs: req.flowerColors.slice(0, 14),
 					page: 1
 				})
+				setAssignInfo(req)
+				setAssignInfoSource(req)
 			}
 		}
 
@@ -118,12 +175,17 @@ export default props => {
 			// getPaintList(1)
 		} else {
 			// 客户
-			console.log(styleDetails)
-			console.log(curStyleIndex)
-			console.log(styleDetails[curStyleIndex])
 			getChannelsAssign(styleDetails[curStyleIndex]._id, userInfo.channels[0])
 		}
 	}, [curStyleIndex])
+
+	const handleOnSearch = options => {
+		if (options.type === 0) {
+			setPcode(options.code)
+		} else {
+			setFcode(options.code)
+		}
+	}
 	return (
 		<Modal onClose={props.onClose}>
 			<Box width="14rem" fontSize="0.18rem" color="#000">
@@ -187,6 +249,7 @@ export default props => {
 							selectedList={[curSelectedColors[curStyleIndex] || {}]}
 							page={plainColors.page}
 							onChangePage={handleChangeColorPage}
+							onSearch={handleOnSearch}
 						/>
 						<Box height="0.3rem" width={[1]} />
 						<PaintList
@@ -196,6 +259,7 @@ export default props => {
 							selectedList={[curSelectedColors[curStyleIndex] || {}]}
 							page={flowerColors.page}
 							onChangePage={handleChangeColorPage}
+							onSearch={handleOnSearch}
 						/>
 						<Button
 							variant="primary"

@@ -3,7 +3,6 @@ import { Flex, Text, Box, Button, Image } from "rebass"
 import { Title } from "./aisle-button"
 import { ColorList, PaintList } from "../color-and-paint"
 import request from "../../utils/request.js"
-import { baseUrl } from "../../utils/helper"
 
 export default props => {
 	const { sid, top, col, styleItem, channels = [] } = props.currentSeleted
@@ -12,25 +11,27 @@ export default props => {
 	const [colorList, setColorList] = useState([])
 	const [paintList, setPaintList] = useState([])
 	const [sizeList, setSizeList] = useState([])
+	const [pcode, setPcode] = useState("")
+	const [fcode, setFcode] = useState("")
 	const [curChannelAssign, setCurChannelAssign] = useState({
 		plainColors: [],
 		flowerColors: []
 	})
 	const getColorList = async page => {
-		const req = await request(
-			"color/getList",
-			{ type: 0, page: page, limit: 14 },
-			"get"
-		)
+		let options = { type: 0, page: page, limit: 14 }
+		if (pcode) {
+			options.code = pcode
+		}
+		const req = await request("color/getList", options, "get")
 		setColorList({ docs: req.docs, page: req.page })
 		// console.log("getChannels", req)
 	}
 	const getPaintList = async page => {
-		const req = await request(
-			"color/getList",
-			{ type: 1, page: page, limit: 14 },
-			"get"
-		)
+		let options = { type: 1, page: page, limit: 14 }
+		if (fcode) {
+			options.code = fcode
+		}
+		const req = await request("color/getList", options, "get")
 		setPaintList({ docs: req.docs, page: req.page })
 		// console.log("getChannels", req)
 	}
@@ -50,6 +51,13 @@ export default props => {
 		getColorList()
 		getPaintList()
 	}, [])
+	useEffect(() => {
+		getColorList(1)
+	}, [pcode])
+
+	useEffect(() => {
+		getPaintList(1)
+	}, [fcode])
 
 	useEffect(() => {
 		if (props.currentSeleted) {
@@ -98,21 +106,19 @@ export default props => {
 				const cIndex = curChannelAssign.plainColors.findIndex(
 					x => x._id === item._id
 				)
-				console.log("cIndex", cIndex)
+				let options = {
+					styleId: sid,
+					channelId: curChannel._id,
+					plainColor: item._id
+				}
 				if (cIndex < 0) {
 					curChannelAssign.plainColors.push(item)
+					const res = request("/channel/assign", options, "post")
 				} else {
+					const _res = request("/channel/unassign", options, "post")
 					curChannelAssign.plainColors.splice(cIndex, 1)
 				}
-				const res = request(
-					"/channel/assign",
-					{
-						styleId: sid,
-						channelId: curChannel._id,
-						plainColor: item._id
-					},
-					"post"
-				)
+
 				setCurChannelAssign({
 					...curChannelAssign,
 					plainColors: [].concat(curChannelAssign.plainColors)
@@ -122,21 +128,19 @@ export default props => {
 				const pIndex = curChannelAssign.flowerColors.findIndex(
 					x => x._id === item._id
 				)
-				console.log("cIndex", cIndex)
+				let _options = {
+					styleId: sid,
+					channelId: curChannel._id,
+					flowerColor: item._id
+				}
 				if (pIndex < 0) {
 					curChannelAssign.flowerColors.push(item)
+					const res1 = request("/channel/assign", _options, "post")
 				} else {
+					const _res1 = request("/channel/unassign", _options, "post")
 					curChannelAssign.flowerColors.splice(pIndex, 1)
 				}
-				const res1 = request(
-					"/channel/assign",
-					{
-						styleId: sid,
-						channelId: curChannel._id,
-						flowerColor: item._id
-					},
-					"post"
-				)
+
 				setCurChannelAssign({
 					...curChannelAssign,
 					flowerColors: [].concat(curChannelAssign.flowerColors)
@@ -158,9 +162,16 @@ export default props => {
 			getPaintList(page)
 		}
 	}
+
+	const handleOnSearch = options => {
+		if (options.type === 0) {
+			setPcode(options.code)
+		} else {
+			setFcode(options.code)
+		}
+	}
 	// const handleCommitSelected = index => {}
 	if (!channelList) return null
-	console.log(curChannel)
 	return (
 		<Flex
 			width="6.4rem"
@@ -201,6 +212,7 @@ export default props => {
 							curChannelId={curChannel._id}
 							selectedList={curChannelAssign.plainColors}
 							onChangePage={handleChangeColorPage}
+							onSearch={handleOnSearch}
 						/>
 						<PaintList
 							paintList={paintList.docs || []}
@@ -209,6 +221,7 @@ export default props => {
 							curChannelId={curChannel._id}
 							selectedList={curChannelAssign.flowerColors}
 							onChangePage={handleChangeColorPage}
+							onSearch={handleOnSearch}
 						/>
 					</Flex>
 					<Button

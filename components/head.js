@@ -9,6 +9,9 @@ html,
     margin: 0;
     font-size: 0.14rem;
 }
+.sortable-helper{
+    display: table
+}
 `
 
 function IndexPage() {

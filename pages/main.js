@@ -15,7 +15,7 @@ export default () => {
 			if (req) {
 				setgoosList(req)
 			}
-			console.log(req)
+			// console.log(req)
 		}
 		getGoodsList()
 	}, [])

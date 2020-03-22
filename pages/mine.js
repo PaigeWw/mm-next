@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Flex } from "rebass"
+import { Flex, Text } from "rebass"
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
 import request from "../utils/request"
 
@@ -12,7 +12,18 @@ import Manage from "../components/manage/index"
 import useUserInfo from "../hooks/getUserInfo"
 import useRateInfo from "../hooks/getRateInfo"
 import { getPageQuery } from "../utils/helper"
+const CurTitlt = props => (
+	<Text sx={{ fontSize: "0.38rem", textDecoration: "underline" }} pr="18px">
+		{props.text}
+	</Text>
+)
+const Titlt = props => (
+	<Text sx={{ fontSize: "0.2rem" }} pr="18px">
+		{props.text}
+	</Text>
+)
 
+const title = [1, 2, 3, 4]
 export default () => {
 	const rateInfo = useRateInfo() || []
 	const [userInfo, setUserInfo] = useState({})
@@ -23,28 +34,12 @@ export default () => {
 
 	const handleSetTabSelectedIndex = index => {
 		setTabSelectedIndex(index)
-		// console.log("~~~~~~~~")
 	}
 	useEffect(() => {
 		if (!user) {
 			return
 		}
-		// console.log(userInfo.channels, "channels")
-		async function get() {
-			let obj = { ...user }
-			if (obj.role !== 1 && obj.channels) {
-				const data1 = await request("channel/detail", {
-					_id: obj.channels[0]
-				})
-				obj.currency = data1.currency
-			} else {
-				obj.currency = 1
-			}
-			setUserInfo(obj)
-			// setUser(obj)
-			console.log("---userInfo---", obj)
-		}
-		get()
+		setUserInfo(user)
 	}, [user])
 	const handleSelectStyleToOrder = selectList => {
 		setSelectStyles(selectList)
@@ -66,7 +61,7 @@ export default () => {
 			setTabSelectedIndex(0)
 		}
 	}, [])
-
+	console.log("userInfo.currency", userInfo.currency)
 	return (
 		<>
 			<Flex flexDirection="column" height="100%">
@@ -89,6 +84,24 @@ export default () => {
 						}
 					}}
 				>
+					<Flex
+						style={{
+							height: "0.8rem",
+							background: "#FFC1AE"
+						}}
+						alignItems="center"
+						justifyContent="center"
+					>
+						<Text sx={{ fontSize: "0.3rem" }}>.</Text>
+						{title.map((t, index) =>
+							index === tabSelectedIndex ? (
+								<CurTitlt text={t} />
+							) : (
+								<Titlt text={t}></Titlt>
+							)
+						)}
+						<Text sx={{ fontSize: "0.3rem" }}>.</Text>
+					</Flex>
 					<Tabs
 						selectedIndex={tabSelectedIndex}
 						style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
@@ -100,7 +113,7 @@ export default () => {
 								height: "0.8rem",
 								padding: "0",
 								margin: "0",
-								paddingTop: "0.6rem",
+
 								background: "#FFC1AE",
 								fontSize: "0.3rem",
 								justifyContent: "space-around",
@@ -158,13 +171,13 @@ export default () => {
 						<TabPanel>
 							<CollectTable
 								userInfo={userInfo}
-								rate={userInfo && rateInfo[userInfo.currency]}
+								rate={(userInfo && rateInfo[userInfo.currency]) || {}}
 								nextStep={handleSelectStyleToOrder}
 							/>
 						</TabPanel>
 						<TabPanel>
 							<OrderTable
-								rate={userInfo && rateInfo[userInfo.currency]}
+								rate={(userInfo && rateInfo[userInfo.currency]) || {}}
 								isEditOrder={isEditOrder}
 								selectStyles={selectStyles}
 								nextStep={() => {
@@ -174,7 +187,7 @@ export default () => {
 						</TabPanel>
 						<TabPanel>
 							<SendTable
-								rate={userInfo && rateInfo[userInfo.currency]}
+								rate={(userInfo && rateInfo[userInfo.currency]) || {}}
 								onEditOrder={handleEditOrder}
 								nextStep={() => {
 									handleSetTabSelectedIndex(3)
@@ -182,7 +195,9 @@ export default () => {
 							/>
 						</TabPanel>
 						<TabPanel>
-							<SelfOrderTable rate={userInfo && rateInfo[userInfo.currency]} />
+							<SelfOrderTable
+								rate={(userInfo && rateInfo[userInfo.currency]) || {}}
+							/>
 						</TabPanel>
 						{userInfo.role === 1 ? (
 							<TabPanel>

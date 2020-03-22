@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react"
 import { Flex, Text, Box, Button, Row, Column } from "rebass"
-import Table, { TableLine, ProductInfo } from "./base-table"
+import arrayMove from "array-move"
+import { SortableContainer, SortableElement } from "react-sortable-hoc"
+
+import { SortableTable, TableLine, ProductInfo } from "./base-table"
 
 import EditBox from "../made-edit-box"
 import StyleItem from "../commons/min-style-item"
 import request from "../../utils/request"
+
+const Table = SortableTable
+
 export default props => {
 	const [showEditBox, setShowEditBox] = useState(false)
 	const [editIndex, setEditIndex] = useState(0)
@@ -113,7 +119,92 @@ export default props => {
 			getCollectList()
 		}
 	}
-	console.log("rateInfo", props.rate)
+
+	const SortableItem = SortableElement(({ indexNo, collect }) => {
+		console.log("SortableItem ", indexNo)
+		let index = indexNo
+		return (
+			<TableLine
+				isSelect={selectList.findIndex(x => index === x.index) >= 0}
+				haveSelect
+				onSelect={() => {
+					handleSelect(index, collect)
+				}}
+				haveDel
+				onDel={() => {
+					handleDel(index, collect)
+				}}
+				haveEdit
+				onEdit={() => {
+					setEditIndex(index)
+					setShowEditBox(true)
+				}}
+			>
+				<Text>{parseInt(index) + 1}</Text>
+				<StyleItem
+					key={`${index}-style-img`}
+					styleList={collect.styleList}
+					index={index}
+					tool={false}
+				/>
+				{/* <Text>loading</Text> */}
+				<Flex justifyContent="center">
+					<Box margin="8px 0">
+						{collect.prodInfo.map(prodInfo => (
+							<ProductInfo styleNum={prodInfo.styleNo} made={prodInfo.color} />
+						))}
+
+						{/* <ProductInfo styleNum="VERSION K2009" made="2110 YE GREEN" /> */}
+					</Box>
+				</Flex>
+				<Flex flexDirection="column">
+					{collect.price.map(price => (
+						<Text p="4px 0">{props.rate.val * price}</Text>
+					))}
+				</Flex>
+				<Flex flexDirection="column">
+					{collect.date.map(date => (
+						<Text p="4px 0">{date}</Text>
+					))}
+				</Flex>
+				<Flex flexDirection="column">
+					{collect.prodInfo.map(prodInfo => (
+						<Text>{prodInfo.categoryName}</Text>
+					))}
+				</Flex>
+			</TableLine>
+		)
+	})
+
+	// const SortableList = SortableContainer(() => {
+	// 	return (
+	// 		<Table
+	// 			titles={[
+	// 				{ name: "00", width: "2/22", isHide: true },
+	// 				{ name: "PICTRUE", width: "2/22" },
+	// 				{ name: "PRODUCT INFOMATION", width: "4/22" },
+	// 				{ name: `PRICE/${props.rate.sign}`, width: "1/22" },
+	// 				{ name: "DATE", width: "2/22" },
+	// 				{ name: "STYLE", width: "1/22" },
+	// 				{ name: "EDIT", width: "5/22" }
+	// 			]}
+	// 		>
+	// 			{collectList.map((collect, index) => {
+	// 				console.log("SortableList map ", index)
+	// 				return (
+	// 					<SortableItem
+	// 						key={`categoryList-item-${index}`}
+	// 						index={index}
+	// 						indexNo={index}
+	// 						collect={collect}
+	// 					/>
+	// 				)
+	// 			})}
+	// 		</Table>
+	// 	)
+	// })
+
+	// console.log("rateInfo", props.rate)
 	return collectList.length > 0 ? (
 		<Flex
 			flexDirection="column"
@@ -124,7 +215,19 @@ export default props => {
 				background: "#FFF0E5"
 			}}
 		>
+			{/* <SortableList
+				pressDelay={200}
+				onSortEnd={({ oldIndex, newIndex }) => {
+					setCollectList(arrayMove(collectList, oldIndex, newIndex))
+				}}
+			/> */}
 			<Table
+				sort={{
+					pressDelay: 200,
+					onSortEnd: ({ oldIndex, newIndex }) => {
+						setCollectList(arrayMove(collectList, oldIndex, newIndex))
+					}
+				}}
 				titles={[
 					{ name: "00", width: "2/22", isHide: true },
 					{ name: "PICTRUE", width: "2/22" },
@@ -135,60 +238,17 @@ export default props => {
 					{ name: "EDIT", width: "5/22" }
 				]}
 			>
-				{collectList.map((collect, index) => (
-					<TableLine
-						isSelect={selectList.findIndex(x => index === x.index) >= 0}
-						haveSelect
-						onSelect={() => {
-							handleSelect(index, collect)
-						}}
-						haveDel
-						onDel={() => {
-							handleDel(index, collect)
-						}}
-						haveEdit
-						onEdit={() => {
-							setEditIndex(index)
-							setShowEditBox(true)
-						}}
-					>
-						<Text style={{ position: "absolute" }}>{index + 1}</Text>
-						<StyleItem
-							key={`${index}-style-img`}
-							styleList={collect.styleList}
+				{collectList.map((collect, index) => {
+					console.log("SortableList map ", index)
+					return (
+						<SortableItem
+							key={`categoryList-item-${index}`}
 							index={index}
-							tool={false}
+							indexNo={index}
+							collect={collect}
 						/>
-						{/* <Text>loading</Text> */}
-						<Flex justifyContent="center">
-							<Box margin="8px 0">
-								{collect.prodInfo.map(prodInfo => (
-									<ProductInfo
-										styleNum={prodInfo.styleNo}
-										made={prodInfo.color}
-									/>
-								))}
-
-								{/* <ProductInfo styleNum="VERSION K2009" made="2110 YE GREEN" /> */}
-							</Box>
-						</Flex>
-						<Flex flexDirection="column">
-							{collect.price.map(price => (
-								<Text p="4px 0">{props.rate.val * price}</Text>
-							))}
-						</Flex>
-						<Flex flexDirection="column">
-							{collect.date.map(date => (
-								<Text p="4px 0">{date}</Text>
-							))}
-						</Flex>
-						<Flex flexDirection="column">
-							{collect.prodInfo.map(prodInfo => (
-								<Text>{prodInfo.categoryName}</Text>
-							))}
-						</Flex>
-					</TableLine>
-				))}
+					)
+				})}
 			</Table>
 			<Button
 				variant="primary"

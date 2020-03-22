@@ -11,7 +11,7 @@ const ImageBox = props => {
 					background: "#DCD0DC"
 				}
 			}}
-			onClick={e => {
+			onMouseDown={e => {
 				// console.dir(e.target.offsetTop)
 				props.onSelect(id, kind, e.target.offsetTop, col, item)
 			}}
@@ -26,11 +26,12 @@ const ImageBox = props => {
 	)
 }
 export default props => {
-	const [showScroll, setShowScroll] = useState(false)
+	const [showScroll] = useState(false)
 	// console.log(props.selectStyles)
 	return (
 		<Flex
 			width="100%"
+			minHeight="100px"
 			bg="#DCDCDC"
 			fontSize="0.23rem"
 			color="#fff"
@@ -81,7 +82,18 @@ export default props => {
 					/>
 				))}
 			</Flex>
-			<Flex bg="#000" width="3.22rem" justifyContent="space-between">
+			<Flex
+				bg="#000"
+				width="3.22rem"
+				justifyContent="space-between"
+				sx={{
+					background: "no-repeat",
+					backgroundSize: "20px 34px",
+					backgroundPositionY: "center",
+					backgroundPositionX: "70%",
+					backgroundImage: "url(/3/drop.jpeg)"
+				}}
+			>
 				<Flex
 					className="innerChild"
 					alignItems="center"

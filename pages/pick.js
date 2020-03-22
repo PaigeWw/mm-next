@@ -6,10 +6,13 @@ import Head from "../components/nav"
 import Table, { TableLine, ProductInfo } from "../components/tables/base-table"
 import StyleItem from "../components/commons/min-style-item"
 import SvgCollect from "../components/svgCollect"
-
+import useUserInfo from "../hooks/getUserInfo"
+import useRateInfo from "../hooks/getRateInfo"
 import request from "../utils/request.js"
+
 export default () => {
-	// const info = useUserInfo()
+	const userInfo = useUserInfo()
+	const rateInfo = useRateInfo()
 	const [favoriteList, setFavoriteList] = useState([])
 	const [mySelectFavorite, setMySelectFavorite] = useState([])
 	const handleCollect = async favoriteId => {
@@ -108,7 +111,14 @@ export default () => {
 						{ name: "00", width: "2/22", isHide: true },
 						{ name: "PICTRUE", width: "2/22" },
 						{ name: "PRODUCT INFOMATION", width: "4/22" },
-						{ name: "PRICE(汇率问题处理中)", width: "1/22" },
+						{
+							name: `PRICE/${
+								rateInfo[userInfo.currency]
+									? rateInfo[userInfo.currency].sign
+									: ""
+							}`,
+							width: "1/22"
+						},
 						{ name: "COLLECTION", width: "5/22" }
 					]}
 				>
@@ -138,8 +148,6 @@ export default () => {
 												made={prodInfo.color}
 											/>
 										))}
-
-										{/* <ProductInfo styleNum="VERSION K2009" made="2110 YE GREEN" /> */}
 									</Box>
 								</Flex>
 								<Flex flexDirection="column">

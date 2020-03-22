@@ -39,7 +39,7 @@ export default () => {
 	]
 
 	const handleLogin = async () => {
-		console.log("user/login")
+		// console.log("user/login")
 		const req = await request(
 			"user/login",
 			{
@@ -48,14 +48,12 @@ export default () => {
 			},
 			"post"
 		)
-		console.log(req)
+		// console.log(req)
 		if (req && req.role % 2 === 1) {
 			Router.push("/")
 		}
 	}
 	const userInfo = useUserInfo()
-	console.log(userInfo, "userInfo")
-
 	return (
 		<React.Fragment>
 			<Head></Head>
@@ -71,16 +69,20 @@ export default () => {
 							setSvgColor("#FFF")
 						}}
 					>
-						<Box
-							width="1.8rem"
-							height="0.53rem"
-							sx={{
-								margin: "10% 0 0 10%",
-								backgroundImage: 'url("/1/LOGO.png")',
-								backgroundRepeat: "no-repeat",
-								backgroundSize: "100% 100%",
-								minWidth: "90px",
-								minHeight: "26.5px"
+						<img
+							// width="1.8rem"
+							// height="0.53rem"
+							src="./1/LOGO.png"
+							style={{
+								width: "2rem",
+								margin: "0.9rem 0 0.9rem 0.9rem",
+								// backgroundImage: 'url("/1/LOGO.png")',
+								// backgroundRepeat: "no-repeat",
+								// backgroundSize: "100% 100%",
+								cursor: "pointer"
+							}}
+							onClick={() => {
+								Router.push("/")
 							}}
 						/>
 						<Box padding="0 0 10% 10%">

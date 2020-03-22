@@ -21,14 +21,16 @@ export default props => {
 		<React.Fragment>
 			<Flex justifyContent="space-between" width="100%">
 				<Head></Head>
-				<Box
-					width="1.8rem"
-					height="0.53rem"
-					sx={{
+				<img
+					// width="1.8rem"
+					// height="0.53rem"
+					src="./1/LOGO.png"
+					style={{
+						width: "2rem",
 						margin: "0.9rem 0 0.9rem 0.9rem",
-						backgroundImage: 'url("/1/LOGO.png")',
-						backgroundRepeat: "no-repeat",
-						backgroundSize: "100% 100%",
+						// backgroundImage: 'url("/1/LOGO.png")',
+						// backgroundRepeat: "no-repeat",
+						// backgroundSize: "100% 100%",
 						cursor: "pointer"
 					}}
 					onClick={() => {
@@ -134,7 +136,7 @@ export default props => {
 					) : null}
 					<NavItem
 						name="Logout"
-						url="/icon/icon-04.svg"
+						// url="/icon/icon-04.svg"
 						onLinkTo={() => {
 							localStorage.clear()
 							Router.push("/login")
