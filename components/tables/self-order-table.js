@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
-import { Flex, Text, Box, Button, Row, Column } from "rebass"
+import { Flex, Text, Image, Button, Row, Column } from "rebass"
 import Table, { TableLine, ProductInfo } from "./base-table"
 import OrderDetail from "./order-detail"
 import Modal from "../modal"
 import request from "../../utils/request"
+import Router from "next/router"
 
 export default props => {
 	const { rate } = props
@@ -89,9 +90,18 @@ export default props => {
 							<Text>{order.id}</Text>
 							<Text>{order.date}</Text>
 							<Text>{order.user}</Text>
-							<Text>
-								<a href={`./download?id=${order.id}`}>DOWNLOAD</a>
-							</Text>
+							<Image
+								className="tool"
+								width="0.3rem"
+								src="/8/download.png"
+								onClick={() => {
+									window.open(
+										`./download?id=${order.id}?rateSign=${rate.sign}&rateVal=${rate.val}`,
+										"_blank"
+									)
+									// Router.push(`/download?id=${order.id}`)
+								}}
+							/>
 						</TableLine>
 					))}
 				</Table>

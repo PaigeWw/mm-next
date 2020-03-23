@@ -5,7 +5,7 @@ import SvgCollect from "./svgCollect"
 import StyleImg from "./commons/style-img"
 export default props => {
 	const { styleList, collected, index, tool, svgId } = props
-	console.log("collected", styleList)
+	// console.log("collected", styleList)
 	return (
 		<Flex
 			flexDirection="column"
@@ -69,15 +69,13 @@ export default props => {
 							minHeight: "14px"
 						}}
 						onClick={() => {
-							console.log("bigger-click")
 							props.openBigBox()
 						}}
 					/>
-					<SvgCollect
-						color={collected ? "#FF8E6C" : "#231815"}
-						// collected={collected}
-						index={index}
+					<Image
+						src={collected ? "./4/collect-1.png" : "./4/collect.png"}
 						sx={{
+							width: "0.3rem",
 							minWidth: "14px",
 							minHeight: "14px"
 						}}

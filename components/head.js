@@ -2,6 +2,10 @@ import Head from "next/head"
 import { createGlobalStyle } from "styled-components"
 
 const Global = createGlobalStyle`
+@font-face {
+font-family: Roboto;
+src: url("./SourceHanSansCN-Normal.ttf");
+}
 body,
 html,
 #__next {
@@ -12,6 +16,9 @@ html,
 .sortable-helper{
     display: table
 }
+* {
+    font-family: Roboto;
+}
 `
 
 function IndexPage() {
@@ -20,6 +27,7 @@ function IndexPage() {
 			<Global></Global>
 			<Head>
 				<title>MR MISS</title>
+
 				<style global jsx>{`
 					body,
 					html,
@@ -28,6 +36,7 @@ function IndexPage() {
 						margin: 0;
 						font-size: 0.14rem;
 					}
+
 					input::-webkit-outer-spin-button,
 					input::-webkit-inner-spin-button {
 						 -webkit-appearance: none;

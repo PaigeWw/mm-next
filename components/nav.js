@@ -22,11 +22,12 @@ export default props => {
 			<Flex justifyContent="space-between" width="100%">
 				<Head></Head>
 				<img
-					// width="1.8rem"
-					// height="0.53rem"
+					width="2rem"
+					height="0.83rem"
 					src="./1/LOGO.png"
 					style={{
 						width: "2rem",
+						height: "0.83rem",
 						margin: "0.9rem 0 0.9rem 0.9rem",
 						// backgroundImage: 'url("/1/LOGO.png")',
 						// backgroundRepeat: "no-repeat",
@@ -44,7 +45,14 @@ export default props => {
 					}}
 					alignItems="center"
 					mr={"0.9rem"}
-					sx={{ cursor: "pointer" }}
+					sx={{
+						cursor: "pointer",
+						// position: "fixed",
+						// right: "0",
+						zIndex: 999999999999,
+						color: showNav ? "#fff" : "#000"
+						// top: "110px"
+					}}
 				>
 					<Image
 						src="./2/-s-HOME.png"
@@ -68,7 +76,6 @@ export default props => {
 					width="4.5rem"
 					height="100%"
 					bg="#000"
-					pt="80px"
 					sx={{
 						color: "#fff",
 						position: "fixed",
@@ -76,12 +83,14 @@ export default props => {
 						right: 0,
 						top: 0,
 						bottom: 0,
+						paddingTop: "calc(1.225rem - 30px)",
 						"& .cls-1": {
 							fill: "#fff"
 						}
 					}}
 				>
 					<NavItem
+						// mt="-10px"
 						name="MIME"
 						url="/icon/icon-01.svg"
 						onLinkTo={() => {

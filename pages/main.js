@@ -28,7 +28,7 @@ export default () => {
 				flexDirection="column"
 			>
 				<Head></Head>
-				<Flex>
+				<Flex sx={{ width: "100%", overflow: "scroll" }}>
 					{goosList.map(item => (
 						<SelectBox {...item} />
 					))}

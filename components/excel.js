@@ -10,10 +10,19 @@ console.log(ExcellentExport)
 export default () => {
 	// const info = useUserInfo()
 	const [orderDetail, setOrderDetail] = useState(false)
+	const [rate, setRate] = useState({ val: 1, sign: "¥" })
 
 	useEffect(() => {
+		const { id, rateSign, rateVal } = getPageQuery()
+		if (rateSign && rateVal) {
+			setRate({
+				sign: rateSign,
+				val: rateVal
+			})
+		}
+
 		const getOrderDetail = async () => {
-			const req = await request("order/detail", { _id: getPageQuery().id })
+			const req = await request("order/detail", { _id: id })
 			if (req) {
 				setOrderDetail(req)
 			}
@@ -44,12 +53,7 @@ export default () => {
 				flexDirection="column"
 				fontSize="0.14rem"
 			>
-				<div style={{ height: "500px" }}>
-					{orderDetail ? (
-						<OrderDetail OrderDetail={orderDetail} imgToUrl />
-					) : null}
-				</div>
-				<div onClick={e => console.log(e, "div e")}>
+				<div style={{ marginLeft: "20px", marginBottom: "20px" }}>
 					<a
 						ref={v => (window.aref = v)}
 						download="somedata.xls"
@@ -65,6 +69,11 @@ export default () => {
 					>
 						Export to Excel
 					</a>
+				</div>
+				<div style={{ height: "500px" }}>
+					{orderDetail ? (
+						<OrderDetail OrderDetail={orderDetail} imgToUrl rate={rate} />
+					) : null}
 				</div>
 			</Flex>
 		</React.Fragment>

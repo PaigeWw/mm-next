@@ -60,8 +60,7 @@ export default props => {
 		setSelectList([].concat(selectList))
 	}
 	const handleSendOrder = async () => {
-		console.log(selectList)
-
+		// console.log(selectList)
 		const res = await request(
 			"/order/send",
 			{ list: selectList.map(s => s.id) },
@@ -72,7 +71,7 @@ export default props => {
 		}
 	}
 	const handleDel = async index => {
-		console.log(orderList[index])
+		// console.log(orderList[index])
 		const res = await request(
 			"/order/delete",
 			{ _id: orderList[index].id },
@@ -147,7 +146,9 @@ export default props => {
 							))}
 						</Flex>
 						<Text textAlign="center">{order.quantity}</Text>
-						<Text textAlign="center">{order.price * rate.val}</Text>
+						<Text textAlign="center">
+							{(order.price * rate.val).toFixed(2)}
+						</Text>
 					</TableLine>
 				))}
 			</Table>

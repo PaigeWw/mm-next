@@ -86,7 +86,7 @@ export default props => {
 		const res = await request("/user/deleteFavorite", { _id: item.id }, "post")
 		// console.log("res", res)
 		if (res) {
-			console.log("删除他，嘿嘿嘿")
+			// console.log("删除他，嘿嘿嘿")
 			collectList.splice(index, 1)
 			setCollectList([].concat(collectList))
 		}
@@ -121,7 +121,7 @@ export default props => {
 	}
 
 	const SortableItem = SortableElement(({ indexNo, collect }) => {
-		console.log("SortableItem ", indexNo)
+		// console.log("SortableItem ", indexNo)
 		let index = indexNo
 		return (
 			<TableLine
@@ -159,7 +159,7 @@ export default props => {
 				</Flex>
 				<Flex flexDirection="column">
 					{collect.price.map(price => (
-						<Text p="4px 0">{props.rate.val * price}</Text>
+						<Text p="4px 0">{(props.rate.val * price).toFixed(2)}</Text>
 					))}
 				</Flex>
 				<Flex flexDirection="column">
@@ -239,7 +239,7 @@ export default props => {
 				]}
 			>
 				{collectList.map((collect, index) => {
-					console.log("SortableList map ", index)
+					// console.log("SortableList map ", index)
 					return (
 						<SortableItem
 							key={`categoryList-item-${index}`}

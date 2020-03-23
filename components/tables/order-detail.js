@@ -6,10 +6,10 @@ import StyleItem from "../commons/min-style-item"
 // import request from "../../utils/request"
 
 export default props => {
-	const { OrderDetail, rate = { val: 1, sign: "$" } } = props
+	const { OrderDetail, rate = { val: 1, sign: "¥" } } = props
 	const line = props.OrderDetail.orderData.length
 	// const {orderData} = OrderDetail
-	console.log(OrderDetail)
+	// console.log(OrderDetail)
 	const [orderData, setOrderData] = useState(OrderDetail.orderData)
 	const [packageCount, setPackageCount] = useState(OrderDetail.packageCount)
 	let sizeInfoMaxLength = 0
@@ -57,7 +57,7 @@ export default props => {
 						<>
 							<TableLine noEdit key={`selectline-${item._id}`}>
 								<Text rowspan={2} hasBorder={"1px solid"}>
-									{index}
+									{index + 1}
 								</Text>
 								<ProductInfo
 									rowspan={2}
@@ -126,11 +126,11 @@ export default props => {
 									flexDirection="column"
 								>
 									{item.favorite.styleAndColor.map(x => (
-										<Text>{x.styleId.price * rate.val}</Text>
+										<Text>{(x.styleId.price * rate.val).toFixed(2)}</Text>
 									))}
 								</Flex>
 								<Text rowspan={2} hasBorder={"1px solid"}>
-									{item.totalPrice * rate.val}
+									{(item.totalPrice * rate.val).toFixed(2)}
 								</Text>
 							</TableLine>
 							<TableLine noEdit key={`selectline-1-${item._id}`}>

@@ -30,14 +30,20 @@ const SelectButton = props => (
 export default props => {
 	const [showSelect, setShowSelect] = useState(false)
 	return (
-		<Box width={[1, 1 / 3]}>
+		<Box
+			width={[1, 1 / 3]}
+			sx={{
+				// flexShrink: 0,
+				overflow: "hidden"
+			}}
+		>
 			<Flex alignItems="baseline" p="0.2rem 0.9rem">
 				<Text fontSize="0.22rem">{props.aliasName}</Text>
 				<Text fontSize="0.14rem">&nbsp; SERIES</Text>
 			</Flex>
-			<Box
+			<Flex
 				width={[1]}
-				height="fit-content"
+				height="100%"
 				sx={{
 					position: "relative"
 				}}
@@ -73,8 +79,12 @@ export default props => {
 						) : null}
 					</Flex>
 				) : null}
-				<Image width={[1, 1]} src={baseUrl + props.imgUrl} />
-			</Box>
+				<Image
+					width={[1, 1]}
+					src={baseUrl + props.imgUrl}
+					sx={{ objectFit: "cover" }}
+				/>
+			</Flex>
 		</Box>
 	)
 }
