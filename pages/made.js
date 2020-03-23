@@ -31,7 +31,7 @@ export default () => {
 		}
 		setStyleType(query.type)
 		const getStyleDetails = async () => {
-			console.log(query)
+			// console.log(query)
 			let reqList = []
 			const req = await request("style/detail", { _id: query.id }, "get")
 			reqList.push(req)
@@ -92,7 +92,7 @@ export default () => {
 			"post"
 		)
 		// setStyleDetails([].concat(styleDetails))
-		console.log(res)
+		// console.log(res)
 	}
 	return (
 		<>

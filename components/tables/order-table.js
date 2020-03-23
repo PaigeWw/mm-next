@@ -71,7 +71,7 @@ export default props => {
 	// const [showOrderDetail, setShowOrderDetail] = useState(false)
 	const [orderData, setOrderData] = useState(initData.orderData)
 	const [styleData, setStyleData] = useState(initData.selectStyles)
-	console.log(styleData)
+	// console.log(styleData)
 	const [packageCount, setPackageCount] = useState(1)
 	const handleChangePackageCount = num => {
 		if (num < 1) return
@@ -244,10 +244,10 @@ export default props => {
 							<Text>{orderData[index].total}</Text>
 							<Flex flexDirection="column">
 								{collect.price.map(price => (
-									<Text p="4px 0">{props.rate.val * price}</Text>
+									<Text p="4px 0">{(props.rate.val * price).toFixed(2)}</Text>
 								))}
 							</Flex>
-							<Text>{orderData[index].totalPrice * rate.val}</Text>
+							<Text>{(orderData[index].totalPrice * rate.val).toFixed(2)}</Text>
 						</TableLine>
 					))}
 				</Table>

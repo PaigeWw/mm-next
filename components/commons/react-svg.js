@@ -10,7 +10,7 @@ import { ReactSVG } from "react-svg"
 class svg extends React.Component {
 	shouldComponentUpdate(nextProps) {
 		if (nextProps.src !== this.props.src) {
-			console.log("nextProps.src !== this.props.src")
+			// console.log("nextProps.src !== this.props.src")
 			return true
 		} else {
 			return false

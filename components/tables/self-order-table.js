@@ -87,7 +87,7 @@ export default props => {
 						>
 							<Text lineHeight="0.6rem">{index + 1}</Text>
 							{/* <Text>MRMISS 20191118</Text> */}
-							<Text>{order.id}</Text>
+							<Text>{order.orderNo}</Text>
 							<Text>{order.date}</Text>
 							<Text>{order.user}</Text>
 							<Image

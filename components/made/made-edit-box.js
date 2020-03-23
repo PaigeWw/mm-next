@@ -7,7 +7,7 @@ import { ColorList, PaintList } from "./color-and-paint"
 import { baseUrl } from "../utils/helper"
 export default props => {
 	const { styleDetails, curStyle } = props
-	console.log(styleDetails, curStyle)
+	// console.log(styleDetails, curStyle)
 	let tempSelectedIds = [curStyle[0].colorId]
 	let tempSelectedImgs = [curStyle[0].imgUrl]
 	if (curStyle.length > 1) {

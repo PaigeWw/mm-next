@@ -20,7 +20,7 @@ export default () => {
 		const getGoodsList = async () => {
 			const req = await request("goods/getList")
 			setGoodsList(req || [])
-			console.log(req)
+			// console.log(req)
 		}
 		getGoodsList()
 		const getChannels = async () => {

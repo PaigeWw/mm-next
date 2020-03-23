@@ -55,13 +55,13 @@ export default () => {
 	useEffect(() => {
 		const query = getPageQuery()
 		if (query.tab) {
-			console.log("query.tab", query.tab)
+			// console.log("query.tab", query.tab)
 			setTabSelectedIndex(parseInt(query.tab))
 		} else {
 			setTabSelectedIndex(0)
 		}
 	}, [])
-	console.log("userInfo.currency", userInfo.currency)
+	// console.log("userInfo.currency", userInfo.currency)
 	return (
 		<>
 			<Flex flexDirection="column" height="100%">

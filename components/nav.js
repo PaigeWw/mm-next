@@ -41,7 +41,7 @@ export default props => {
 				<Flex
 					onClick={e => {
 						e.nativeEvent.stopPropagation()
-						setShowNav(true)
+						setShowNav(!showNav)
 					}}
 					alignItems="center"
 					mr={"0.9rem"}
@@ -75,7 +75,7 @@ export default props => {
 					flexDirection="column"
 					width="4.5rem"
 					height="100%"
-					bg="#000"
+					bg="rgba(0,0,0,0.9)"
 					sx={{
 						color: "#fff",
 						position: "fixed",

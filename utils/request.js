@@ -58,7 +58,7 @@ instance.interceptors.response.use(
 
 // 错误提示
 const handleErrorStatus = (status, message) => {
-	console.log(status, message)
+	// console.log(status, message)
 }
 
 export default (url = "", data = {}, method = "get", origin = false, api) => {

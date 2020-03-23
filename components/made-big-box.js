@@ -6,6 +6,7 @@ import StyleImg from "../components/commons/style-img"
 
 export default props => {
 	const { styleDetails, curStyle } = props
+	console.log({ styleDetails, curStyle })
 	let tempSelectedIds = [curStyle[0].colors]
 	// let tempSelectedImgs = [curStyle[0].imgUrl]
 	if (curStyle.length > 1) {

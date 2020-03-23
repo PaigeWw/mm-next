@@ -61,7 +61,7 @@ export default props => {
 								</Text>
 								<ProductInfo
 									rowspan={2}
-									styleNum={item._id}
+									styleNum={item.orderNo}
 									hasBorder={"1px solid"}
 								/>
 								<Flex

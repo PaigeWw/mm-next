@@ -73,7 +73,7 @@ export default props => {
 
 	useEffect(() => {
 		if (!curChannel._id) return
-		console.log("curChannel->", curChannel.code)
+		// console.log("curChannel->", curChannel.code)
 		const getChannelsAssign = async (styleId, channelId) => {
 			const req = await request(
 				"channel/getAssign",

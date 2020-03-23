@@ -60,7 +60,7 @@ export default () => {
 			setCurrentSeleted(false)
 		} else {
 			//未选中 则 设置为选中
-			console.log(selectStyles, type)
+			// console.log(selectStyles, type)
 			setCurrentSeleted({ sid, type, top, col, styleItem })
 			let topsPos = selectStylesType.indexOf("TOPS")
 			let bottomsPos = selectStylesType.indexOf("BOTTOMS")
@@ -83,7 +83,7 @@ export default () => {
 		}
 	}
 	const handleChangeQuery = options => {
-		console.log(options)
+		// console.log(options)
 		setQueryKey({
 			...queryKey,
 			...options

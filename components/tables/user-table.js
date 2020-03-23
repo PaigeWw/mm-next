@@ -21,7 +21,7 @@ export default props => {
 	const handleConfrim = async () => {
 		const res = await request("/user/update", { ...editUserInfo }, "post")
 		if (res) {
-			console.log("res", res)
+			// console.log("res", res)
 		}
 	}
 	return (

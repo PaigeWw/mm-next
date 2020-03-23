@@ -15,8 +15,7 @@ function useRateInfo() {
 		;(async function getData() {
 			//../system/detail
 			const data = await request("system/detail")
-
-			console.log(data, "data")
+			// console.log(data, "data")
 			if (data && data.length) {
 				setRate([
 					{ val: 1, sign: "¥" }, //CNY

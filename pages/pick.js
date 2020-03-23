@@ -5,7 +5,7 @@ import { Flex, Text, Box, Button, Image } from "rebass"
 import Head from "../components/nav"
 import Table, { TableLine, ProductInfo } from "../components/tables/base-table"
 import StyleItem from "../components/commons/min-style-item"
-import SvgCollect from "../components/svgCollect"
+import BigBox from "../components/made-big-box"
 import useUserInfo from "../hooks/getUserInfo"
 import useRateInfo from "../hooks/getRateInfo"
 import request from "../utils/request.js"
@@ -14,6 +14,9 @@ export default () => {
 	const userInfo = useUserInfo()
 	const rateInfo = useRateInfo()
 	const [favoriteList, setFavoriteList] = useState([])
+	// const [favoriteList, setFavoriteList] = useState([])
+	const [showBigBox, setShowBigBox] = useState(false)
+	const [collectDetailsList, setCollectDetailsList] = useState([])
 	const [mySelectFavorite, setMySelectFavorite] = useState([])
 	const handleCollect = async favoriteId => {
 		const req = await request(
@@ -38,9 +41,11 @@ export default () => {
 				// let colorInfo = []
 				let date = []
 				let details = []
+				// let curStyle = [{ colors: [] }]
 				item.styleAndColor.map(x => {
 					if (!x.style) return
 					details.push(x.style)
+					// curStyle.push({ colors: x.colorIds })
 
 					price.push(x.style.price)
 					date.push(x.style.updateTime)
@@ -69,6 +74,8 @@ export default () => {
 					prodInfo,
 					price,
 					styleList,
+					details,
+					// curStyle,
 					date
 				}
 			})
@@ -126,7 +133,7 @@ export default () => {
 						let selected = mySelectFavorite.find(x => x.id === favorite._id)
 						return (
 							<TableLine isSelect>
-								<Text style={{ position: "absolute" }}>{`${index + 1}`}</Text>
+								<Text>{`${index + 1}`}</Text>
 								<Flex justifyContent="center">
 									<StyleItem
 										width="100px"
@@ -138,8 +145,33 @@ export default () => {
 										index={index}
 										tool={false}
 									/>
+									<Image
+										src={"./8/bigger.png"}
+										sx={{
+											width: "26px",
+											height: "26px",
+											minWidth: "14px",
+											minHeight: "14px",
+											alignSelf: "flex-end",
+											cursor: "pointer"
+										}}
+										onClick={e => {
+											setShowBigBox({
+												styleDetails: favorite.details,
+												curStyle: favorite.styleList
+											})
+										}}
+									/>
 								</Flex>
-
+								{showBigBox ? (
+									<BigBox
+										styleDetails={showBigBox.styleDetails}
+										curStyle={showBigBox.curStyle}
+										onClose={() => {
+											setShowBigBox(false)
+										}}
+									/>
+								) : null}
 								<Flex justifyContent="center">
 									<Box margin="8px 0">
 										{favorite.prodInfo.map(prodInfo => (
@@ -157,12 +189,10 @@ export default () => {
 									))}
 								</Flex>
 								<Flex justifyContent="center">
-									<SvgCollect
-										color={selected ? "#FF8E6C" : "#231815"}
-										width="30px"
-										// collected={collected}
-										index={index}
+									<Image
+										src={selected ? "./4/collect-1.png" : "./4/collect.png"}
 										sx={{
+											width: "0.3rem",
 											minWidth: "14px",
 											minHeight: "14px"
 										}}
