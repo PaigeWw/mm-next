@@ -75,7 +75,7 @@ export default () => {
 					<ChannelTable channelList={channelList} />
 				</TabPanel>
 				<TabPanel>
-					<UserTable userList={userList} />
+					<UserTable userList={userList} channelList={channelList} />
 				</TabPanel>
 			</Tabs>
 		</Flex>

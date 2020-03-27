@@ -28,7 +28,7 @@ export default () => {
 				flexDirection="column"
 			>
 				<Head></Head>
-				<Flex>
+				<Flex maxHeight="65%">
 					{goosList.map(item => (
 						<SelectBox {...item} pick={info.role !== 1} />
 					))}

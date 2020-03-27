@@ -3,6 +3,7 @@ import { Flex, Text, Box, Button, Row, Column } from "rebass"
 import arrayMove from "array-move"
 import { SortableContainer, SortableElement } from "react-sortable-hoc"
 
+import { ToastContainer, toast } from "../commons/toast"
 import { SortableTable, TableLine, ProductInfo } from "./base-table"
 
 import EditBox from "../made-edit-box"
@@ -211,7 +212,7 @@ export default props => {
 			justifyContent="space-between"
 			sx={{
 				cursor: "pointer",
-				height: "100%",
+				// height: "100%",
 				background: "#FFF0E5"
 			}}
 		>
@@ -221,6 +222,7 @@ export default props => {
 					setCollectList(arrayMove(collectList, oldIndex, newIndex))
 				}}
 			/> */}
+			<ToastContainer />
 			<Table
 				sort={{
 					pressDelay: 200,
@@ -263,7 +265,11 @@ export default props => {
 					cursor: "pointer"
 				}}
 				onClick={() => {
-					props.nextStep(selectList)
+					if (selectList.length > 0) {
+						props.nextStep(selectList)
+					} else {
+						toast.notify("Please select a collection.")
+					}
 				}}
 			>
 				GENERATE ORDERS

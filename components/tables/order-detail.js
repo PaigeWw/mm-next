@@ -26,7 +26,8 @@ export default props => {
 			justifyContent="space-between"
 			sx={{
 				cursor: "pointer",
-				height: "100%"
+				height: "100%",
+				width: "100%"
 			}}
 		>
 			<Box
@@ -59,11 +60,15 @@ export default props => {
 								<Text rowspan={2} hasBorder={"1px solid"}>
 									{index + 1}
 								</Text>
-								<ProductInfo
-									rowspan={2}
-									styleNum={item.orderNo}
-									hasBorder={"1px solid"}
-								/>
+								<Flex justifyContent="center" rowspan={2}>
+									<Box margin="8px 0">
+										{item.favorite.styleAndColor.map(x => {
+											return <ProductInfo styleNum={x.styleId.styleNo} />
+										})}
+
+										{/* <ProductInfo styleNum="VERSION K2009" made="2110 YE GREEN" /> */}
+									</Box>
+								</Flex>
 								<Flex
 									rowspan={2}
 									flexDirection="column"

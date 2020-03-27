@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
 import { Input } from "@rebass/forms"
 import Head from "../components/head"
@@ -7,10 +7,10 @@ import useUserInfo from "../hooks/getUserInfo"
 import Router from "next/router"
 import Svg from "../components/svg"
 export default () => {
+	const nameRef = useRef(null)
+	const passwordRef = useRef(null)
 	const [modal, setMadal] = useState(0) // 0, 1, 2, 3
 	const [svgColor, setSvgColor] = useState(false)
-	const [account, setAccount] = useState("")
-	const [password, setPassword] = useState("")
 	const showInfoList = [
 		{
 			signal: "AT MRMISS WE LOVE . . .",
@@ -40,11 +40,15 @@ export default () => {
 
 	const handleLogin = async () => {
 		// console.log("user/login")
+		console.log(nameRef.current)
+		let account = nameRef.current.value
+
+		let password = passwordRef.current.value
 		const req = await request(
 			"user/login",
 			{
-				account: account,
-				password: password
+				account,
+				password
 			},
 			"post"
 		)
@@ -54,6 +58,18 @@ export default () => {
 		}
 	}
 	const userInfo = useUserInfo()
+
+	useEffect(() => {
+		let num = 0
+		const interval = setInterval(() => {
+			num++
+			setSvgColor(false)
+			setMadal(num % 4)
+		}, 5000)
+		return () => {
+			clearInterval(interval)
+		}
+	}, [])
 	return (
 		<React.Fragment>
 			<Head></Head>
@@ -65,9 +81,9 @@ export default () => {
 						width={[1, 722 / 1920]}
 						height={["100%", "62.5vh"]}
 						bg="white"
-						onMouseEnter={() => {
-							setSvgColor("#FFF")
-						}}
+						// onMouseEnter={() => {
+						// 	setSvgColor("#FFF")
+						// }}
 					>
 						<img
 							// width="1.8rem"
@@ -106,10 +122,9 @@ export default () => {
 								minHeight="28px"
 								minWidth="200px"
 								id="username"
-								value={account}
-								onChange={e => setAccount(e.target.value)}
 								name="username"
 								type="text"
+								ref={ref => (nameRef.current = ref)}
 							/>
 
 							<Flex alignItems="center" mt="4%" mb={"2%"}>
@@ -134,8 +149,7 @@ export default () => {
 								id="password"
 								name="password"
 								type="password"
-								value={password}
-								onChange={e => setPassword(e.target.value)}
+								ref={ref => (passwordRef.current = ref)}
 							/>
 							<Button
 								variant="primary"
@@ -162,6 +176,7 @@ export default () => {
 							minHeight="100%"
 							src={showInfoList[modal].imgUrl}
 							mr={"10px"}
+							sx={{ objectFit: "cover" }}
 						/>
 					</Box>
 					<Box
@@ -198,10 +213,10 @@ export default () => {
 										cursor: "pointer",
 										textDecoration: index === modal ? "underline" : "none"
 									}}
-									onMouseEnter={() => {
-										setSvgColor(false)
-										setMadal(index)
-									}}
+									// onMouseEnter={() => {
+									// 	setSvgColor(false)
+									// 	setMadal(index)
+									// }}
 								>
 									{info.signal}
 								</Text>

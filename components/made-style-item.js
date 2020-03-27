@@ -77,7 +77,8 @@ export default props => {
 						sx={{
 							width: "0.3rem",
 							minWidth: "14px",
-							minHeight: "14px"
+							minHeight: "14px",
+							opacity: "0.6"
 						}}
 						onClick={props.onAddFavorite}
 					/>

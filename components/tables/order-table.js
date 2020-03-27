@@ -5,9 +5,10 @@ import Table, { TableLine, ProductInfo } from "./base-table"
 import InputNumber from "../number-input"
 import request from "../../utils/request"
 import StyleItem from "../commons/min-style-item"
+import { ToastContainer, toast } from "../commons/toast"
 
 export default props => {
-	const { selectStyles, isEditOrder, rate } = props
+	const { selectStyles, isEditOrder, rate, onDelSelectStyle } = props
 	const line = props.selectStyles.length
 	let initData = {
 		orderData: [],
@@ -16,7 +17,7 @@ export default props => {
 	if (isEditOrder) {
 		initData.orderData = selectStyles.map((x, index) => {
 			// let sizeInfo = x.details[0].size.values.map(item => ({ ...item, num: 0 }))
-			// console.log()
+			console.log(x)
 			let stylePrice = x.favorite.styleAndColor[0].styleId.price
 			x.favorite.styleAndColor.length > 1
 				? (stylePrice += x.favorite.styleAndColor[1].styleId.price)
@@ -56,7 +57,7 @@ export default props => {
 	} else {
 		initData.orderData = selectStyles.map(x => {
 			let sizeInfo = x.details[0].size.values.map(item => ({ ...item, num: 0 }))
-			// console.log()
+			console.log("initData")
 			return {
 				favoriteId: x.id,
 				sizeInfo: sizeInfo,
@@ -120,6 +121,15 @@ export default props => {
 	}
 
 	const handleSubmitOrder = async () => {
+		console.log("handleSubmitOrder", orderData[0].total)
+		for (let i = 0; i < orderData.length; i++) {
+			if (orderData[i].total < 1) {
+				console.log(i)
+				console.log(orderData[i])
+				toast.notify("There is one item not empty here, please check.")
+				return
+			}
+		}
 		if (isEditOrder) {
 			handleUpdateOrder()
 			return
@@ -137,6 +147,14 @@ export default props => {
 		}
 	}
 
+	const handleDel = async index => {
+		// onDelSelectStyle(index)
+		styleData.splice(index, 1)
+		orderData.splice(index, 1)
+		setStyleData([].concat(styleData))
+		setOrderData([].concat(orderData))
+	}
+	console.log("after", orderData)
 	return (
 		<Flex
 			flexDirection="column"
@@ -144,13 +162,16 @@ export default props => {
 			sx={{
 				cursor: "pointer",
 				height: "100%",
+				width: "100%",
 				background: "#FFF0E5"
 			}}
 		>
+			<ToastContainer />
 			<Box
 				sx={{
 					padding: "0 18px 18px 18px",
 					height: "max-content",
+					width: "100%",
 					display: "table"
 				}}
 			>
@@ -170,7 +191,13 @@ export default props => {
 					]}
 				>
 					{styleData.map((collect, index) => (
-						<TableLine haveDel key={`selectline-${collect.id}`}>
+						<TableLine
+							haveDel
+							key={`selectline-${collect.id}`}
+							onDel={() => {
+								handleDel(index)
+							}}
+						>
 							<Text>{index}</Text>
 							<Flex flexDirection="column">
 								{collect.prodInfo.map(x => (

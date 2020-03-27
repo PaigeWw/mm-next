@@ -95,7 +95,7 @@ export default () => {
 	return (
 		<React.Fragment>
 			<Head></Head>
-			<Flex height="100vh" flexDirection="column">
+			<Flex flexDirection="column">
 				<Flex
 					style={{
 						display: "flex",
@@ -193,6 +193,7 @@ export default () => {
 										src={selected ? "./4/collect-1.png" : "./4/collect.png"}
 										sx={{
 											width: "0.3rem",
+											height: "0.3rem",
 											minWidth: "14px",
 											minHeight: "14px"
 										}}

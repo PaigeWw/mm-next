@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
 import Router from "next/router"
-import { ToastContainer, toast } from "react-nextjs-toast"
+import { ToastContainer, toast } from "../components/commons/toast"
 import arrayMove from "array-move"
 import { SortableContainer, SortableElement } from "react-sortable-hoc"
 
@@ -157,7 +157,7 @@ export default () => {
 							}`
 						)
 					} else {
-						toast.warn("Please select a style.")
+						toast.notify("Please select a style.")
 
 						// setToast({ type: "error", info: "Please Select Style." })
 					}

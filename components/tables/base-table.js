@@ -120,6 +120,7 @@ export const SortableTable = props => {
 			id={props.id}
 			frame="void"
 			style={{
+				width: "calc(100% - 36px)",
 				border: "1px",
 				margin: "0 18px 18px 18px",
 				background: "#fff",
@@ -150,6 +151,7 @@ export default props => {
 			id={props.id}
 			frame="void"
 			style={{
+				width: "calc(100% - 36px)",
 				border: "1px",
 				margin: "0 18px 18px 18px",
 				background: "#fff",

@@ -77,6 +77,7 @@ export default props => {
 			{ _id: orderList[index].id },
 			"post"
 		)
+		console.log(res)
 	}
 	const handleCheckDetail = index => {
 		setOrderDetailMode({ visible: true, detail: orderDetailList[index] })

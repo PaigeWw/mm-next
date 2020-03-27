@@ -63,7 +63,7 @@ export default props => {
 			alignItems="center"
 			width="100%"
 			alignItems="baseline"
-			ml="0.9rem"
+			pl="0.9rem"
 			fontSize="0.14rem"
 			sx={{
 				cursor: "pointer",

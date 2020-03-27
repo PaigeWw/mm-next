@@ -19,6 +19,7 @@ export default class MyDocument extends Document {
 					<>
 						{initialProps.styles}
 						{sheet.getStyleElement()}
+						<script></script>
 					</>
 				)
 			}

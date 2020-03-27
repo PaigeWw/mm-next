@@ -13,12 +13,12 @@ import useUserInfo from "../hooks/getUserInfo"
 import useRateInfo from "../hooks/getRateInfo"
 import { getPageQuery } from "../utils/helper"
 const CurTitlt = props => (
-	<Text sx={{ fontSize: "0.38rem", textDecoration: "underline" }} pr="18px">
+	<Text sx={{ fontSize: "0.38rem", textDecoration: "underline" }} pl="18px">
 		{props.text}
 	</Text>
 )
 const Titlt = props => (
-	<Text sx={{ fontSize: "0.2rem" }} pr="18px">
+	<Text sx={{ fontSize: "0.2rem" }} pl="18px">
 		{props.text}
 	</Text>
 )
@@ -39,6 +39,9 @@ export default () => {
 		if (!user) {
 			return
 		}
+		if (user.role === 1) {
+			title.push(5)
+		}
 		setUserInfo(user)
 	}, [user])
 	const handleSelectStyleToOrder = selectList => {
@@ -51,6 +54,12 @@ export default () => {
 		setIsEditOder(order._id)
 		setSelectStyles(order.orderData)
 		setTabSelectedIndex(1)
+	}
+
+	const handleDelSelectStyle = index => {
+		selectStyles.splice(index, 1)
+		console.log(selectStyles)
+		setSelectStyles([...selectStyles])
 	}
 	useEffect(() => {
 		const query = getPageQuery()
@@ -71,6 +80,7 @@ export default () => {
 					className="wrapper"
 					sx={{
 						flexGrow: 1,
+						cursor: "pointer",
 						"&": {
 							".react-tabs__tab": {
 								background: "#000",
@@ -100,7 +110,9 @@ export default () => {
 								<Titlt text={t}></Titlt>
 							)
 						)}
-						<Text sx={{ fontSize: "0.3rem" }}>.</Text>
+						<Text sx={{ fontSize: "0.3rem" }} pl="18px">
+							.
+						</Text>
 					</Flex>
 					<Tabs
 						selectedIndex={tabSelectedIndex}
@@ -164,7 +176,7 @@ export default () => {
 										textAlign: "center"
 									}}
 								>
-									USER MANAGEMENT
+									5 USER MANAGEMENT
 								</Tab>
 							) : null}
 						</TabList>
@@ -180,6 +192,7 @@ export default () => {
 								rate={(userInfo && rateInfo[userInfo.currency]) || {}}
 								isEditOrder={isEditOrder}
 								selectStyles={selectStyles}
+								onDelSelectStyle={handleDelSelectStyle}
 								nextStep={() => {
 									handleSetTabSelectedIndex(2)
 								}}

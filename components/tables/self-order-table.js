@@ -32,6 +32,7 @@ export default props => {
 			})
 
 			return {
+				orderNo: order.orderNo,
 				date: order.updateTime,
 				user: order.user.name,
 				id: order._id
@@ -94,6 +95,9 @@ export default props => {
 								className="tool"
 								width="0.3rem"
 								src="/8/download.png"
+								sx={{
+									opacity: "0.7"
+								}}
 								onClick={() => {
 									window.open(
 										`./download?id=${order.id}?rateSign=${rate.sign}&rateVal=${rate.val}`,
