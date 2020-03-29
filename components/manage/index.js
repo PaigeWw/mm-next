@@ -8,15 +8,16 @@ import request from "../../utils/request.js"
 export default () => {
 	const [userList, setUserList] = useState([])
 	const [channelList, setChannelList] = useState([])
+	const getUserChannels = async page => {
+		const req = await request("user/getUserChannels", "get")
+		setChannelList(req.channels || [])
+		setUserList(req.users || [])
+		// console.log("getUserChannels", req)
+	}
 	useEffect(() => {
-		const getUserChannels = async page => {
-			const req = await request("user/getUserChannels", "get")
-			setChannelList(req.channels || [])
-			setUserList(req.users || [])
-			// console.log("getUserChannels", req)
-		}
 		getUserChannels()
 	}, [])
+
 	return (
 		<Flex
 			textAlign="center"
@@ -75,7 +76,11 @@ export default () => {
 					<ChannelTable channelList={channelList} />
 				</TabPanel>
 				<TabPanel>
-					<UserTable userList={userList} channelList={channelList} />
+					<UserTable
+						userList={userList}
+						channelList={channelList}
+						getUserChannels={getUserChannels}
+					/>
 				</TabPanel>
 			</Tabs>
 		</Flex>

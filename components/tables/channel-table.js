@@ -3,7 +3,7 @@ import { Flex, Text, Box, Button, Row, Column } from "rebass"
 import Table, { TableLine, ProductInfo } from "./base-table"
 import ShowStyle from "../show-style"
 import InputNumber from "../number-input"
-
+const info = ["RMB", "USB", "ESD"]
 export default props => {
 	return (
 		<Flex
@@ -33,13 +33,34 @@ export default props => {
 							<Text style={{ padding: "20px 0" }}>
 								<input value={channel.name} />
 							</Text>
-							<Text>
-								<select value={channel.currency}>
-									<option value="0">RMB</option>
-									<option value="1">USD</option>
-									<option value="2">ESD</option>
-								</select>
-							</Text>
+							<Flex
+								width="100%"
+								sx={{
+									justifyContent: "center"
+								}}
+							>
+								<Box
+									width="140px"
+									sx={{
+										height: "24px",
+										lineHeight: "24px",
+										border: "1px solid #000",
+										position: "relative"
+									}}
+								>
+									{info[channel.currency]}
+									<img
+										src="./8/bg.jpeg"
+										height="22px"
+										height="27.5px"
+										style={{
+											position: "absolute",
+											right: 0
+										}}
+									></img>
+								</Box>
+							</Flex>
+
 							<Text>
 								<a href={`./assign?channelId=${channel._id}`}>CLICK TO VIEW</a>
 							</Text>

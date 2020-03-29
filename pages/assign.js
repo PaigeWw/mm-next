@@ -96,16 +96,38 @@ export default () => {
 								lineHeight="1.14rem"
 								sx={{
 									height: "1.14rem",
-									position: "relative",
-									cursor: "pointer"
+									position: "relative"
 								}}
 								color="#fff"
 								onClick={() => {
-									setShowChannels(true)
+									setShowChannels(!showChannels)
 								}}
 							>
+								<Flex
+									sx={{
+										height: "1.14rem",
+										paddingRight: "30px",
+										position: "relative",
+										cursor: "pointer"
+									}}
+								>
+									{`${currentChannel.code}(${currentChannel.name})`}
+									<Box
+										sx={{
+											position: "absolute",
+											top: "calc(50% - 3px)",
+											right: 0,
+											width: 0,
+											height: 0,
+											borderLeft: "6px solid transparent",
+											borderRight: "6px solid transparent",
+											borderTop: "6px solid #fff"
+										}}
+									></Box>
+								</Flex>
+
 								{/* {console.log(channelList)} */}
-								{`${currentChannel.code}(${currentChannel.name})`}
+
 								{showChannels ? (
 									<Box
 										sx={{

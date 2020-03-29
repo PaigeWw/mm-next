@@ -29,7 +29,14 @@ export default props => {
 			"post"
 		)
 		if (res) {
+			getUserChannels()
 			setAddUserModal(false)
+		}
+	}
+	const handleDelUser = async _id => {
+		const res = await request("/user/delete", { _id }, "post")
+		if (res) {
+			getUserChannels()
 		}
 	}
 	const handleEditNewUser = values => {
@@ -48,7 +55,8 @@ export default props => {
 	const handleConfrim = async () => {
 		const res = await request("/user/update", { ...editUserInfo }, "post")
 		if (res) {
-			// console.log("res", res)
+			setUserEditInfo(false)
+			getUserChannels()
 		}
 	}
 	return (
@@ -97,6 +105,9 @@ export default props => {
 									})
 								}}
 								haveDel
+								onDel={() => {
+									handleDelUser(user._id)
+								}}
 							>
 								<Text style={{ padding: "20px 0" }}>{index}</Text>
 								<Text>{user.name}</Text>
@@ -111,29 +122,32 @@ export default props => {
 					})}
 				</Table>
 
-				<Button
-					variant="primary"
-					height="44px"
-					width="140px"
-					bg="#1B1B1B"
-					color="#fff"
-					padding="0"
-					mt="10px"
-					sx={{
-						position: "fixed",
-						zIndex: 9999,
-						bottom: 20,
-						right: 20,
-						borderRadius: 0,
-						fontSize: "14px",
-						cursor: "pointer"
-					}}
-					onClick={() => {
-						setAddUserModal(true)
-					}}
-				>
-					ADD CUSTOMER
-				</Button>
+				{channelList.length > 0 ? (
+					<Button
+						variant="primary"
+						height="44px"
+						width="140px"
+						bg="#1B1B1B"
+						color="#fff"
+						padding="0"
+						mt="10px"
+						sx={{
+							position: "fixed",
+							zIndex: 9999,
+							bottom: 20,
+							right: 20,
+							borderRadius: 0,
+							fontSize: "14px",
+							cursor: "pointer"
+						}}
+						onClick={() => {
+							setNewUserEditInfo({ channels: [channelList[0]._id] })
+							setAddUserModal(true)
+						}}
+					>
+						ADD CUSTOMER
+					</Button>
+				) : null}
 			</Flex>
 			{addUserModal ? (
 				<Modal

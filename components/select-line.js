@@ -90,8 +90,8 @@ export default props => {
 					background: "no-repeat",
 					backgroundSize: "20px 34px",
 					backgroundPositionY: "center",
-					backgroundPositionX: "70%",
-					backgroundImage: "url(/3/drop.jpeg)"
+					backgroundPositionX: "70%"
+					// backgroundImage: "url(/3/drop.jpeg)"
 				}}
 			>
 				<Flex

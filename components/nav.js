@@ -145,7 +145,7 @@ export default props => {
 					) : null}
 					<NavItem
 						name="Logout"
-						// url="/icon/icon-04.svg"
+						url="/icon/icon-8.svg"
 						onLinkTo={() => {
 							localStorage.clear()
 							Router.push("/login")
