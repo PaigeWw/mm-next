@@ -154,8 +154,6 @@ export default props => {
 						{collect.prodInfo.map(prodInfo => (
 							<ProductInfo styleNum={prodInfo.styleNo} made={prodInfo.color} />
 						))}
-
-						{/* <ProductInfo styleNum="VERSION K2009" made="2110 YE GREEN" /> */}
 					</Box>
 				</Flex>
 				<Flex flexDirection="column">

@@ -3,6 +3,8 @@ import { Flex, Text, Box, Image } from "rebass"
 import lodash from "lodash"
 import { SortableContainer, SortableElement } from "react-sortable-hoc"
 
+import ActionEditCom from "./action-edit"
+
 const Title = props => (
 	<thead
 		width="100%"
@@ -63,40 +65,7 @@ export const TableLine = props => {
 			})}
 			{props.noEdit ? null : (
 				<td>
-					<Flex justifyContent="space-around" alignItems="center">
-						{props.haveEdit ? (
-							<Image
-								className="tool"
-								width="0.3rem"
-								src="/5/edit.png"
-								onClick={props.onEdit}
-							/>
-						) : null}
-						{props.haveSelect ? (
-							<Image
-								className="tool"
-								width="0.3rem"
-								src={props.isSelect ? "/5/1-1.png" : "/5/1.png"}
-								onClick={props.onSelect}
-							/>
-						) : null}
-						{props.haveDel ? (
-							<Image
-								className="tool"
-								width="0.3rem"
-								src="/5/2.png"
-								onClick={props.onDel}
-							/>
-						) : null}
-						{props.Bigger ? (
-							<Image
-								className="tool"
-								width="0.3rem"
-								src="/7/bigger.png"
-								onClick={props.onBiger}
-							/>
-						) : null}
-					</Flex>
+					<ActionEditCom {...props}></ActionEditCom>
 				</td>
 			)}
 		</tr>

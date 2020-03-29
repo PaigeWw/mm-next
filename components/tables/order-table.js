@@ -17,7 +17,7 @@ export default props => {
 	if (isEditOrder) {
 		initData.orderData = selectStyles.map((x, index) => {
 			// let sizeInfo = x.details[0].size.values.map(item => ({ ...item, num: 0 }))
-			console.log(x)
+			// console.log(x)
 			let stylePrice = x.favorite.styleAndColor[0].styleId.price
 			x.favorite.styleAndColor.length > 1
 				? (stylePrice += x.favorite.styleAndColor[1].styleId.price)

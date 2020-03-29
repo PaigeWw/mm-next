@@ -52,7 +52,7 @@ export default props => {
 									<img
 										src="./8/bg.jpeg"
 										height="22px"
-										height="27.5px"
+										width="27.5px"
 										style={{
 											position: "absolute",
 											right: 0

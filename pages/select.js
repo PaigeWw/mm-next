@@ -21,7 +21,6 @@ export default () => {
 	const [currentSeleted, setCurrentSeleted] = useState(false)
 	const [selectStyles, setSelectStyles] = useState([])
 	const [selectStylesType, setSelectStylesType] = useState([])
-	const [showToast, setShowToast] = useState(false)
 	const [queryKey, setQueryKey] = useState({})
 
 	useEffect(() => {
