@@ -39,7 +39,7 @@ export default () => {
 		if (!user) {
 			return
 		}
-		if (user.role === 1) {
+		if (user.role === 1 && title.length < 5) {
 			title.push(5)
 		}
 		setUserInfo(user)
