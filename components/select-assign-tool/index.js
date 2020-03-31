@@ -37,13 +37,10 @@ export default props => {
 	}
 	useEffect(() => {
 		const getChannels = async () => {
-			const req = await request("channel/getList", {}, "get")
-			const assignChannelList = req.docs.filter(
-				x => channels.indexOf(x._id) < 0
-			)
-			setChannelList(assignChannelList)
-			if (assignChannelList.length > 0) {
-				setCurChannel(assignChannelList[0])
+			const req = await request("user/getUserChannels", "get")
+			setChannelList(req.channels)
+			if (req.channels.length > 0) {
+				setCurChannel(req.channels[0])
 				// getChannelsAssign(sid, req.docs[0]._id)
 			}
 		}

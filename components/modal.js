@@ -11,7 +11,9 @@ export default props => {
 			p="0.9rem"
 			sx={{
 				position: "fixed",
+				maxHeight: "100%",
 				zIndex: 999999999,
+				overflow: "scroll",
 				top: "50%",
 				left: "50%",
 				transform: "translate(-50%, -50%)",
