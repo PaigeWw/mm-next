@@ -17,7 +17,6 @@ export default props => {
 		// tempSelectedImgs.push(false)
 	}
 	const [curSelectedColors, setCurSelectedColors] = useState(tempSelectedIds)
-
 	return (
 		<Modal onClose={props.onClose}>
 			<Flex width="14rem" fontSize="0.18rem" color="#000">

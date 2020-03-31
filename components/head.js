@@ -54,7 +54,9 @@ function IndexPage() {
                         const fs = 100 * (clientWidth / 1920);
                         docEl.style.fontSize = fs + 'px';
                     }
-                    window.onload = resizeFontSize
+                    document.addEventListener('DOMContentLoaded', function(event) {
+                        resizeFontSize();
+                      });
                     window.onresize = resizeFontSize;`
 					}}
 				></script>
