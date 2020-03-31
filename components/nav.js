@@ -5,6 +5,14 @@ import NavItem from "../components/nav-item"
 import getUserInfo from "../hooks/getUserInfo"
 import Router from "next/router"
 
+function resizeFontSize() {
+	const docEl = document.documentElement
+	const { clientWidth } = docEl
+	if (!clientWidth) return
+	const fs = 100 * (clientWidth / 1920)
+	docEl.style.fontSize = fs + "px"
+}
+
 export default props => {
 	const user = getUserInfo()
 	const [showNav, setShowNav] = useState(false)
@@ -12,6 +20,8 @@ export default props => {
 		setShowNav(false)
 	}
 	useEffect(() => {
+		resizeFontSize()
+		window.onresize = resizeFontSize
 		window.addEventListener("click", closeShowNav)
 		return () => {
 			window.removeEventListener("click", closeShowNav)
@@ -19,8 +29,8 @@ export default props => {
 	}, [])
 	return (
 		<React.Fragment>
+			<Head></Head>
 			<Flex justifyContent="space-between" width="100%">
-				<Head></Head>
 				<img
 					width="2rem"
 					height="0.83rem"

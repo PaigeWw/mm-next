@@ -55,6 +55,7 @@ function IndexPage() {
                         docEl.style.fontSize = fs + 'px';
                     }
                     document.addEventListener('DOMContentLoaded', function(event) {
+                        console.log('DOMContentLoaded')
                         resizeFontSize();
                       });
                     window.onresize = resizeFontSize;`
