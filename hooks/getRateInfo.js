@@ -19,8 +19,8 @@ function useRateInfo() {
 			if (data && data.length) {
 				setRate([
 					{ val: 1, sign: "¥" }, //CNY
-					{ val: data[0].meiyuan, sign: "$" }, // USD
-					{ val: data[0].ouyuan, sign: "€" } //EUR
+					{ val: 1 / data[0].meiyuan, sign: "$" }, // USD
+					{ val: 1 / data[0].ouyuan, sign: "€" } //EUR
 				])
 			} else {
 				setRate([
