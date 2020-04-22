@@ -2,22 +2,23 @@ import React, { useState, useEffect } from "react"
 import { Flex, Text } from "rebass"
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
 import request from "../utils/request"
-
+import { ToastContainer, toast } from "../components/commons/toast"
 import Head from "../components/nav"
 import CollectTable from "../components/tables/collect-table"
-import OrderTable from "../components/tables/order-table"
+import OrderTable from "../components/tables/new-order-table"
+// import OrderTable from "../components/tables/order-table"
 import SendTable from "../components/tables/send-table"
 import SelfOrderTable from "../components/tables/self-order-table"
 import Manage from "../components/manage/index"
 import useUserInfo from "../hooks/getUserInfo"
 import useRateInfo from "../hooks/getRateInfo"
 import { getPageQuery } from "../utils/helper"
-const CurTitlt = props => (
+const CurTitlt = (props) => (
 	<Text sx={{ fontSize: "0.38rem", textDecoration: "underline" }} pl="18px">
 		{props.text}
 	</Text>
 )
-const Titlt = props => (
+const Titlt = (props) => (
 	<Text sx={{ fontSize: "0.2rem" }} pl="18px">
 		{props.text}
 	</Text>
@@ -32,7 +33,7 @@ export default () => {
 	const [selectStyles, setSelectStyles] = useState([])
 	const [isEditOrder, setIsEditOder] = useState(false)
 
-	const handleSetTabSelectedIndex = index => {
+	const handleSetTabSelectedIndex = (index) => {
 		setTabSelectedIndex(index)
 	}
 	useEffect(() => {
@@ -44,19 +45,19 @@ export default () => {
 		}
 		setUserInfo(user)
 	}, [user])
-	const handleSelectStyleToOrder = selectList => {
+	const handleSelectStyleToOrder = (selectList) => {
 		setSelectStyles(selectList)
 		setTabSelectedIndex(1)
 		setIsEditOder(false)
 	}
 
-	const handleEditOrder = order => {
+	const handleEditOrder = (order) => {
 		setIsEditOder(order._id)
 		setSelectStyles(order.orderData)
 		setTabSelectedIndex(1)
 	}
 
-	const handleDelSelectStyle = index => {
+	const handleDelSelectStyle = (index) => {
 		selectStyles.splice(index, 1)
 		console.log(selectStyles)
 		setSelectStyles([...selectStyles])
@@ -75,6 +76,7 @@ export default () => {
 		<>
 			<Flex flexDirection="column" height="100%">
 				<Head></Head>
+				<ToastContainer />
 				<Flex
 					flexDirection="column"
 					className="wrapper"
@@ -84,20 +86,20 @@ export default () => {
 						"&": {
 							".react-tabs__tab": {
 								background: "#000",
-								color: "#fff"
+								color: "#fff",
 							},
 							".react-tabs__tab--selected": {
 								flexGrow: 1,
 								background: "#FFC1AE !important",
-								color: "#000"
-							}
-						}
+								color: "#000",
+							},
+						},
 					}}
 				>
 					<Flex
 						style={{
 							height: "0.8rem",
-							background: "#FFC1AE"
+							background: "#FFC1AE",
 						}}
 						alignItems="center"
 						justifyContent="center"
@@ -129,14 +131,14 @@ export default () => {
 								background: "#FFC1AE",
 								fontSize: "0.3rem",
 								justifyContent: "space-around",
-								listStyleType: "none"
+								listStyleType: "none",
 							}}
 						>
 							<Tab
 								style={{
 									lineHeight: "0.8rem",
 									flex: 1,
-									textAlign: "center"
+									textAlign: "center",
 								}}
 							>
 								1 MY COLLECTION
@@ -145,7 +147,7 @@ export default () => {
 								style={{
 									lineHeight: "0.8rem",
 									flex: 1,
-									textAlign: "center"
+									textAlign: "center",
 								}}
 							>
 								2 PRODUCTION ORDER
@@ -154,7 +156,7 @@ export default () => {
 								style={{
 									lineHeight: "0.8rem",
 									flex: 1,
-									textAlign: "center"
+									textAlign: "center",
 								}}
 							>
 								3 ORDER SENT
@@ -163,7 +165,7 @@ export default () => {
 								style={{
 									lineHeight: "0.8rem",
 									flex: 1,
-									textAlign: "center"
+									textAlign: "center",
 								}}
 							>
 								4 MY ORDER
@@ -173,7 +175,7 @@ export default () => {
 									style={{
 										lineHeight: "0.8rem",
 										flex: 1,
-										textAlign: "center"
+										textAlign: "center",
 									}}
 								>
 									5 USER MANAGEMENT
@@ -189,17 +191,20 @@ export default () => {
 						</TabPanel>
 						<TabPanel>
 							<OrderTable
+								toast={toast}
 								rate={(userInfo && rateInfo[userInfo.currency]) || {}}
 								isEditOrder={isEditOrder}
 								selectStyles={selectStyles}
 								onDelSelectStyle={handleDelSelectStyle}
 								nextStep={() => {
+									setSelectStyles([])
 									handleSetTabSelectedIndex(2)
 								}}
 							/>
 						</TabPanel>
 						<TabPanel>
 							<SendTable
+								toast={toast}
 								rate={(userInfo && rateInfo[userInfo.currency]) || {}}
 								onEditOrder={handleEditOrder}
 								nextStep={() => {
@@ -209,6 +214,7 @@ export default () => {
 						</TabPanel>
 						<TabPanel>
 							<SelfOrderTable
+								toast={toast}
 								rate={(userInfo && rateInfo[userInfo.currency]) || {}}
 							/>
 						</TabPanel>

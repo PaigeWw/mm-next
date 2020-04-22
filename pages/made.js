@@ -38,7 +38,7 @@ export default () => {
 			for (let i = 0; i < 6; i++) {
 				styleInitData[i].push({
 					style: req,
-					colors: []
+					colors: [],
 				})
 			}
 			if (query.id1) {
@@ -54,36 +54,52 @@ export default () => {
 		getStyleDetails()
 	}, [])
 
-	const handleConfirmMade = colorsList => {
+	const handleConfirmMade = (colorsList) => {
 		if (!colorsList[0]) return
 		styleInitData[curItemIndex] = [
-			{ colors: colorsList[0], style: styleDetails[0] }
+			{ colors: colorsList[0], style: styleDetails[0] },
 		]
 		if (styleDetails.length > 1) {
 			if (!colorsList[1]) return
 			styleInitData[curItemIndex].push({
 				colors: colorsList[1],
-				style: styleDetails[1]
+				style: styleDetails[1],
 			})
 		}
 		setStyleInitData([].concat(styleInitData))
 	}
-
-	const handleAddFavorite = async index => {
+	const handleDelFavorite = async (index) => {
+		// console.log(item)
+		let itemIndex = collectList.findIndex((x) => x.index === index)
+		let item = collectList[itemIndex]
+		if (itemIndex > -1) {
+			const res = await request(
+				"/user/deleteFavorite",
+				{ _id: item.id },
+				"post"
+			)
+			// console.log("res", res)
+			if (res) {
+				// console.log("删除他，嘿嘿嘿")
+				collectList.splice(itemIndex, 1)
+				setCollectList([].concat(collectList))
+			}
+		}
+	}
+	const handleAddFavorite = async (index) => {
 		if (!styleInitData[index][0].colors.length) return
 		let params = [
 			{
 				styleId: styleDetails[0]._id,
-				colorIds: styleInitData[index][0].colors.map(x => x._id)
-			}
+				colorIds: styleInitData[index][0].colors.map((x) => x._id),
+			},
 		]
-		collectList.push(index)
-		setCollectList([].concat(collectList))
+
 		if (styleDetails.length > 1) {
 			if (!styleInitData[index][1].colors.length) return
 			params.push({
 				styleId: styleDetails[1]._id,
-				colorIds: styleInitData[index][1].colors.map(x => x._id)
+				colorIds: styleInitData[index][1].colors.map((x) => x._id),
 			})
 		}
 		const res = await request(
@@ -91,15 +107,19 @@ export default () => {
 			{ styleAndColor: params },
 			"post"
 		)
-		// setStyleDetails([].concat(styleDetails))
-		// console.log(res)
+		if (res) {
+			collectList.push({ index, id: res.id })
+			// collectList.push(index)
+			setCollectList([].concat(collectList))
+			console.log(res)
+		}
 	}
 	return (
 		<>
 			<Flex flexDirection="column">
 				<Head></Head>
 				<ReactSvg
-					beforeInjection={svg => {
+					beforeInjection={(svg) => {
 						svg.setAttribute("id", "mm-defs-svg")
 						svg.setAttribute("style", "width: 0%; height: 0%")
 					}}
@@ -131,13 +151,17 @@ export default () => {
 								svgId={`${index}-style-img-svg`}
 								styleList={style}
 								index={index}
-								collected={collectList.indexOf(index) >= 0}
+								collected={collectList.find((x) => x.index === index)}
 								tool={true}
 								openBigBox={() => {
 									setShowBigBox(true)
 								}}
 								onAddFavorite={() => {
-									handleAddFavorite(index)
+									if (collectList.find((x) => x.index === index)) {
+										handleDelFavorite(index)
+									} else {
+										handleAddFavorite(index)
+									}
 								}}
 								openEditBox={() => {
 									setShowEditBox(true)
@@ -157,7 +181,7 @@ export default () => {
 							width="9.6rem"
 							sx={{
 								borderRadius: 0,
-								cursor: "pointer"
+								cursor: "pointer",
 							}}
 							onClick={() => {
 								Router.back()
@@ -175,7 +199,7 @@ export default () => {
 							width="9.6rem"
 							sx={{
 								borderRadius: 0,
-								cursor: "pointer"
+								cursor: "pointer",
 							}}
 							onClick={() => {
 								Router.push("/mine")

@@ -9,7 +9,7 @@ import { ColorList, PaintList } from "./color-and-paint"
 import request from "../utils/request.js"
 // import { baseUrl } from "../utils/helper"
 
-export default props => {
+export default (props) => {
 	const { styleDetails, curStyle, userInfo } = props
 
 	let tempSelectedIds = [curStyle[0].colors]
@@ -30,7 +30,7 @@ export default props => {
 	const [flowerColors, setFlowerColors] = useState({ docs: [] })
 	const [pcode, setPcode] = useState("")
 	const [fcode, setFcode] = useState("")
-	const getColorList = async page => {
+	const getColorList = async (page) => {
 		let options = { type: 0, page: page, limit: 14 }
 		if (pcode) {
 			options.code = pcode
@@ -39,7 +39,7 @@ export default props => {
 		setPlainColors({ docs: req.docs, page: req.page })
 		// console.log("getChannels", req)
 	}
-	const getPaintList = async page => {
+	const getPaintList = async (page) => {
 		let options = { type: 1, page: page, limit: 14 }
 		if (fcode) {
 			options.code = fcode
@@ -54,11 +54,11 @@ export default props => {
 		} else {
 			if (assignInfoSource && assignInfoSource.plainColors) {
 				let ans = assignInfoSource.plainColors.filter(
-					x => x.code.indexOf(pcode) > -1
+					(x) => x.code.indexOf(pcode) > -1
 				)
 				setAssignInfo({
 					...assignInfo,
-					plainColors: ans
+					plainColors: ans,
 				})
 				handleChangeColorPage(1, 0)
 			}
@@ -76,11 +76,11 @@ export default props => {
 		} else {
 			if (assignInfoSource && assignInfoSource.flowerColors) {
 				let ans = assignInfoSource.flowerColors.filter(
-					x => x.code.indexOf(fcode) > -1
+					(x) => x.code.indexOf(fcode) > -1
 				)
 				setAssignInfo({
 					...assignInfo,
-					flowerColors: ans
+					flowerColors: ans,
 				})
 				handleChangeColorPage(1, 1)
 			}
@@ -98,19 +98,19 @@ export default props => {
 			if (type === 0) {
 				setPlainColors({
 					docs: assignInfo.plainColors.slice((page - 1) * 14, page * 14),
-					page: page
+					page: page,
 				})
 			} else {
 				setFlowerColors({
 					docs: assignInfo.flowerColors.slice((page - 1) * 14, page * 14),
-					page: page
+					page: page,
 				})
 			}
 
 			// setAssignInfo(req)
 		}
 	}
-	const handleSelect = item => {
+	const handleSelect = (item) => {
 		// console.log(curSelectedColors)
 		if (
 			curSelectedColors[curStyleIndex][curStylesEditGroupIndex] &&
@@ -142,27 +142,27 @@ export default props => {
 				"channel/getAssign",
 				{
 					styleId,
-					channelId
+					channelId,
 				},
 				"get"
 			)
 			if (!req) {
 				setPlainColors({
 					docs: [],
-					page: 1
+					page: 1,
 				})
 				setFlowerColors({
 					docs: [],
-					page: 1
+					page: 1,
 				})
 			} else {
 				setPlainColors({
 					docs: req.plainColors.slice(0, 14),
-					page: 1
+					page: 1,
 				})
 				setFlowerColors({
 					docs: req.flowerColors.slice(0, 14),
-					page: 1
+					page: 1,
 				})
 				setAssignInfo(req)
 				setAssignInfoSource(req)
@@ -179,7 +179,7 @@ export default props => {
 		}
 	}, [curStyleIndex])
 
-	const handleOnSearch = options => {
+	const handleOnSearch = (options) => {
 		if (options.type === 0) {
 			setPcode(options.code)
 		} else {
@@ -196,7 +196,7 @@ export default props => {
 						justifyContent="space-evenly"
 						width="6.75rem"
 						sx={{
-							cursor: "pointer"
+							cursor: "pointer",
 						}}
 					>
 						{Array.isArray(styleDetails) &&
@@ -211,7 +211,7 @@ export default props => {
 										border:
 											curStyleIndex === index
 												? "1px solid #000"
-												: "1px solid #A0A0A0"
+												: "1px solid #A0A0A0",
 									}}
 									onClick={() => {
 										setCurStyleIndex(index)
@@ -225,7 +225,8 @@ export default props => {
 										styleId={style._id}
 										shadowUrl={style.shadowUrl}
 										svgUrl={style.svgUrl}
-										onSetEditSvgGroupIndex={index =>
+										curStylesEditGroupIndex={curStylesEditGroupIndex}
+										onSetEditSvgGroupIndex={(index) =>
 											setEditSvgGroupIndex(index)
 										}
 									/>
@@ -272,7 +273,7 @@ export default props => {
 							sx={{
 								borderRadius: 0,
 								fontSize: "0.14rem",
-								cursor: "pointer"
+								cursor: "pointer",
 							}}
 							onClick={() => {
 								if (!curSelectedColors[0]) return

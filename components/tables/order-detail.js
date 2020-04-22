@@ -5,7 +5,7 @@ import StyleItem from "../commons/min-style-item"
 // import InputNumber from "../number-input"
 // import request from "../../utils/request"
 
-export default props => {
+export default (props) => {
 	const { OrderDetail, rate = { val: 1, sign: "¥" } } = props
 	const line = props.OrderDetail.orderData.length
 	// const {orderData} = OrderDetail
@@ -13,7 +13,7 @@ export default props => {
 	const [orderData, setOrderData] = useState(OrderDetail.orderData)
 	const [packageCount, setPackageCount] = useState(OrderDetail.packageCount)
 	let sizeInfoMaxLength = 0
-	orderData.map(order => {
+	orderData.map((order) => {
 		sizeInfoMaxLength =
 			sizeInfoMaxLength > order.sizeInfo.length
 				? sizeInfoMaxLength
@@ -27,7 +27,7 @@ export default props => {
 			sx={{
 				cursor: "pointer",
 				height: "100%",
-				width: "100%"
+				width: "100%",
 			}}
 		>
 			<Box
@@ -35,13 +35,22 @@ export default props => {
 					padding: "0 18px 18px 18px",
 					height: "max-content",
 					width: "800px",
-					display: "table"
+					display: "table",
 				}}
 			>
 				<Table
 					id={"one-order-detail"}
 					hasBorder={"1px solid"}
-					sx={{ margin: "0", marginRight: "1px", width: "100%" }}
+					sx={{
+						margin: "0",
+						marginRight: "1px",
+						width: "100%",
+						"&": {
+							th: {
+								padding: "14px",
+							},
+						},
+					}}
 					titles={[
 						{ name: "00", width: "2/22", isHide: true },
 						{ name: "SECTION NUMBER", width: "2/22" },
@@ -51,7 +60,7 @@ export default props => {
 						{ name: "PACKAGES", width: "2/22" },
 						{ name: "QUANTITY", width: "2/22" },
 						{ name: `PRICE/${rate.sign}`, width: "4/22" },
-						{ name: `TOTAL AMOUN/${rate.sign}`, width: "1/22" }
+						{ name: `TOTAL AMOUN/${rate.sign}`, width: "1/22" },
 					]}
 				>
 					{orderData.map((item, index) => (
@@ -62,7 +71,7 @@ export default props => {
 								</Text>
 								<Flex justifyContent="center" rowspan={2}>
 									<Box margin="8px 0">
-										{item.favorite.styleAndColor.map(x => {
+										{item.favorite.styleAndColor.map((x) => {
 											return <ProductInfo styleNum={x.styleId.styleNo} />
 										})}
 
@@ -74,8 +83,8 @@ export default props => {
 									flexDirection="column"
 									hasBorder={"1px solid"}
 								>
-									{item.favorite.styleAndColor.map(x => {
-										return x.colorIds.map(c => (
+									{item.favorite.styleAndColor.map((x) => {
+										return x.colorIds.map((c) => (
 											<ProductInfo made={c.code}></ProductInfo>
 										))
 									})}
@@ -93,7 +102,7 @@ export default props => {
 										hasBorder={"1px solid"}
 										margin={"1px"}
 										key={`${index}-style-img`}
-										styleList={item.favorite.styleAndColor.map(x => {
+										styleList={item.favorite.styleAndColor.map((x) => {
 											// styleList.push({ style: x.style, colors: x.colorIds })
 											return { style: x.styleId, colors: x.colorIds }
 										})}
@@ -102,7 +111,7 @@ export default props => {
 									/>
 								)}
 
-								{item.sizeInfo.map(size => (
+								{item.sizeInfo.map((size) => (
 									<Flex
 										flexDirection="column"
 										hasBorder={"1px solid"}
@@ -130,7 +139,7 @@ export default props => {
 									hasBorder={"1px solid"}
 									flexDirection="column"
 								>
-									{item.favorite.styleAndColor.map(x => (
+									{item.favorite.styleAndColor.map((x) => (
 										<Text>{(x.styleId.price * rate.val).toFixed(2)}</Text>
 									))}
 								</Flex>
@@ -139,7 +148,7 @@ export default props => {
 								</Text>
 							</TableLine>
 							<TableLine noEdit key={`selectline-1-${item._id}`}>
-								{item.sizeInfo.map(size => (
+								{item.sizeInfo.map((size) => (
 									<Flex
 										width="28px"
 										justifyContent="center"

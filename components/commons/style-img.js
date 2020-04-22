@@ -3,7 +3,7 @@ import { ReactSVG } from "react-svg"
 // import { Image } from "rebass"
 import { baseUrl } from "../../utils/helper"
 
-export default props => {
+export default (props) => {
 	const {
 		width,
 		svgUrl,
@@ -13,14 +13,15 @@ export default props => {
 		svgId,
 		styleId,
 		imgValsAttrs = [],
-		onSetEditSvgGroupIndex
+		curStylesEditGroupIndex,
+		onSetEditSvgGroupIndex,
 	} = props
 
 	return (
 		<div
 			style={{
 				position: "relative",
-				width: width
+				width: width,
 			}}
 		>
 			<img
@@ -29,41 +30,49 @@ export default props => {
 					width: width,
 					position: "absolute",
 					left: 0,
-					pointerEvents: "none"
+					pointerEvents: "none",
 				}}
 			/>
 			<ReactSVG
 				style={{
 					width: width,
-					minWidth: "14px"
+					minWidth: "14px",
 				}}
 				afterInjection={(error, svg) => {
 					if (error) {
 						console.error(error)
 						return
 					}
-					if (colors && colors.length > 0) {
-						let j = 0
-						for (let i = 0; i < svg.children.length; i++) {
-							if (
-								svg.children[i].tagName === "g" ||
-								svg.children[i].tagName === "path"
-							) {
-								if (onSetEditSvgGroupIndex) {
-									let jj = j
-									svg.children[i].onclick = e => {
-										// console.log(e.target)
-										onSetEditSvgGroupIndex(jj)
-									}
+					let j = 0
+					for (let i = 0; i < svg.children.length; i++) {
+						if (
+							svg.children[i].tagName === "g" ||
+							svg.children[i].tagName === "path"
+						) {
+							if (onSetEditSvgGroupIndex) {
+								let jj = j
+								let block = svg.children[i]
+								block.onclick = (e) => {
+									onSetEditSvgGroupIndex(jj)
 								}
-								// svg.children[i].setAttribute('index', j);
-								if (j < colors.length && colors[j]) {
-									svg.children[i].style.fill = colors[j].type
-										? `url("#${styleId}-${colors[j]._id}-${j}")`
-										: colors[j].value
+								if (curStylesEditGroupIndex === i) {
+									block.style.stroke = "khaki"
+									block.style.strokeWidth = "8px"
 								}
-								j++
 							}
+							// svg.children[i].setAttribute('index', j);
+							if (
+								colors &&
+								colors.length > 0 &&
+								j < colors.length &&
+								colors[j]
+							) {
+								let block = svg.children[i]
+								block.style.fill = colors[j].type
+									? `url("#${styleId}-${colors[j]._id}-${j}")`
+									: colors[j].value
+							}
+							j++
 						}
 					}
 				}}
@@ -72,7 +81,7 @@ export default props => {
 					// console.log("loading")
 					return "loading"
 				}}
-				beforeInjection={svg => {
+				beforeInjection={(svg) => {
 					svg.setAttribute("id", svgId || key)
 					let svgDefs = document.createElementNS(
 						"http://www.w3.org/2000/svg",
@@ -84,10 +93,12 @@ export default props => {
 					for (let i = 0; i < colors.length; i++) {
 						let color = colors[i]
 						if (color && color.type) {
-							let imgVals = imgValsAttrs.find(x => x.colorId === color._id) || {
+							let imgVals = imgValsAttrs.find(
+								(x) => x.colorId === color._id
+							) || {
 								scale: 1,
 								x: 0,
-								y: 0
+								y: 0,
 							}
 							// console.log("imgVals", imgVals)
 							let svgPattern = document.createElementNS(

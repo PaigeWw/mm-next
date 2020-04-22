@@ -5,7 +5,7 @@ import { SortableContainer, SortableElement } from "react-sortable-hoc"
 
 import ActionEditCom from "./action-edit"
 
-const Title = props => (
+const Title = (props) => (
 	<thead
 		width="100%"
 		justifyContent="space-around"
@@ -15,7 +15,7 @@ const Title = props => (
 			<th
 				style={{
 					color: title.isHide ? "#FFF0E5" : "#000",
-					border: props.haveBorder ? "1px solid #000" : "none"
+					border: props.haveBorder ? "1px solid #000" : "none",
 				}}
 				key={`${title.name}-${key}`}
 				colSpan={title.colspan}
@@ -25,34 +25,39 @@ const Title = props => (
 		))}
 	</thead>
 )
-export const ProductInfo = props => (
+export const ProductInfo = (props) => (
 	<Flex alignItems="baseline" flexDirection="column" padding="4px 0">
 		<Text fontSize="0.18rem">{props.styleNum}</Text>
 		<Text
 			fontSize="0.14rem"
 			style={{
-				lineHeight: "0.34rem"
+				lineHeight: "0.34rem",
 			}}
 		>
 			{props.made}
 		</Text>
 	</Flex>
 )
-export const TableLine = props => {
+export const TableLine = (props) => {
 	// console.log(props.children)
 	// console.log(lodash.compact(props.children))
+	const { gary } = props
 	return (
 		<tr
-			style={{ width: "100%", border: "1px solid #000", background: "#fff" }}
+			style={{
+				width: "100%",
+				border: "1px solid #000",
+				background: gary ? "#ccc" : "#fff",
+			}}
 			alignItems="center"
 		>
-			{lodash.flatten(lodash.compact(props.children)).map(child => {
-				// console.log(child)
+			{lodash.flatten(lodash.compact(props.children)).map((child) => {
+				console.log("child.props.colspan", child.props.colspan)
 				return (
 					<td
 						style={{
 							textAlign: "center",
-							border: child.props.hasBorder
+							border: child.props.hasBorder,
 						}}
 						align="center"
 						valign="middle"
@@ -72,7 +77,7 @@ export const TableLine = props => {
 	)
 }
 
-export const SortableTable = props => {
+export const SortableTable = (props) => {
 	const styleProps = props.sx
 	const tbStyleProps = props.tbSx
 	const haveBorder = props.hasBorder
@@ -94,7 +99,7 @@ export const SortableTable = props => {
 				margin: "0 18px 18px 18px",
 				background: "#fff",
 				borderCollapse: "collapse",
-				...styleProps
+				...styleProps,
 			}}
 			flexDirection="column"
 		>
@@ -111,7 +116,7 @@ export const SortableTable = props => {
 	)
 }
 
-export default props => {
+export default (props) => {
 	const styleProps = props.sx
 	const tbStyleProps = props.tbSx
 	const haveBorder = props.hasBorder
@@ -125,7 +130,7 @@ export default props => {
 				margin: "0 18px 18px 18px",
 				background: "#fff",
 				borderCollapse: "collapse",
-				...styleProps
+				...styleProps,
 			}}
 			flexDirection="column"
 		>

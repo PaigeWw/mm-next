@@ -16,6 +16,9 @@ html,
 .sortable-helper{
     display: table
 }
+#one-order-detail th,td{
+    padding: 6px;
+}
 * {
     font-family: Roboto;
 }
@@ -27,7 +30,17 @@ function IndexPage() {
 			<Global></Global>
 			<Head>
 				<title>MR MISS</title>
-
+				<link
+					rel="stylesheet"
+					type="text/css"
+					charset="UTF-8"
+					href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+				/>
+				<link
+					rel="stylesheet"
+					type="text/css"
+					href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+				/>
 				<style global jsx>{`
 					body,
 					html,
@@ -58,7 +71,7 @@ function IndexPage() {
                         console.log('DOMContentLoaded')
                         resizeFontSize();
                       });
-                    window.onresize = resizeFontSize;`
+                    window.onresize = resizeFontSize;`,
 					}}
 				></script>
 			</Head>

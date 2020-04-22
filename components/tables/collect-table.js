@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { Flex, Text, Box, Button, Row, Column } from "rebass"
 import arrayMove from "array-move"
-import { SortableContainer, SortableElement } from "react-sortable-hoc"
-
+import { SortableElement } from "react-sortable-hoc"
+import Modal from "../modal"
 import { ToastContainer, toast } from "../commons/toast"
 import { SortableTable, TableLine, ProductInfo } from "./base-table"
 
@@ -12,7 +12,8 @@ import request from "../../utils/request"
 
 const Table = SortableTable
 
-export default props => {
+export default (props) => {
+	const [showConfirmModal, setShowConfirmModal] = useState(false)
 	const [showEditBox, setShowEditBox] = useState(false)
 	const [editIndex, setEditIndex] = useState(0)
 	// const mode = "POSITIVE"
@@ -23,7 +24,7 @@ export default props => {
 		const res = await request("/user/getFavoriteList")
 		// console.log("----res----", res)
 		if (!res) return
-		const data = res.map(item => {
+		const data = res.map((item) => {
 			let prodInfo = []
 			let price = []
 			let styleList = []
@@ -31,7 +32,7 @@ export default props => {
 			// let colorInfo = []
 			let date = []
 			let details = []
-			item.styleAndColor.map(x => {
+			item.styleAndColor.map((x) => {
 				if (!x.style) return
 				details.push(x.style)
 
@@ -49,7 +50,7 @@ export default props => {
 					styleNo: x.style.styleNo,
 					categoryName: x.style.categoryName,
 					color: text,
-					id: x.style._id
+					id: x.style._id,
 				})
 				// let positive = x.
 				styleList.push({ style: x.style, colors: x.colorIds })
@@ -62,7 +63,7 @@ export default props => {
 				prodInfo,
 				price,
 				styleList,
-				date
+				date,
 			}
 		})
 		setCollectList(data)
@@ -73,7 +74,7 @@ export default props => {
 	}, [])
 
 	const handleSelect = (index, item) => {
-		const pos = selectList.findIndex(x => x.index === index)
+		const pos = selectList.findIndex((x) => x.index === index)
 		if (pos < 0) {
 			selectList.push({ index, ...item, details: collectDetailsList[index] })
 		} else {
@@ -92,22 +93,22 @@ export default props => {
 			setCollectList([].concat(collectList))
 		}
 	}
-	const handleConfirmMade = async colorIds => {
+	const handleConfirmMade = async (colorIds) => {
 		// const res = await request("/user/updateFavorite", {  }, "post")
 		// console.log(collectList[editIndex])
 		if (!colorIds[0]) return
 		let params = [
 			{
 				styleId: collectList[editIndex].prodInfo[0].id,
-				colorIds: colorIds[0].map(x => x._id)
-			}
+				colorIds: colorIds[0].map((x) => x._id),
+			},
 		]
 
 		if (collectList[editIndex].styleList.length > 1) {
 			// if (! > 2) return
 			params.push({
 				styleId: collectList[editIndex].prodInfo[1].id,
-				colorIds: colorIds[1].map(x => x._id)
+				colorIds: colorIds[1].map((x) => x._id),
 			})
 		}
 		const res = await request(
@@ -126,14 +127,14 @@ export default props => {
 		let index = indexNo
 		return (
 			<TableLine
-				isSelect={selectList.findIndex(x => index === x.index) >= 0}
+				isSelect={selectList.findIndex((x) => index === x.index) >= 0}
 				haveSelect
 				onSelect={() => {
 					handleSelect(index, collect)
 				}}
 				haveDel
 				onDel={() => {
-					handleDel(index, collect)
+					setShowConfirmModal({ callback: () => handleDel(index, collect) })
 				}}
 				haveEdit
 				onEdit={() => {
@@ -151,59 +152,29 @@ export default props => {
 				{/* <Text>loading</Text> */}
 				<Flex justifyContent="center">
 					<Box margin="8px 0">
-						{collect.prodInfo.map(prodInfo => (
+						{collect.prodInfo.map((prodInfo) => (
 							<ProductInfo styleNum={prodInfo.styleNo} made={prodInfo.color} />
 						))}
 					</Box>
 				</Flex>
 				<Flex flexDirection="column">
-					{collect.price.map(price => (
+					{collect.price.map((price) => (
 						<Text p="4px 0">{(props.rate.val * price).toFixed(2)}</Text>
 					))}
 				</Flex>
 				<Flex flexDirection="column">
-					{collect.date.map(date => (
+					{collect.date.map((date) => (
 						<Text p="4px 0">{date}</Text>
 					))}
 				</Flex>
 				<Flex flexDirection="column">
-					{collect.prodInfo.map(prodInfo => (
+					{collect.prodInfo.map((prodInfo) => (
 						<Text>{prodInfo.categoryName}</Text>
 					))}
 				</Flex>
 			</TableLine>
 		)
 	})
-
-	// const SortableList = SortableContainer(() => {
-	// 	return (
-	// 		<Table
-	// 			titles={[
-	// 				{ name: "00", width: "2/22", isHide: true },
-	// 				{ name: "PICTRUE", width: "2/22" },
-	// 				{ name: "PRODUCT INFOMATION", width: "4/22" },
-	// 				{ name: `PRICE/${props.rate.sign}`, width: "1/22" },
-	// 				{ name: "DATE", width: "2/22" },
-	// 				{ name: "STYLE", width: "1/22" },
-	// 				{ name: "EDIT", width: "5/22" }
-	// 			]}
-	// 		>
-	// 			{collectList.map((collect, index) => {
-	// 				console.log("SortableList map ", index)
-	// 				return (
-	// 					<SortableItem
-	// 						key={`categoryList-item-${index}`}
-	// 						index={index}
-	// 						indexNo={index}
-	// 						collect={collect}
-	// 					/>
-	// 				)
-	// 			})}
-	// 		</Table>
-	// 	)
-	// })
-
-	// console.log("rateInfo", props.rate)
 	return collectList.length > 0 ? (
 		<Flex
 			flexDirection="column"
@@ -211,22 +182,47 @@ export default props => {
 			sx={{
 				cursor: "pointer",
 				// height: "100%",
-				background: "#FFF0E5"
+				background: "#FFF0E5",
 			}}
 		>
-			{/* <SortableList
-				pressDelay={200}
-				onSortEnd={({ oldIndex, newIndex }) => {
-					setCollectList(arrayMove(collectList, oldIndex, newIndex))
-				}}
-			/> */}
+			{showConfirmModal ? (
+				<Modal
+					onClose={() => {
+						setShowConfirmModal(false)
+					}}
+				>
+					<Flex flexDirection="column" alignItems="center">
+						Are you sure to delete?
+						<Button
+							variant="primary"
+							height="30px"
+							width="68px"
+							bg="#000"
+							color="#fff"
+							padding="0"
+							sx={{
+								borderRadius: 0,
+								fontSize: "20",
+								cursor: "pointer",
+								marginTop: "12px",
+							}}
+							onClick={() => {
+								showConfirmModal.callback()
+								setShowConfirmModal(false)
+							}}
+						>
+							YES
+						</Button>
+					</Flex>
+				</Modal>
+			) : null}
 			<ToastContainer />
 			<Table
 				sort={{
 					pressDelay: 200,
 					onSortEnd: ({ oldIndex, newIndex }) => {
 						setCollectList(arrayMove(collectList, oldIndex, newIndex))
-					}
+					},
 				}}
 				titles={[
 					{ name: "00", width: "2/22", isHide: true },
@@ -235,7 +231,7 @@ export default props => {
 					{ name: `PRICE/${props.rate.sign}`, width: "1/22" },
 					{ name: "DATE", width: "2/22" },
 					{ name: "STYLE", width: "1/22" },
-					{ name: "EDIT", width: "5/22" }
+					{ name: "EDIT", width: "5/22" },
 				]}
 			>
 				{collectList.map((collect, index) => {
@@ -260,7 +256,7 @@ export default props => {
 				sx={{
 					borderRadius: 0,
 					fontSize: "0.27rem",
-					cursor: "pointer"
+					cursor: "pointer",
 				}}
 				onClick={() => {
 					if (selectList.length > 0) {

@@ -4,7 +4,7 @@ import Table, { TableLine, ProductInfo } from "./base-table"
 import ShowStyle from "../show-style"
 import InputNumber from "../number-input"
 const info = ["RMB", "USB", "ESD"]
-export default props => {
+export default (props) => {
 	return (
 		<Flex
 			flexDirection="column"
@@ -12,7 +12,7 @@ export default props => {
 			sx={{
 				cursor: "pointer",
 				height: "100%",
-				background: "#FFF0E5"
+				background: "#FFF0E5",
 			}}
 		>
 			<Flex sx={{ padding: "0 18px 18px 18px" }} alignItems="stretch">
@@ -23,7 +23,7 @@ export default props => {
 						{ name: "CHANNEL NUMBER", width: "2/22" },
 						{ name: "CHANNEL NUMBER", width: "4/22" },
 						{ name: "USE CURRENCY", width: "1/22" },
-						{ name: "VISIBLE PRODUCT CLASSIFICICATION", width: "2/22" }
+						{ name: "VISIBLE PRODUCT CLASSIFICICATION", width: "2/22" },
 					]}
 				>
 					{props.channelList.map((channel, index) => (
@@ -36,7 +36,7 @@ export default props => {
 							<Flex
 								width="100%"
 								sx={{
-									justifyContent: "center"
+									justifyContent: "center",
 								}}
 							>
 								<Box
@@ -45,7 +45,7 @@ export default props => {
 										height: "24px",
 										lineHeight: "24px",
 										border: "1px solid #000",
-										position: "relative"
+										position: "relative",
 									}}
 								>
 									{info[channel.currency]}
@@ -55,7 +55,7 @@ export default props => {
 										width="27.5px"
 										style={{
 											position: "absolute",
-											right: 0
+											right: 0,
 										}}
 									></img>
 								</Box>

@@ -3,7 +3,7 @@ import { Flex, Text, Box, Button, Image } from "rebass"
 import Router from "next/router"
 
 import { baseUrl } from "../utils/helper"
-const SelectButton = props => (
+const SelectButton = (props) => (
 	<Button
 		variant="primary"
 		height="0.45rem"
@@ -16,8 +16,8 @@ const SelectButton = props => (
 			borderRadius: 0,
 			fontSize: "0.14rem",
 			"&:hover": {
-				background: "#FF8E6C"
-			}
+				background: "#FF8E6C",
+			},
 		}}
 		onClick={() => {
 			props.onSelect()
@@ -27,14 +27,14 @@ const SelectButton = props => (
 	</Button>
 )
 
-export default props => {
+export default (props) => {
 	const [showSelect, setShowSelect] = useState(false)
 	return (
 		<Box
 			width={[1, 1 / 3]}
 			sx={{
 				// flexShrink: 0,
-				overflow: "hidden"
+				overflow: "hidden",
 			}}
 		>
 			<Flex alignItems="baseline" p="0.2rem 0.9rem">
@@ -45,12 +45,12 @@ export default props => {
 				width={[1]}
 				height="100%"
 				sx={{
-					position: "relative"
+					position: "relative",
 				}}
-				onMouseOver={e => {
+				onMouseOver={(e) => {
 					setShowSelect(true)
 				}}
-				onMouseLeave={e => {
+				onMouseLeave={(e) => {
 					setShowSelect(false)
 				}}
 			>

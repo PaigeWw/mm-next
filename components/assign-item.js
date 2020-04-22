@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { Flex, Text, Box, Image } from "rebass"
 const IndexName = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-export default props => {
+export default (props) => {
 	const { goodsList, onAssignCategory, assignCategoryList } = props
 	console.log("assignCategoryList", assignCategoryList)
 	return (
@@ -10,8 +10,8 @@ export default props => {
 			sx={{
 				cursor: "pointer",
 				"&:hover": {
-					background: "rgba(255, 255, 255, 0.5)"
-				}
+					background: "rgba(255, 255, 255, 0.5)",
+				},
 			}}
 		>
 			{goodsList.map((goods, index) =>
@@ -26,7 +26,7 @@ export default props => {
 							bg="#535353"
 							sx={{
 								height: "0.6rem",
-								width: "100%"
+								width: "100%",
 							}}
 						>
 							{`0${index + 1} ${goods.name}`}
@@ -43,11 +43,8 @@ export default props => {
 										fontSize="0.14rem"
 										sx={{
 											background: isSelected ? "#FFC1AE" : "",
-											"&:hover": {
-												background: "#cccccc"
-											}
 										}}
-										onClick={e => {
+										onClick={(e) => {
 											onAssignCategory(category._id, isSelected)
 										}}
 									>

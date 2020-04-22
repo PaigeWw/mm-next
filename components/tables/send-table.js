@@ -7,11 +7,11 @@ import Modal from "../modal"
 import OrderDetail from "./order-detail"
 import StyleItem from "../commons/min-style-item"
 
-export default props => {
-	const { rate } = props
+export default (props) => {
+	const { rate, toast } = props
 	const [orderDetailMode, setOrderDetailMode] = useState({
 		visible: false,
-		detail: {}
+		detail: {},
 	})
 	const [orderList, setOrderList] = useState([])
 	const [orderDetailList, setOrderDetailList] = useState([])
@@ -21,14 +21,14 @@ export default props => {
 
 		if (!res) return
 		setOrderDetailList(res)
-		const data = res.map(order => {
+		const data = res.map((order) => {
 			let orderData = order.orderData
 			let styleListArr = []
 			let styleList = []
 			let quantity = 0
 			let price = 0
-			orderData.map(item => {
-				styleList = item.favorite.styleAndColor.map(x => {
+			orderData.map((item) => {
+				styleList = item.favorite.styleAndColor.map((x) => {
 					// styleList.push({ style: x.style, colors: x.colorIds })
 					return { style: x.styleId, colors: x.colorIds }
 				})
@@ -42,7 +42,7 @@ export default props => {
 				price,
 				styleListArr,
 				date: order.updateTime,
-				id: order._id
+				id: order._id,
 			}
 		})
 		setOrderList(data)
@@ -51,7 +51,7 @@ export default props => {
 		getOrderList()
 	}, [])
 	const handleSelect = (index, item) => {
-		const pos = selectList.findIndex(x => x.index === index)
+		const pos = selectList.findIndex((x) => x.index === index)
 		if (pos < 0) {
 			selectList.push({ index, ...item })
 		} else {
@@ -63,14 +63,18 @@ export default props => {
 		// console.log(selectList)
 		const res = await request(
 			"/order/send",
-			{ list: selectList.map(s => s.id) },
+			{ list: selectList.map((s) => s.id) },
 			"post"
 		)
 		if (res) {
+			// Sent successfully
+			toast.notify("Sent successfully.", { type: "success", duration: 2 })
+			getOrderList()
 			props.nextStep()
+		} else {
 		}
 	}
-	const handleDel = async index => {
+	const handleDel = async (index) => {
 		// console.log(orderList[index])
 		const res = await request(
 			"/order/delete",
@@ -81,7 +85,7 @@ export default props => {
 			getOrderList()
 		}
 	}
-	const handleCheckDetail = index => {
+	const handleCheckDetail = (index) => {
 		setOrderDetailMode({ visible: true, detail: orderDetailList[index] })
 	}
 	return (
@@ -92,7 +96,7 @@ export default props => {
 			height="100%"
 			sx={{
 				cursor: "pointer",
-				background: "#FFF0E5"
+				background: "#FFF0E5",
 			}}
 		>
 			{orderDetailMode.visible ? (
@@ -111,13 +115,13 @@ export default props => {
 					{ name: "STYLE PREVIEW", width: "2/22" },
 					{ name: "QUANTITY", width: "4/22" },
 					{ name: `PRICE/${rate.sign}`, width: "1/22" },
-					{ name: "ACTION", width: "5/22" }
+					{ name: "ACTION", width: "5/22" },
 				]}
 			>
 				{orderList.map((order, index) => (
 					<TableLine
 						key={`order-${index}`}
-						isSelect={selectList.findIndex(x => index === x.index) >= 0}
+						isSelect={selectList.findIndex((x) => index === x.index) >= 0}
 						haveSelect
 						onSelect={() => {
 							handleSelect(index, order)
@@ -138,7 +142,7 @@ export default props => {
 						<Text style={{ position: "absolute" }}>{index + 1}</Text>
 						<Text>{order.date}</Text>
 						<Flex justifyContent="flex-start">
-							{order.styleListArr.map(item => (
+							{order.styleListArr.map((item) => (
 								<StyleItem
 									margin={"1px"}
 									key={`${index}-style-img`}
@@ -166,7 +170,7 @@ export default props => {
 					sx={{
 						borderRadius: 0,
 						fontSize: "0.27rem",
-						cursor: "pointer"
+						cursor: "pointer",
 					}}
 					onClick={handleSendOrder}
 				>

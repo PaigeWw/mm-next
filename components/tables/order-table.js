@@ -5,14 +5,13 @@ import Table, { TableLine, ProductInfo } from "./base-table"
 import InputNumber from "../number-input"
 import request from "../../utils/request"
 import StyleItem from "../commons/min-style-item"
-import { ToastContainer, toast } from "../commons/toast"
 
-export default props => {
-	const { selectStyles, isEditOrder, rate, onDelSelectStyle } = props
+export default (props) => {
+	const { selectStyles, isEditOrder, rate, toast } = props
 	const line = props.selectStyles.length
 	let initData = {
 		orderData: [],
-		selectStyles: [...selectStyles]
+		selectStyles: [...selectStyles],
 	}
 	if (isEditOrder) {
 		initData.orderData = selectStyles.map((x, index) => {
@@ -26,10 +25,10 @@ export default props => {
 			let styleList = []
 			let prodInfo = []
 			let price = []
-			x.favorite.styleAndColor.map(item => {
+			x.favorite.styleAndColor.map((item) => {
 				styleList.push({
 					style: item.styleId,
-					colors: item.colorIds
+					colors: item.colorIds,
 				})
 				let text = ""
 				item.colorIds.map((c, index) => {
@@ -41,7 +40,7 @@ export default props => {
 				})
 				prodInfo.push({
 					styleNo: item.styleId.styleNo,
-					color: text
+					color: text,
 				})
 				price.push(item.styleId.price)
 			})
@@ -51,12 +50,15 @@ export default props => {
 				sizeInfo: x.sizeInfo,
 				total: x.total,
 				totalPrice: x.totalPrice,
-				signalPrice: stylePrice
+				signalPrice: stylePrice,
 			}
 		})
 	} else {
-		initData.orderData = selectStyles.map(x => {
-			let sizeInfo = x.details[0].size.values.map(item => ({ ...item, num: 0 }))
+		initData.orderData = selectStyles.map((x) => {
+			let sizeInfo = x.details[0].size.values.map((item) => ({
+				...item,
+				num: 0,
+			}))
 			console.log("initData")
 			return {
 				favoriteId: x.id,
@@ -64,7 +66,7 @@ export default props => {
 				total: 0,
 				totalPrice: 0,
 				signalPrice:
-					x.details[0].price + (x.details.length > 1 ? x.details[1].price : 0)
+					x.details[0].price + (x.details.length > 1 ? x.details[1].price : 0),
 			}
 		})
 	}
@@ -74,7 +76,7 @@ export default props => {
 	const [styleData, setStyleData] = useState(initData.selectStyles)
 	// console.log(styleData)
 	const [packageCount, setPackageCount] = useState(1)
-	const handleChangePackageCount = num => {
+	const handleChangePackageCount = (num) => {
 		if (num < 1) return
 		setPackageCount(num)
 		orderData.map((order, index) => {
@@ -96,10 +98,10 @@ export default props => {
 		setOrderData([].concat(orderData))
 		// console.log("orderData", orderData)
 	}
-	const getItemsTotal = index => {
+	const getItemsTotal = (index) => {
 		if (index < orderData.length) {
 			let count = 0
-			orderData[index].sizeInfo.map(size => {
+			orderData[index].sizeInfo.map((size) => {
 				count += size.num
 			})
 			return count
@@ -111,7 +113,7 @@ export default props => {
 			{
 				_id: isEditOrder,
 				packageCount,
-				orderData
+				orderData,
 			},
 			"post"
 		)
@@ -138,16 +140,17 @@ export default props => {
 			"/order/add",
 			{
 				packageCount,
-				orderData
+				orderData,
 			},
 			"post"
 		)
 		if (res) {
+			toast.notify("Completed.", { type: "success", duration: 2 })
 			props.nextStep()
 		}
 	}
 
-	const handleDel = async index => {
+	const handleDel = async (index) => {
 		// onDelSelectStyle(index)
 		styleData.splice(index, 1)
 		orderData.splice(index, 1)
@@ -163,16 +166,15 @@ export default props => {
 				cursor: "pointer",
 				height: "100%",
 				width: "100%",
-				background: "#FFF0E5"
+				background: "#FFF0E5",
 			}}
 		>
-			<ToastContainer />
 			<Box
 				sx={{
 					padding: "0 18px 18px 18px",
 					height: "max-content",
 					width: "100%",
-					display: "table"
+					display: "table",
 				}}
 			>
 				<Table
@@ -187,7 +189,7 @@ export default props => {
 						{ name: "QUANTITY", width: "2/22" },
 						{ name: `PRICE/${rate.sign}`, width: "4/22" },
 						{ name: `TOTAL AMOUN/${rate.sign}`, width: "1/22" },
-						{ name: "DELETE", width: "2/22" }
+						{ name: "DELETE", width: "2/22" },
 					]}
 				>
 					{styleData.map((collect, index) => (
@@ -200,12 +202,12 @@ export default props => {
 						>
 							<Text>{index}</Text>
 							<Flex flexDirection="column">
-								{collect.prodInfo.map(x => (
+								{collect.prodInfo.map((x) => (
 									<ProductInfo styleNum={x.styleNo} />
 								))}
 							</Flex>
 							<Flex flexDirection="column">
-								{collect.prodInfo.map(x => (
+								{collect.prodInfo.map((x) => (
 									<ProductInfo made={x.color} />
 								))}
 							</Flex>
@@ -221,7 +223,7 @@ export default props => {
 										<Text mr="10px">{size.name}</Text>
 										<InputNumber
 											value={orderData[index].sizeInfo[sizeIndex].num}
-											onChange={num => {
+											onChange={(num) => {
 												handleChangeOrder(index, sizeIndex, num)
 												// console.log(collect.id, size.name, num)
 											}}
@@ -253,7 +255,7 @@ export default props => {
 								>
 									<InputNumber
 										value={packageCount}
-										onChange={num => {
+										onChange={(num) => {
 											handleChangePackageCount(
 												num == "" || !num ? 0 : parseInt(num)
 											)
@@ -270,7 +272,7 @@ export default props => {
 
 							<Text>{orderData[index].total}</Text>
 							<Flex flexDirection="column">
-								{collect.price.map(price => (
+								{collect.price.map((price) => (
 									<Text p="4px 0">{(props.rate.val * price).toFixed(2)}</Text>
 								))}
 							</Flex>
@@ -290,7 +292,7 @@ export default props => {
 				sx={{
 					borderRadius: 0,
 					fontSize: "0.27rem",
-					cursor: "pointer"
+					cursor: "pointer",
 				}}
 				onClick={handleSubmitOrder}
 			>
