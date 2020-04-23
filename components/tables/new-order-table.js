@@ -204,10 +204,16 @@ export default (props) => {
 
   const handleDel = async (index) => {
     // onDelSelectStyle(index)
-    styleData.splice(index, 1);
-    orderData.splice(index, 1);
-    setStyleData([].concat(styleData));
-    setOrderData([].concat(orderData));
+    let titleIndex = getPackageSpace(index);
+    styleGroupList[titleIndex].count -= 1;
+    for (let i = index + 1; i < styleGroupList.length; i++) {
+      if (styleGroupList[i].type === "title") {
+        styleGroupList[i].index -= 1;
+      }
+    }
+    styleGroupList.splice(index, 1);
+    setStyleGroupList([].concat(styleGroupList));
+    // setOrderData([].concat(orderData));
   };
   const SortableTitleItem = SortableElement(({ keys }) => {
     return (
@@ -358,6 +364,8 @@ export default (props) => {
       ...styleGroupList,
       {
         type: "title",
+        packageCount: 1,
+        cnts: 1,
         index: styleGroupList.length,
         key: newPackageName,
         styleNos: "",
@@ -367,13 +375,9 @@ export default (props) => {
   };
   const getPackageSpace = (index) => {
     let space = -1;
-    for (let i = 0; i < titleIndexs.length; i++) {
-      if (i + 1 >= titleIndexs.length) {
-        space = titleIndexs[i];
-      }
-      if (index > titleIndexs[i] && index < titleIndexs[i + 1]) {
-        space = titleIndexs[i];
-        break;
+    for (let i = index; i >= 0; i--) {
+      if (styleGroupList[i].type === "title") {
+        return i;
       }
     }
     return space;
@@ -431,35 +435,45 @@ export default (props) => {
           sort={{
             pressDelay: 200,
             onSortEnd: ({ oldIndex, newIndex }) => {
+              // if (newIndex <= 0) return;
               let oldSpace = getPackageSpace(oldIndex);
               let newSpace = getPackageSpace(newIndex);
-              if (newSpace < 0) return;
+              if (newSpace === newIndex) return;
               if (oldSpace === newSpace) {
                 setStyleGroupList(
                   arrayMove(styleGroupList, oldIndex, newIndex)
                 );
                 return;
               }
+              console.log(
+                styleGroupList[oldSpace].styleNos,
+                styleGroupList[newSpace].styleNos
+              );
               if (
                 styleGroupList[oldSpace].styleNos ===
                 styleGroupList[newSpace].styleNos
               ) {
+                styleGroupList[oldSpace].count--;
+                styleGroupList[newSpace].count++;
+
+                let start = oldIndex > newIndex ? newIndex : oldIndex;
+                let end = oldIndex < newIndex ? newIndex : oldIndex;
+                let change = oldIndex > newIndex ? 1 : -1;
+                for (let i = start; i <= end; i++) {
+                  if (styleGroupList[i].type === "title") {
+                    styleGroupList[i].index += change;
+                  }
+                }
                 setStyleGroupList(
                   arrayMove(styleGroupList, oldIndex, newIndex)
                 );
-                styleGroupList[oldSpace].count--;
-
-                styleGroupList[newSpace].count++;
-                if (newSpace > oldSpace) {
-                  styleGroupList[newSpace].index--;
-                }
                 return;
               }
               if (styleGroupList[newSpace].styleNos === "") {
                 styleGroupList[newSpace].styleNos =
-                  styleGroupList[oldIndex].styleNos;
+                  styleGroupList[oldSpace].styleNos;
                 styleGroupList[newSpace].key =
-                  styleGroupList[oldIndex].styleNos;
+                  styleGroupList[oldSpace].styleNos;
                 styleGroupList[oldSpace].count--;
                 styleGroupList[newSpace].index--;
                 styleGroupList[newSpace].count++;
