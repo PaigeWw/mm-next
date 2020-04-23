@@ -158,8 +158,6 @@ export default () => {
             );
           } else {
             toast.notify("Please select a style.");
-
-            // setToast({ type: "error", info: "Please Select Style." })
           }
         }}
       >
