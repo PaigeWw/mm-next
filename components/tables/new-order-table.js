@@ -176,6 +176,28 @@ export default (props) => {
   const handleSubmitOrder = async () => {
     toast.notify("comming soon...", "warn");
     return;
+    // 数据格式
+    /* {
+      size: id,
+      groupData: [
+        {
+          styleNos: string,
+          packageCount: number,
+          cnts: number,
+          items: [
+            { 
+              id: ,
+              sizeInfo: [3, 2, 3, 4]
+            },
+            { 
+              id: ,
+              sizeInfo: [3, 2, 3, 4]
+            },
+          ]
+        }
+      ]
+     }*/
+
     for (let i = 0; i < orderData.length; i++) {
       if (orderData[i].total < 1) {
         console.log(i);
@@ -197,7 +219,10 @@ export default (props) => {
       "post"
     );
     if (res) {
-      toast.notify("Completed.", { type: "success", duration: 2 });
+      toast.notify("Completed.", {
+        type: "success",
+        duration: 2,
+      });
       props.nextStep();
     }
   };
