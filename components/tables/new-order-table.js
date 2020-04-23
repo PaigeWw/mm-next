@@ -1,413 +1,556 @@
-import React, { useState, useEffect } from "react"
-import { Flex, Text, Box, Button, Row, Column } from "rebass"
-import _ from "lodash"
-import arrayMove from "array-move"
-import { TableLine, ProductInfo, SortableTable } from "./base-table"
-const Table = SortableTable
-import { SortableElement } from "react-sortable-hoc"
+import React, { useState, useEffect } from "react";
+import { Flex, Text, Box, Button, Row, Column } from "rebass";
+import _ from "lodash";
+import arrayMove from "array-move";
+import { TableLine, ProductInfo, SortableTable, Table } from "./base-table";
+import { SortableElement } from "react-sortable-hoc";
 
-import InputNumber from "../number-input"
-import request from "../../utils/request"
-import StyleItem from "../commons/min-style-item"
-
+import InputNumber from "../number-input";
+import request from "../../utils/request";
+import StyleItem from "../commons/min-style-item";
+import Modal from "../../components/modal";
 export default (props) => {
-	const { selectStyles, isEditOrder, rate, toast } = props
-	const line = props.selectStyles.length
-	let initData = {
-		orderData: [],
-		selectStyles: [...selectStyles],
-	}
-	if (isEditOrder) {
-		initData.orderData = selectStyles.map((x, index) => {
-			// let sizeInfo = x.details[0].size.values.map(item => ({ ...item, num: 0 }))
-			// console.log(x)
-			let stylePrice = x.favorite.styleAndColor[0].styleId.price
-			x.favorite.styleAndColor.length > 1
-				? (stylePrice += x.favorite.styleAndColor[1].styleId.price)
-				: null
+  const { selectStyles, isEditOrder, rate, toast } = props;
+  const line = props.selectStyles.length;
+  let initData = {
+    orderData: [],
+    itemsOrderSizeNums: {},
+    selectStyles: [...selectStyles],
+  };
 
-			let styleList = []
-			let prodInfo = []
-			let price = []
-			x.favorite.styleAndColor.map((item) => {
-				styleList.push({
-					style: item.styleId,
-					colors: item.colorIds,
-				})
-				let text = ""
-				item.colorIds.map((c, index) => {
-					if (index > 0) {
-						text = text + "/" + c.code
-					} else {
-						text = c.code
-					}
-				})
-				prodInfo.push({
-					styleNo: item.styleId.styleNo,
-					color: text,
-				})
-				price.push(item.styleId.price)
-			})
-			initData.selectStyles[index] = { styleList, prodInfo, price }
-			return {
-				favoriteId: x.favoriteId,
-				sizeInfo: x.sizeInfo,
-				total: x.total,
-				totalPrice: x.totalPrice,
-				signalPrice: stylePrice,
-			}
-		})
-	} else {
-		initData.orderData = selectStyles.map((x) => {
-			let sizeInfo = x.details[0].size.values.map((item) => ({
-				...item,
-				num: 0,
-			}))
-			console.log("initData")
-			return {
-				favoriteId: x.id,
-				sizeInfo: sizeInfo,
-				total: 0,
-				totalPrice: 0,
-				signalPrice:
-					x.details[0].price + (x.details.length > 1 ? x.details[1].price : 0),
-			}
-		})
-	}
+  if (isEditOrder) {
+    return null;
+    initData.orderData = selectStyles.map((x, index) => {
+      // let sizeInfo = x.details[0].size.values.map(item => ({ ...item, num: 0 }))
+      // console.log(x)
+      let stylePrice = x.favorite.styleAndColor[0].styleId.price;
+      x.favorite.styleAndColor.length > 1
+        ? (stylePrice += x.favorite.styleAndColor[1].styleId.price)
+        : null;
 
-	// const [showOrderDetail, setShowOrderDetail] = useState(false)
-	// const [groupOrderDataByStyleNo, setGroupOrderDataByStyleNo] = useState(_.groupBy(initData.orderData))
-	const [orderData, setOrderData] = useState(initData.orderData)
-	const [styleData, setStyleData] = useState(initData.selectStyles)
-	let resGroup = _.groupBy(styleData, (x) => x.prodInfo.map((i) => i.styleNo))
-	const [styleDataGroupByStyleNo, setStyleDataGroupByStyleNo] = useState(
-		resGroup
-	)
+      let styleList = [];
+      let prodInfo = [];
+      let price = [];
+      x.favorite.styleAndColor.map((item) => {
+        styleList.push({
+          style: item.styleId,
+          colors: item.colorIds,
+        });
+        let text = "";
+        item.colorIds.map((c, index) => {
+          if (index > 0) {
+            text = text + "/" + c.code;
+          } else {
+            text = c.code;
+          }
+        });
+        prodInfo.push({
+          styleNo: item.styleId.styleNo,
+          color: text,
+        });
+        price.push(item.styleId.price);
+      });
+      initData.selectStyles[index] = { styleList, prodInfo, price };
+      return {
+        favoriteId: x.favoriteId,
+        sizeInfo: x.sizeInfo,
+        total: x.total,
+        totalPrice: x.totalPrice,
+        signalPrice: stylePrice,
+      };
+    });
+  } else {
+    initData.selectStyles.map((x) => {
+      // console.log("initData itemsOrderSizeNumsitemsOrderSizeNums");
+      initData.itemsOrderSizeNums[x.id] = [0, 0, 0, 0];
+    });
+  }
 
-	const [packageCount, setPackageCount] = useState(1)
-	const handleChangePackageCount = (num) => {
-		if (num < 1) return
-		setPackageCount(num)
-		orderData.map((order, index) => {
-			order.total = getItemsTotal(index) * num
-			order.totalPrice = (order.signalPrice * order.total).toFixed(2)
-		})
-		setOrderData([].concat(orderData))
-	}
-	const handleChangeOrder = (styleIndex, sizeIndex, num) => {
-		// console.log(num)
-		if (num < 0) return
-		orderData[styleIndex].sizeInfo[sizeIndex].num = parseInt(num, 10)
-		let allNumSum = getItemsTotal(styleIndex)
-		orderData[styleIndex].total = allNumSum * packageCount
-		let temp = new Number(
-			allNumSum * packageCount * orderData[styleIndex].signalPrice
-		)
-		orderData[styleIndex].totalPrice = temp.toFixed(2)
-		setOrderData([].concat(orderData))
-		// console.log("orderData", orderData)
-	}
-	const getItemsTotal = (index) => {
-		if (index < orderData.length) {
-			let count = 0
-			orderData[index].sizeInfo.map((size) => {
-				count += size.num
-			})
-			return count
-		}
-	}
-	const handleUpdateOrder = async () => {
-		const res = await request(
-			"/order/update",
-			{
-				_id: isEditOrder,
-				packageCount,
-				orderData,
-			},
-			"post"
-		)
-		if (res) {
-			props.nextStep()
-		}
-	}
+  let tempStyleDate = initData.selectStyles.map((s) => {
+    s.styleNos = s.prodInfo.map((i) => i.styleNo);
+    return s;
+  });
+  const [itemsOrderSizeNums, setItemsOrderSizeNums] = useState(
+    initData.itemsOrderSizeNums
+  );
 
-	const handleSubmitOrder = async () => {
-		console.log("handleSubmitOrder", orderData[0].total)
-		for (let i = 0; i < orderData.length; i++) {
-			if (orderData[i].total < 1) {
-				console.log(i)
-				console.log(orderData[i])
-				toast.notify("There is one item not empty here, please check.")
-				return
-			}
-		}
-		if (isEditOrder) {
-			handleUpdateOrder()
-			return
-		}
-		const res = await request(
-			"/order/add",
-			{
-				packageCount,
-				orderData,
-			},
-			"post"
-		)
-		if (res) {
-			toast.notify("Completed.", { type: "success", duration: 2 })
-			props.nextStep()
-		}
-	}
+  // const [showOrderDetail, setShowOrderDetail] = useState(false)
+  // const [groupOrderDataByStyleNo, setGroupOrderDataByStyleNo] = useState(_.groupBy(initData.orderData))
+  const [orderData, setOrderData] = useState(initData.orderData);
+  const [styleData, setStyleData] = useState(tempStyleDate);
+  const [sizeChartModal, setSizeChartModal] = useState(false);
+  let resGroup = _.groupBy(styleData, (x) => x.prodInfo.map((i) => i.styleNo));
+  const [styleDataGroupByStyleNo, setStyleDataGroupByStyleNo] = useState(
+    resGroup
+  );
 
-	const handleDel = async (index) => {
-		// onDelSelectStyle(index)
-		styleData.splice(index, 1)
-		orderData.splice(index, 1)
-		setStyleData([].concat(styleData))
-		setOrderData([].concat(orderData))
-	}
-	const SortableTitleItem = SortableElement(({ collect, keys }) => {
-		return (
-			<TableLine noEdit key={`selectline-keys-${collect.id}`}>
-				<Box colspan="4">{`StyleNo:${keys}`}</Box>
-				<Box colspan="6">{`StyleNo:${keys}`}</Box>
-			</TableLine>
-		)
-	})
-	const SortableItem = SortableElement(
-		({ indexNo, collect, styleGroupLength }) => {
-			// console.log("SortableItem ", collect)
-			// console.log("SortableItem ", collect.id)
-			// let index = indexNo
-			if (!collect) return <div></div>
-			return (
-				<TableLine
-					haveDel
-					key={`selectline-${collect.id}`}
-					onDel={() => {
-						handleDel(indexNo)
-					}}
-				>
-					<Text>{indexNo}</Text>
-					<Flex flexDirection="column">
-						{collect.prodInfo.map((x) => (
-							<ProductInfo styleNum={x.styleNo} />
-						))}
-					</Flex>
-					<Flex flexDirection="column">
-						{collect.prodInfo.map((x) => (
-							<ProductInfo made={x.color} />
-						))}
-					</Flex>
-					<StyleItem
-						key={`${indexNo}-order-style-img`}
-						styleList={collect.styleList}
-						index={indexNo}
-						tool={false}
-					/>
-					<Flex justifyContent="space-between">
-						{/* {styleGroup[index].sizeInfo.map((size, sizeIndex) => (
-											<Flex flexDirection="column">
-												<Text mr="10px">{size.name}</Text>
-												<InputNumber
-													value={orderData[index].sizeInfo[sizeIndex].num}
-													onChange={(num) => {
-														handleChangeOrder(index, sizeIndex, num)
-														// console.log(collect.id, size.name, num)
-													}}
-													upValue={() => {
-														handleChangeOrder(
-															index,
-															sizeIndex,
-															orderData[index].sizeInfo[sizeIndex].num + 1
-														)
-													}}
-													downValue={() => {
-														handleChangeOrder(
-															index,
-															sizeIndex,
-															orderData[index].sizeInfo[sizeIndex].num - 1
-														)
-													}}
-												/>
-											</Flex>
-										))} */}
-						comming soon...
-					</Flex>
-					{indexNo > 0 ? null : (
-						<Flex
-							rowspan={styleGroupLength}
-							hasBorder={"1px solid"}
-							justifyContent="center"
-							alignItems="center"
-							sx={{ width: "100%", height: "100%" }}
-						>
-							<InputNumber
-								value={packageCount}
-								onChange={(num) => {
-									handleChangePackageCount(
-										num == "" || !num ? 0 : parseInt(num)
-									)
-								}}
-								upValue={() => {
-									handleChangePackageCount(packageCount + 1)
-								}}
-								downValue={() => {
-									handleChangePackageCount(packageCount - 1)
-								}}
-							/>
-						</Flex>
-					)}
+  let resGroupList = Object.values(resGroup);
+  let resGroupKeys = Object.keys(resGroup);
+  let tempTitleIndexs = [];
+  let tempStyleGroupList = [];
+  let tempItemsPackageCount = {};
+  for (let i = 0; i < resGroupList.length; i++) {
+    tempTitleIndexs = [...tempTitleIndexs, tempStyleGroupList.length];
+    tempStyleGroupList = [
+      ...tempStyleGroupList,
+      {
+        type: "title",
+        packageCount: 1,
+        cnts: 1,
+        index: tempTitleIndexs[i],
+        key: resGroupKeys[i],
+        styleNos: resGroupKeys[i],
+        count: resGroupList[i].length,
+      },
+      ...resGroupList[i],
+    ];
+  }
+  const [titleIndexs, setTitleIndexs] = useState(tempTitleIndexs);
+  const [styleGroupList, setStyleGroupList] = useState(tempStyleGroupList);
+  const [curSizeArr, setCurSizeArr] = useState(["S", "M", "L", "XL"]);
+  const [sizeArrList, setSizeArrList] = useState([
+    ["S", "M", "L", "XL"],
+    ["30A", "30B", "30C"],
+    ["30A", "30B", "30C", "32A", "32B", "32C"],
+  ]);
 
-					<Text>{orderData[indexNo].total}</Text>
-					<Flex flexDirection="column">
-						{collect.price.map((price) => (
-							<Text p="4px 0">{(props.rate.val * price).toFixed(2)}</Text>
-						))}
-					</Flex>
-					<Text>{(orderData[indexNo].totalPrice * rate.val).toFixed(2)}</Text>
-				</TableLine>
-			)
-		}
-	)
-	const findStyleBySortIndex = (findIndex) => {
-		let count = 0
-		const styleNoKeys = Object.keys(styleDataGroupByStyleNo)
-		for (let i = 0; i < styleNoKeys.length; i++) {
-			let index = i
-			let styleNo = styleNoKeys[i]
-			count += styleDataGroupByStyleNo[styleNo].length
-			const originIndex = findIndex - index - 1
-			console.log("originIndex----", originIndex)
-			if (
-				originIndex >= 0 &&
-				originIndex < styleDataGroupByStyleNo[styleNo].length
-			) {
-				return {
-					styleNo: styleNo,
-					originIndex: originIndex,
-					item: styleDataGroupByStyleNo[originIndex],
-				}
-			}
-		}
-	}
-	function swapArray(arr, index1, index2) {
-		if (index > tindex) {
-			arr.splice(tindex, 0, arr[index])
-			arr.splice(index + 1, 1)
-		} else {
-			//如果当前元素在拖动目标位置的上方，先将当前元素从数组拿出，数组长度-1，我们直接给数组拖动目标位置+1的地方新增一个和当前元素值一样的元素，
-			//这时，数组len不变，我们再把数组之前的那个拖动的元素删除掉，下标还是index
-			arr.splice(tindex + 1, 0, arr[index])
-			arr.splice(index, 1)
-		}
-	}
+  const [packageCount, setPackageCount] = useState(1);
+  const sum = (arr) => {
+    var s = 0;
+    for (var i = arr.length - 1; i >= 0; i--) {
+      s += arr[i];
+    }
+    return s;
+  };
+  useEffect(() => {
+    let temps = curSizeArr.map(() => 0);
+    for (var key in itemsOrderSizeNums) {
+      itemsOrderSizeNums[key] = [...temps];
+    }
 
-	let sortIndex = 0
-	return (
-		<Flex
-			flexDirection="column"
-			justifyContent="space-between"
-			sx={{
-				cursor: "pointer",
-				height: "100%",
-				width: "100%",
-				background: "#FFF0E5",
-			}}
-		>
-			<Box
-				sx={{
-					padding: "0 18px 18px 18px",
-					height: "max-content",
-					width: "100%",
-					display: "table",
-				}}
-			>
-				<Table
-					sort={{
-						pressDelay: 200,
-						onSortEnd: ({ oldIndex, newIndex }) => {
-							console.log(oldIndex, newIndex)
-							//查询 styleNo
-							const old = findStyleBySortIndex(oldIndex)
-							const neo = findStyleBySortIndex(newIndex)
-							if (old.styleNo === neo.styleNo) {
-								// if()
-								styleDataGroupByStyleNo[old.styleNo] = arrayMove(
-									styleDataGroupByStyleNo[old.styleNo],
-									old.originIndex,
-									neo.originIndex
-								)
-								// [old.originIndex] = neo.item
-								// styleDataGroupByStyleNo[old.styleNo][neo.originIndex] = old.item
-								setStyleDataGroupByStyleNo({ ...styleDataGroupByStyleNo })
-							}
-						},
-					}}
-					sx={{ margin: "0", marginRight: "1px", width: "100%" }}
-					titles={[
-						{ name: "00", width: "2/22", isHide: true },
-						{ name: "SECTION NUMBER", width: "2/22" },
-						{ name: "COLOUR", width: "4/22" },
-						{ name: "IMAGE", width: "1/22" },
-						{ name: "SIZE", width: "2/22", onClick: () => {} },
-						{ name: "PACKAGES", width: "2/22" },
-						{ name: "QUANTITY", width: "2/22" },
-						{ name: `PRICE/${rate.sign}`, width: "4/22" },
-						{ name: `TOTAL AMOUN/${rate.sign}`, width: "1/22" },
-						{ name: "DELETE", width: "2/22" },
-					]}
-				>
-					{_.flatten(
-						Object.keys(styleDataGroupByStyleNo).map((styleKey) => {
-							let styleGroup = styleDataGroupByStyleNo[styleKey]
-							let keys = styleKey
+    setItemsOrderSizeNums({ ...itemsOrderSizeNums });
+  }, [curSizeArr]);
 
-							return styleGroup.map((collect, index) => {
-								console.log(sortIndex)
-								return (
-									<>
-										{index !== 0 ? null : (
-											<SortableTitleItem
-												disabled
-												indexNo={index}
-												collect={collect}
-												keys={keys}
-												key={`categoryList-item-title-${sortIndex}`}
-												index={sortIndex++}
-											/>
-										)}
-										<SortableItem
-											indexNo={index}
-											collect={collect}
-											key={`categoryList-item-${sortIndex}`}
-											index={sortIndex++}
-											styleGroupLength={index === 0 ? styleGroup.length : 0}
-										></SortableItem>
-									</>
-								)
-							})
-						})
-					)}
-				</Table>
-			</Box>
+  useEffect(() => {
+    let title = {};
+    for (let i = 0; i < styleGroupList; i++) {
+      styleGroupList[i].type === "title" ? (title = styleGroupList[i]) : null;
+      title.total += sum(itemsOrderSizeNums[styleGroupList[i].id]);
+    }
+    setStyleGroupList([...styleGroupList]);
+  }, [itemsOrderSizeNums]);
 
-			<Button
-				variant="primary"
-				height="1.13rem"
-				width="19.2rem"
-				bg="#000"
-				color="#fff"
-				padding="0"
-				sx={{
-					borderRadius: 0,
-					fontSize: "0.27rem",
-					cursor: "pointer",
-				}}
-				onClick={handleSubmitOrder}
-			>
-				COMPLETE
-			</Button>
-		</Flex>
-	)
-}
+  const handleChangePackageCount = (num, index) => {
+    if (num < 1) return;
+    styleGroupList[index].packageCount = num;
+    setStyleGroupList([].concat(styleGroupList));
+  };
+
+  const handleChangeCnts = (num, index) => {
+    if (num < 1) return;
+    styleGroupList[index].cnts = num;
+    setStyleGroupList([].concat(styleGroupList));
+  };
+  const handleChangeOrder = (id, sizeIndex, num) => {
+    if (num < 0) return;
+
+    itemsOrderSizeNums[id][sizeIndex] = num;
+    setItemsOrderSizeNums({ ...itemsOrderSizeNums });
+  };
+
+  const handleUpdateOrder = async () => {
+    const res = await request(
+      "/order/update",
+      {
+        _id: isEditOrder,
+        packageCount,
+        orderData,
+      },
+      "post"
+    );
+    if (res) {
+      props.nextStep();
+    }
+  };
+
+  const handleSubmitOrder = async () => {
+    toast.notify("comming soon...", "warn");
+    return;
+    for (let i = 0; i < orderData.length; i++) {
+      if (orderData[i].total < 1) {
+        console.log(i);
+        console.log(orderData[i]);
+        toast.notify("There is one item not empty here, please check.");
+        return;
+      }
+    }
+    if (isEditOrder) {
+      handleUpdateOrder();
+      return;
+    }
+    const res = await request(
+      "/order/add",
+      {
+        packageCount,
+        orderData,
+      },
+      "post"
+    );
+    if (res) {
+      toast.notify("Completed.", { type: "success", duration: 2 });
+      props.nextStep();
+    }
+  };
+
+  const handleDel = async (index) => {
+    // onDelSelectStyle(index)
+    styleData.splice(index, 1);
+    orderData.splice(index, 1);
+    setStyleData([].concat(styleData));
+    setOrderData([].concat(orderData));
+  };
+  const SortableTitleItem = SortableElement(({ keys }) => {
+    return (
+      <TableLine gary noEdit key={`selectline-keys-${keys}`}>
+        <Box colspan="4">{`StyleNo:${keys}`}</Box>
+        <Box colspan="7"></Box>
+      </TableLine>
+    );
+  });
+  const SortableItem = SortableElement(
+    ({
+      indexNo,
+      collect,
+      styleGroupLength,
+      packageCount,
+      cnts,
+      titleIndex,
+    }) => {
+      if (!collect) return <div></div>;
+      const amount = sum(itemsOrderSizeNums[collect.id]) * packageCount * cnts;
+      return (
+        <TableLine
+          haveDel
+          key={`selectline-${collect.id}`}
+          onDel={() => {
+            handleDel(indexNo);
+          }}
+        >
+          <Text>{indexNo}</Text>
+          <Flex flexDirection="column">
+            {collect.prodInfo.map((x) => (
+              <ProductInfo styleNum={x.styleNo} />
+            ))}
+          </Flex>
+          <Flex flexDirection="column">
+            {collect.prodInfo.map((x) => (
+              <ProductInfo made={x.color} />
+            ))}
+          </Flex>
+          <StyleItem
+            key={`${indexNo}-order-style-img`}
+            styleList={collect.styleList}
+            index={indexNo}
+            tool={false}
+          />
+          <Flex justifyContent="space-between">
+            {curSizeArr.map((size, sizeIndex) => (
+              <Flex flexDirection="column">
+                <Text mr="10px">{size}</Text>
+                <InputNumber
+                  value={
+                    itemsOrderSizeNums[collect.id]
+                      ? itemsOrderSizeNums[collect.id][sizeIndex]
+                      : 0
+                  }
+                  onChange={(num) => {
+                    handleChangeOrder(collect.id, sizeIndex, num);
+                    // console.log(collect.id, size.name, num)
+                  }}
+                  upValue={() => {
+                    handleChangeOrder(
+                      collect.id,
+                      sizeIndex,
+                      itemsOrderSizeNums[collect.id][sizeIndex] + 1
+                    );
+                  }}
+                  downValue={() => {
+                    handleChangeOrder(
+                      collect.id,
+                      sizeIndex,
+                      itemsOrderSizeNums[collect.id][sizeIndex] - 1
+                    );
+                  }}
+                />
+              </Flex>
+            ))}
+          </Flex>
+          {styleGroupLength <= 0 ? null : (
+            <Flex
+              rowspan={styleGroupLength}
+              hasBorder={"1px solid"}
+              justifyContent="center"
+              alignItems="center"
+              sx={{ width: "100%", height: "100%" }}
+            >
+              <InputNumber
+                value={packageCount}
+                onChange={(num) => {
+                  handleChangePackageCount(
+                    num == "" || !num ? 0 : parseInt(num),
+                    titleIndex
+                  );
+                }}
+                upValue={() => {
+                  handleChangePackageCount(packageCount + 1, titleIndex);
+                }}
+                downValue={() => {
+                  handleChangePackageCount(packageCount - 1, titleIndex);
+                }}
+              />
+            </Flex>
+          )}
+          {styleGroupLength <= 0 ? null : (
+            <Flex
+              rowspan={styleGroupLength}
+              hasBorder={"1px solid"}
+              justifyContent="center"
+              alignItems="center"
+              sx={{ width: "100%", height: "100%" }}
+            >
+              <InputNumber
+                value={cnts}
+                onChange={(num) => {
+                  handleChangeCnts(
+                    num == "" || !num ? 0 : parseInt(num, titleIndex)
+                  );
+                }}
+                upValue={() => {
+                  handleChangeCnts(cnts + 1, titleIndex);
+                }}
+                downValue={() => {
+                  handleChangeCnts(cnts - 1, titleIndex);
+                }}
+              />
+            </Flex>
+          )}
+          <Text>{amount}</Text>
+          <Flex flexDirection="column">
+            {collect.price.map((price) => (
+              <Text p="4px 0">{(props.rate.val * price).toFixed(2)}</Text>
+            ))}
+          </Flex>
+          <Text>
+            {
+              (sum(collect.price) * amount * props.rate.val).toFixed(2)
+              // (orderData[indexNo].totalPrice * rate.val).toFixed(2)
+            }
+          </Text>
+        </TableLine>
+      );
+    }
+  );
+
+  const handleCreateNewPackage = () => {
+    let newPackageName = `New Package`;
+    setTitleIndexs([...titleIndexs, styleGroupList.length]);
+    setStyleGroupList([
+      ...styleGroupList,
+      {
+        type: "title",
+        index: styleGroupList.length,
+        key: newPackageName,
+        styleNos: "",
+        count: 0,
+      },
+    ]);
+  };
+  const getPackageSpace = (index) => {
+    let space = -1;
+    for (let i = 0; i < titleIndexs.length; i++) {
+      if (i + 1 >= titleIndexs.length) {
+        space = titleIndexs[i];
+      }
+      if (index > titleIndexs[i] && index < titleIndexs[i + 1]) {
+        space = titleIndexs[i];
+        break;
+      }
+    }
+    return space;
+  };
+  let title = { index: 0, count: 1 };
+  return (
+    <Flex
+      flexDirection="column"
+      justifyContent="space-between"
+      sx={{
+        cursor: "pointer",
+        height: "100%",
+        width: "100%",
+        background: "#FFF0E5",
+      }}
+    >
+      {sizeChartModal ? (
+        <Modal
+          onClose={() => {
+            setSizeChartModal(false);
+          }}
+        >
+          {sizeArrList.map((sizeArr, index) => (
+            <Flex
+              alignItems="center"
+              justifyContent="space-between"
+              pr="6px"
+              style={{ border: "1px solid #000" }}
+            >
+              <Flex style={{ padding: "12px", lineHeight: "22px" }}>
+                {sizeArr.join("/")}
+              </Flex>
+              <Text
+                style={{ textDecoration: "underline" }}
+                onClick={() => {
+                  setCurSizeArr(sizeArrList[index]);
+                  setSizeChartModal(false);
+                }}
+              >
+                select
+              </Text>
+            </Flex>
+          ))}
+        </Modal>
+      ) : null}
+      <Box
+        sx={{
+          padding: "0 18px 18px 18px",
+          height: "max-content",
+          width: "100%",
+          display: "table",
+        }}
+      >
+        <SortableTable
+          sort={{
+            pressDelay: 200,
+            onSortEnd: ({ oldIndex, newIndex }) => {
+              let oldSpace = getPackageSpace(oldIndex);
+              let newSpace = getPackageSpace(newIndex);
+              if (newSpace < 0) return;
+              if (oldSpace === newSpace) {
+                setStyleGroupList(
+                  arrayMove(styleGroupList, oldIndex, newIndex)
+                );
+                return;
+              }
+              if (
+                styleGroupList[oldSpace].styleNos ===
+                styleGroupList[newSpace].styleNos
+              ) {
+                setStyleGroupList(
+                  arrayMove(styleGroupList, oldIndex, newIndex)
+                );
+                styleGroupList[oldSpace].count--;
+
+                styleGroupList[newSpace].count++;
+                if (newSpace > oldSpace) {
+                  styleGroupList[newSpace].index--;
+                }
+                return;
+              }
+              if (styleGroupList[newSpace].styleNos === "") {
+                styleGroupList[newSpace].styleNos =
+                  styleGroupList[oldIndex].styleNos;
+                styleGroupList[newSpace].key =
+                  styleGroupList[oldIndex].styleNos;
+                styleGroupList[oldSpace].count--;
+                styleGroupList[newSpace].index--;
+                styleGroupList[newSpace].count++;
+                setStyleGroupList(
+                  arrayMove(styleGroupList, oldIndex, newIndex)
+                );
+              }
+            },
+          }}
+          sx={{ margin: "0", marginRight: "1px", width: "100%" }}
+          titles={[
+            { name: "00", width: "2/22", isHide: true },
+            { name: "SECTION NUMBER", width: "2/22" },
+            { name: "COLOUR", width: "4/22" },
+            { name: "IMAGE", width: "1/22" },
+            {
+              name: "SIZE",
+              width: "2/22",
+              onClick: () => {
+                setSizeChartModal(true);
+              },
+            },
+            { name: "PACKAGES", width: "2/22" },
+            { name: "CTNS", width: "2/22" },
+            { name: "QUANTITY", width: "2/22" },
+            { name: `PRICE/${rate.sign}`, width: "4/22" },
+            { name: `TOTAL AMOUN/${rate.sign}`, width: "1/22" },
+            { name: "DELETE", width: "2/22" },
+          ]}
+        >
+          {styleGroupList.map((collect, index) => {
+            if (collect.type === "title") {
+              title = collect;
+              return (
+                <SortableTitleItem
+                  disabled
+                  indexNo={0}
+                  keys={collect.key}
+                  key={`categoryList-item-title-${index}`}
+                  index={index}
+                />
+              );
+            }
+            return (
+              <SortableItem
+                indexNo={index}
+                collect={collect}
+                key={`categoryList-item-${index}`}
+                index={index}
+                packageCount={title.packageCount}
+                cnts={title.cnts}
+                titleIndex={title.index}
+                styleGroupLength={index === title.index + 1 ? title.count : 0}
+              ></SortableItem>
+            );
+          })}
+        </SortableTable>
+      </Box>
+      <Button
+        variant="primary"
+        width="19.2rem"
+        bg="#fff"
+        color="#000"
+        padding="0"
+        sx={{
+          borderRadius: 0,
+          fontSize: "16px",
+          border: "dashed 1px #000",
+          padding: "10px 0",
+          cursor: "pointer",
+        }}
+        onClick={handleCreateNewPackage}
+      >
+        CREATE A NEW PACKAGE
+      </Button>
+      <Button
+        variant="primary"
+        height="1.13rem"
+        width="19.2rem"
+        bg="#000"
+        color="#fff"
+        padding="0"
+        sx={{
+          borderRadius: 0,
+          fontSize: "0.27rem",
+          cursor: "pointer",
+        }}
+        onClick={handleSubmitOrder}
+      >
+        COMPLETE
+      </Button>
+    </Flex>
+  );
+};
