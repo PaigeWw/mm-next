@@ -126,9 +126,10 @@ export default () => {
           }}
         ></SortableList>
 
-        {currentSeleted && info.role === 1 ? (
+        {currentSeleted ? (
           <SelectAssignTool
             channels={info.channels}
+            role={info.role}
             currentSeleted={currentSeleted}
             onClose={() => {
               setCurrentSeleted(false);

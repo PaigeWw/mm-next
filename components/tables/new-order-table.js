@@ -175,7 +175,7 @@ export default (props) => {
 
   const handleSubmitOrder = async () => {
     toast.notify("comming soon...", "warn");
-    return;
+
     // 数据格式
     /* {
       size: id,
@@ -197,23 +197,36 @@ export default (props) => {
         }
       ]
      }*/
-
-    for (let i = 0; i < orderData.length; i++) {
-      if (orderData[i].total < 1) {
-        console.log(i);
-        console.log(orderData[i]);
-        toast.notify("There is one item not empty here, please check.");
-        return;
+    // getOrderData();
+    let orderData = {
+      size: curSizeArr.id,
+      groupData: [],
+    };
+    for (let i = 0; i < styleGroupList.length; i++) {
+      let temp = styleGroupList[i];
+      if (temp.type === "title") {
+        orderData.groupData.push({
+          styleNos: temp.styleNos,
+          packageCount: temp.packageCount,
+          cnts: temp.cnts,
+          items: [],
+        });
+      } else {
+        let lastIndex = orderData.groupData.length - 1;
+        let sizeInfo = itemsOrderSizeNums[temp.id];
+        if (lastIndex < 0 || sum(sizeInfo) === 0) continue;
+        orderData.groupData[lastIndex].items.push({
+          favoriteId: temp.id,
+          sizeInfo: sizeInfo,
+        });
       }
     }
-    if (isEditOrder) {
-      handleUpdateOrder();
-      return;
-    }
+    orderData.groupData = orderData.groupData.filter((g) => g.items.length > 0);
+    console.log(orderData);
+    return;
     const res = await request(
       "/order/add",
       {
-        packageCount,
         orderData,
       },
       "post"

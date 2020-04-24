@@ -4,6 +4,10 @@ import Head from "../components/head";
 import NavItem from "../components/nav-item";
 import getUserInfo from "../hooks/getUserInfo";
 import Router from "next/router";
+import Modal from "../components/modal";
+import { ToastContainer, toast } from "./commons/toast";
+
+import request from "../utils/request";
 
 function resizeFontSize() {
   const docEl = document.documentElement;
@@ -16,6 +20,8 @@ function resizeFontSize() {
 export default (props) => {
   const user = getUserInfo();
   const [showNav, setShowNav] = useState(false);
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+  const [feedback, setFeedback] = useState("");
   function closeShowNav() {
     setShowNav(false);
   }
@@ -27,9 +33,28 @@ export default (props) => {
       window.removeEventListener("click", closeShowNav);
     };
   }, []);
+
+  const handleSendFeedback = async () => {
+    const res = await request(
+      "/user/feedback",
+      {
+        user: user.name,
+        feedback,
+      },
+      "post"
+    );
+    if (res) {
+      setShowFeedbackModal(false);
+      toast.notify("Thinks Your Feedback.");
+    } else {
+      toast.notify("Error");
+    }
+  };
+
   return (
     <React.Fragment>
       <Head></Head>
+      <ToastContainer />
       <Flex justifyContent="space-between" width="100%">
         <img
           width="2rem"
@@ -134,7 +159,6 @@ export default (props) => {
               }}
             ></NavItem>
           ) : null}
-
           <NavItem
             name="MY COLLECTION"
             url="/icon/icon-04.svg"
@@ -161,7 +185,68 @@ export default (props) => {
               Router.push("/login");
             }}
           ></NavItem>
+          <Box
+            style={{
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              cursor: "pointer",
+              textDecoration: "underline",
+            }}
+            p="24px"
+            onClick={() => {
+              setShowFeedbackModal(true);
+            }}
+          >
+            Feedback
+          </Box>
         </Flex>
+      ) : null}
+      {showFeedbackModal ? (
+        <Modal
+          onClose={() => {
+            setShowFeedbackModal(false);
+          }}
+        >
+          <Flex
+            width="500px"
+            width="400px"
+            flexDirection="column"
+            alignItems="center"
+            p="4px"
+            sx={{}}
+          >
+            <textarea
+              style={{
+                width: "320px",
+              }}
+              rows={4}
+              placeholder="FeedBack"
+              onChange={(e) => {
+                setFeedback(e.target.value);
+              }}
+            />
+            <Button
+              variant="primary"
+              height="0.7rem"
+              width="50%"
+              bg="#1B1B1B"
+              color="#fff"
+              padding="0"
+              mt="0.7rem"
+              sx={{
+                borderRadius: 0,
+                fontSize: "0.14rem",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                handleSendFeedback();
+              }}
+            >
+              Commit
+            </Button>
+          </Flex>
+        </Modal>
       ) : null}
     </React.Fragment>
   );

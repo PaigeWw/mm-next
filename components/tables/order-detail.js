@@ -101,7 +101,7 @@ export default (props) => {
                     rowspan={2}
                     hasBorder={"1px solid"}
                     margin={"1px"}
-                    key={`${index}-style-img`}
+					key={`${index}-style-img`}
                     styleList={item.favorite.styleAndColor.map((x) => {
                       // styleList.push({ style: x.style, colors: x.colorIds })
                       return { style: x.styleId, colors: x.colorIds };

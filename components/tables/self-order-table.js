@@ -32,11 +32,11 @@ export default props => {
 			})
 
 			return {
-				orderNo: order.orderNo,
-				date: order.updateTime,
-				user: order.user.name,
-				id: order._id
-			}
+        orderNo: order.orderNo,
+        date: order.updateTime.substring(0, 10),
+        user: order.user.name,
+        id: order._id,
+      };
 		})
 		setOrderList(data)
 	}
