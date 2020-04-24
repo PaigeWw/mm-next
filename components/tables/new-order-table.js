@@ -101,18 +101,19 @@ export default (props) => {
         key: resGroupKeys[i],
         styleNos: resGroupKeys[i],
         count: resGroupList[i].length,
+        size: "size1id",
       },
       ...resGroupList[i],
     ];
   }
-  const [titleIndexs, setTitleIndexs] = useState(tempTitleIndexs);
+  const [sizeArrList, setSizeArrList] = useState({
+    size1id: ["S", "M", "L", "XL"],
+    size2id: ["30A", "30B", "30C"],
+    size3id: ["30A", "30B", "30C", "32A", "32B", "32C"],
+  });
+
   const [styleGroupList, setStyleGroupList] = useState(tempStyleGroupList);
   const [curSizeArr, setCurSizeArr] = useState(["S", "M", "L", "XL"]);
-  const [sizeArrList, setSizeArrList] = useState([
-    ["S", "M", "L", "XL"],
-    ["30A", "30B", "30C"],
-    ["30A", "30B", "30C", "32A", "32B", "32C"],
-  ]);
 
   const [packageCount, setPackageCount] = useState(1);
   const sum = (arr) => {
@@ -173,6 +174,20 @@ export default (props) => {
     }
   };
 
+  const handleUpdateItemSizeArr = (titleIndex, sizeId) => {
+    console.log({ titleIndex, sizeId }); //flex-start
+    styleGroupList[titleIndex].size = sizeId;
+    for (let i = titleIndex + 1; i < styleGroupList.length; i++) {
+      let temp = styleGroupList[i];
+      if (temp.type === "title") {
+        return;
+      }
+      itemsOrderSizeNums[temp.id] = sizeArrList[sizeId].map((x) => 0);
+    }
+    setItemsOrderSizeNums({ ...itemsOrderSizeNums });
+
+    setStyleGroupList([...styleGroupList]);
+  };
   const handleSubmitOrder = async () => {
     toast.notify("comming soon...", "warn");
 
@@ -253,11 +268,26 @@ export default (props) => {
     setStyleGroupList([].concat(styleGroupList));
     // setOrderData([].concat(orderData));
   };
-  const SortableTitleItem = SortableElement(({ keys }) => {
+  const SortableTitleItem = SortableElement(({ keys, collect }) => {
     return (
       <TableLine gary noEdit key={`selectline-keys-${keys}`}>
         <Box colspan="4">{`StyleNo:${keys}`}</Box>
-        <Box colspan="7"></Box>
+        <Flex colspan="1" justifyContent="center">
+          {sizeArrList[collect.size].join("/")}
+          <Text
+            pl="6px"
+            fontSize="10px"
+            sx={{
+              textDecoration: "underline",
+            }}
+            onClick={() => {
+              setSizeChartModal(collect);
+            }}
+          >
+            change
+          </Text>
+        </Flex>
+        <Box colspan="6"></Box>
       </TableLine>
     );
   });
@@ -269,6 +299,7 @@ export default (props) => {
       packageCount,
       cnts,
       titleIndex,
+      sizeId,
     }) => {
       if (!collect) return <div></div>;
       const amount = sum(itemsOrderSizeNums[collect.id]) * packageCount * cnts;
@@ -297,8 +328,8 @@ export default (props) => {
             index={indexNo}
             tool={false}
           />
-          <Flex justifyContent="space-between">
-            {curSizeArr.map((size, sizeIndex) => (
+          <Flex justifyContent="flex-start">
+            {sizeArrList[sizeId].map((size, sizeIndex) => (
               <Flex flexDirection="column">
                 <Text mr="10px">{size}</Text>
                 <InputNumber
@@ -397,11 +428,12 @@ export default (props) => {
 
   const handleCreateNewPackage = () => {
     let newPackageName = `New Package`;
-    setTitleIndexs([...titleIndexs, styleGroupList.length]);
+
     setStyleGroupList([
       ...styleGroupList,
       {
         type: "title",
+        size: "size1id",
         packageCount: 1,
         cnts: 1,
         index: styleGroupList.length,
@@ -438,27 +470,30 @@ export default (props) => {
             setSizeChartModal(false);
           }}
         >
-          {sizeArrList.map((sizeArr, index) => (
-            <Flex
-              alignItems="center"
-              justifyContent="space-between"
-              pr="6px"
-              style={{ border: "1px solid #000" }}
-            >
-              <Flex style={{ padding: "12px", lineHeight: "22px" }}>
-                {sizeArr.join("/")}
-              </Flex>
-              <Text
-                style={{ textDecoration: "underline" }}
-                onClick={() => {
-                  setCurSizeArr(sizeArrList[index]);
-                  setSizeChartModal(false);
-                }}
+          {Object.keys(sizeArrList).map((sizeId, index) => {
+            const sizeArr = sizeArrList[sizeId];
+            return (
+              <Flex
+                alignItems="center"
+                justifyContent="space-between"
+                pr="6px"
+                style={{ border: "1px solid #000" }}
               >
-                select
-              </Text>
-            </Flex>
-          ))}
+                <Flex style={{ padding: "12px", lineHeight: "22px" }}>
+                  {sizeArr.join("/")}
+                </Flex>
+                <Text
+                  style={{ textDecoration: "underline" }}
+                  onClick={() => {
+                    handleUpdateItemSizeArr(sizeChartModal.index, sizeId);
+                    setSizeChartModal(false);
+                  }}
+                >
+                  select
+                </Text>
+              </Flex>
+            );
+          })}
         </Modal>
       ) : null}
       <Box
@@ -530,9 +565,6 @@ export default (props) => {
             {
               name: "SIZE",
               width: "2/22",
-              onClick: () => {
-                setSizeChartModal(true);
-              },
             },
             { name: "PACKAGES", width: "2/22" },
             { name: "CTNS", width: "2/22" },
@@ -549,6 +581,7 @@ export default (props) => {
                 <SortableTitleItem
                   disabled
                   indexNo={0}
+                  collect={collect}
                   keys={collect.key}
                   key={`categoryList-item-title-${index}`}
                   index={index}
@@ -562,6 +595,7 @@ export default (props) => {
                 key={`categoryList-item-${index}`}
                 index={index}
                 packageCount={title.packageCount}
+                sizeId={title.size}
                 cnts={title.cnts}
                 titleIndex={title.index}
                 styleGroupLength={index === title.index + 1 ? title.count : 0}
@@ -575,7 +609,6 @@ export default (props) => {
         width="19.2rem"
         bg="#fff"
         color="#000"
-        padding="0"
         sx={{
           borderRadius: 0,
           fontSize: "16px",
