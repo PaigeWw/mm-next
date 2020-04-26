@@ -3,6 +3,7 @@ import { Flex, Text } from "rebass"
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
 import request from "../utils/request"
 import { ToastContainer, toast } from "../components/commons/toast"
+import GoodsSwitch from "../components/commons/goods-switch"
 import Head from "../components/nav"
 import CollectTable from "../components/tables/collect-table"
 import OrderTable from "../components/tables/new-order-table"
@@ -76,6 +77,7 @@ export default () => {
 		<>
 			<Flex flexDirection="column" height="100%">
 				<Head></Head>
+				<GoodsSwitch />
 				<ToastContainer />
 				<Flex
 					flexDirection="column"

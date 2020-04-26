@@ -4,7 +4,7 @@ import _ from "lodash"
 import arrayMove from "array-move"
 import { TableLine, ProductInfo, SortableTable, Table } from "./base-table"
 import { SortableElement } from "react-sortable-hoc"
-
+//
 import InputNumber from "../number-input"
 import request from "../../utils/request"
 import StyleItem from "../commons/min-style-item"
@@ -88,7 +88,6 @@ export default (props) => {
 	let resGroupKeys = Object.keys(resGroup)
 	let tempTitleIndexs = []
 	let tempStyleGroupList = []
-	let tempItemsPackageCount = {}
 	for (let i = 0; i < resGroupList.length; i++) {
 		tempTitleIndexs = [...tempTitleIndexs, tempStyleGroupList.length]
 		tempStyleGroupList = [
@@ -124,13 +123,14 @@ export default (props) => {
 		return s
 	}
 	useEffect(() => {
-		let temps = curSizeArr.map(() => 0)
-		for (var key in itemsOrderSizeNums) {
-			itemsOrderSizeNums[key] = [...temps]
+		const getSizeList = async () => {
+			const res = await request("/goodsbase/size/getList", {
+				_id: "5e6e1d24ab374bec68f4981a",
+			})
+			// setSizeArrList(sizeArrList.concat(res))
 		}
-
-		setItemsOrderSizeNums({ ...itemsOrderSizeNums })
-	}, [curSizeArr])
+		getSizeList()
+	}, [])
 
 	useEffect(() => {
 		let title = {}
