@@ -8,7 +8,7 @@ import request from "../utils/request.js"
 export default () => {
 	const info = useUserInfo()
 	const [goosList, setgoosList] = useState([])
-	console.log("test test test test")
+	// console.log("test test test test")
 	useEffect(() => {
 		const getGoodsList = async () => {
 			const req = await request("goods/getList", "get")
