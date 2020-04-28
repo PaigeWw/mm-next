@@ -11,110 +11,111 @@ import StyleItem from "../commons/min-style-item"
 import Modal from "../../components/modal"
 export default (props) => {
 	const { selectStyles, isEditOrder, rate, toast } = props
-	const line = props.selectStyles.length
 	let initData = {
 		orderData: [],
 		itemsOrderSizeNums: {},
 		selectStyles: [...selectStyles],
 	}
-
+	let tempStyleGroupList = []
 	if (isEditOrder) {
-		return null
-		initData.orderData = selectStyles.map((x, index) => {
-			// let sizeInfo = x.details[0].size.values.map(item => ({ ...item, num: 0 }))
-			// console.log(x)
-			let stylePrice = x.favorite.styleAndColor[0].styleId.price
-			x.favorite.styleAndColor.length > 1
-				? (stylePrice += x.favorite.styleAndColor[1].styleId.price)
-				: null
-
-			let styleList = []
-			let prodInfo = []
-			let price = []
-			x.favorite.styleAndColor.map((item) => {
-				styleList.push({
-					style: item.styleId,
-					colors: item.colorIds,
-				})
-				let text = ""
-				item.colorIds.map((c, index) => {
-					if (index > 0) {
-						text = text + "/" + c.code
-					} else {
-						text = c.code
-					}
-				})
-				prodInfo.push({
-					styleNo: item.styleId.styleNo,
-					color: text,
-				})
-				price.push(item.styleId.price)
+		console.log(selectStyles)
+		let titleIndex = 0
+		initData.selectStyles.map((group) => {
+			tempStyleGroupList.push({
+				type: "title",
+				packageCount: group.packageCount,
+				cnts: group.cnts,
+				index: titleIndex,
+				key: group.styleNos,
+				styleNos: group.styleNos,
+				count: group.items.length,
+				size: group.sizeId,
 			})
-			initData.selectStyles[index] = { styleList, prodInfo, price }
-			return {
-				favoriteId: x.favoriteId,
-				sizeInfo: x.sizeInfo,
-				total: x.total,
-				totalPrice: x.totalPrice,
-				signalPrice: stylePrice,
-			}
+			titleIndex += group.items.length + 1
+			group.items.map((item) => {
+				let styleList = []
+				let price = []
+				let prodInfo = []
+				item.favorite.styleAndColor.map((x) => {
+					if (!x.styleId) return
+					price.push(x.styleId.price)
+					let text = ""
+					x.colorIds.map((color, index) => {
+						if (index) {
+							text += "/"
+						}
+						text = color.code
+					})
+					prodInfo.push({
+						styleNo: x.styleId.styleNo,
+						categoryName: x.styleId.categoryName,
+						color: text,
+						id: x.styleId._id,
+					})
+					// let positive = x.
+					styleList.push({ style: x.styleId, colors: x.colorIds })
+				})
+				tempStyleGroupList.push({
+					...item,
+					id: item._id,
+					styleList,
+					price,
+					prodInfo,
+				})
+				initData.itemsOrderSizeNums[item._id] = item.sizeInfo
+			})
 		})
 	} else {
 		initData.selectStyles.map((x) => {
 			// console.log("initData itemsOrderSizeNumsitemsOrderSizeNums");
 			initData.itemsOrderSizeNums[x.id] = [0, 0, 0, 0]
 		})
+
+		let tempStyleDate = initData.selectStyles.map((s) => {
+			s.styleNos = s.prodInfo.map((i) => i.styleNo)
+			return s
+		})
+		let resGroup = _.groupBy(tempStyleDate, (x) =>
+			x.prodInfo.map((i) => i.styleNo)
+		)
+
+		let resGroupList = Object.values(resGroup)
+		let resGroupKeys = Object.keys(resGroup)
+		let tempTitleIndexs = []
+
+		for (let i = 0; i < resGroupList.length; i++) {
+			tempTitleIndexs = [...tempTitleIndexs, tempStyleGroupList.length]
+			tempStyleGroupList = [
+				...tempStyleGroupList,
+				{
+					type: "title",
+					packageCount: 1,
+					cnts: 1,
+					index: tempTitleIndexs[i],
+					key: resGroupKeys[i],
+					styleNos: resGroupKeys[i],
+					count: resGroupList[i].length,
+					size: "5e6e1d51ab374bec68f4981d",
+				},
+				...resGroupList[i],
+			]
+		}
 	}
 
-	let tempStyleDate = initData.selectStyles.map((s) => {
-		s.styleNos = s.prodInfo.map((i) => i.styleNo)
-		return s
-	})
 	const [itemsOrderSizeNums, setItemsOrderSizeNums] = useState(
 		initData.itemsOrderSizeNums
 	)
 
-	// const [showOrderDetail, setShowOrderDetail] = useState(false)
-	// const [groupOrderDataByStyleNo, setGroupOrderDataByStyleNo] = useState(_.groupBy(initData.orderData))
-	const [orderData, setOrderData] = useState(initData.orderData)
-	const [styleData, setStyleData] = useState(tempStyleDate)
 	const [sizeChartModal, setSizeChartModal] = useState(false)
-	let resGroup = _.groupBy(styleData, (x) => x.prodInfo.map((i) => i.styleNo))
-	const [styleDataGroupByStyleNo, setStyleDataGroupByStyleNo] = useState(
-		resGroup
-	)
 
-	let resGroupList = Object.values(resGroup)
-	let resGroupKeys = Object.keys(resGroup)
-	let tempTitleIndexs = []
-	let tempStyleGroupList = []
-	for (let i = 0; i < resGroupList.length; i++) {
-		tempTitleIndexs = [...tempTitleIndexs, tempStyleGroupList.length]
-		tempStyleGroupList = [
-			...tempStyleGroupList,
-			{
-				type: "title",
-				packageCount: 1,
-				cnts: 1,
-				index: tempTitleIndexs[i],
-				key: resGroupKeys[i],
-				styleNos: resGroupKeys[i],
-				count: resGroupList[i].length,
-				size: "size1id",
-			},
-			...resGroupList[i],
-		]
-	}
 	const [sizeArrList, setSizeArrList] = useState({
-		size1id: ["S", "M", "L", "XL"],
+		"5e6e1d51ab374bec68f4981d": ["32A", "32B", "32C", "32D"],
 		size2id: ["30A", "30B", "30C"],
 		size3id: ["30A", "30B", "30C", "32A", "32B", "32C"],
 	})
 
 	const [styleGroupList, setStyleGroupList] = useState(tempStyleGroupList)
-	const [curSizeArr, setCurSizeArr] = useState(["S", "M", "L", "XL"])
 
-	const [packageCount, setPackageCount] = useState(1)
 	const sum = (arr) => {
 		var s = 0
 		for (var i = arr.length - 1; i >= 0; i--) {
@@ -159,21 +160,6 @@ export default (props) => {
 		setItemsOrderSizeNums({ ...itemsOrderSizeNums })
 	}
 
-	const handleUpdateOrder = async () => {
-		const res = await request(
-			"/order/update",
-			{
-				_id: isEditOrder,
-				packageCount,
-				orderData,
-			},
-			"post"
-		)
-		if (res) {
-			props.nextStep()
-		}
-	}
-
 	const handleUpdateItemSizeArr = (titleIndex, sizeId) => {
 		console.log({ titleIndex, sizeId }) //flex-start
 		styleGroupList[titleIndex].size = sizeId
@@ -187,6 +173,38 @@ export default (props) => {
 		setItemsOrderSizeNums({ ...itemsOrderSizeNums })
 
 		setStyleGroupList([...styleGroupList])
+	}
+
+	const getOrderData = () => {
+		let orderData = []
+		let curTitle = {}
+		for (let i = 0; i < styleGroupList.length; i++) {
+			let temp = styleGroupList[i]
+			if (temp.type === "title") {
+				orderData.push({
+					styleNos: temp.styleNos,
+					sizeId: temp.size,
+					packageCount: temp.packageCount,
+					cnts: temp.cnts,
+					items: [],
+				})
+				curTitle = temp
+			} else {
+				let lastIndex = orderData.length - 1
+				let sizeInfo = itemsOrderSizeNums[temp.id]
+				if (lastIndex < 0 || sum(sizeInfo) === 0) continue
+				const amount = sum(sizeInfo) * curTitle.packageCount * curTitle.cnts
+				orderData[lastIndex].items.push({
+					favoriteId: temp.id,
+					sizeInfo: sizeInfo,
+					total: amount,
+					totalPrice: (sum(temp.price) * amount).toFixed(2),
+				})
+			}
+		}
+		orderData = orderData.filter((g) => g.items.length > 0)
+		console.log(orderData)
+		return orderData
 	}
 	const handleSubmitOrder = async () => {
 		toast.notify("comming soon...", "warn")
@@ -214,34 +232,14 @@ export default (props) => {
       ]
      */
 		// getOrderData();
-		let orderData = []
-		for (let i = 0; i < styleGroupList.length; i++) {
-			let temp = styleGroupList[i]
-			if (temp.type === "title") {
-				orderData.push({
-					styleNos: temp.styleNos,
-					sizeId: temp.size,
-					packageCount: temp.packageCount,
-					cnts: temp.cnts,
-					items: [],
-				})
-			} else {
-				let lastIndex = orderData.length - 1
-				let sizeInfo = itemsOrderSizeNums[temp.id]
-				if (lastIndex < 0 || sum(sizeInfo) === 0) continue
-				orderData[lastIndex].items.push({
-					favoriteId: temp.id,
-					sizeInfo: sizeInfo,
-				})
-			}
-		}
-		orderData = orderData.filter((g) => g.items.length > 0)
-		console.log(orderData)
+
 		// return
 		const res = await request(
 			"/order/add",
 			{
-				orderData,
+				orderGoodNo: 1,
+				goodId: window.localStorage.getItem("curGoodId"),
+				orderData: getOrderData(),
 			},
 			"post"
 		)
@@ -253,7 +251,19 @@ export default (props) => {
 			props.nextStep()
 		}
 	}
-
+	const handleUpdateOrder = async () => {
+		const res = await request(
+			"/order/update",
+			{
+				_id: isEditOrder,
+				orderData: getOrderData(),
+			},
+			"post"
+		)
+		if (res) {
+			props.nextStep()
+		}
+	}
 	const handleDel = async (index) => {
 		// onDelSelectStyle(index)
 		let titleIndex = getPackageSpace(index)
@@ -432,7 +442,7 @@ export default (props) => {
 			...styleGroupList,
 			{
 				type: "title",
-				size: "size1id",
+				size: "5e6e1d51ab374bec68f4981d",
 				packageCount: 1,
 				cnts: 1,
 				index: styleGroupList.length,
@@ -521,10 +531,7 @@ export default (props) => {
 								setStyleGroupList(arrayMove(styleGroupList, oldIndex, newIndex))
 								return
 							}
-							console.log(
-								styleGroupList[oldSpace].styleNos,
-								styleGroupList[newSpace].styleNos
-							)
+
 							if (
 								styleGroupList[oldSpace].styleNos ===
 								styleGroupList[newSpace].styleNos
@@ -637,7 +644,7 @@ export default (props) => {
 					fontSize: "0.27rem",
 					cursor: "pointer",
 				}}
-				onClick={handleSubmitOrder}
+				onClick={isEditOrder ? handleUpdateOrder : handleSubmitOrder}
 			>
 				COMPLETE
 			</Button>

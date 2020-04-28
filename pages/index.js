@@ -30,7 +30,7 @@ export default () => {
 				<Head></Head>
 				<Flex maxHeight="65%">
 					{goosList.map((item) => (
-						<SelectBox {...item} pick={info.role !== 1} />
+						<SelectBox {...item} item={item} pick={info.role !== 1} />
 					))}
 				</Flex>
 			</Flex>

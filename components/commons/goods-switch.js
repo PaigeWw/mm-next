@@ -4,7 +4,8 @@ import request from "../../utils/request.js"
 
 export default (props) => {
 	const { options } = props
-	const [curGood, setCurGood] = useState(0)
+
+	const [curGoodId, setCurGoodId] = useState(0)
 	const [goodsList, setGoodsList] = useState([])
 	useEffect(() => {
 		const getGoodsList = async () => {
@@ -12,10 +13,15 @@ export default (props) => {
 			if (req) {
 				setGoodsList(req)
 			}
+			window.localStorage.setItem("curGoodId", req[0]._id)
+
+			setCurGoodId(req[0]._id)
 			// console.log(req)
 		}
+
 		getGoodsList()
 	}, [])
+
 	return (
 		<Flex
 			justifyContent="center"
@@ -34,13 +40,12 @@ export default (props) => {
 			{goodsList.map((option, index) => (
 				<Text
 					fontSize="18px"
-					color="#000"
 					pr="10px"
 					// p="10px"
 					sx={{
 						cursor: "pointer",
 						borderRight: "1px solid #000",
-						fontWeight: index === curGood ? "700" : "500",
+						color: option._id === curGoodId ? "#FFC1AE" : "#000",
 					}}
 					ml="10px"
 				>

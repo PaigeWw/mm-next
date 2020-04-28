@@ -66,6 +66,7 @@ export default (props) => {
 						<SelectButton
 							text="INDEPENDENT MATCH"
 							onSelect={() => {
+								window.localStorage.setItem("curGood", props.item)
 								Router.push(`/select?id=${props._id}`)
 							}}
 						/>
