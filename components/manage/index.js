@@ -5,10 +5,10 @@ import ChannelTable from "../tables/channel-table"
 import UserTable from "../tables/user-table"
 import request from "../../utils/request.js"
 
-export default () => {
+export default (props) => {
 	const [userList, setUserList] = useState([])
 	const [channelList, setChannelList] = useState([])
-	const getUserChannels = async page => {
+	const getUserChannels = async (page) => {
 		const req = await request("user/getUserChannels", "get")
 		setChannelList(req.channels || [])
 		setUserList(req.users || [])
@@ -27,13 +27,13 @@ export default () => {
 						background: "#FFF0E5",
 						color: "#000",
 						height: "100%",
-						flexGrow: 1
+						flexGrow: 1,
 					},
 					".react-tabs__tab--selected": {
 						flexGrow: 1,
-						background: "#FF8E6C !important"
-					}
-				}
+						background: "#FF8E6C !important",
+					},
+				},
 			}}
 		>
 			<Tabs style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
@@ -50,14 +50,14 @@ export default () => {
 						color: "#000",
 						justifyContent: "space-around",
 						alignItems: "center",
-						listStyleType: "none"
+						listStyleType: "none",
 					}}
 				>
 					<Tab
 						style={{
 							display: "flex",
 							justifyContent: "center",
-							alignItems: "center"
+							alignItems: "center",
 						}}
 					>
 						CHANNEL LIST
@@ -66,7 +66,7 @@ export default () => {
 						style={{
 							display: "flex",
 							justifyContent: "center",
-							alignItems: "center"
+							alignItems: "center",
 						}}
 					>
 						CUSTOMER LIST
@@ -77,6 +77,7 @@ export default () => {
 				</TabPanel>
 				<TabPanel>
 					<UserTable
+						rate={props.rate}
 						userList={userList}
 						channelList={channelList}
 						getUserChannels={getUserChannels}

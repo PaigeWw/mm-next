@@ -21,8 +21,11 @@ export default (props) => {
 		tempSelectedIds.push([])
 		// tempSelectedImgs.push(false)
 	}
+	const [showGroupStroke, setShowGroupStroke] = useState(false)
 	const [curSelectedColors, setCurSelectedColors] = useState(tempSelectedIds)
 	const [curStyleIndex, setCurStyleIndex] = useState(0)
+
+	const [tempShowColorInfo, setTempShowColorInfo] = useState({})
 	const [assignInfoSource, setAssignInfoSource] = useState({})
 	const [assignInfo, setAssignInfo] = useState({})
 	const [curStylesEditGroupIndex, setEditSvgGroupIndex] = useState([0, 0])
@@ -111,13 +114,14 @@ export default (props) => {
 		}
 	}
 	const handleSelect = (item) => {
-		// console.log(curSelectedColors)
+		console.log({ curSelectedColors })
 		if (
 			curSelectedColors[curStyleIndex][curStylesEditGroupIndex] &&
 			item._id === curSelectedColors[curStyleIndex][curStylesEditGroupIndex]._id
 		) {
 		} else {
 			// console.log(curStyle[curStyleIndex])
+			setTempShowColorInfo(item)
 			// let tempAttrs =
 			curSelectedColors[curStyleIndex].splice(curStylesEditGroupIndex, 1, item)
 			// console.log(curSelectedColors[curStyleIndex])
@@ -185,7 +189,7 @@ export default (props) => {
 		} else {
 			setFcode(options.code)
 		}
-	}
+	} //
 	return (
 		<Modal onClose={props.onClose}>
 			<Box width="14rem" fontSize="0.18rem" color="#000">
@@ -197,6 +201,9 @@ export default (props) => {
 						width="6.75rem"
 						sx={{
 							cursor: "pointer",
+						}}
+						onClick={() => {
+							setShowGroupStroke(false)
 						}}
 					>
 						{Array.isArray(styleDetails) &&
@@ -225,16 +232,18 @@ export default (props) => {
 										styleId={style._id}
 										shadowUrl={style.shadowUrl}
 										svgUrl={style.svgUrl}
+										showGroupStroke={showGroupStroke}
 										curStylesEditGroupIndex={curStylesEditGroupIndex}
-										onSetEditSvgGroupIndex={(index) =>
+										onSetEditSvgGroupIndex={(index) => {
 											setEditSvgGroupIndex(index)
-										}
+											setShowGroupStroke(true)
+										}}
 									/>
 								</Flex>
 							))}
 					</Flex>
 
-					<Flex flexDirection="column" flexGrow={1} pl="0.6rem">
+					<Flex flexDirection="column" flexGrow={1} pl="0.6rem" width={[1 / 2]}>
 						<Box width={[1]} mb="0.6rem">
 							<Text id="section" fontSize="0.18rem" fontWeight="bolder">
 								SECTION NUMBER
@@ -247,7 +256,8 @@ export default (props) => {
 							colorList={plainColors.docs || []}
 							handleSelect={handleSelect}
 							curChannelId={0}
-							selectedList={[curSelectedColors[curStyleIndex] || {}]}
+							showColorInfo={tempShowColorInfo}
+							selectedList={[tempShowColorInfo]}
 							page={plainColors.page}
 							onChangePage={handleChangeColorPage}
 							onSearch={handleOnSearch}
@@ -257,7 +267,9 @@ export default (props) => {
 							paintList={flowerColors.docs || []}
 							handleSelect={handleSelect}
 							curChannelId={0}
-							selectedList={[curSelectedColors[curStyleIndex] || {}]}
+							showColorInfo={tempShowColorInfo}
+							imgValsAttrs={styleDetails[curStyleIndex].attrs}
+							selectedList={[tempShowColorInfo]}
 							page={flowerColors.page}
 							onChangePage={handleChangeColorPage}
 							onSearch={handleOnSearch}

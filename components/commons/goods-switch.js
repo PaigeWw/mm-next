@@ -3,19 +3,19 @@ import { Flex, Text } from "rebass"
 import request from "../../utils/request.js"
 
 export default (props) => {
-	const { options } = props
+	const { goodId, onChangeGood, pb, onLoadGoods } = props
 
-	const [curGoodId, setCurGoodId] = useState(0)
+	console.log({ goodId })
+	const [curGoodId, setCurGoodId] = useState(goodId)
 	const [goodsList, setGoodsList] = useState([])
 	useEffect(() => {
 		const getGoodsList = async () => {
 			const req = await request("goods/getList", "get")
 			if (req) {
 				setGoodsList(req)
+				onLoadGoods && onLoadGoods(req)
 			}
-			window.localStorage.setItem("curGoodId", req[0]._id)
 
-			setCurGoodId(req[0]._id)
 			// console.log(req)
 		}
 
@@ -25,13 +25,16 @@ export default (props) => {
 	return (
 		<Flex
 			justifyContent="center"
-			mb="10px"
+			bg="#FFD6CA"
+			mt="30px"
+			pt="30px"
+			pb={pb}
 			sx={{
 				position: "relative",
 				display: "block",
 				margin: "0 auto",
 				width: "100vw",
-				color: "#cccccc",
+				color: "#000",
 				verticalAlign: "middle",
 				textAlign: "left",
 				userSelect: "none",
@@ -43,11 +46,16 @@ export default (props) => {
 					pr="10px"
 					// p="10px"
 					sx={{
+						lineHeight: "18px",
 						cursor: "pointer",
 						borderRight: "1px solid #000",
-						color: option._id === curGoodId ? "#FFC1AE" : "#000",
+						fontWeight: option._id === goodId ? "bold" : "normal",
+						color: option._id === goodId ? "#FF8E6C" : "#000",
 					}}
 					ml="10px"
+					onClick={() => {
+						onChangeGood(option._id)
+					}}
 				>
 					{option.aliasName}
 				</Text>

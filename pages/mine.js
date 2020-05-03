@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Flex, Text } from "rebass"
+import { Flex, Text, Box } from "rebass"
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
 import request from "../utils/request"
 import { ToastContainer, toast } from "../components/commons/toast"
@@ -14,21 +14,11 @@ import Manage from "../components/manage/index"
 import useUserInfo from "../hooks/getUserInfo"
 import useRateInfo from "../hooks/getRateInfo"
 import { getPageQuery } from "../utils/helper"
-const CurTitlt = (props) => (
-	<Text sx={{ fontSize: "0.38rem", textDecoration: "underline" }} pl="18px">
-		{props.text}
-	</Text>
-)
-const Titlt = (props) => (
-	<Text sx={{ fontSize: "0.2rem" }} pl="18px">
-		{props.text}
-	</Text>
-)
 
-const title = [1, 2, 3, 4]
 export default () => {
 	const rateInfo = useRateInfo() || []
 	const [userInfo, setUserInfo] = useState({})
+	const [goodId, setGoodId] = useState(false)
 	const user = useUserInfo()
 	const [tabSelectedIndex, setTabSelectedIndex] = useState(0)
 	const [selectStyles, setSelectStyles] = useState([])
@@ -40,9 +30,6 @@ export default () => {
 	useEffect(() => {
 		if (!user) {
 			return
-		}
-		if (user.role === 1 && title.length < 5) {
-			title.push(5)
 		}
 		setUserInfo(user)
 	}, [user])
@@ -57,7 +44,11 @@ export default () => {
 		setSelectStyles(order.orderData)
 		setTabSelectedIndex(1)
 	}
-
+	const onLoadGoods = (goods) => {
+		if (!getPageQuery().goodId) {
+			setGoodId(goods[0]._id)
+		}
+	}
 	const handleDelSelectStyle = (index) => {
 		selectStyles.splice(index, 1)
 		console.log(selectStyles)
@@ -71,13 +62,25 @@ export default () => {
 		} else {
 			setTabSelectedIndex(0)
 		}
+		if (query.goodId) {
+			setGoodId(query.goodId)
+		} else {
+		}
 	}, [])
 	// console.log("userInfo.currency", userInfo.currency)
 	return (
 		<>
 			<Flex flexDirection="column" height="100%">
-				<Head></Head>
-				<GoodsSwitch />
+				<Head progress={3}></Head>
+				<GoodsSwitch
+					pb="30px"
+					goodId={goodId}
+					onLoadGoods={onLoadGoods}
+					onChangeGood={(id) => {
+						setGoodId(id)
+					}}
+				/>
+
 				<ToastContainer />
 				<Flex
 					flexDirection="column"
@@ -98,26 +101,6 @@ export default () => {
 						},
 					}}
 				>
-					<Flex
-						style={{
-							height: "0.8rem",
-							background: "#FFC1AE",
-						}}
-						alignItems="center"
-						justifyContent="center"
-					>
-						<Text sx={{ fontSize: "0.3rem" }}>.</Text>
-						{title.map((t, index) =>
-							index === tabSelectedIndex ? (
-								<CurTitlt text={t} />
-							) : (
-								<Titlt text={t}></Titlt>
-							)
-						)}
-						<Text sx={{ fontSize: "0.3rem" }} pl="18px">
-							.
-						</Text>
-					</Flex>
 					<Tabs
 						selectedIndex={tabSelectedIndex}
 						style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
@@ -186,6 +169,7 @@ export default () => {
 						</TabList>
 						<TabPanel>
 							<CollectTable
+								goodId={goodId}
 								userInfo={userInfo}
 								rate={(userInfo && rateInfo[userInfo.currency]) || {}}
 								nextStep={handleSelectStyleToOrder}
@@ -193,6 +177,7 @@ export default () => {
 						</TabPanel>
 						<TabPanel>
 							<OrderTable
+								goodId={goodId}
 								toast={toast}
 								rate={(userInfo && rateInfo[userInfo.currency]) || {}}
 								isEditOrder={isEditOrder}
@@ -206,23 +191,28 @@ export default () => {
 						</TabPanel>
 						<TabPanel>
 							<SendTable
+								goodId={goodId}
 								toast={toast}
 								rate={(userInfo && rateInfo[userInfo.currency]) || {}}
 								onEditOrder={handleEditOrder}
 								nextStep={() => {
+									setSelectStyles([])
 									handleSetTabSelectedIndex(3)
 								}}
 							/>
 						</TabPanel>
 						<TabPanel>
 							<SelfOrderTable
+								goodId={goodId}
 								toast={toast}
 								rate={(userInfo && rateInfo[userInfo.currency]) || {}}
 							/>
 						</TabPanel>
 						{userInfo.role === 1 ? (
 							<TabPanel>
-								<Manage />
+								<Manage
+									rate={(userInfo && rateInfo[userInfo.currency]) || {}}
+								/>
 							</TabPanel>
 						) : null}
 					</Tabs>

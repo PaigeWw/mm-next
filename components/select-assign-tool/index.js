@@ -172,6 +172,7 @@ export default (props) => {
 	}
 	// const handleCommitSelected = index => {}
 	if (!channelList) return null
+	console.log({ styleItem })
 	return (
 		<Flex
 			width="6.4rem"
@@ -188,6 +189,7 @@ export default (props) => {
 		>
 			<Title
 				styleNo={styleItem.styleNo}
+				shadowUrlBack={styleItem.shadowUrlBack}
 				channelList={channelList}
 				// channelInfoList={curChannelAssign.plainColors}
 				onClose={props.onClose}

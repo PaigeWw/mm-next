@@ -3,52 +3,24 @@ import { Flex, Text, Box, Button, Image } from "rebass"
 import { Input } from "@rebass/forms"
 import Head from "../components/head"
 import request from "../utils/request.js"
+import { baseUrl } from "../utils/helper.js"
 import useUserInfo from "../hooks/getUserInfo"
 import Router from "next/router"
-import Svg from "../components/svg"
+import { ReactSVG } from "react-svg"
+
 export default () => {
 	const nameRef = useRef(null)
 	const passwordRef = useRef(null)
-	const [modal, setMadal] = useState(0) // 0, 1, 2, 3
-	const [svgColor, setSvgColor] = useState(false)
-	const showInfoList = [
-		{
-			signal: "AT MRMISS WE LOVE . . .",
-			leftColor: "#E74C39",
-			rightColor: "#231815",
-			imgUrl: "./1/t-1.png"
-		},
-		{
-			signal: "EVERY DESIGN",
-			leftColor: "#FF8E6C",
-			rightColor: "#B6141E",
-			imgUrl: "./1/t2.png"
-		},
-		{
-			signal: "EVERY PROJECT",
-			leftColor: "#434343",
-			rightColor: "#784E38",
-			imgUrl: "./1/t3.png"
-		},
-		{
-			signal: "EVERY PRO",
-			leftColor: "#000000",
-			rightColor: "#374E4B",
-			imgUrl: "./1/t4.png"
-		}
-	]
-
+	const [styleImg, setStyleImg] = useState(null)
 	const handleLogin = async () => {
-		// console.log("user/login")
-		console.log(nameRef.current)
 		let account = nameRef.current.value
-
 		let password = passwordRef.current.value
+
 		const req = await request(
 			"user/login",
 			{
 				account,
-				password
+				password,
 			},
 			"post"
 		)
@@ -60,179 +32,147 @@ export default () => {
 	const userInfo = useUserInfo()
 
 	useEffect(() => {
-		let num = 0
-		const interval = setInterval(() => {
-			num++
-			setSvgColor(false)
-			setMadal(num % 4)
-		}, 5000)
-		return () => {
-			clearInterval(interval)
+		const getLoginStyleImg = async () => {
+			const req = await request("system/detail")
+			setStyleImg(req[0].img)
 		}
+		getLoginStyleImg()
 	}, [])
 	return (
 		<React.Fragment>
-			<Head></Head>
-			<Box height="100vh">
-				<Flex flexWrap="wrap" height={["100%", "62.5vh"]}>
+			<Box
+				sx={{
+					width: "100vw",
+					height: "100vh",
+					backgroundImage: `url(${baseUrl}${styleImg})`,
+					backgroundSize: "cover",
+				}}
+			>
+				<Flex width={[1]} justifyContent="space-between" p="0 0.6rem" pt="48px">
+					<ReactSVG src="./icon/logo.svg" />
 					<Flex
-						flexDirection="column"
 						justifyContent="space-between"
-						width={[1, 722 / 1920]}
-						height={["100%", "62.5vh"]}
-						bg="white"
-						// onMouseEnter={() => {
-						// 	setSvgColor("#FFF")
-						// }}
+						sx={{
+							width: "40%",
+						}}
 					>
-						<img
-							// width="1.8rem"
-							// height="0.53rem"
-							src="./1/LOGO.png"
-							style={{
-								width: "2rem",
-								margin: "0.9rem 0 0.9rem 0.9rem",
-								// backgroundImage: 'url("/1/LOGO.png")',
-								// backgroundRepeat: "no-repeat",
-								// backgroundSize: "100% 100%",
-								cursor: "pointer"
-							}}
-							onClick={() => {
-								Router.push("/")
-							}}
-						/>
-						<Box padding="0 0 10% 10%">
-							<Flex alignItems="center" mb={"2%"}>
-								<Image
-									src="./1/user-icon.png"
-									mr={"10px"}
-									sx={{
-										width: "0.18rem",
-										minWidth: "14px",
-										height: "0.18rem",
-										minHeight: "14px"
-									}}
-								/>
-								<Text fontSize="0.14rem">ACCOUNT NUMBER</Text>
-							</Flex>
-
-							<Input
-								width="3rem"
-								height="0.38rem"
-								minHeight="28px"
-								minWidth="200px"
-								id="username"
-								name="username"
-								type="text"
-								ref={ref => (nameRef.current = ref)}
-							/>
-
-							<Flex alignItems="center" mt="4%" mb={"2%"}>
-								<Image
-									src="./1/password-icon.png"
-									mr={"10px"}
-									sx={{
-										width: "0.18rem",
-										minWidth: "14px",
-										height: "0.18rem",
-										minHeight: "14px"
-									}}
-								/>
-								<Text fontSize="0.14rem">PASSWORD</Text>
-							</Flex>
-
-							<Input
-								width="3rem"
-								height="0.38rem"
-								minHeight="28px"
-								minWidth="200px"
-								id="password"
-								name="password"
-								type="password"
-								ref={ref => (passwordRef.current = ref)}
-							/>
-							<Button
-								variant="primary"
-								width="1.34rem"
-								height="0.38rem"
-								minHeight="28px"
-								minWidth="80px"
-								bg="#000000"
-								color="#ffffff"
-								mt={"5.8%"}
-								onClick={() => handleLogin()}
-								padding="0"
-								sx={{
-									borderRadius: 0,
-									fontSize: "0.14rem"
-								}}
-							>
-								LOADING
-							</Button>
-						</Box>
+						<Text>HELP</Text>
+						<Text>ABOUT</Text>
+						<Text>CHINESE</Text>
+						<Text>ENGLISH</Text>
 					</Flex>
-					<Box width={[0, 718 / 1920]} bg="gray">
-						<Image
-							minHeight="100%"
-							src={showInfoList[modal].imgUrl}
-							mr={"10px"}
-							sx={{ objectFit: "cover" }}
+				</Flex>
+
+				<Flex
+					flexDirection="column"
+					alignItems="center"
+					justifyContent="flex-end"
+					p="0.3rem"
+					sx={{
+						position: "fixed",
+						bottom: "0.56rem",
+						right: "0.85rem",
+						width: "6rem",
+						height: "5.25rem",
+
+						background: "rgba(255,255,255,1)",
+						boxShadow: "-1px 16px 43px 4px rgba(65,63,63,0.28)",
+						opacity: 0.95,
+					}}
+				>
+					<Box>
+						<Flex alignItems="center">
+							<Image
+								src="./1/user-icon.png"
+								mr={"10px"}
+								sx={{
+									width: "0.18rem",
+									minWidth: "14px",
+									height: "0.18rem",
+									minHeight: "14px",
+								}}
+							/>
+							<Text fontSize="0.14rem">ACCOUNT NUMBER</Text>
+						</Flex>
+
+						<Input
+							width="5.38rem"
+							height="0.53rem"
+							p="0"
+							pt="0.18rem"
+							pb="0.02rem"
+							minHeight="28px"
+							minWidth="200px"
+							id="username"
+							name="username"
+							type="text"
+							sx={{
+								outline: "none",
+								border: "none",
+								borderBottom: "solid 1px #000",
+							}}
+							ref={(ref) => (nameRef.current = ref)}
 						/>
 					</Box>
-					<Box
-						onMouseEnter={() => {
-							setSvgColor(showInfoList[modal].rightColor)
-						}}
-						width={[1, 480 / 1920]}
-						bg={showInfoList[modal].rightColor}
-					></Box>
-				</Flex>
-				<Flex
-					flexWrap="wrap"
-					height={[0, "37.5vh"]}
-					style={{ overflow: "hidden" }}
-				>
-					<Box
-						width={[0, 722 / 1920]}
-						bg={showInfoList[modal].leftColor}
-						onMouseEnter={() => {
-							setSvgColor(showInfoList[modal].leftColor)
-						}}
-					></Box>
-					<Flex
-						alignItems="center"
-						justifyContent="center"
-						width={[0, 718 / 1920]}
-						bg="white"
-						fontSize="0.38rem"
-					>
-						<Flex flexDirection="column">
-							{showInfoList.map((info, index) => (
-								<Text
-									sx={{
-										cursor: "pointer",
-										textDecoration: index === modal ? "underline" : "none"
-									}}
-									// onMouseEnter={() => {
-									// 	setSvgColor(false)
-									// 	setMadal(index)
-									// }}
-								>
-									{info.signal}
-								</Text>
-							))}
+
+					<Box>
+						<Flex alignItems="center" mt="0.5rem">
+							<Image
+								src="./1/password-icon.png"
+								mr={"10px"}
+								sx={{
+									width: "0.18rem",
+									minWidth: "14px",
+									height: "0.18rem",
+									minHeight: "14px",
+								}}
+							/>
+							<Text fontSize="0.14rem">PASSWORD</Text>
 						</Flex>
-					</Flex>
-					<Flex
-						width={[0, 480 / 1920]}
-						bg="#DCDCDC"
-						justifyContent="center"
-						alignItems="center"
+
+						<Input
+							width="5.38rem"
+							height="0.53rem"
+							p="0"
+							pt="0.18rem"
+							pb="0.02rem"
+							minHeight="28px"
+							minWidth="200px"
+							id="password"
+							name="password"
+							type="password"
+							sx={{
+								outline: "none",
+								border: "none",
+								borderBottom: "solid 1px #000",
+								backgroundColor: "#fff !important",
+							}}
+							ref={(ref) => (passwordRef.current = ref)}
+						/>
+					</Box>
+
+					<Button
+						variant="primary"
+						width="1.34rem"
+						height="0.44rem"
+						minHeight="28px"
+						minWidth="80px"
+						bg="#000000"
+						color="#ffffff"
+						mt="0.55rem"
+						onClick={() => handleLogin()}
+						p="0"
+						mb="0.35rem"
+						sx={{
+							borderRadius: "0.22rem",
+							fontSize: "0.14rem",
+						}}
 					>
-						<Svg color={svgColor ? svgColor : showInfoList[modal].rightColor} />
-					</Flex>
+						LOADING
+					</Button>
 				</Flex>
 			</Box>
+			<Head></Head>
 		</React.Fragment>
 	)
 }

@@ -31,15 +31,20 @@ export default (props) => {
 	const [showSelect, setShowSelect] = useState(false)
 	return (
 		<Box
-			width={[1, 1 / 3]}
+			width="calc(100% - 0.1rem)"
+			height="calc(100vh - 250px)"
+			p="0.05rem"
+			mb="50px"
 			sx={{
-				// flexShrink: 0,
 				overflow: "hidden",
+				filter: "grayscale(100%)",
+				"&:hover": {
+					filter: "none",
+				},
 			}}
 		>
-			<Flex alignItems="baseline" p="0.2rem 0.9rem">
+			<Flex alignItems="baseline" p="0.2rem 0.9rem" justifyContent="center">
 				<Text fontSize="0.22rem">{props.aliasName}</Text>
-				<Text fontSize="0.14rem">&nbsp; SERIES</Text>
 			</Flex>
 			<Flex
 				width={[1]}
@@ -56,7 +61,7 @@ export default (props) => {
 			>
 				{showSelect ? (
 					<Flex
-						bg="rgba(0,0,0,0.5)"
+						bg="rgba(0,0,0,0)"
 						width="100%"
 						height="100%"
 						justifyContent={props.pick ? "space-evenly" : "center"}

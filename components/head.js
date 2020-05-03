@@ -22,6 +22,11 @@ html,
 * {
     font-family: Roboto;
 }
+:focus {
+
+outline: 0;
+
+}
 `
 
 function IndexPage() {

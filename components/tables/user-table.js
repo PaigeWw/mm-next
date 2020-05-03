@@ -2,10 +2,11 @@ import React, { useState } from "react"
 import { Flex, Text, Button } from "rebass"
 import Table, { TableLine } from "./base-table"
 import Modal from "../modal"
+import UserOrderTable from "./self-order-table"
 import request from "../../utils/request"
 
-export default props => {
-	const { getUserChannels, channelList } = props
+export default (props) => {
+	const { getUserChannels, channelList, rate } = props
 	const infos = [
 		{ name: "name", required: true },
 		{ name: "account", width: "4/22", required: true },
@@ -16,11 +17,12 @@ export default props => {
 		{ name: "customerType", width: "2/22" },
 		{ name: "address", width: "2/22" },
 		{ name: "channels", width: "2/22", type: "select" },
-		{ name: "remark", type: "area" }
+		{ name: "remark", type: "area" },
 	]
 	const [editUserInfo, setUserEditInfo] = useState(false)
 	const [editNewUserInfo, setNewUserEditInfo] = useState({})
 	const [addUserModal, setAddUserModal] = useState(false)
+	const [userOrderModal, setUserOrderModal] = useState(false)
 
 	const handleAddUser = async () => {
 		const res = await request(
@@ -33,22 +35,22 @@ export default props => {
 			setAddUserModal(false)
 		}
 	}
-	const handleDelUser = async _id => {
+	const handleDelUser = async (_id) => {
 		const res = await request("/user/delete", { _id }, "post")
 		if (res) {
 			getUserChannels()
 		}
 	}
-	const handleEditNewUser = values => {
+	const handleEditNewUser = (values) => {
 		setNewUserEditInfo({
 			...editNewUserInfo,
-			...values
+			...values,
 		})
 	}
-	const handleEditUser = values => {
+	const handleEditUser = (values) => {
 		setUserEditInfo({
 			...editUserInfo,
-			...values
+			...values,
 		})
 	}
 
@@ -66,7 +68,7 @@ export default props => {
 			sx={{
 				cursor: "pointer",
 				height: "100%",
-				background: "#FFF0E5"
+				background: "#FFF0E5",
 			}}
 		>
 			<Flex sx={{ padding: "0 18px 18px 18px" }} alignItems="stretch">
@@ -81,7 +83,7 @@ export default props => {
 
 						{ name: "CREATION TIME", width: "2/22" },
 						{ name: "ORDER", width: "2/22" },
-						{ name: "OPERATING", width: "2/22" }
+						{ name: "OPERATING", width: "2/22" },
 					]}
 				>
 					{props.userList.map((user, index) => {
@@ -101,7 +103,7 @@ export default props => {
 										customerType: user.customerType,
 										address: user.address,
 										remark: user.remark,
-										channels: user.channels
+										channels: user.channels,
 									})
 								}}
 								haveDel
@@ -116,7 +118,13 @@ export default props => {
 								<Text>{user.password}</Text>
 								<Text>{user.channels[0].code}</Text>
 								<Text>{user.createTime}</Text>
-								<Text onClick={() => {}}>CLICK TO VIEW</Text>
+								<Text
+									onClick={() => {
+										setUserOrderModal(user)
+									}}
+								>
+									CLICK TO VIEW
+								</Text>
 							</TableLine>
 						)
 					})}
@@ -138,7 +146,7 @@ export default props => {
 							right: 20,
 							borderRadius: 0,
 							fontSize: "14px",
-							cursor: "pointer"
+							cursor: "pointer",
 						}}
 						onClick={() => {
 							setNewUserEditInfo({ channels: [channelList[0]._id] })
@@ -155,12 +163,12 @@ export default props => {
 						setAddUserModal(false)
 					}}
 				>
-					{infos.map(info => (
+					{infos.map((info) => (
 						<Flex justifyContent="space-between" pb="12px">
 							<Text mr="10px">{info.name.toUpperCase()}:</Text>
 							{!info.type ? (
 								<input
-									onChange={e => {
+									onChange={(e) => {
 										let values = {}
 										values[info.name] = e.target.value
 										handleEditNewUser(values)
@@ -170,27 +178,28 @@ export default props => {
 							{info.type === "select" ? (
 								<select
 									style={{
-										width: "120px"
+										width: "120px",
 									}}
-									onChange={e => {
+									onChange={(e) => {
 										let values = {}
 										values[info.name] = [e.target.value]
 										handleEditNewUser(values)
 									}}
 								>
-									{props.channelList.map((c, index) => {
-										return (
-											<option value={c._id}>{`${c.code}-${c.name}`}</option>
-										)
-									})
-									/* */
+									{
+										props.channelList.map((c, index) => {
+											return (
+												<option value={c._id}>{`${c.code}-${c.name}`}</option>
+											)
+										})
+										/* */
 									}
 								</select>
 							) : null}
 							{info.type === "area" ? (
 								<textarea
 									width="140px"
-									onChange={e => {
+									onChange={(e) => {
 										let values = {}
 										values[info.name] = e.target.value
 										handleEditNewUser(values)
@@ -210,7 +219,7 @@ export default props => {
 						sx={{
 							borderRadius: 0,
 							fontSize: "14px",
-							cursor: "pointer"
+							cursor: "pointer",
 						}}
 						onClick={handleAddUser}
 					>
@@ -224,13 +233,13 @@ export default props => {
 						setUserEditInfo(false)
 					}}
 				>
-					{infos.map(info => (
+					{infos.map((info) => (
 						<Flex justifyContent="space-between" pb="12px">
 							<Text mr="10px">{info.name.toUpperCase()}:</Text>
 							{!info.type ? (
 								<input
 									value={editUserInfo[info.name]}
-									onChange={e => {
+									onChange={(e) => {
 										let values = { _id: editUserInfo._id }
 										values[info.name] = e.target.value
 										handleEditUser(values)
@@ -240,28 +249,29 @@ export default props => {
 							{info.type === "select" ? (
 								<select
 									style={{
-										width: "120px"
+										width: "120px",
 									}}
 									defaultValue={
 										editUserInfo[info.name]
 											? editUserInfo[info.name][0]._id
 											: ""
 									}
-									onChange={e => {
+									onChange={(e) => {
 										let values = { _id: editUserInfo._id }
 										values[info.name] = [e.target.value]
 										handleEditUser(values)
 									}}
 								>
-									{props.channelList.map(c => {
-										console.log(c._id)
-										console.log(info.name)
-										console.log(editUserInfo[info.name])
-										return (
-											<option value={c._id}>{`${c.code}-${c.name}`}</option>
-										)
-									})
-									/* */
+									{
+										props.channelList.map((c) => {
+											console.log(c._id)
+											console.log(info.name)
+											console.log(editUserInfo[info.name])
+											return (
+												<option value={c._id}>{`${c.code}-${c.name}`}</option>
+											)
+										})
+										/* */
 									}
 								</select>
 							) : null}
@@ -269,7 +279,7 @@ export default props => {
 								<textarea
 									value={editUserInfo[info.name]}
 									width="140px"
-									onChange={e => {
+									onChange={(e) => {
 										let values = { _id: editUserInfo._id }
 										values[info.name] = e.target.value
 										handleEditUser(values)
@@ -289,12 +299,21 @@ export default props => {
 						sx={{
 							borderRadius: 0,
 							fontSize: "14px",
-							cursor: "pointer"
+							cursor: "pointer",
 						}}
 						onClick={handleConfrim}
 					>
 						FINISH
 					</Button>
+				</Modal>
+			) : null}
+			{userOrderModal ? (
+				<Modal
+					onClose={() => {
+						setUserOrderModal(false)
+					}}
+				>
+					<UserOrderTable userId={userOrderModal._id} rate={rate} />
 				</Modal>
 			) : null}
 		</Flex>

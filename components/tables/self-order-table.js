@@ -6,37 +6,43 @@ import Modal from "../modal"
 import request from "../../utils/request"
 import Router from "next/router"
 
-export default props => {
-	const { rate } = props
+export default (props) => {
+	const { rate, userId } = props
 	const [orderDetailMode, setOrderDetailMode] = useState({
 		visible: false,
-		detail: {}
+		detail: {},
 	})
 	const [orderList, setOrderList] = useState([])
 	const [orderDetailList, setOrderDetailList] = useState([])
 	const [selectList, setSelectList] = useState([])
 	const getOrderList = async () => {
-		const res = await request("/order/getMyList", { isSend: 1 })
+		let res = null
+		if (userId) {
+			res = await request("/order/getList", { isSend: 1, userId })
+		} else {
+			res = await request("/order/getMyList", { isSend: 1 })
+		}
+
 		// console.log("----res----", res)
 		if (!res) return
 		setOrderDetailList(res)
-		const data = res.map(order => {
+		const data = res.map((order) => {
 			let orderData = order.orderData
 			let threeViewsList = []
 			let quantity = 0
 			let price = 0
-			orderData.map(item => {
+			orderData.map((item) => {
 				quantity += item.total
 				price += item.totalPrice
 				// threeViewsList.push(threeViews)
 			})
 
 			return {
-        orderNo: order.orderNo,
-        date: order.updateTime.substring(0, 10),
-        user: order.user.name,
-        id: order._id,
-      };
+				orderNo: order.orderNo,
+				date: order.updateTime.substring(0, 10),
+				user: order.user.name,
+				id: order._id,
+			}
 		})
 		setOrderList(data)
 	}
@@ -44,7 +50,7 @@ export default props => {
 		getOrderList()
 	}, [])
 
-	const handleCheckDetail = index => {
+	const handleCheckDetail = (index) => {
 		setOrderDetailMode({ visible: true, detail: orderDetailList[index] })
 	}
 	return (
@@ -54,7 +60,7 @@ export default props => {
 			sx={{
 				cursor: "pointer",
 				height: "100%",
-				background: "#FFF0E5"
+				background: "#FFF0E5",
 			}}
 		>
 			{orderDetailMode.visible ? (
@@ -75,7 +81,7 @@ export default props => {
 						{ name: "ORDER DATE", width: "4/22" },
 						{ name: "CLIENT'S NAME", width: "1/22" },
 						{ name: "DOWNLOAD", width: "2/22" },
-						{ name: "FILE PREVIEW", width: "2/22" }
+						{ name: "FILE PREVIEW", width: "2/22" },
 					]}
 				>
 					{orderList.map((order, index) => (
@@ -96,7 +102,7 @@ export default props => {
 								width="0.3rem"
 								src="/8/download.png"
 								sx={{
-									opacity: "0.7"
+									opacity: "0.7",
 								}}
 								onClick={() => {
 									window.open(

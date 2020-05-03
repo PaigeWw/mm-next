@@ -41,7 +41,8 @@ class SelectLine extends React.Component {
 			nextProps.styles !== this.props.styles ||
 			nextProps.selectStyles !== this.props.selectStyles ||
 			nextStates.startIndex !== this.state.startIndex ||
-			nextStates.searchQuery !== this.state.searchQuery
+			nextStates.startIndex !== this.state.startIndex ||
+			nextStates.showSearch !== this.state.showSearch
 		) {
 			// console.log("nextProps.src !== this.props.src")
 			return true
@@ -64,6 +65,7 @@ class SelectLine extends React.Component {
 	}
 	render() {
 		const { startIndex, searchQuery, showSearch } = this.state
+		console.log(showSearch)
 		const { styles } = this.props
 		return (
 			<Flex
@@ -95,9 +97,9 @@ class SelectLine extends React.Component {
 							<Box
 								onClick={() => {
 									this.setState({
-										showSearch: !showSearch,
+										showSearch: true,
 									})
-									setShowSearch(!showSearch)
+									// setShowSearch(!showSearch)
 								}}
 								ml="6px"
 								sx={{

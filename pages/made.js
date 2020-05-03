@@ -16,6 +16,7 @@ export default () => {
 	const userInfo = useUserInfo()
 
 	const [styleType, setStyleType] = useState("")
+	const [goodId, setGoodId] = useState("")
 	const [styleDetails, setStyleDetails] = useState([])
 	const [showBigBox, setShowBigBox] = useState(false)
 	const [showEditBox, setShowEditBox] = useState(false)
@@ -24,6 +25,7 @@ export default () => {
 	const [collectList, setCollectList] = useState([])
 	useEffect(() => {
 		let query = getPageQuery()
+		setGoodId(query.goodId)
 		if (query.id1 && query.type === "BOTTOMS") {
 			let temp = query.id
 			query.id = query.id1
@@ -117,7 +119,7 @@ export default () => {
 	return (
 		<>
 			<Flex flexDirection="column">
-				<Head></Head>
+				<Head progress={2}></Head>
 				<ReactSvg
 					beforeInjection={(svg) => {
 						svg.setAttribute("id", "mm-defs-svg")
@@ -202,7 +204,7 @@ export default () => {
 								cursor: "pointer",
 							}}
 							onClick={() => {
-								Router.push("/mine")
+								Router.push(`/mine?goodId=${goodId}`)
 							}}
 						>
 							COMPLETE

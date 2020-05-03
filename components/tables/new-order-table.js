@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Flex, Text, Box, Button, Row, Column } from "rebass"
 import _ from "lodash"
 import arrayMove from "array-move"
-import { TableLine, ProductInfo, SortableTable, Table } from "./base-table"
+import { TableLine, ProductInfo, SortableTable } from "./base-table"
 import { SortableElement } from "react-sortable-hoc"
 //
 import InputNumber from "../number-input"
@@ -10,7 +10,7 @@ import request from "../../utils/request"
 import StyleItem from "../commons/min-style-item"
 import Modal from "../../components/modal"
 export default (props) => {
-	const { selectStyles, isEditOrder, rate, toast } = props
+	const { selectStyles, isEditOrder, rate, toast, goodId } = props
 	let initData = {
 		orderData: [],
 		itemsOrderSizeNums: {},
@@ -57,12 +57,12 @@ export default (props) => {
 				})
 				tempStyleGroupList.push({
 					...item,
-					id: item._id,
+					id: item.favoriteId,
 					styleList,
 					price,
 					prodInfo,
 				})
-				initData.itemsOrderSizeNums[item._id] = item.sizeInfo
+				initData.itemsOrderSizeNums[item.favoriteId] = item.sizeInfo
 			})
 		})
 	} else {
@@ -110,8 +110,6 @@ export default (props) => {
 
 	const [sizeArrList, setSizeArrList] = useState({
 		"5e6e1d51ab374bec68f4981d": ["32A", "32B", "32C", "32D"],
-		size2id: ["30A", "30B", "30C"],
-		size3id: ["30A", "30B", "30C", "32A", "32B", "32C"],
 	})
 
 	const [styleGroupList, setStyleGroupList] = useState(tempStyleGroupList)
@@ -126,13 +124,32 @@ export default (props) => {
 	useEffect(() => {
 		const getSizeList = async () => {
 			const res = await request("/goodsbase/size/getList", {
-				_id: "5e6e1d24ab374bec68f4981a",
+				goods: goodId,
 			})
-			// setSizeArrList(sizeArrList.concat(res))
+			let r = {}
+			res.map((s) => {
+				r[s._id] = s.values.map((v) => v.name)
+				console.log({ r })
+			})
+			setSizeArrList(r)
 		}
 		getSizeList()
 	}, [])
 
+	useEffect(() => {
+		if (!isEditOrder) {
+			styleGroupList.map((temp) => {
+				if (temp.type === "title") {
+					temp.size = Object.keys(sizeArrList)[0]
+				}
+			})
+			Object.keys(itemsOrderSizeNums).map((key) => {
+				itemsOrderSizeNums[key] = Object.keys(sizeArrList).map((v) => 0)
+			})
+		}
+		setItemsOrderSizeNums({ ...itemsOrderSizeNums })
+		setStyleGroupList([...styleGroupList])
+	}, [sizeArrList])
 	useEffect(() => {
 		let title = {}
 		for (let i = 0; i < styleGroupList; i++) {
@@ -282,7 +299,7 @@ export default (props) => {
 			<TableLine gary noEdit key={`selectline-keys-${keys}`}>
 				<Box colspan="4">{`StyleNo:${keys}`}</Box>
 				<Flex colspan="1" justifyContent="center">
-					{sizeArrList[collect.size].join("/")}
+					{sizeArrList[collect.size] && sizeArrList[collect.size].join("/")}
 					<Text
 						pl="6px"
 						fontSize="10px"
@@ -338,36 +355,37 @@ export default (props) => {
 						tool={false}
 					/>
 					<Flex justifyContent="flex-start">
-						{sizeArrList[sizeId].map((size, sizeIndex) => (
-							<Flex flexDirection="column">
-								<Text mr="10px">{size}</Text>
-								<InputNumber
-									value={
-										itemsOrderSizeNums[collect.id]
-											? itemsOrderSizeNums[collect.id][sizeIndex]
-											: 0
-									}
-									onChange={(num) => {
-										handleChangeOrder(collect.id, sizeIndex, num)
-										// console.log(collect.id, size.name, num)
-									}}
-									upValue={() => {
-										handleChangeOrder(
-											collect.id,
-											sizeIndex,
-											itemsOrderSizeNums[collect.id][sizeIndex] + 1
-										)
-									}}
-									downValue={() => {
-										handleChangeOrder(
-											collect.id,
-											sizeIndex,
-											itemsOrderSizeNums[collect.id][sizeIndex] - 1
-										)
-									}}
-								/>
-							</Flex>
-						))}
+						{sizeArrList[sizeId] &&
+							sizeArrList[sizeId].map((size, sizeIndex) => (
+								<Flex flexDirection="column">
+									<Text mr="10px">{size}</Text>
+									<InputNumber
+										value={
+											itemsOrderSizeNums[collect.id]
+												? itemsOrderSizeNums[collect.id][sizeIndex]
+												: 0
+										}
+										onChange={(num) => {
+											handleChangeOrder(collect.id, sizeIndex, num)
+											// console.log(collect.id, size.name, num)
+										}}
+										upValue={() => {
+											handleChangeOrder(
+												collect.id,
+												sizeIndex,
+												itemsOrderSizeNums[collect.id][sizeIndex] + 1
+											)
+										}}
+										downValue={() => {
+											handleChangeOrder(
+												collect.id,
+												sizeIndex,
+												itemsOrderSizeNums[collect.id][sizeIndex] - 1
+											)
+										}}
+									/>
+								</Flex>
+							))}
 					</Flex>
 					{styleGroupLength <= 0 ? null : (
 						<Flex

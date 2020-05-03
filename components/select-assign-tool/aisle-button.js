@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
-export const Title = props => (
+import { baseUrl } from "../../utils/helper"
+
+export const Title = (props) => (
 	<Flex width="100%" sx={{}} mb="0.43rem">
-		<Box width={[1]}>
+		<Box width={[3 / 5]}>
 			<Text fontSize="0.18rem" fontWeight="bolder">
 				SECTION NUMBER
 			</Text>
@@ -16,6 +18,9 @@ export const Title = props => (
 				</Text>
 			)}
 		</Box>
+		<Flex justifyContent="center" alignItems="center" width={[2 / 5]}>
+			<Image src={`${baseUrl}${props.shadowUrlBack}`} width="70%" />
+		</Flex>
 		<Image
 			src="/3/close.png"
 			width="0.23rem"
@@ -27,7 +32,7 @@ export const Title = props => (
 	</Flex>
 )
 
-const AisleButton = props => {
+const AisleButton = (props) => {
 	const { channelList, curChannel } = props
 	const [showChannels, setShowChannels] = useState(false)
 
@@ -56,7 +61,7 @@ const AisleButton = props => {
 						padding: "0 0.32rem",
 						borderRadius: 0,
 						fontSize: "0.14rem",
-						cursor: "pointer"
+						cursor: "pointer",
 					}}
 					onClick={() => {
 						setShowChannels(!showChannels)

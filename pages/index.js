@@ -3,6 +3,11 @@ import { Flex, Text, Box, Button, Image } from "rebass"
 import useUserInfo from "../hooks/getUserInfo"
 import Head from "../components/nav"
 import SelectBox from "../components/main-kind-box"
+import dynamic from "next/dynamic"
+
+const SliderComponentWithNoSSR = dynamic(import("../components/carousel"), {
+	ssr: false,
+})
 
 import request from "../utils/request.js"
 export default () => {
@@ -19,7 +24,18 @@ export default () => {
 		}
 		getGoodsList()
 	}, [info])
-
+	const settings = {
+		className: "center",
+		centerMode: true,
+		infinite: true,
+		centerPadding: "0px",
+		initialSlide: 1,
+		slidesToShow: 3,
+		speed: 1000,
+		afterChange: (index) => {
+			console.log(index)
+		},
+	}
 	return (
 		<React.Fragment>
 			<Flex
@@ -27,11 +43,22 @@ export default () => {
 				justifyContent="space-between"
 				flexDirection="column"
 			>
-				<Head></Head>
-				<Flex maxHeight="65%">
-					{goosList.map((item) => (
-						<SelectBox {...item} item={item} pick={info.role !== 1} />
-					))}
+				<Head progress={0}></Head>
+				<Flex
+					height="calc(100vh - 200px)"
+					width="100%"
+					justifyContent="center"
+					alignItems="center"
+				>
+					<Box height="100%" width="calc(100% - 170px)">
+						{goosList.length > 0 ? (
+							<SliderComponentWithNoSSR responsive={true} settings={settings}>
+								{goosList.map((item) => (
+									<SelectBox {...item} item={item} pick={info.role !== 1} />
+								))}
+							</SliderComponentWithNoSSR>
+						) : null}
+					</Box>
 				</Flex>
 			</Flex>
 		</React.Fragment>

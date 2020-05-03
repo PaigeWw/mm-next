@@ -12,6 +12,7 @@ export default (props) => {
 		colors,
 		svgId,
 		styleId,
+		showGroupStroke,
 		imgValsAttrs = [],
 		curStylesEditGroupIndex,
 		onSetEditSvgGroupIndex,
@@ -21,6 +22,7 @@ export default (props) => {
 		<div
 			style={{
 				position: "relative",
+				margin: "12px 0",
 				width: width,
 			}}
 		>
@@ -53,9 +55,11 @@ export default (props) => {
 								let jj = j
 								let block = svg.children[i]
 								block.onclick = (e) => {
+									e.stopPropagation()
+
 									onSetEditSvgGroupIndex(jj)
 								}
-								if (curStylesEditGroupIndex === i) {
+								if (curStylesEditGroupIndex === i && showGroupStroke) {
 									block.style.stroke = "khaki"
 									block.style.strokeWidth = "8px"
 								}
