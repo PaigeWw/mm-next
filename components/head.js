@@ -2,10 +2,7 @@ import Head from "next/head"
 import { createGlobalStyle } from "styled-components"
 
 const Global = createGlobalStyle`
-@font-face {
-font-family: Roboto;
-src: url("./SourceHanSansCN-Normal.ttf");
-}
+
 body,
 html,
 #__next {
@@ -19,9 +16,7 @@ html,
 #one-order-detail th,td{
     padding: 6px;
 }
-* {
-    font-family: Roboto;
-}
+
 :focus {
 
 outline: 0;
