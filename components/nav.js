@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useMemo } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
 import Head from "../components/head"
 import NavItem from "../components/nav-item"
@@ -52,9 +52,11 @@ export default (props) => {
 		}
 	}
 
+	let head = useMemo(() => <Head></Head>)
+
 	return (
 		<React.Fragment>
-			<Head></Head>
+			{head}
 			<ToastContainer />
 			<Flex width={[1]} justifyContent="space-between" p="0 0.6rem" pt="48px">
 				<ReactSVG
