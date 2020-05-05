@@ -4,7 +4,7 @@ import StyleImg from "../components/commons/style-img"
 import { Flex, Text, Box, Button } from "rebass"
 
 import Modal from "./modal"
-import { ColorList, PaintList } from "./color-and-paint"
+import { ColorList, PaintList } from "./grid-color-and-paint"
 
 import request from "../utils/request.js"
 // import { baseUrl } from "../utils/helper"
@@ -34,7 +34,7 @@ export default (props) => {
 	const [pcode, setPcode] = useState("")
 	const [fcode, setFcode] = useState("")
 	const getColorList = async (page) => {
-		let options = { type: 0, page: page, limit: 14 }
+		let options = { type: 0, page: page, limit: 30 }
 		if (pcode) {
 			options.code = pcode
 		}
@@ -43,7 +43,7 @@ export default (props) => {
 		// console.log("getChannels", req)
 	}
 	const getPaintList = async (page) => {
-		let options = { type: 1, page: page, limit: 14 }
+		let options = { type: 1, page: page, limit: 30 }
 		if (fcode) {
 			options.code = fcode
 		}
