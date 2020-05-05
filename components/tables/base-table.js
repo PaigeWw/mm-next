@@ -60,6 +60,7 @@ export const TableLine = (props) => {
 						style={{
 							textAlign: "center",
 							border: child.props.hasBorder,
+							width: child.props.tdWidth,
 						}}
 						align="center"
 						valign="middle"

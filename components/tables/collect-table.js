@@ -144,8 +144,9 @@ export default (props) => {
 					setShowEditBox(true)
 				}}
 			>
-				<Text>{parseInt(index) + 1}</Text>
+				<Text tdWidth="calc(0.6rem - 18px)">{parseInt(index) + 1}</Text>
 				<StyleItem
+					tdWidth="1.6rem"
 					width="0.9rem"
 					key={`${index}-style-img`}
 					styleList={collect.styleList}
