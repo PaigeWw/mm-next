@@ -22,6 +22,39 @@ html,
 outline: 0;
 
 }
+.loading4{
+            
+            text-align: center;
+        }
+        .loading4 >div{
+          width: 10px;
+          height: 10px;
+          border-radius: 100%;
+          display:inline-block;
+          background-color: #fff;
+          opacity: 0.5;
+          margin: 2px;
+          -webkit-animation: three 1.4s infinite ease-in-out;
+          animation: three 1.4s infinite ease-in-out;
+          -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+        }
+        .loading4 .three1{
+          -webkit-animation-delay: -0.30s;
+          animation-delay: -0.30s;
+        }
+        .loading4 .three2{
+          -webkit-animation-delay: -0.15s;
+          animation-delay: -0.15s;
+        }
+        @-webkit-keyframes three {
+          0%, 80%, 100% {-webkit-transform: scale(0.0) }
+          40% { -webkit-transform: scale(1.0) }
+        }
+        @keyframes three {
+          0%, 80%, 100% {-webkit-transform: scale(0.0) }
+          40% { -webkit-transform: scale(1.0) }
+        }
 `
 
 function IndexPage() {

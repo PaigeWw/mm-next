@@ -8,10 +8,10 @@ export default (props) => {
 	const [curGoodId, setCurGoodId] = useState(0)
 	const [goodsList, setGoodsList] = useState([])
 	const progressInfoList = [
-		"01/选择产品分类",
-		"02/选择产品款式",
-		"03/搭配款式效果",
-		"04/操作订单环节",
+		{ code: "01", text: "选择产品分类" },
+		{ code: "02", text: "选择产品款式" },
+		{ code: "03", text: "搭配款式效果" },
+		{ code: "04", text: "操作订单环节" },
 	]
 
 	return (
@@ -48,7 +48,11 @@ export default (props) => {
 							borderRadius: "50%",
 						}}
 					></Box>
-					{info}
+					<Text fontSize="0.23rem">{info.code}</Text>
+					<Text fontSize="0.12rem" pl="4px" pr="4px">
+						/
+					</Text>
+					<Text fontSize="0.16rem">{info.text}</Text>
 				</Flex>
 			))}
 		</Flex>

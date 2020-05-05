@@ -42,15 +42,15 @@ export default (props) => {
 		>
 			{goodsList.map((option, index) => (
 				<Text
-					fontSize="18px"
+					fontSize="0.22rem"
 					pr="10px"
 					// p="10px"
 					sx={{
-						lineHeight: "18px",
+						lineHeight: "0.22rem",
 						cursor: "pointer",
 						borderRight: "1px solid #000",
 						fontWeight: option._id === goodId ? "bold" : "normal",
-						color: option._id === goodId ? "#FF8E6C" : "#000",
+						color: "#000",
 					}}
 					ml="10px"
 					onClick={() => {

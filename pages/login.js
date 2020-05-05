@@ -12,10 +12,11 @@ export default () => {
 	const nameRef = useRef(null)
 	const passwordRef = useRef(null)
 	const [styleImg, setStyleImg] = useState(null)
+	const [loading, setLoading] = useState(false)
 	const handleLogin = async () => {
 		let account = nameRef.current.value
 		let password = passwordRef.current.value
-
+		setLoading(true)
 		const req = await request(
 			"user/login",
 			{
@@ -25,6 +26,7 @@ export default () => {
 			"post"
 		)
 		// console.log(req)
+		setLoading(false)
 		if (req && req.role % 2 === 1) {
 			Router.push("/")
 		}
@@ -72,8 +74,8 @@ export default () => {
 					p="0.3rem"
 					sx={{
 						position: "fixed",
-						bottom: "0.56rem",
-						right: "0.85rem",
+						bottom: "48px",
+						right: "0.6rem",
 						width: "6rem",
 						height: "5.25rem",
 
@@ -162,7 +164,7 @@ export default () => {
 						bg="#000000"
 						color="#ffffff"
 						mt="0.55rem"
-						onClick={() => handleLogin()}
+						onClick={loading ? null : () => handleLogin()}
 						p="0"
 						mb="0.35rem"
 						sx={{
@@ -170,7 +172,15 @@ export default () => {
 							fontSize: "0.14rem",
 						}}
 					>
-						LOADING
+						{loading ? (
+							<div class="loading4">
+								<div class="three1"></div>
+								<div class="three2"></div>
+								<div class="three3"></div>
+							</div>
+						) : (
+							"LOADING"
+						)}
 					</Button>
 				</Flex>
 			</Box>

@@ -120,14 +120,8 @@ export default () => {
 		<>
 			<Flex flexDirection="column">
 				<Head progress={2}></Head>
-				<ReactSvg
-					beforeInjection={(svg) => {
-						svg.setAttribute("id", "mm-defs-svg")
-						svg.setAttribute("style", "width: 0%; height: 0%")
-					}}
-					src={`${baseUrl}uploads/2020-03-07/1583561658305.svg`}
-				/>
-				<Flex flexDirection="column">
+
+				<Flex flexDirection="column" pt="30px">
 					<Flex
 						justifyContent="space-around"
 						alignItems="center"

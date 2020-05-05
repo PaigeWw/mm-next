@@ -50,7 +50,7 @@ export default () => {
 					justifyContent="center"
 					alignItems="center"
 				>
-					<Box height="100%" width="calc(100% - 170px)">
+					<Box height="100%" width="calc(100% - 1.2rem)">
 						{goosList.length > 0 ? (
 							<SliderComponentWithNoSSR responsive={true} settings={settings}>
 								{goosList.map((item) => (
