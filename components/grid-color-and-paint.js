@@ -115,7 +115,7 @@ export const PaintList = (props) => {
 							}}
 							mt="0.2rem"
 							mr="0.2rem"
-							p="0.08rem"
+							p="4px"
 							width="0.3rem"
 							height="0.3rem"
 						></Box>
@@ -208,7 +208,7 @@ export const ColorList = (props) => {
 							bg={item.value}
 							mt="0.2rem"
 							mr="0.2rem"
-							p="0.08rem"
+							p="4px"
 							width="0.3rem"
 							height="0.3rem"
 						></Box>

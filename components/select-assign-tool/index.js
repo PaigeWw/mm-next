@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
 import { Title } from "./aisle-button"
-import { ColorList, PaintList } from "../color-and-paint"
+import { ColorList, PaintList } from "../grid-color-and-paint"
 import request from "../../utils/request.js"
 
 export default (props) => {
@@ -11,7 +11,7 @@ export default (props) => {
 	const [channelList, setChannelList] = useState([])
 	const [colorList, setColorList] = useState([])
 	const [paintList, setPaintList] = useState([])
-	const [sizeList, setSizeList] = useState([])
+
 	const [pcode, setPcode] = useState("")
 	const [fcode, setFcode] = useState("")
 	const [curChannelAssign, setCurChannelAssign] = useState({
@@ -19,7 +19,7 @@ export default (props) => {
 		flowerColors: [],
 	})
 	const getColorList = async (page) => {
-		let options = { type: 0, page: page, limit: 14 }
+		let options = { type: 0, page: page, limit: 30 }
 		if (pcode) {
 			options.code = pcode
 		}
@@ -28,7 +28,7 @@ export default (props) => {
 		// console.log("getChannels", req)
 	}
 	const getPaintList = async (page) => {
-		let options = { type: 1, page: page, limit: 14 }
+		let options = { type: 1, page: page, limit: 30 }
 		if (fcode) {
 			options.code = fcode
 		}
@@ -172,7 +172,7 @@ export default (props) => {
 	}
 	// const handleCommitSelected = index => {}
 	if (!channelList) return null
-	console.log({ styleItem })
+	// console.log({ styleItem })
 	return (
 		<Flex
 			width="6.4rem"
