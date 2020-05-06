@@ -12,7 +12,15 @@ export default () => {
 			const req = await request("order/detail", { _id: getPageQuery().rid })
 			// console.log("order/detail", req)
 			if (req) {
-				let temp = req.orderData.find(x => x.favoriteId === getPageQuery().id)
+				let temp = false
+				for (var i = 0; i < req.orderData.length; i++) {
+					temp = req.orderData[i].items.find(
+						(x) => x.favoriteId === getPageQuery().id
+					)
+					if (temp) {
+						break
+					}
+				}
 				setFavorite(temp.favorite)
 			}
 			// console.log(req)
@@ -29,7 +37,7 @@ export default () => {
 					hasBorder={"1px solid"}
 					margin={"1px"}
 					key={`favorite-style-img`}
-					styleList={favorite.styleAndColor.map(x => {
+					styleList={favorite.styleAndColor.map((x) => {
 						// styleList.push({ style: x.style, colors: x.colorIds })
 						return { style: x.styleId, colors: x.colorIds }
 					})}
