@@ -138,13 +138,16 @@ export default (props) => {
 
 	useEffect(() => {
 		if (!isEditOrder) {
+			const curSize = Object.keys(sizeArrList)[0]
 			styleGroupList.map((temp) => {
 				if (temp.type === "title") {
-					temp.size = Object.keys(sizeArrList)[0]
+					temp.size = curSize
 				}
 			})
 			Object.keys(itemsOrderSizeNums).map((key) => {
-				itemsOrderSizeNums[key] = Object.keys(sizeArrList).map((v) => 0)
+				let tempSizeVals = Object.keys(sizeArrList[curSize]).map((v) => 0)
+				itemsOrderSizeNums[key] = tempSizeVals
+				console.log({ tempSizeVals })
 			})
 		}
 		setItemsOrderSizeNums({ ...itemsOrderSizeNums })

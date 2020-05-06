@@ -31,6 +31,7 @@ export default class A extends React.Component {
 								svgUrl={style.style.svgUrl}
 								id={style.style._id}
 								shadowUrl={style.style.shadowUrl}
+								imgValsAttrs={style.style.attrs}
 								colors={style.colors}
 							/>
 						))}
