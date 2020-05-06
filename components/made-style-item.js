@@ -3,7 +3,7 @@ import { Flex, Text, Box, Image } from "rebass"
 
 import SvgCollect from "./svgCollect"
 import StyleImg from "./commons/style-img"
-export default props => {
+export default (props) => {
 	const { styleList, collected, index, tool, svgId } = props
 	// console.log("collected", styleList)
 	return (
@@ -20,14 +20,15 @@ export default props => {
 				"&:hover": {
 					background: "#fff",
 					"& .tools": {
-						visibility: "visible"
-					}
-				}
+						visibility: "visible",
+					},
+				},
 			}}
 		>
 			{Array.isArray(styleList) &&
 				styleList.map((style, index) => (
 					<StyleImg
+						imgValsAttrs={style.style.attrs}
 						svgId={svgId}
 						styleId={style.style._id}
 						key={`style-img-${index}`}
@@ -47,7 +48,7 @@ export default props => {
 						position: "absolute",
 						right: "0.3rem",
 						top: "0.3rem",
-						visibility: "hidden"
+						visibility: "hidden",
 					}}
 				>
 					<Image
@@ -55,7 +56,7 @@ export default props => {
 						sx={{
 							width: "0.3rem",
 							minWidth: "14px",
-							minHeight: "14px"
+							minHeight: "14px",
 						}}
 						onClick={() => {
 							props.openEditBox()
@@ -66,7 +67,7 @@ export default props => {
 						sx={{
 							width: "0.3rem",
 							minWidth: "14px",
-							minHeight: "14px"
+							minHeight: "14px",
 						}}
 						onClick={() => {
 							props.openBigBox()
@@ -78,7 +79,7 @@ export default props => {
 							width: "0.3rem",
 							minWidth: "14px",
 							minHeight: "14px",
-							opacity: "0.6"
+							opacity: "0.6",
 						}}
 						onClick={props.onAddFavorite}
 					/>

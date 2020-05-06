@@ -100,12 +100,12 @@ export default (props) => {
 		} else {
 			if (type === 0) {
 				setPlainColors({
-					docs: assignInfo.plainColors.slice((page - 1) * 14, page * 14),
+					docs: assignInfo.plainColors.slice((page - 1) * 30, page * 30),
 					page: page,
 				})
 			} else {
 				setFlowerColors({
-					docs: assignInfo.flowerColors.slice((page - 1) * 14, page * 14),
+					docs: assignInfo.flowerColors.slice((page - 1) * 30, page * 30),
 					page: page,
 				})
 			}
@@ -161,11 +161,11 @@ export default (props) => {
 				})
 			} else {
 				setPlainColors({
-					docs: req.plainColors.slice(0, 14),
+					docs: req.plainColors.slice(0, 30),
 					page: 1,
 				})
 				setFlowerColors({
-					docs: req.flowerColors.slice(0, 14),
+					docs: req.flowerColors.slice(0, 30),
 					page: 1,
 				})
 				setAssignInfo(req)
