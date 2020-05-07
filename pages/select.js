@@ -14,10 +14,10 @@ import SelectAssignTool from "../components/select-assign-tool";
 import request from "../utils/request.js";
 import { getPageQuery } from "../utils/helper";
 const SortableItem = SortableElement(
-  ({ item, index, handleSelectStyle, selectStyles }) => (
+  ({ item, index, handleSelectStyle, selectStyles, row }) => (
     <SelectLine
-      key={index + item._id}
-      row={index}
+      key={row + item._id}
+      row={row}
       kind={item.name}
       styles={item.styles}
       selectStyles={selectStyles}
@@ -36,6 +36,7 @@ const SortableList = SortableContainer(
             selectStyles={selectStyles}
             key={`categoryList-item-${index}`}
             index={index}
+            row={index}
             item={item}
           />
         ))}
@@ -117,8 +118,11 @@ class Select extends React.Component {
       Router.push("/login");
     }
   }
-  handleSelectStyle(sid, type, top, col, styleItem) {
-    let { selectStyles, selectStylesType } = this.state;
+  handleSelectStyle(sid, type, top, col, styleItem, row) {
+    let { selectStyles, selectStylesType, categoryList } = this.state;
+    const isLast = row >= categoryList.length - 3;
+    console.log({ isLast, row });
+    console.log(categoryList.length);
     let pos = selectStyles.indexOf(sid);
     if (pos > -1) {
       //已选中 则去除 选中
@@ -171,7 +175,7 @@ class Select extends React.Component {
           ...this.state,
           selectStyles: saveTemps,
           selectStylesType: [selectStylesType[topsPos], type],
-          currentSeleted: { sid, type, top, col, styleItem },
+          currentSeleted: { sid, type, top, col, styleItem, isLast },
         });
 
         // setSelectStyles(saveTemps)
@@ -190,7 +194,7 @@ class Select extends React.Component {
           ...this.state,
           selectStyles: saveTemps,
           selectStylesType: [type, selectStylesType[bottomsPos]],
-          currentSeleted: { sid, type, top, col, styleItem },
+          currentSeleted: { sid, type, top, col, styleItem, isLast },
         });
 
         // setSelectStyles(saveTemps)
@@ -201,7 +205,7 @@ class Select extends React.Component {
         ...this.state,
         selectStyles: [sid],
         selectStylesType: [type],
-        currentSeleted: { sid, type, top, col, styleItem },
+        currentSeleted: { sid, type, top, col, styleItem, isLast },
       });
 
       // setSelectStyles([sid])
@@ -242,7 +246,7 @@ class Select extends React.Component {
         <SelectBar
           onChangeQuery={this.handleChangeQuery.bind(this)}
         ></SelectBar>
-        <Box sx={{ position: "relative" }} mb="1.13rem">
+        <Box sx={{ position: "relative" }} mb={"1.13rem"}>
           <SortableList
             selectStyles={selectStyles}
             categoryList={categoryList}
@@ -251,9 +255,7 @@ class Select extends React.Component {
             onSortEnd={({ oldIndex, newIndex }) => {
               this.setState({
                 ...this.state,
-                getGategoryList: setGategoryList(
-                  arrayMove(categoryList, oldIndex, newIndex)
-                ),
+                getGategoryList: arrayMove(categoryList, oldIndex, newIndex),
               });
             }}
           />
