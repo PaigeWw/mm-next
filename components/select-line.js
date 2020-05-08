@@ -3,26 +3,33 @@ import { Flex, Box, Button, Image } from "rebass"
 import { baseUrl } from "../utils/helper"
 import { SerachInput } from "../components/color-and-paint"
 const ImageBox = (props) => {
-	const { item, id, kind, row, col } = props
+	const { item, id, kind, scale, col } = props
 	return (
-		<Box
+		<Flex
+			alignItems="center"
+			justifyContent="center"
+			width="3.19rem"
 			sx={{
-				"& :hover": {
+				"&:hover": {
 					background: "#DCD0DC",
 				},
 			}}
+			bg={props.selected ? "#FF8E6C  !important" : "none"}
 			onMouseDown={(e) => {
 				// console.dir(e.target.offsetTop)
 				props.onSelect(id, kind, e.target.offsetTop, col, item)
 			}}
 		>
 			<Image
-				bg={props.selected ? "#FF8E6C  !important" : "none"}
 				src={baseUrl + props.src}
-				p="0.68rem"
-				sx={{ display: "block", width: "1.88rem", boxSizing: "content-box" }}
+				sx={{
+					display: "block",
+					width: "100%",
+					boxSizing: "content-box",
+					transform: `scale(0.${scale ? scale : 58})`,
+				}}
 			></Image>
-		</Box>
+		</Flex>
 	)
 }
 
@@ -145,7 +152,7 @@ class SelectLine extends React.Component {
 						<Image src="/3/left.png" width="0.12rem" height="0.21rem"></Image>
 					</Flex>
 				</Flex>
-				<Flex flex={1} alignItems="center">
+				<Flex flex={1} alignItems="stretch">
 					{styles
 						.filter((s) => s.styleNo.indexOf(searchQuery) >= 0)
 						.slice(startIndex, startIndex + 4)
@@ -156,6 +163,7 @@ class SelectLine extends React.Component {
 								col={index}
 								row={this.props.row}
 								onSelect={this.props.onSelect}
+								scale={item.scale}
 								selected={
 									Array.isArray(this.props.selectStyles) &&
 									this.props.selectStyles.indexOf(item._id) > -1
