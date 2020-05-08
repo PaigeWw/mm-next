@@ -3,7 +3,7 @@ import { Flex, Box, Button, Image } from "rebass"
 import { baseUrl } from "../utils/helper"
 import { SerachInput } from "../components/color-and-paint"
 const ImageBox = (props) => {
-	const { item, id, kind, scale, col } = props
+	const { item, id, kind, scale, col, row } = props
 	return (
 		<Flex
 			alignItems="center"
@@ -17,7 +17,7 @@ const ImageBox = (props) => {
 			bg={props.selected ? "#FF8E6C  !important" : "none"}
 			onMouseDown={(e) => {
 				// console.dir(e.target.offsetTop)
-				props.onSelect(id, kind, e.target.offsetTop, col, item)
+				props.onSelect(id, kind, e.target.offsetTop, col, item, row)
 			}}
 		>
 			<Image
@@ -35,7 +35,7 @@ const ImageBox = (props) => {
 
 class SelectLine extends React.Component {
 	constructor(props) {
-		console.log("SelectLine")
+		console.log("SelectLine.row", props.row)
 		super(props)
 		this.state = {
 			startIndex: 0,
@@ -72,7 +72,6 @@ class SelectLine extends React.Component {
 	}
 	render() {
 		const { startIndex, searchQuery, showSearch } = this.state
-		console.log(showSearch)
 		const { styles } = this.props
 		return (
 			<Flex
