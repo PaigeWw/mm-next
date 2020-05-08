@@ -9,6 +9,7 @@ const ImageBox = (props) => {
 			alignItems="center"
 			justifyContent="center"
 			width="3.19rem"
+			p="0.64rem 0"
 			sx={{
 				"&:hover": {
 					background: "#DCD0DC",
@@ -24,9 +25,8 @@ const ImageBox = (props) => {
 				src={baseUrl + props.src}
 				sx={{
 					display: "block",
-					width: "100%",
+					width: `${scale ? scale : 58}%`,
 					boxSizing: "content-box",
-					transform: `scale(0.${scale ? scale : 58})`,
 				}}
 			></Image>
 		</Flex>
