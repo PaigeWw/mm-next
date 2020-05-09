@@ -183,7 +183,7 @@ export default () => {
                 Router.back();
               }}
             >
-              {"< RETURN"}
+              {"< 返回"}
             </Button>
             <Button
               height="1.13rem"
@@ -201,7 +201,7 @@ export default () => {
                 Router.push(`/mine?goodId=${goodId}`);
               }}
             >
-              COMPLETE
+              完成
             </Button>
           </Flex>
         </Flex>

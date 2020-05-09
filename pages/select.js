@@ -306,7 +306,7 @@ class Select extends React.Component {
             }
           }}
         >
-          NEXT>
+          下一步>
         </Button>
         {/* <ToastContainer /> */}
       </Flex>
