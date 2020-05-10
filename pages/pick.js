@@ -145,17 +145,17 @@ export default () => {
 					<Table
 						titles={[
 							{ name: "00", width: "2/22", isHide: true },
-							{ name: "PICTRUE", width: "2/22" },
-							{ name: "PRODUCT INFOMATION", width: "4/22" },
+							{ name: "图片", width: "2/22" },
+							{ name: "款式资料", width: "4/22" },
 							{
-								name: `PRICE/${
+								name: `单价/${
 									rateInfo[userInfo.currency]
 										? rateInfo[userInfo.currency].sign
 										: ""
 								}`,
 								width: "1/22",
 							},
-							{ name: "COLLECTION", width: "5/22" },
+							{ name: "收藏", width: "5/22" },
 						]}
 					>
 						{favoriteList

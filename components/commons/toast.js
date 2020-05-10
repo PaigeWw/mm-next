@@ -6,7 +6,7 @@ import { render, unmountComponentAtNode } from "react-dom"
  */
 
 // Hey, I am toast component
-const Toast = props => {
+const Toast = (props) => {
 	return (
 		<div className="toast-message-container">
 			<div className="side-bar"></div>
@@ -27,7 +27,7 @@ const Toast = props => {
 					padding: 10px;
 					border-radius: 4px 0px 0px 4px;
 					background: green;
-					background: ${props.color || "grey"};
+					background: ${props.color || "#f0c2b3"};
 				}
 			`}</style>
 			{/* Dynamic Styling */}
@@ -102,11 +102,11 @@ export const toast = {
 		)
 		toast.currentToast = true
 		toast.timeout = setTimeout(toast.remove, duration * 1000)
-	}
+	},
 }
 
 // Toast container
-export const ToastContainer = props => {
+export const ToastContainer = (props) => {
 	return (
 		<div id="toast-container" className="toast-container">
 			<style jsx>{`

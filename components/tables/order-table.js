@@ -128,7 +128,8 @@ export default (props) => {
 			if (orderData[i].total < 1) {
 				console.log(i)
 				console.log(orderData[i])
-				toast.notify("There is one item not empty here, please check.")
+				toast.notify("请至少选择一个订单.")
+				// toast.notify("There is one item not empty here, please check.")
 				return
 			}
 		}
@@ -145,7 +146,7 @@ export default (props) => {
 			"post"
 		)
 		if (res) {
-			toast.notify("Completed.", { type: "success", duration: 2 })
+			toast.notify("完成！", { type: "success", duration: 2 })
 			props.nextStep()
 		}
 	}
