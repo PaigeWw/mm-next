@@ -77,6 +77,8 @@ class Select extends React.Component {
 	// }
 	componentWillUpdate(nextProps, nextState) {
 		const { queryKey, goodId, currentSeleted } = this.state
+		console.log("componentWillUpdate", queryKey !== nextState.queryKey)
+		console.log(queryKey, nextState.queryKey)
 		if (queryKey !== nextState.queryKey || goodId !== nextState.goodId) {
 			if (nextState.goodId) {
 				this.getGategoryList(nextState.queryKey, nextState.goodId)
@@ -89,7 +91,8 @@ class Select extends React.Component {
 
 	async getGategoryList(queryKey, goodId) {
 		// const { queryKey, goodId } = this.state
-
+		console.log("getGategoryList")
+		console.log({ queryKey, goodId })
 		let options = { _id: goodId }
 
 		if (queryKey.tags) {
@@ -213,11 +216,11 @@ class Select extends React.Component {
 		}
 	}
 	handleChangeQuery(options) {
-		// console.log(options)
+		console.log(options)
+
 		this.setState({
 			...this.state,
-			...queryKey,
-			...options,
+			queryKey: options,
 		})
 	}
 	render() {
@@ -251,11 +254,11 @@ class Select extends React.Component {
 						selectStyles={selectStyles}
 						categoryList={categoryList}
 						handleSelectStyle={this.handleSelectStyle.bind(this)}
-						pressDelay={300}
+						pressDelay={200}
 						onSortEnd={({ oldIndex, newIndex }) => {
 							this.setState({
 								...this.state,
-								getGategoryList: arrayMove(categoryList, oldIndex, newIndex),
+								categoryList: arrayMove(categoryList, oldIndex, newIndex),
 							})
 						}}
 					/>

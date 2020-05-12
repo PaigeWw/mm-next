@@ -22,7 +22,7 @@ export default (props) => {
 		<div
 			style={{
 				position: "relative",
-				margin: "12px 0",
+
 				width: width,
 			}}
 		>
