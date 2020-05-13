@@ -126,7 +126,7 @@ export default () => {
                   textAlign: "center",
                 }}
               >
-                1 我的收藏
+                我的收藏
               </Tab>
               <Tab
                 style={{
@@ -135,7 +135,7 @@ export default () => {
                   textAlign: "center",
                 }}
               >
-                2 订单制作
+                订单制作
               </Tab>
               <Tab
                 style={{
@@ -144,7 +144,7 @@ export default () => {
                   textAlign: "center",
                 }}
               >
-                3 发送订单
+                发送订单
               </Tab>
               <Tab
                 style={{
@@ -153,7 +153,7 @@ export default () => {
                   textAlign: "center",
                 }}
               >
-                4 我的订单
+                我的订单
               </Tab>
               {userInfo.role === 1 ? (
                 <Tab
@@ -163,7 +163,7 @@ export default () => {
                     textAlign: "center",
                   }}
                 >
-                  5 业务管理
+                  业务管理
                 </Tab>
               ) : null}
             </TabList>
