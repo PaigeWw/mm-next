@@ -234,8 +234,9 @@ export default (props) => {
 										svgUrl={style.svgUrl}
 										showGroupStroke={showGroupStroke}
 										curStylesEditGroupIndex={curStylesEditGroupIndex}
-										onSetEditSvgGroupIndex={(index) => {
-											setEditSvgGroupIndex(index)
+										onSetEditSvgGroupIndex={(gindex) => {
+											setCurStyleIndex(index)
+											setEditSvgGroupIndex(gindex)
 											setShowGroupStroke(true)
 										}}
 									/>
