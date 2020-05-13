@@ -25,9 +25,11 @@ export default () => {
 		getGoodsList()
 		const getChannels = async () => {
 			const req = await request("user/getUserChannels")
-			setChannelList(req.channels)
-			if (req.channels.length > 0) {
-				setCurrentChannel(req.channels[0])
+			if (req) {
+				setChannelList(req.channels)
+				if (req.channels.length > 0) {
+					setCurrentChannel(req.channels[0])
+				}
 			}
 		}
 		getChannels()
@@ -36,7 +38,7 @@ export default () => {
 		if (!currentChannel._id || info.role !== 1) return
 		const getAssignCategoryList = async () => {
 			const req = await request("channel/getAssignCategory", {
-				channelId: currentChannel._id
+				channelId: currentChannel._id,
 			})
 			if (req) {
 				setAssignCategoryList(req.categories)
@@ -51,7 +53,7 @@ export default () => {
 				"channel/unAssignCategory",
 				{
 					channelId: currentChannel._id,
-					categoryId
+					categoryId,
 				},
 				"post"
 			)
@@ -67,7 +69,7 @@ export default () => {
 				"channel/assignCategory",
 				{
 					channelId: currentChannel._id,
-					categoryId
+					categoryId,
 				},
 				"post"
 			)
@@ -96,7 +98,7 @@ export default () => {
 								lineHeight="1.14rem"
 								sx={{
 									height: "1.14rem",
-									position: "relative"
+									position: "relative",
 								}}
 								color="#fff"
 								onClick={() => {
@@ -108,7 +110,7 @@ export default () => {
 										height: "1.14rem",
 										paddingRight: "30px",
 										position: "relative",
-										cursor: "pointer"
+										cursor: "pointer",
 									}}
 								>
 									{`${currentChannel.code}(${currentChannel.name})`}
@@ -121,7 +123,7 @@ export default () => {
 											height: 0,
 											borderLeft: "6px solid transparent",
 											borderRight: "6px solid transparent",
-											borderTop: "6px solid #fff"
+											borderTop: "6px solid #fff",
 										}}
 									></Box>
 								</Flex>
@@ -133,12 +135,12 @@ export default () => {
 										sx={{
 											position: "absolute",
 											border: "1px solid #000",
-											top: "calc(0.507rem + 20px)"
+											top: "calc(0.507rem + 20px)",
 										}}
 										color="#000"
 										bg="#fff"
 									>
-										{channelList.map(channel => (
+										{channelList.map((channel) => (
 											<Text
 												width="160px"
 												lineHeight="32px"
@@ -146,10 +148,10 @@ export default () => {
 												sx={{
 													"&:hover": {
 														background: "#cccccc",
-														color: "#fff"
-													}
+														color: "#fff",
+													},
 												}}
-												onClick={e => {
+												onClick={(e) => {
 													e.nativeEvent.preventDefault()
 													e.nativeEvent.stopPropagation()
 													setCurrentChannel(channel)

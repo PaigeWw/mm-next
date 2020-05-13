@@ -24,7 +24,10 @@ export default (props) => {
 					display: "grid",
 					gridAutoFlow: "column",
 					gridTemplateColumns: "50% 50%",
-					gridTemplateRows: "50% 50%",
+					gridTemplateRows:
+						Array.isArray(styleDetails) && styleDetails.length > 1
+							? "50% 50%"
+							: "",
 				}}
 				width="14rem"
 				fontSize="0.18rem"

@@ -10,7 +10,7 @@ import request from "../utils/request.js"
 // import { baseUrl } from "../utils/helper"
 
 export default (props) => {
-	const { styleDetails, curStyle, userInfo } = props
+	const { styleDetails, curStyle, userInfo = { channels: [] } } = props
 
 	let tempSelectedIds = [curStyle[0].colors]
 	// let tempSelectedImgs = [curStyle[0].imgUrl]
