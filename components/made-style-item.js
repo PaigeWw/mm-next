@@ -32,7 +32,9 @@ export default (props) => {
 						svgId={svgId}
 						styleId={style.style._id}
 						key={`style-img-${index}`}
-						width="1.88rem"
+						width={`${
+							((style.style.scale ? style.style.scale : 58) * 3) / 100
+						}rem`}
 						svgUrl={style.style.svgUrl}
 						shadowUrl={style.style.shadowUrl}
 						colors={style.colors}
