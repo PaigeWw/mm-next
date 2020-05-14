@@ -27,6 +27,7 @@ const SortableItem = SortableElement(
 		index,
 		handleSelectStyle,
 		selectStyles,
+		onImageOnLoad,
 		row,
 		handleChangeCategoryStartIndex,
 	}) => (
@@ -36,10 +37,12 @@ const SortableItem = SortableElement(
 			row={row}
 			setStartIndex={handleChangeCategoryStartIndex}
 			kind={item.name}
+			lineHeight={item.lineHeight}
 			styles={item.styles}
 			startIndex={item.startIndex}
 			selectStyles={selectStyles}
 			onSelect={handleSelectStyle}
+			onImageOnLoad={onImageOnLoad}
 		></SelectLine>
 	)
 )
@@ -48,6 +51,7 @@ const SortableList = SortableContainer(
 	({
 		categoryList,
 		handleSelectStyle,
+		onImageOnLoad,
 		selectStyles,
 		handleChangeCategoryStartIndex,
 	}) => {
@@ -56,6 +60,7 @@ const SortableList = SortableContainer(
 				{categoryList.map((item, index) => (
 					<SortableItem
 						handleSelectStyle={handleSelectStyle}
+						onImageOnLoad={onImageOnLoad}
 						handleChangeCategoryStartIndex={handleChangeCategoryStartIndex}
 						selectStyles={selectStyles}
 						key={`categoryList-item-${guid()}`}
@@ -94,25 +99,6 @@ class Select extends React.Component {
 		})
 		this.getGategoryList({}, query.id)
 	}
-	// shouldComponentUpdate(nextProps, nextState) {
-	// 	const { queryKey, goodId } = this.state
-	// 	if (queryKey !== nextProps.queryKey || goodId !== nextProps.goodId || ) {
-	// 		return true
-	// 	}
-	// }
-	//   componentWillUpdate(nextProps, nextState) {
-	//     const { queryKey, goodId, currentSeleted } = this.state;
-	//     console.log("componentWillUpdate", queryKey !== nextState.queryKey);
-	//     console.log(queryKey, nextState.queryKey);
-	//     if (queryKey !== nextState.queryKey || goodId !== nextState.goodId) {
-	//       if (nextState.goodId) {
-	//         this.getGategoryList(nextState.queryKey, nextState.goodId);
-	//       }
-	//     }
-	//     if (currentSeleted !== nextState.currentSeleted) {
-	//       console.log("componentWillUpdate - currentSeleted", currentSeleted);
-	//     }
-	//   }
 
 	async getGategoryList(queryKey, goodId) {
 		// const { queryKey, goodId } = this.state
@@ -146,6 +132,27 @@ class Select extends React.Component {
 		console.log("handleChangeStartIndex", index, categoryIndex)
 		let { categoryList } = this.state
 		categoryList[categoryIndex].startIndex = index
+		this.setState({
+			...this.state,
+			categoryList: [...categoryList],
+		})
+	}
+
+	handleImageOnLoad({ height }, categoryIndex) {
+		let { categoryList } = this.state
+		const id = categoryList[categoryIndex]._id
+
+		let h = window.localStorage.getItem(id)
+
+		if (h === "null") {
+			h = height
+			window.localStorage.setItem(id, h)
+		}
+
+		if (categoryList[categoryIndex].lineHeight === h) {
+			return
+		}
+		categoryList[categoryIndex].lineHeight = h
 		this.setState({
 			...this.state,
 			categoryList: [...categoryList],
@@ -294,6 +301,7 @@ class Select extends React.Component {
 					<SortableList
 						selectStyles={selectStyles}
 						categoryList={categoryList}
+						onImageOnLoad={this.handleImageOnLoad.bind(this)}
 						handleSelectStyle={this.handleSelectStyle.bind(this)}
 						handleChangeCategoryStartIndex={this.handleChangeCategoryStartIndex.bind(
 							this

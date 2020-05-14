@@ -17,13 +17,11 @@ html,
 #one-order-detail th,td{
     padding: 6px;
 }
-img {
-  user-select：none;
+* {
+    user-select: none;
 }
 :focus {
-
-outline: 0;
-
+    outline: 0;
 }
 .loading4{
             

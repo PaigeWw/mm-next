@@ -3,7 +3,7 @@ import { Flex, Text, Box, Image } from "rebass"
 const IndexName = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 export default (props) => {
 	const { goodsList, onAssignCategory, assignCategoryList } = props
-	console.log("assignCategoryList", assignCategoryList)
+
 	return (
 		<Box
 			width={[1]}
