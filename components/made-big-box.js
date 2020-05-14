@@ -37,7 +37,7 @@ export default (props) => {
 					styleDetails.map((style, index) => (
 						<Flex
 							width="6.75rem"
-							padding="0.5rem 0"
+							padding="0.4rem 0"
 							alignItems="center"
 							justifyContent="center"
 						>
@@ -60,7 +60,7 @@ export default (props) => {
 					styleDetails.map((style, index) => (
 						<Flex
 							width="6.75rem"
-							padding="1rem 0"
+							padding="0.4rem 0"
 							alignItems="center"
 							justifyContent="center"
 						>
