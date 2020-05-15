@@ -8,8 +8,6 @@ import { getPageQuery } from "../utils/helper"
 import Router from "next/router"
 import request from "../utils/request.js"
 import useUserInfo from "../hooks/getUserInfo"
-import ReactSvg from "../components/commons/react-svg"
-import { baseUrl } from "../utils/helper"
 // import svg2png from "../utils/svg2png"
 // import SelectAssignTool from "../components/select-assign-tool"
 export default () => {

@@ -39,7 +39,7 @@ export default (props) => {
 			options.code = pcode
 		}
 		const req = await request("color/getList", options, "get")
-		setPlainColors({ docs: req.docs, page: req.page })
+		setPlainColors({ docs: req.docs, page: req.page, pages: req.pages })
 		// console.log("getChannels", req)
 	}
 	const getPaintList = async (page) => {
@@ -48,7 +48,7 @@ export default (props) => {
 			options.code = fcode
 		}
 		const req = await request("color/getList", options, "get")
-		setFlowerColors({ docs: req.docs, page: req.page })
+		setFlowerColors({ docs: req.docs, page: req.page, pages: req.pages })
 		// console.log("getChannels", req)
 	}
 	useEffect(() => {
@@ -90,11 +90,13 @@ export default (props) => {
 		}
 	}, [fcode])
 	const handleChangeColorPage = (page, type) => {
-		console.log(page, type)
+		if (page < 1) return
 		if (userInfo.role === 1) {
 			if (type === 0) {
-				getColorList(page)
-			} else {
+				if (plainColors.pages >= page) {
+					getColorList(page)
+				}
+			} else if (flowerColors.pages >= page) {
 				getPaintList(page)
 			}
 		} else {
@@ -235,6 +237,7 @@ export default (props) => {
 										showGroupStroke={showGroupStroke}
 										curStylesEditGroupIndex={curStylesEditGroupIndex}
 										onSetEditSvgGroupIndex={(gindex) => {
+											console.log("onSetEditSvgGroupIndex -- gindex", gindex)
 											setCurStyleIndex(index)
 											setEditSvgGroupIndex(gindex)
 											setShowGroupStroke(true)

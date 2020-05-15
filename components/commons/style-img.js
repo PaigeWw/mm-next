@@ -59,7 +59,8 @@ export default (props) => {
 
 									onSetEditSvgGroupIndex(jj)
 								}
-								if (curStylesEditGroupIndex === i && showGroupStroke) {
+
+								if (curStylesEditGroupIndex === j && showGroupStroke) {
 									block.style.stroke = "khaki"
 									block.style.strokeWidth = "8px"
 								}
