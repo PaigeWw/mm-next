@@ -129,7 +129,6 @@ class Select extends React.Component {
 	}
 
 	handleChangeCategoryStartIndex(index, categoryIndex) {
-		console.log("handleChangeStartIndex", index, categoryIndex)
 		let { categoryList } = this.state
 		categoryList[categoryIndex].startIndex = index
 		this.setState({
@@ -144,7 +143,7 @@ class Select extends React.Component {
 
 		let h = window.localStorage.getItem(id)
 
-		if (h === "null") {
+		if (h === "null" || !h) {
 			h = height
 			window.localStorage.setItem(id, h)
 		}
@@ -152,6 +151,7 @@ class Select extends React.Component {
 		if (categoryList[categoryIndex].lineHeight === h) {
 			return
 		}
+		console.log("categoryList[categoryIndex].lineHeight", h)
 		categoryList[categoryIndex].lineHeight = h
 		this.setState({
 			...this.state,

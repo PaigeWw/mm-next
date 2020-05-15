@@ -131,7 +131,7 @@ export default () => {
 					justifyContent="center"
 					alignItems="center"
 				>
-					EXISTING STYLE SELECTION
+					挑选现款
 				</Flex>
 				<Flex
 					flexDirection="column"

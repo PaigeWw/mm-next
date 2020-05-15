@@ -21,21 +21,28 @@ export default class A extends React.Component {
 				margin={margin ? margin : "auto"}
 				width={width ? width : "80px"}
 			>
-				<Box width={width ? width : "50px"} mt="16px" mb="16px">
-					{Array.isArray(styleList) &&
-						styleList.map((style, index) => (
+				{Array.isArray(styleList) &&
+					styleList.map((style, index) => (
+						<Box p="13px">
 							<StyleImg
 								svgId={svgId}
 								key={`style-img-${index}`}
-								width={width ? width : "50px"}
+								width={
+									width
+										? `${
+												((style.style.scale ? style.style.scale : 58) * 1.6) /
+												100
+										  }rem`
+										: `${style.style.scale ? style.style.scale : 58}px`
+								}
 								svgUrl={style.style.svgUrl}
 								id={style.style._id}
 								shadowUrl={style.style.shadowUrl}
 								imgValsAttrs={style.style.attrs}
 								colors={style.colors}
 							/>
-						))}
-				</Box>
+						</Box>
+					))}
 			</Flex>
 		)
 	}
