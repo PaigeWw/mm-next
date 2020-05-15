@@ -12,14 +12,7 @@ import SelectLine from "../components/select-line";
 import SelectAssignTool from "../components/select-assign-tool";
 
 import request from "../utils/request.js";
-import { getPageQuery } from "../utils/helper";
-function guid() {
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
-    var r = (Math.random() * 16) | 0,
-      v = c == "x" ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-}
+import { getPageQuery, guid } from "../utils/helper";
 
 const SortableItem = SortableElement(
   ({

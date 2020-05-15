@@ -9,6 +9,7 @@ import { SortableTable, TableLine, ProductInfo } from "./base-table";
 import EditBox from "../made-edit-box";
 import StyleItem from "../commons/min-style-item";
 import request from "../../utils/request";
+import { guid } from "../../utils/helper";
 
 const Table = SortableTable;
 
@@ -16,6 +17,7 @@ export default (props) => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showEditBox, setShowEditBox] = useState(false);
   const [editIndex, setEditIndex] = useState(0);
+  const [editId, setEditId] = useState(null);
   // const mode = "POSITIVE"
   const [collectList, setCollectList] = useState([]);
   const [collectDetailsList, setCollectDetailsList] = useState([]);
@@ -57,7 +59,7 @@ export default (props) => {
         // let positive = x.
         styleList.push({ style: x.style, colors: x.colorIds });
       });
-      collectDetailsList.push(details);
+      collectDetailsList.push({ id: item._id, details });
       setCollectDetailsList([].concat(collectDetailsList));
       return {
         id: item._id,
@@ -78,7 +80,11 @@ export default (props) => {
   const handleSelect = (index, item) => {
     const pos = selectList.findIndex((x) => x.index === index);
     if (pos < 0) {
-      selectList.push({ index, ...item, details: collectDetailsList[index] });
+      selectList.push({
+        index,
+        ...item,
+        details: collectDetailsList[index].details,
+      });
     } else {
       selectList.splice(pos, 1);
     }
@@ -94,27 +100,36 @@ export default (props) => {
       setCollectList([].concat(collectList));
     }
   };
+  const getCollectById = (cid) => {
+    return collectList.find((c) => c.id === cid);
+  };
+
+  const getCollectDetailsById = (cid) => {
+    return collectDetailsList.find((c) => c.id === cid);
+  };
   const handleConfirmMade = async (colorIds) => {
     // const res = await request("/user/updateFavorite", {  }, "post")
     // console.log(collectList[editIndex])
+
     if (!colorIds[0]) return;
+    const editCollect = getCollectById(editId);
     let params = [
       {
-        styleId: collectList[editIndex].prodInfo[0].id,
+        styleId: editCollect.prodInfo[0].id,
         colorIds: colorIds[0].map((x) => x._id),
       },
     ];
 
-    if (collectList[editIndex].styleList.length > 1) {
+    if (editCollect.styleList.length > 1) {
       // if (! > 2) return
       params.push({
-        styleId: collectList[editIndex].prodInfo[1].id,
+        styleId: editCollect.prodInfo[1].id,
         colorIds: colorIds[1].map((x) => x._id),
       });
     }
     const res = await request(
       "/user/updateFavorite",
-      { _id: collectList[editIndex].id, styleAndColor: params },
+      { _id: editCollect.id, styleAndColor: params },
       "post"
     );
     // setStyleDetails([].concat(styleDetails))
@@ -128,6 +143,7 @@ export default (props) => {
     let index = indexNo;
     return (
       <TableLine
+        key={`categoryList-line-item-${index}}`}
         isSelect={selectList.findIndex((x) => index === x.index) >= 0}
         haveSelect
         onSelect={() => {
@@ -140,6 +156,7 @@ export default (props) => {
         haveEdit
         onEdit={() => {
           setEditIndex(index);
+          setEditId(collect.id);
           setShowEditBox(true);
         }}
       >
@@ -237,17 +254,14 @@ export default (props) => {
           { name: "操作按钮", width: "5/22" },
         ]}
       >
-        {collectList.map((collect, index) => {
-          // console.log("SortableList map ", index)
-          return (
-            <SortableItem
-              key={`categoryList-item-${index}`}
-              index={index}
-              indexNo={index}
-              collect={collect}
-            />
-          );
-        })}
+        {collectList.map((collect, index) => (
+          <SortableItem
+            key={`collectList-item-${guid()}`}
+            index={index}
+            indexNo={index}
+            collect={collect}
+          />
+        ))}
       </Table>
       <Button
         variant="primary"
@@ -274,8 +288,8 @@ export default (props) => {
       {showEditBox ? (
         <EditBox
           userInfo={props.userInfo}
-          styleDetails={collectDetailsList[editIndex]}
-          curStyle={collectList[editIndex].colorInfo}
+          styleDetails={getCollectDetailsById(editId).details}
+          curStyle={getCollectById(editId).colorInfo}
           confirmMade={handleConfirmMade}
           onClose={() => {
             setShowEditBox(false);
