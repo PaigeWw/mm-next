@@ -230,7 +230,7 @@ export default (props) => {
         titles={[
           { name: "00", width: "2/22", isHide: true },
           { name: "图片", width: "2/22" },
-          { name: "订单制作", width: "4/22" },
+          { name: "款式资料", width: "4/22" },
           { name: `单价/${props.rate.sign}`, width: "1/22" },
           { name: "开发日期", width: "2/22" },
           { name: "类别", width: "1/22" },
