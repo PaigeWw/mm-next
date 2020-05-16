@@ -194,6 +194,7 @@ export default (props) => {
 				styleNo={styleItem.styleNo}
 				shadowUrlBack={styleItem.shadowUrlBack}
 				channelList={channelList}
+				role={role}
 				// channelInfoList={curChannelAssign.plainColors}
 				onClose={props.onClose}
 				curChannel={curChannel}

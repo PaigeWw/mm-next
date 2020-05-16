@@ -146,10 +146,10 @@ export default (props) => {
 						<Text style={{ position: "absolute" }}>{index + 1}</Text>
 						<Text>{order.date}</Text>
 						<Flex justifyContent="flex-start">
-							{order.styleListArr.map((item) => (
+							{order.styleListArr.map((item, col) => (
 								<StyleItem
 									margin={"1px"}
-									key={`${index}-style-img`}
+									key={`${col}-${index}-style-img`}
 									styleList={item}
 									index={index}
 									tool={false}

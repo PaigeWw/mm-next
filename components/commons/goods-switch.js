@@ -4,9 +4,6 @@ import request from "../../utils/request.js"
 
 export default (props) => {
 	const { goodId, onChangeGood, pb, onLoadGoods } = props
-
-	console.log({ goodId })
-	const [curGoodId, setCurGoodId] = useState(goodId)
 	const [goodsList, setGoodsList] = useState([])
 	useEffect(() => {
 		const getGoodsList = async () => {
