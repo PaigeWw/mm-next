@@ -19,7 +19,8 @@ export default (props) => {
 			sizeInfoMaxLength > group.size.values.length
 				? sizeInfoMaxLength
 				: group.size.values.length
-		const sizeVal = group.size.values.map((v) => v.name)
+		let sizeVal = group.size.values.map((v) => v.name)
+
 		tempStyleGroupList.push({
 			type: "title",
 			packageCount: group.packageCount,
@@ -71,7 +72,14 @@ export default (props) => {
 		})
 	})
 	const [styleGroupList, setStyleGroupList] = useState(tempStyleGroupList)
-	console.log(OrderDetail)
+	const getInsertEmptyDom = (length) => {
+		let tempNum = sizeInfoMaxLength - length
+		let insertEmpty = []
+		for (let i = 0; i < tempNum; i++) {
+			insertEmpty.push("")
+		}
+		return insertEmpty.map((i) => <Text></Text>)
+	}
 	return (
 		<Flex
 			flexDirection="column"
@@ -183,6 +191,7 @@ export default (props) => {
 											<Text>{size}</Text>
 										</Flex>
 									))}
+									{getInsertEmptyDom(item.sizeInfo.length)}
 									{!item.isFrist ? null : (
 										<Flex
 											rowspan={item.itemsCount * 2}
@@ -231,6 +240,7 @@ export default (props) => {
 											<Text>{info}</Text>
 										</Flex>
 									))}
+									{getInsertEmptyDom(item.sizeInfo.length)}
 								</TableLine>
 							</>
 						)
