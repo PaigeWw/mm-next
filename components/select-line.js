@@ -86,6 +86,7 @@ class SelectLine extends React.Component {
 				fontSize="0.23rem"
 				color="#fff"
 				sx={{
+					minHeight: "50px",
 					"&:hover": {
 						".innerChild": {
 							visibility: "visible",

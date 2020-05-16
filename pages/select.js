@@ -88,11 +88,15 @@ class Select extends React.Component {
 		// this.info = useUserInfo()
 		let query = getPageQuery()
 		// setGoodId(query.id)
-		this.setState({
-			...this.state,
-			goodId: query.id,
-		})
-		this.getGategoryList({}, query.id)
+		this.setState(
+			{
+				...this.state,
+				goodId: query.id,
+			},
+			() => {
+				this.getGategoryList(this.state.queryKey, this.state.goodId)
+			}
+		)
 	}
 
 	async getGategoryList(queryKey, goodId) {
@@ -308,7 +312,7 @@ class Select extends React.Component {
 								transform: "translateX(-50%)",
 							}}
 						>
-							<Loading />{" "}
+							<Loading type="loading5" />{" "}
 						</Box>
 					) : null}
 					<SortableList

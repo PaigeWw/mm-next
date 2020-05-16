@@ -23,28 +23,37 @@ html,
 :focus {
     outline: 0;
 }
-.loading4{
+.loading{
             
             text-align: center;
         }
         .loading4 >div{
           width: 10px;
           height: 10px;
+          margin: 2px;
+          }
+          .loading5 >div{
+          width: 20px;
+          height: 20px;
+          margin: 8px;
+          }
+        .loading >div{
+       
           border-radius: 100%;
           display:inline-block;
           background-color: #fff;
           opacity: 0.5;
-          margin: 2px;
+          
           -webkit-animation: three 1.4s infinite ease-in-out;
           animation: three 1.4s infinite ease-in-out;
           -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
         }
-        .loading4 .three1{
+        .loading .three1{
           -webkit-animation-delay: -0.30s;
           animation-delay: -0.30s;
         }
-        .loading4 .three2{
+        .loading .three2{
           -webkit-animation-delay: -0.15s;
           animation-delay: -0.15s;
         }
