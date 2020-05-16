@@ -37,6 +37,7 @@ html,
           height: 20px;
           margin: 8px;
           }
+          
         .loading >div{
        
           border-radius: 100%;
@@ -48,6 +49,9 @@ html,
           animation: three 1.4s infinite ease-in-out;
           -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
+        }
+        .black >div{
+            background-color: #000;
         }
         .loading .three1{
           -webkit-animation-delay: -0.30s;

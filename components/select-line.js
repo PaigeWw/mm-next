@@ -203,6 +203,7 @@ class SelectLine extends React.Component {
 						bg="#313131"
 						sx={{
 							visibility: false ? "visible" : "hidden",
+							cursor: "pointer",
 						}}
 						onClick={() => {
 							this.changeStartIndex(startIndex + 1)

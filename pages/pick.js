@@ -49,12 +49,12 @@ export default () => {
 	useEffect(() => {
 		const getGoodsList = async () => {
 			const req = await request("user/selectFavoriteList")
+			if (!req) return
 			const data = req.map((item) => {
 				let prodInfo = []
 				let price = []
 				let styleList = []
 				let colorInfo = []
-				let colorTexts = []
 				// let colorInfo = []
 				let date = []
 				let details = []
@@ -209,15 +209,7 @@ export default () => {
 												}}
 											/>
 										</Flex>
-										{showBigBox ? (
-											<BigBox
-												styleDetails={showBigBox.styleDetails}
-												curStyle={showBigBox.curStyle}
-												onClose={() => {
-													setShowBigBox(false)
-												}}
-											/>
-										) : null}
+
 										<Flex justifyContent="center">
 											<Box margin="8px 0">
 												{favorite.prodInfo.map((prodInfo) => (
@@ -255,6 +247,15 @@ export default () => {
 							})}
 					</Table>
 				</Flex>
+				{showBigBox ? (
+					<BigBox
+						styleDetails={showBigBox.styleDetails}
+						curStyle={showBigBox.curStyle}
+						onClose={() => {
+							setShowBigBox(false)
+						}}
+					/>
+				) : null}
 			</Flex>
 		</React.Fragment>
 	)
