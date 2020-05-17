@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import StyleItem from "../components/commons/min-style-item"
+import StyleItem from "../components/commons/demo-style-item"
 import { getPageQuery } from "../utils/helper"
 import request from "../utils/request.js"
 
@@ -32,7 +32,7 @@ export default () => {
 		<React.Fragment>
 			{favorite ? (
 				<StyleItem
-					width={"300px"}
+					width={300}
 					rowspan={2}
 					hasBorder={"1px solid"}
 					margin={"1px"}

@@ -186,9 +186,9 @@ export default (props) => {
 										<Flex
 											flexDirection="column"
 											hasBorder={"1px solid"}
-											width="28px"
+											width="max-content"
 										>
-											<Text>{size}</Text>
+											<Text p="6px">{size}</Text>
 										</Flex>
 									))}
 									{getInsertEmptyDom(item.sizeInfo.length)}
@@ -232,12 +232,8 @@ export default (props) => {
 								</TableLine>
 								<TableLine noEdit key={`selectline-1-${item._id}`}>
 									{item.sizeInfo.map((info) => (
-										<Flex
-											width="28px"
-											justifyContent="center"
-											hasBorder={"1px solid"}
-										>
-											<Text>{info}</Text>
+										<Flex justifyContent="center" hasBorder={"1px solid"}>
+											<Text p="6px">{info}</Text>
 										</Flex>
 									))}
 									{getInsertEmptyDom(item.sizeInfo.length)}
