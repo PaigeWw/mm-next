@@ -165,7 +165,7 @@ export default (props) => {
 				>
 					{infos.map((info) => (
 						<Flex justifyContent="space-between" pb="12px">
-							<Text mr="10px">{info.name.toUpperCase()}:</Text>
+							<Text mr="10px">{info.cn}:</Text>
 							{!info.type ? (
 								<input
 									onChange={(e) => {
@@ -235,7 +235,7 @@ export default (props) => {
 				>
 					{infos.map((info) => (
 						<Flex justifyContent="space-between" pb="12px">
-							<Text mr="10px">{info.name.toUpperCase()}:</Text>
+							<Text mr="10px">{info.cn}:</Text>
 							{!info.type ? (
 								<input
 									value={editUserInfo[info.name]}

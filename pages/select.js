@@ -11,6 +11,7 @@ import GoodsSwitch from "../components/commons/goods-switch"
 import SelectBar from "../components/select-bar"
 import SelectLine from "../components/select-line"
 import SelectAssignTool from "../components/select-assign-tool"
+import SelectAssignInfo from "../components/select-assign-tool/select-assign-info"
 
 import request from "../utils/request.js"
 import { getPageQuery, guid } from "../utils/helper"
@@ -283,7 +284,7 @@ class Select extends React.Component {
 			currentSeleted,
 			isLoad,
 		} = this.state
-		console.log({ currentSeleted })
+
 		return (
 			<Flex flexDirection="column">
 				<Head progress={1}></Head>
@@ -333,10 +334,24 @@ class Select extends React.Component {
 						}}
 					/>
 
-					{currentSeleted ? (
+					{currentSeleted && (info.role === 1 || info.role === "1") ? (
 						<SelectAssignTool
 							channels={info.channels}
 							role={info.role}
+							currentSeleted={currentSeleted}
+							onClose={() => {
+								this.setState({
+									...this.state,
+									currentSeleted: false,
+								})
+								// setCurrentSeleted(false)
+							}}
+						/>
+					) : null}
+					{currentSeleted && info.role !== 1 && info.role !== "1" ? (
+						<SelectAssignInfo
+							curChannel={info.channels[0]}
+							// role={info.role}
 							currentSeleted={currentSeleted}
 							onClose={() => {
 								this.setState({

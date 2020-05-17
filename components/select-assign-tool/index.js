@@ -47,7 +47,8 @@ export default (props) => {
 				}
 			}
 		}
-		if (role === 1) {
+
+		if (role === 1 || role === "1") {
 			getChannels()
 			getColorList()
 			getPaintList()
@@ -61,39 +62,28 @@ export default (props) => {
 		getPaintList(1)
 	}, [fcode])
 
-	//   useEffect(() => {
-	//     if (props.currentSeleted) {
-	//       const getStyle = async () => {
-	//         const req = await request("style/detail", { _id: sid }, "get");
-	//         if (!req) return;
-	//         // setCurChannelIndex(0)
-	//         // setSizeList(req.size.values);
-	//       };
-	//       getStyle();
-	//     }
-	//   }, [props.currentSeleted]);
-
+	const getChannelsAssign = async (styleId, channelId) => {
+		const req = await request(
+			"channel/getAssign",
+			{
+				styleId,
+				channelId,
+			},
+			"get"
+		)
+		if (!req) {
+			setCurChannelAssign({
+				plainColors: [],
+				flowerColors: [],
+			})
+		} else {
+			setCurChannelAssign(req)
+		}
+	}
 	useEffect(() => {
 		if (!curChannel._id) return
 		// console.log("curChannel->", curChannel.code)
-		const getChannelsAssign = async (styleId, channelId) => {
-			const req = await request(
-				"channel/getAssign",
-				{
-					styleId,
-					channelId,
-				},
-				"get"
-			)
-			if (!req) {
-				setCurChannelAssign({
-					plainColors: [],
-					flowerColors: [],
-				})
-			} else {
-				setCurChannelAssign(req)
-			}
-		}
+
 		getChannelsAssign(sid, curChannel._id)
 	}, [curChannel])
 
