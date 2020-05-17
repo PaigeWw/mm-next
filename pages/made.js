@@ -158,6 +158,7 @@ export default () => {
 								tool={true}
 								openBigBox={() => {
 									setShowBigBox(true)
+									setCurItemIndex(index)
 								}}
 								onAddFavorite={() => {
 									if (collectList.find((x) => x.index === index)) {
