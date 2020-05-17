@@ -1,12 +1,10 @@
-import dynamic from "next/dynamic"
-
 import React, { useEffect, useState } from "react"
-import { Flex, Text, Box, Button, Image } from "rebass"
+import { Flex } from "rebass"
 import OrderDetail from "./tables/order-detail"
 import { getPageQuery } from "../utils/helper"
 import request from "../utils/request.js"
 import ExcellentExport from "excellentexport"
-console.log(ExcellentExport)
+
 export default () => {
 	// const info = useUserInfo()
 	const [orderDetail, setOrderDetail] = useState(false)
@@ -14,7 +12,7 @@ export default () => {
 
 	useEffect(() => {
 		const { id, rateSign, rateVal } = getPageQuery()
-		console.log({ id, rateSign, rateVal })
+
 		if (rateSign && rateVal) {
 			setRate({
 				sign: rateSign,
@@ -27,13 +25,11 @@ export default () => {
 			if (req) {
 				setOrderDetail(req)
 			}
-			console.log(req)
 		}
 		getOrderDetail()
 	}, [])
 	useEffect(() => {
 		if (!orderDetail) return
-		console.log(orderDetail, "orderDetail")
 		let options = {
 			anchor: "string",
 			format: "xlsx",
