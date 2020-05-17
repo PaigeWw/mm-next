@@ -231,7 +231,7 @@ export default (props) => {
 		return orderData
 	}
 	const handleSubmitOrder = async () => {
-		toast.notify("comming soon...", "warn")
+		toast.notify("订单生成中...")
 
 		// 数据格式
 		/* 
@@ -268,8 +268,7 @@ export default (props) => {
 			"post"
 		)
 		if (res) {
-			toast.notify("Completed.", {
-				type: "success",
+			toast.notify("完成", {
 				duration: 2,
 			})
 			props.nextStep()
@@ -304,7 +303,7 @@ export default (props) => {
 	const SortableTitleItem = SortableElement(({ keys, collect }) => {
 		return (
 			<TableLine gary noEdit key={`selectline-keys-${keys}`}>
-				<Box colspan="4">{`款式编号：${keys}`}</Box>
+				<Box colspan="4"></Box>
 				<Flex colspan="1" justifyContent="center">
 					{sizeArrList[collect.size] && sizeArrList[collect.size].join("/")}
 					<Text
@@ -490,6 +489,7 @@ export default (props) => {
 		return space
 	}
 	let title = { index: 0, count: 1 }
+	let titleCount = 0
 	return (
 		<Flex
 			flexDirection="column"
@@ -627,6 +627,7 @@ export default (props) => {
 					{styleGroupList.map((collect, index) => {
 						if (collect.type === "title") {
 							title = collect
+							titleCount++
 							return (
 								<SortableTitleItem
 									disabled
@@ -640,7 +641,7 @@ export default (props) => {
 						}
 						return (
 							<SortableItem
-								indexNo={index}
+								indexNo={index - titleCount + 1}
 								collect={collect}
 								key={`categoryList-item-${index}`}
 								index={index}

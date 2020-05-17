@@ -188,6 +188,7 @@ class Select extends React.Component {
 					...this.state,
 					selectStyles: selectStyles.slice(savePos, savePos + 1),
 					selectStylesType: selectStylesType.slice(savePos, savePos + 1),
+					currentSeleted: false,
 				})
 			} else {
 				// setSelectStyles([])
@@ -196,13 +197,9 @@ class Select extends React.Component {
 					...this.state,
 					selectStyles: [],
 					selectStylesType: [],
+					currentSeleted: false,
 				})
 			}
-			// setCurrentSeleted(false)
-			this.setState({
-				...this.state,
-				currentSeleted: false,
-			})
 		} else {
 			//未选中 则 设置为选中
 			// console.log(selectStyles, type)

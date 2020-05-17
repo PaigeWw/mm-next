@@ -85,7 +85,7 @@ export default (props) => {
 		// console.log("curChannel->", curChannel.code)
 
 		getChannelsAssign(sid, curChannel._id)
-	}, [curChannel])
+	}, [curChannel, sid])
 
 	let left = (col + 2) * 3.2
 	if (left > 19.2 - 6.4) {
@@ -227,7 +227,7 @@ export default (props) => {
 						}}
 						onClick={props.onClose}
 					>
-						FINISH
+						完成
 					</Button>
 				</>
 			) : null}

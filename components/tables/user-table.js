@@ -111,7 +111,7 @@ export default (props) => {
 									handleDelUser(user._id)
 								}}
 							>
-								<Text style={{ padding: "20px 0" }}>{index}</Text>
+								<Text style={{ padding: "20px 0" }}>{index + 1}</Text>
 								<Text>{user.name}</Text>
 
 								<Text>{user.account}</Text>

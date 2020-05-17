@@ -298,7 +298,7 @@ export default (props) => {
 								props.onClose()
 							}}
 						>
-							FINISH
+							完成
 						</Button>
 					</Flex>
 				</Flex>

@@ -130,7 +130,7 @@ export default (props) => {
 					{styleGroupList.map((item, index) =>
 						item.type === "title" ? (
 							<TableLine gary noEdit key={`selectline-keys-${index}`}>
-								<Box colspan="4">{`样衣编号:${item.styleNos}`}</Box>
+								<Box colspan="4">{}</Box>
 								<Flex colspan={sizeInfoMaxLength} justifyContent="center">
 									{item.sizeVal.join("/")}
 								</Flex>
