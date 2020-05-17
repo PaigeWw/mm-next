@@ -9,12 +9,14 @@ import BigBox from "../components/made-big-box"
 import useUserInfo from "../hooks/getUserInfo"
 import useRateInfo from "../hooks/getRateInfo"
 import request from "../utils/request.js"
+import Loading from "../components/commons/loading"
 import { SerachInput } from "../components/color-and-paint"
 export default () => {
 	const userInfo = useUserInfo()
 	const rateInfo = useRateInfo()
 	const [favoriteList, setFavoriteList] = useState([])
 	const [searchQuery, setSearchQuery] = useState("")
+	const [loading, setLoading] = useState(false)
 	// const [favoriteList, setFavoriteList] = useState([])
 	const [showBigBox, setShowBigBox] = useState(false)
 	// const [collectDetailsList, setCollectDetailsList] = useState([])
@@ -48,7 +50,9 @@ export default () => {
 	}
 	useEffect(() => {
 		const getGoodsList = async () => {
+			setLoading(true)
 			const req = await request("user/selectFavoriteList")
+			setLoading(false)
 			if (!req) return
 			const data = req.map((item) => {
 				let prodInfo = []
@@ -133,6 +137,7 @@ export default () => {
 				>
 					挑选现款
 				</Flex>
+
 				<Flex
 					flexDirection="column"
 					justifyContent="space-between"
@@ -246,7 +251,9 @@ export default () => {
 								)
 							})}
 					</Table>
+					{loading ? <Loading type="loading5 black" /> : null}
 				</Flex>
+
 				{showBigBox ? (
 					<BigBox
 						styleDetails={showBigBox.styleDetails}

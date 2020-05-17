@@ -4,6 +4,7 @@ import arrayMove from "array-move"
 import { SortableElement } from "react-sortable-hoc"
 import Modal from "../modal"
 import { ToastContainer, toast } from "../commons/toast"
+import Loading from "../commons/loading"
 import { SortableTable, TableLine, ProductInfo } from "./base-table"
 
 import EditBox from "../made-edit-box"
@@ -19,13 +20,16 @@ export default (props) => {
 	const [editIndex, setEditIndex] = useState(0)
 	const [editId, setEditId] = useState(null)
 	// const mode = "POSITIVE"
+	const [loading, setLoading] = useState(false)
 	const [collectList, setCollectList] = useState([])
 	const [collectDetailsList, setCollectDetailsList] = useState([])
 	const [selectList, setSelectList] = useState([])
 	const getCollectList = async () => {
+		setLoading(true)
 		const res = await request("/user/getFavoriteList", {
 			goodsId: props.goodId,
 		})
+		setLoading(false)
 		// console.log("----res----", res)
 		if (!res) return
 		const data = res.map((item) => {
@@ -205,6 +209,8 @@ export default (props) => {
 				background: "#FFF0E5",
 			}}
 		>
+			{/* <Loading type="loading5 black" /> */}
+
 			{showConfirmModal ? (
 				<Modal
 					onClose={() => {
@@ -297,5 +303,7 @@ export default (props) => {
 				/>
 			) : null}
 		</Flex>
+	) : loading ? (
+		<Loading type="loading5 black" />
 	) : null
 }

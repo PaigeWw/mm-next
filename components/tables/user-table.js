@@ -117,7 +117,7 @@ export default (props) => {
 								<Text>{user.account}</Text>
 								<Text>{user.password}</Text>
 								<Text>{user.channels[0].code}</Text>
-								<Text>{user.createTime}</Text>
+								<Text>{user.createTime.slice(0, 10)}</Text>
 								<Text
 									onClick={() => {
 										setUserOrderModal(user)

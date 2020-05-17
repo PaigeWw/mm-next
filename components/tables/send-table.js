@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Row, Column } from "rebass"
 import Table, { TableLine } from "./base-table"
-
+import Loading from "../commons/loading"
 import request from "../../utils/request"
 import Modal from "../modal"
 import OrderDetail from "./order-detail"
@@ -16,9 +16,11 @@ export default (props) => {
 	const [orderList, setOrderList] = useState([])
 	const [orderDetailList, setOrderDetailList] = useState([])
 	const [selectList, setSelectList] = useState([])
+	const [loading, setLoading] = useState(false)
 	const getOrderList = async () => {
+		setLoading(true)
 		const res = await request("/order/getMyList", { isSend: 0 })
-
+		setLoading(false)
 		if (!res) return
 		setOrderDetailList(res)
 		const data = res.map((order) => {
@@ -163,6 +165,7 @@ export default (props) => {
 					</TableLine>
 				))}
 			</Table>
+			{loading ? <Loading type="loading5 black" /> : null}
 			<Flex>
 				<Button
 					variant="primary"

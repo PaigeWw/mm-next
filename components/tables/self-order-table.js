@@ -4,7 +4,7 @@ import Table, { TableLine, ProductInfo } from "./base-table"
 import OrderDetail from "./order-detail"
 import Modal from "../modal"
 import request from "../../utils/request"
-import Router from "next/router"
+import Loading from "../commons/loading"
 
 export default (props) => {
 	const { rate, userId } = props
@@ -14,15 +14,16 @@ export default (props) => {
 	})
 	const [orderList, setOrderList] = useState([])
 	const [orderDetailList, setOrderDetailList] = useState([])
-	const [selectList, setSelectList] = useState([])
+	const [loading, setLoading] = useState(false)
 	const getOrderList = async () => {
 		let res = null
+		setLoading(true)
 		if (userId) {
 			res = await request("/order/getList", { isSend: 1, userId })
 		} else {
 			res = await request("/order/getMyList", { isSend: 1 })
 		}
-
+		setLoading(false)
 		// console.log("----res----", res)
 		if (!res) return
 		setOrderDetailList(res)
@@ -116,6 +117,7 @@ export default (props) => {
 					))}
 				</Table>
 			</Flex>
+			{loading ? <Loading type="loading5 black" /> : null}
 		</Flex>
 	)
 }
