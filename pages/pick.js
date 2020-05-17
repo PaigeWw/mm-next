@@ -17,7 +17,7 @@ export default () => {
 	const [searchQuery, setSearchQuery] = useState("")
 	// const [favoriteList, setFavoriteList] = useState([])
 	const [showBigBox, setShowBigBox] = useState(false)
-	const [collectDetailsList, setCollectDetailsList] = useState([])
+	// const [collectDetailsList, setCollectDetailsList] = useState([])
 	const [mySelectFavorite, setMySelectFavorite] = useState([])
 	const handleCollect = async (favoriteId) => {
 		const req = await request(

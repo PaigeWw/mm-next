@@ -15,6 +15,9 @@ export default (props) => {
 	let sizeInfoMaxLength = 0
 	let titleIndex = 0
 	orderData.map((group) => {
+		if (!group.size) {
+			group.size = { values: [] }
+		}
 		sizeInfoMaxLength =
 			sizeInfoMaxLength > group.size.values.length
 				? sizeInfoMaxLength

@@ -14,10 +14,11 @@ export default () => {
 
 	useEffect(() => {
 		const { id, rateSign, rateVal } = getPageQuery()
+		console.log({ id, rateSign, rateVal })
 		if (rateSign && rateVal) {
 			setRate({
 				sign: rateSign,
-				val: rateVal
+				val: rateVal,
 			})
 		}
 
@@ -36,13 +37,13 @@ export default () => {
 		let options = {
 			anchor: "string",
 			format: "xlsx",
-			filename: `abc`
+			filename: `abc`,
 		}
 		let sheets = {
 			name: "Sheet 1",
 			from: {
-				table: "datatable"
-			}
+				table: "datatable",
+			},
 		}
 	}, [orderDetail])
 	return (
@@ -55,10 +56,10 @@ export default () => {
 			>
 				<div style={{ marginLeft: "20px", marginBottom: "20px" }}>
 					<a
-						ref={v => (window.aref = v)}
+						ref={(v) => (window.aref = v)}
 						download="somedata.xls"
 						href="#"
-						onClick={e => {
+						onClick={(e) => {
 							console.log(window.aref, "eeeee")
 							ExcellentExport.excel(
 								window.aref,
