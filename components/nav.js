@@ -139,9 +139,7 @@ export default (props) => {
 					name="用户信息"
 					url="/icon/icon-01.svg"
 					onLinkTo={() => {
-						Router.push("/mine").then(() => {
-							Router.reload()
-						})
+						Router.push("/user")
 					}}
 				></NavItem>
 				<NavItem

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react"
 import StyleItem from "../components/commons/demo-style-item"
+import { ReactSVG } from "react-svg"
+import { Flex } from "rebass"
 import { getPageQuery } from "../utils/helper"
 import request from "../utils/request.js"
 
@@ -30,20 +32,50 @@ export default () => {
 
 	return (
 		<React.Fragment>
-			{favorite ? (
-				<StyleItem
-					width={300}
-					rowspan={2}
-					hasBorder={"1px solid"}
-					margin={"1px"}
-					key={`favorite-style-img`}
-					styleList={favorite.styleAndColor.map((x) => {
-						// styleList.push({ style: x.style, colors: x.colorIds })
-						return { style: x.styleId, colors: x.colorIds }
-					})}
-					tool={false}
-				/>
-			) : null}
+			<Flex
+				fontSize="18px"
+				mb="10px"
+				color="#fff"
+				bg="#000"
+				alignItems="center"
+				width={[1]}
+				sx={{
+					cursor: "pointer",
+				}}
+				onClick={() => {
+					window.history.back()
+				}}
+			>
+				<Flex alignItems="center">
+					<ReactSVG
+						src={"/icon/icon-8.svg"}
+						style={{
+							width: "50px",
+							paddingTop: "8px",
+						}}
+					/>
+					返回
+				</Flex>
+
+				<div>款式展示</div>
+				<div></div>
+			</Flex>
+			<Flex alignItems="center" justifyContent="center" width={[1]}>
+				{favorite ? (
+					<StyleItem
+						width={300}
+						rowspan={2}
+						hasBorder={"1px solid"}
+						margin={"1px"}
+						key={`favorite-style-img`}
+						styleList={favorite.styleAndColor.map((x) => {
+							// styleList.push({ style: x.style, colors: x.colorIds })
+							return { style: x.styleId, colors: x.colorIds }
+						})}
+						tool={false}
+					/>
+				) : null}
+			</Flex>
 		</React.Fragment>
 	)
 }

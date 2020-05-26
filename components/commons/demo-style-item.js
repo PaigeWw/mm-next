@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Flex, Text, Box, Image } from "rebass"
+import { Flex, Box } from "rebass"
 
 import StyleImg from "./style-img"
 export default class A extends React.Component {

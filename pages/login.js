@@ -103,9 +103,9 @@ export default () => {
 						<Input
 							width="5.38rem"
 							height="0.53rem"
-							p="0"
+							pl="0.10rem"
 							pt="0.18rem"
-							pb="0.02rem"
+							pb="0.04rem"
 							minHeight="28px"
 							minWidth="200px"
 							id="username"
@@ -115,6 +115,7 @@ export default () => {
 								outline: "none",
 								border: "none",
 								borderBottom: "solid 1px #000",
+								fontSize: "0.18rem",
 							}}
 							ref={(ref) => (nameRef.current = ref)}
 						/>
@@ -138,15 +139,16 @@ export default () => {
 						<Input
 							width="5.38rem"
 							height="0.53rem"
-							p="0"
+							pl="0.10rem"
 							pt="0.18rem"
-							pb="0.02rem"
+							pb="0.04rem"
 							minHeight="28px"
 							minWidth="200px"
 							id="password"
 							name="password"
 							type="password"
 							sx={{
+								fontSize: "0.18rem",
 								outline: "none",
 								border: "none",
 								borderBottom: "solid 1px #000",
