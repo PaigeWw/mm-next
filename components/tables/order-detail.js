@@ -83,6 +83,7 @@ export default (props) => {
 		}
 		return insertEmpty.map((i) => <Text></Text>)
 	}
+	let titleCount = 0
 	return (
 		<Flex
 			flexDirection="column"
@@ -127,8 +128,9 @@ export default (props) => {
 						{ name: `总价/${rate.sign}`, width: "1/22" },
 					]}
 				>
-					{styleGroupList.map((item, index) =>
-						item.type === "title" ? (
+					{styleGroupList.map((item, index) => {
+						item.type === "title" ? titleCount++ : null
+						return item.type === "title" ? (
 							<TableLine gary noEdit key={`selectline-keys-${index}`}>
 								<Box colspan="4">{}</Box>
 								<Flex colspan={sizeInfoMaxLength} justifyContent="center">
@@ -141,7 +143,7 @@ export default (props) => {
 								{" "}
 								<TableLine noEdit key={`selectline-${item._id}`}>
 									<Text rowspan={2} hasBorder={"1px solid"}>
-										{index + 1}
+										{index - titleCount + 1}
 									</Text>
 									<Flex justifyContent="center" rowspan={2}>
 										<Box margin="8px 0">
@@ -243,7 +245,7 @@ export default (props) => {
 								</TableLine>
 							</>
 						)
-					)}
+					})}
 				</Table>
 			</Box>
 		</Flex>
