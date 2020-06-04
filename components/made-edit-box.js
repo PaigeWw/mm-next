@@ -247,7 +247,13 @@ export default (props) => {
 							))}
 					</Flex>
 
-					<Flex flexDirection="column" flexGrow={1} pl="0.6rem" width={[1 / 2]}>
+					<Flex
+						flexDirection="column"
+						flexGrow={1}
+						pl="0.6rem"
+						width={[1 / 2]}
+						sx={{ position: "relative" }}
+					>
 						<Box width={[1]} mb="0.6rem">
 							<Text id="section" fontSize="0.18rem" fontWeight="bolder">
 								样衣编码

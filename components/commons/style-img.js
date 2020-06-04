@@ -51,9 +51,15 @@ export default (props) => {
 							svg.children[i].tagName === "g" ||
 							svg.children[i].tagName === "path"
 						) {
+							let block = svg.children[i]
+							for (let i = 0; i < block.children.length; i++) {
+								let cblock = block.children[i]
+								cblock.removeAttribute("class")
+							}
+
 							if (onSetEditSvgGroupIndex) {
 								let jj = j
-								let block = svg.children[i]
+
 								block.onclick = (e) => {
 									e.stopPropagation()
 

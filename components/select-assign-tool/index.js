@@ -7,11 +7,12 @@ import request from "../../utils/request.js"
 export default (props) => {
 	const { role, currentSeleted } = props
 	const { sid, top, col, styleItem, channels = [], isLast } = currentSeleted
+
 	const [curChannel, setCurChannel] = useState({})
 	const [channelList, setChannelList] = useState([])
 	const [colorList, setColorList] = useState([])
 	const [paintList, setPaintList] = useState([])
-
+	const [hoverShowColorInfo, setHoverShowColorInfo] = useState(false)
 	const [pcode, setPcode] = useState("")
 	const [fcode, setFcode] = useState("")
 	const [curChannelAssign, setCurChannelAssign] = useState({
@@ -143,6 +144,9 @@ export default (props) => {
 		}
 	}
 
+	const handleShowColorInfo = (item, type) => {
+		setTempShowColorInfo(item)
+	}
 	const handleSelectChannel = (channel) => {
 		setCurChannel(channel)
 	}
@@ -203,6 +207,7 @@ export default (props) => {
 							onSearch={handleOnSearch}
 						/>
 						<PaintList
+							hoverAttrs={styleItem.attrs}
 							paintList={paintList.docs || []}
 							page={paintList.page}
 							handleSelect={handleSelect}
