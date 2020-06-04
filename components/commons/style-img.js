@@ -39,6 +39,7 @@ export default (props) => {
 				style={{
 					width: width,
 					minWidth: "14px",
+					fill: "#fff",
 				}}
 				afterInjection={(error, svg) => {
 					if (error) {
@@ -89,7 +90,6 @@ export default (props) => {
 				}}
 				renumerateIRIElements={false}
 				loading={() => {
-					// console.log("loading")
 					return "loading"
 				}}
 				beforeInjection={(svg) => {
