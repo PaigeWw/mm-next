@@ -24,11 +24,11 @@ export default (props) => {
 	const [showGroupStroke, setShowGroupStroke] = useState(false)
 	const [curSelectedColors, setCurSelectedColors] = useState(tempSelectedIds)
 	const [curStyleIndex, setCurStyleIndex] = useState(0)
-
+	console.log(curSelectedColors)
 	const [tempShowColorInfo, setTempShowColorInfo] = useState({})
 	const [assignInfoSource, setAssignInfoSource] = useState({})
 	const [assignInfo, setAssignInfo] = useState({})
-	const [curStylesEditGroupIndex, setEditSvgGroupIndex] = useState([0, 0])
+	const [curStylesEditGroupIndex, setEditSvgGroupIndex] = useState(0)
 	const [plainColors, setPlainColors] = useState({ docs: [] })
 	const [flowerColors, setFlowerColors] = useState({ docs: [] })
 	const [pcode, setPcode] = useState("")
@@ -116,17 +116,14 @@ export default (props) => {
 		}
 	}
 	const handleSelect = (item) => {
-		console.log({ curSelectedColors })
+		// console.log({ curSelectedColors })
 		if (
 			curSelectedColors[curStyleIndex][curStylesEditGroupIndex] &&
 			item._id === curSelectedColors[curStyleIndex][curStylesEditGroupIndex]._id
 		) {
 		} else {
-			// console.log(curStyle[curStyleIndex])
 			setTempShowColorInfo(item)
-			// let tempAttrs =
-			curSelectedColors[curStyleIndex].splice(curStylesEditGroupIndex, 1, item)
-			// console.log(curSelectedColors[curStyleIndex])
+			curSelectedColors[curStyleIndex][curStylesEditGroupIndex] = item
 			setCurSelectedColors([].concat(curSelectedColors))
 		}
 	}

@@ -93,6 +93,7 @@ export default (props) => {
 					return "loading"
 				}}
 				beforeInjection={(svg) => {
+					console.log("curStylesEditGroupIndex", curStylesEditGroupIndex)
 					svg.setAttribute("id", svgId || key)
 					let svgDefs = document.createElementNS(
 						"http://www.w3.org/2000/svg",
