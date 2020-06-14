@@ -71,7 +71,7 @@ export default (props) => {
 		}
 	}
 	useEffect(() => {
-		console.log({ currentSeleted })
+		// console.log({ currentSeleted })
 		if (!curChannel) return
 		getChannelsAssign(sid, curChannel)
 	}, [curChannel, sid])

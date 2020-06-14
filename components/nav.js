@@ -87,7 +87,8 @@ export default (props) => {
 						}}
 					/>
 					<Text
-						pl="10px"
+						width="40px"
+						pl="4px"
 						fontSize="0.14rem"
 						onClick={(e) => {
 							e.nativeEvent.stopPropagation()
@@ -101,9 +102,9 @@ export default (props) => {
 							cursor: "pointer",
 							textDecoration: "underline",
 						}}
-						pl="10px"
+						pl="4px"
 						onClick={() => {
-							setShowFeedbackModal(true)
+							Router.push("/feedback")
 						}}
 					>
 						意见/建议
@@ -176,15 +177,6 @@ export default (props) => {
 						})
 					}}
 				></NavItem>
-				{user.role === 1 ? (
-					<NavItem
-						name="通道管理"
-						url="/icon/icon-05.svg"
-						onLinkTo={() => {
-							Router.push("/assign")
-						}}
-					></NavItem>
-				) : null}
 				<NavItem
 					name="登出"
 					url="/icon/icon-8.svg"

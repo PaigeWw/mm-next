@@ -3,9 +3,9 @@ import { Flex, Text, Box, Button, Image, Select } from "rebass"
 import useUserInfo from "../hooks/getUserInfo"
 import Head from "../components/nav"
 import AssginItem from "../components/assign-item"
-
+import { ReactSVG } from "react-svg"
 import request from "../utils/request.js"
-
+import Router from "next/router"
 // 'channel/assignGoods'  channelId goodsId
 // 'channel/getAssignGoods'  channelId goodsId
 export default () => {
@@ -94,23 +94,35 @@ export default () => {
 							<Flex
 								bg="#000000"
 								width={[1]}
-								pl="1.1rem"
 								lineHeight="1.14rem"
 								sx={{
 									height: "1.14rem",
 									position: "relative",
 								}}
 								color="#fff"
-								onClick={() => {
-									setShowChannels(!showChannels)
-								}}
 							>
+								<ReactSVG
+									onClick={() => {
+										Router.push("/mine?tab=4")
+									}}
+									src={"/icon/icon-08.svg"}
+									style={{
+										width: "50px",
+										paddingTop: "8px",
+										fill: "#fff",
+										cursor: "pointer",
+									}}
+								/>
 								<Flex
 									sx={{
 										height: "1.14rem",
 										paddingRight: "30px",
+										paddingLeft: "30px",
 										position: "relative",
 										cursor: "pointer",
+									}}
+									onClick={() => {
+										setShowChannels(!showChannels)
 									}}
 								>
 									{`${currentChannel.code}(${currentChannel.name})`}

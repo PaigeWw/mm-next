@@ -5,12 +5,17 @@ import { baseUrl } from "../../utils/helper"
 export const Title = (props) => (
 	<Flex width="100%" sx={{}} mb="0.43rem">
 		<Box width={[3 / 5]}>
-			<Text fontSize="0.18rem" fontWeight="bolder">
-				样衣编码
-			</Text>
-			<Text fontSize="0.1rem" m="0.16rem 0">
-				{props.styleNo}
-			</Text>
+			{props.styleNo ? (
+				<>
+					<Text fontSize="0.18rem" fontWeight="bolder">
+						样衣编码
+					</Text>
+					<Text fontSize="0.1rem" m="0.16rem 0">
+						{props.styleNo}
+					</Text>
+				</>
+			) : null}
+
 			{props.role === 1 || props.role === "1" ? (
 				<AisleButton text="A" {...props} />
 			) : null}
@@ -21,9 +26,12 @@ export const Title = (props) => (
 				<Text mt="4px">未分配通道</Text>
 			)}
 		</Box>
-		<Flex justifyContent="center" alignItems="center" width={[2 / 5]}>
-			<Image src={`${baseUrl}${props.shadowUrlBack}`} width="70%" />
-		</Flex>
+		{props.shadowUrlBack ? (
+			<Flex justifyContent="center" alignItems="center" width={[2 / 5]}>
+				<Image src={`${baseUrl}${props.shadowUrlBack}`} width="70%" />
+			</Flex>
+		) : null}
+
 		<Image
 			src="/3/close.png"
 			width="0.23rem"

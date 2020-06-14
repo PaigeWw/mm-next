@@ -38,6 +38,7 @@ export default () => {
 				color="#fff"
 				bg="#000"
 				alignItems="center"
+				justifyContent="space-between"
 				width={[1]}
 				sx={{
 					cursor: "pointer",

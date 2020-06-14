@@ -10,11 +10,12 @@ import Head from "../components/nav"
 import GoodsSwitch from "../components/commons/goods-switch"
 import SelectBar from "../components/select-bar"
 import SelectLine from "../components/select-line"
-import SelectAssignTool from "../components/select-assign-tool"
+import SelectAssignTool from "../components/select-assign-tool" //
 import SelectAssignInfo from "../components/select-assign-tool/select-assign-info"
+import SelectAssignGroupTool from "../components/select-assign-tool/group.index"
 
 import request from "../utils/request.js"
-import { getPageQuery, guid } from "../utils/helper"
+import { getPageQuery, guid, baseUrl } from "../utils/helper"
 
 const SortableItem = SortableElement(
 	({
@@ -75,9 +76,13 @@ class Select extends React.Component {
 		this.state = {
 			info: {},
 			isLoad: false,
+			assignMode: false,
+			assignGroupModal: false,
 			categoryList: [{ styles: [] }],
 			currentSeleted: false,
 			goodId: false,
+			selectAssignStyleIds: [],
+			selectAssignStyles: [],
 			selectStyles: [],
 			selectStylesType: [],
 			queryKey: { tags: "ALL" },
@@ -171,11 +176,41 @@ class Select extends React.Component {
 			Router.push("/login")
 		}
 	}
+	handleAssginSelectStyle(sid, type, top, col, styleItem, row) {
+		console.log({ styleItem })
+		let { selectAssignStyleIds, selectAssignStyles } = this.state
+		let pos = selectAssignStyleIds.indexOf(sid)
+
+		if (pos > -1) {
+			selectAssignStyles.splice(pos, 1)
+			selectAssignStyleIds.splice(pos, 1)
+			this.setState({
+				...this.state,
+				selectAssignStyles: [...selectAssignStyles],
+				selectAssignStyleIds: [...selectAssignStyleIds],
+			})
+		} else {
+			this.setState({
+				...this.state,
+				selectAssignStyles: [styleItem, ...selectAssignStyles],
+				selectAssignStyleIds: [sid, ...selectAssignStyleIds],
+			})
+		}
+	}
 	handleSelectStyle(sid, type, top, col, styleItem, row) {
-		let { selectStyles, selectStylesType, categoryList } = this.state
+		let {
+			selectStyles,
+			selectStylesType,
+			categoryList,
+			assignMode,
+		} = this.state
+		if (assignMode) {
+			this.handleAssginSelectStyle(sid, type, top, col, styleItem, row)
+			return
+		}
 		const isLast = row >= categoryList.length - 3
-		console.log({ isLast, row })
-		console.log(categoryList.length)
+		// console.log({ isLast, row })
+		// console.log(categoryList.length)
 		let pos = selectStyles.indexOf(sid)
 		if (pos > -1) {
 			//已选中 则去除 选中
@@ -227,9 +262,6 @@ class Select extends React.Component {
 					selectStylesType: [selectStylesType[topsPos], type],
 					currentSeleted: { sid, type, top, col, styleItem, isLast },
 				})
-
-				// setSelectStyles(saveTemps)
-				// setSelectStylesType(["TOPS", type])
 				return
 			}
 			if (
@@ -246,9 +278,6 @@ class Select extends React.Component {
 					selectStylesType: [type, selectStylesType[bottomsPos]],
 					currentSeleted: { sid, type, top, col, styleItem, isLast },
 				})
-
-				// setSelectStyles(saveTemps)
-				// setSelectStylesType(["BOTTOMS", type])
 				return
 			}
 			this.setState({
@@ -257,14 +286,10 @@ class Select extends React.Component {
 				selectStylesType: [type],
 				currentSeleted: { sid, type, top, col, styleItem, isLast },
 			})
-
-			// setSelectStyles([sid])
-			// setSelectStylesType([type])
 		}
 	}
 
 	handleChangeQuery(options) {
-		console.log(options)
 		this.getGategoryList(options, this.state.goodId)
 		this.setState({
 			...this.state,
@@ -273,10 +298,14 @@ class Select extends React.Component {
 	}
 	render() {
 		const {
+			assignMode,
+			assignGroupModal,
 			info,
 			goodId,
 			selectStyles,
 			selectStylesType,
+			selectAssignStyles,
+			selectAssignStyleIds,
 			categoryList,
 			currentSeleted,
 			isLoad,
@@ -286,6 +315,7 @@ class Select extends React.Component {
 			<Flex flexDirection="column">
 				<Head progress={1}></Head>
 				<ToastContainer />
+
 				<GoodsSwitch
 					goodId={goodId}
 					onChangeGood={(id) => {
@@ -297,6 +327,29 @@ class Select extends React.Component {
 						this.getGategoryList({}, id)
 					}}
 				/>
+				{info.role === 1 || info.role === "1" ? (
+					<Flex
+						alignItems="center"
+						sx={{
+							position: "absolute",
+							right: "10px",
+							top: "calc(1.2rem + 140px)",
+						}}
+					>
+						<input
+							type="checkbox"
+							name="Assign"
+							value="Assign"
+							onChange={(e) => {
+								this.setState({
+									...this.state,
+									assignMode: e.target.checked,
+								})
+							}}
+						/>
+						分配模式
+					</Flex>
+				) : null}
 				<SelectBar
 					onChangeQuery={this.handleChangeQuery.bind(this)}
 				></SelectBar>
@@ -314,7 +367,7 @@ class Select extends React.Component {
 						</Box>
 					) : null}
 					<SortableList
-						selectStyles={selectStyles}
+						selectStyles={assignMode ? selectAssignStyleIds : selectStyles}
 						categoryList={categoryList}
 						onImageOnLoad={this.handleImageOnLoad.bind(this)}
 						handleSelectStyle={this.handleSelectStyle.bind(this)}
@@ -359,40 +412,118 @@ class Select extends React.Component {
 							}}
 						/>
 					) : null}
+					{assignGroupModal ? (
+						<SelectAssignGroupTool
+							curChannel={info.channels[0]}
+							role={info.role}
+							// currentSeleted={currentSeleted}
+							onClose={() => {
+								this.setState({
+									...this.state,
+									currentSeleted: false,
+								})
+								// setCurrentSeleted(false)
+							}}
+							onClose={() => {
+								this.setState({
+									...this.state,
+									assignGroupModal: false,
+								})
+								// setCurrentSeleted(false)
+							}}
+							selectAssignStyles={selectAssignStyles}
+						/>
+					) : null}
 				</Box>
-				<Button
-					variant="primary"
-					height="1.13rem"
-					width="19.2rem"
-					bg="#FF8E6C"
-					color="#000"
-					padding="0"
-					sx={{
-						borderRadius: 0,
-						fontSize: "0.27rem",
-						cursor: "pointer",
-						position: "fixed",
-						bottom: 0,
-					}}
-					onClick={() => {
-						// console.log('selectStylesselectStylesselectStyles')
-						if (selectStyles.length > 0) {
-							Router.push(
-								`/made?goodId=${goodId}&type=${selectStylesType[0]}&id=${
-									selectStyles[0]
-								}${
-									selectStyles.length > 1
-										? `&id1=${selectStyles[1]}&type2=${selectStylesType[1]}`
-										: ""
-								}`
-							)
-						} else {
-							toast.notify("请选择一个款式.")
-						}
-					}}
-				>
-					下一步>
-				</Button>
+				{assignMode ? (
+					<Flex
+						height="2rem"
+						width="19.2rem"
+						bg="#FFD6CA"
+						alignItems="center"
+						sx={{
+							borderRadius: 0,
+							fontSize: "0.27rem",
+							position: "fixed",
+							bottom: 0,
+						}}
+					>
+						<Box
+							alignItems="center"
+							sx={{
+								width: "calc(19.2rem - 1rem)",
+								overflow: "scroll",
+							}}
+						>
+							<Flex alignItems="center" width="max-content">
+								{selectAssignStyles.map((item) => (
+									<Box p="10px">
+										<Image
+											src={baseUrl + item.imgUrl}
+											width={`${
+												((item.scale ? item.scale : 58) * 1.4) / 100
+											}rem`}
+										/>
+									</Box>
+								))}
+							</Flex>
+						</Box>
+						<Button
+							variant="primary"
+							height="2rem"
+							width="1rem"
+							bg="#FF8E6C"
+							color="#000"
+							padding="0"
+							sx={{
+								borderRadius: 0,
+								fontSize: "0.27rem",
+								cursor: "pointer",
+							}}
+							onClick={() => {
+								this.setState({
+									...this.state,
+									assignGroupModal: true,
+								})
+							}}
+						>
+							去分配
+						</Button>
+					</Flex>
+				) : (
+					<Button
+						variant="primary"
+						height="1.13rem"
+						width="19.2rem"
+						bg="#FF8E6C"
+						color="#000"
+						padding="0"
+						sx={{
+							borderRadius: 0,
+							fontSize: "0.27rem",
+							cursor: "pointer",
+							position: "fixed",
+							bottom: 0,
+						}}
+						onClick={() => {
+							if (selectStyles.length > 0) {
+								Router.push(
+									`/made?goodId=${goodId}&type=${selectStylesType[0]}&id=${
+										selectStyles[0]
+									}${
+										selectStyles.length > 1
+											? `&id1=${selectStyles[1]}&type2=${selectStylesType[1]}`
+											: ""
+									}`
+								)
+							} else {
+								toast.notify("请选择一个款式.")
+							}
+						}}
+					>
+						下一步>
+					</Button>
+				)}
 			</Flex>
 		)
 	}

@@ -72,7 +72,10 @@ export default (props) => {
 								styleId={style._id}
 								shadowUrl={style.shadowUrlBack}
 								svgUrl={style.svgUrlBack}
-								onSetEditSvgGroupIndex={(index) => setEditSvgGroupIndex(index)}
+								onSetEditSvgGroupIndex={(index) =>
+									setEditSvgGroupIndex && setEditSvgGroupIndex(index)
+								}
+								// onSetEditSvgGroupIndex={(index) => setEditSvgGroupIndex(index)}
 							/>
 						</Flex>
 					))}

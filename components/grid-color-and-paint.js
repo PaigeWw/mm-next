@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
 import { baseUrl } from "../utils/helper"
+import Modal from "../components/modal"
+import Loading from "../components/commons/loading"
 
 export const SerachInput = (props) => {
 	return (
@@ -64,7 +66,9 @@ export const PaintList = (props) => {
 		selectedList,
 		onChangePage,
 		page,
+		loading,
 		onSearch,
+		handleSelectAll,
 	} = props
 
 	const temp = imgValsAttrs
@@ -78,8 +82,34 @@ export const PaintList = (props) => {
 	// if (paintList.length < 1) return null
 	return (
 		<>
-			<Box width="100%" mb="0.4rem">
-				<Text mb="8px">印花</Text>{" "}
+			<Box width="100%" mb="0.4rem" sx={{ position: "relative" }}>
+				<Flex mb="8px" justifyContent="space-between" alignItems="center">
+					<Text>印花</Text>
+					{handleSelectAll ? (
+						<Flex
+							sx={{
+								fontSize: "10px",
+								textDecoration: "underline",
+							}}
+						>
+							<Text
+								mr="8px"
+								onClick={() => {
+									handleSelectAll(true)
+								}}
+							>
+								全选
+							</Text>{" "}
+							<Text
+								onClick={() => {
+									handleSelectAll(false)
+								}}
+							>
+								全不选
+							</Text>
+						</Flex>
+					) : null}
+				</Flex>
 				<Flex justifyContent="space-between" alignItems="center">
 					<SerachInput
 						onChange={(e) => {
@@ -93,6 +123,18 @@ export const PaintList = (props) => {
 						}}
 					/>
 				</Flex>
+				{loading ? (
+					<Box
+						width="100%"
+						height="100%"
+						bg="rgba(255,255,255,0.6)"
+						sx={{
+							position: "absolute",
+						}}
+					>
+						<Loading type="loading5 black" />
+					</Box>
+				) : null}
 				<Box
 					sx={{
 						display: "grid",
@@ -100,7 +142,7 @@ export const PaintList = (props) => {
 						gridTemplateRows: "repeat(3, 33.33%)",
 					}}
 					width="100%"
-					height="1.5rem"
+					height="1.9rem"
 				>
 					{paintList.map((item) => (
 						<Box
@@ -114,15 +156,17 @@ export const PaintList = (props) => {
 									usedPlainColorIds.indexOf(item._id) >= 0 ? "#000" : "#fff"
 								} solid`,
 							}}
-							// onMouseEnter={(e) => {
-							// 	setHoverInfo({
-							// 		_id: item._id,
-							// 		top: e.target.offsetTop,
-							// 		left: e.target.offsetLeft + e.target.offsetWidth,
-							// 		value: `${baseUrl}${item.value}`,
-							// 		code: item.code,
-							// 	})
-							// }}
+							onMouseEnter={(e) => {
+								const domRect = e.target.getBoundingClientRect()
+
+								setHoverInfo({
+									_id: item._id,
+									top: domRect.top + e.target.offsetHeight,
+									left: domRect.left + domRect.width,
+									value: `${baseUrl}${item.value}`,
+									code: item.code,
+								})
+							}}
 							onClick={() => {
 								handleSelect(item, "paint")
 							}}
@@ -136,58 +180,61 @@ export const PaintList = (props) => {
 				</Box>
 			</Box>
 			{hoverInfo ? (
-				<Box
-					bg="#fff"
-					sx={{
-						position: "absolute",
-						// top: `${hoverInfo.top}px`,
-						// left: `${hoverInfo.left}px`,
-						bottom: `0.7rem`,
-						left: `5.7rem`,
-						padding: "10px",
-
-						border: "1px solid #ccc",
-					}}
-				>
-					<Box alignItems="center" height="40px">
-						<Flex alignItems="center">
-							<Text fontSize="12px">花号</Text>
-							<Text
-								ml="6px"
-								fontSize="10px"
-								sx={{
-									borderBottom: "1px solid #000",
-								}}
-							>
-								{hoverInfo.code}
-							</Text>
-						</Flex>
-						<Flex alignItems="center">
-							<Text fontSize="12px">缩放比例</Text>
-							<Text
-								ml="6px"
-								fontSize="10px"
-								sx={{
-									borderBottom: "1px solid #000",
-								}}
-							>
-								{hoverTemp ? hoverTemp.scale : 1}
-							</Text>
-						</Flex>
-					</Box>
+				<Modal padding="0" {...hoverInfo} onClose={null}>
 					<Image
 						src="/3/close.png"
-						width="10px"
+						width="12px"
 						onClick={() => {
 							setHoverInfo(false)
 						}}
 						sx={{ position: "absolute", right: "2px", top: "2px" }}
 					></Image>
-					<Image
-						sx={{ objectFit: "cover", width: "100px", height: "100px" }}
-						src={hoverInfo.value}
-					/>
-				</Box>
+					<Box
+						bg="#fff"
+						sx={{
+							// position: "absolute",
+							// top: `${hoverInfo.top}px`,
+							// left: `${hoverInfo.left}px`,
+							bottom: `0.7rem`,
+							left: `5.7rem`,
+							padding: "10px",
+
+							border: "1px solid #ccc",
+						}}
+					>
+						<Box alignItems="center" height="40px">
+							<Flex alignItems="center">
+								<Text fontSize="12px">花号</Text>
+								<Text
+									ml="6px"
+									fontSize="10px"
+									sx={{
+										borderBottom: "1px solid #000",
+									}}
+								>
+									{hoverInfo.code}
+								</Text>
+							</Flex>
+							<Flex alignItems="center">
+								<Text fontSize="12px">缩放比例</Text>
+								<Text
+									ml="6px"
+									fontSize="10px"
+									sx={{
+										borderBottom: "1px solid #000",
+									}}
+								>
+									{hoverTemp ? hoverTemp.scale : 1}
+								</Text>
+							</Flex>
+						</Box>
+
+						<Image
+							sx={{ objectFit: "cover", width: "100px", height: "100px" }}
+							src={hoverInfo.value}
+						/>
+					</Box>
+				</Modal>
 			) : null}
 			<Flex alignItems="center" height="20px">
 				{showColorInfo && showColorInfo.type === 1 ? (
@@ -226,10 +273,12 @@ export const ColorList = (props) => {
 		showColorInfo,
 		colorList,
 		handleSelect,
+		handleSelectAll,
 		handleEnlarge,
 		selectedList,
 		onChangePage,
 		page,
+		loading,
 		onSearch,
 	} = props
 	const usedPlainColorIds = selectedList.map((item) => item._id)
@@ -238,7 +287,33 @@ export const ColorList = (props) => {
 	return (
 		<>
 			<Box width="100%" mb="0.4rem" sx={{ position: "relative" }}>
-				<Text mb="8px">颜色</Text>
+				<Flex mb="8px" justifyContent="space-between" alignItems="center">
+					<Text>颜色</Text>
+					{handleSelectAll ? (
+						<Flex
+							sx={{
+								fontSize: "10px",
+								textDecoration: "underline",
+							}}
+						>
+							<Text
+								mr="8px"
+								onClick={() => {
+									handleSelectAll(true)
+								}}
+							>
+								全选
+							</Text>{" "}
+							<Text
+								onClick={() => {
+									handleSelectAll(false)
+								}}
+							>
+								全不选
+							</Text>
+						</Flex>
+					) : null}
+				</Flex>
 				<Flex justifyContent="space-between" alignItems="center">
 					<SerachInput
 						onChange={(e) => {
@@ -259,8 +334,20 @@ export const ColorList = (props) => {
 						gridTemplateRows: "repeat(3, 33.33%)",
 					}}
 					width="100%"
-					height="1.5rem"
+					height="1.9rem"
 				>
+					{loading ? (
+						<Box
+							width="100%"
+							height="100%"
+							bg="rgba(255,255,255,0.6)"
+							sx={{
+								position: "absolute",
+							}}
+						>
+							<Loading type="loading5 black" />
+						</Box>
+					) : null}
 					{colorList.map((item) => (
 						<Box
 							sx={{
@@ -274,14 +361,17 @@ export const ColorList = (props) => {
 							onClick={() => {
 								handleSelect(item, "color")
 							}}
-							// onMouseEnter={(e) => {
-							// 	setHoverInfo({
-							// 		_id: item._id,
-							// 		top: e.target.offsetTop,
-							// 		left: e.target.offsetLeft + e.target.offsetWidth,
-							// 		code: item.code,
-							// 	})
-							// }}
+							onMouseEnter={(e) => {
+								const domRect = e.target.getBoundingClientRect()
+
+								setHoverInfo({
+									_id: item._id,
+									top: domRect.top + e.target.offsetHeight,
+									left: domRect.left + domRect.width,
+									value: item.value,
+									code: item.code,
+								})
+							}}
 							bg={item.value}
 							mt="0.2rem"
 							mr="0.2rem"
@@ -292,40 +382,40 @@ export const ColorList = (props) => {
 					))}
 				</Box>
 				{hoverInfo ? (
-					<Box
-						bg="#fff"
-						sx={{
-							position: "absolute",
-							// top: `${hoverInfo.top}px`,
-							// left: `${hoverInfo.left}px`,
-							bottom: `0.4rem`,
-							left: `5.7rem`,
-							padding: "10px",
-							minWidth: "120px",
-							border: "1px solid #ccc",
-						}}
-					>
-						<Image
-							src="/3/close.png"
-							width="10px"
-							onClick={() => {
-								setHoverInfo(false)
+					<Modal padding="0" {...hoverInfo} onClose={null}>
+						<Box
+							bg="#fff"
+							sx={{
+								// top: `${hoverInfo.top}px`,
+								// left: `${hoverInfo.left}px`,
+
+								padding: "10px",
+								minWidth: "120px",
+								border: "1px solid #ccc",
 							}}
-							sx={{ position: "absolute", right: "2px", top: "2px" }}
-						></Image>
-						<Flex alignItems="center" mt="10px" height="20px">
-							<Text fontSize="12px">色号</Text>
-							<Text
-								ml="6px"
-								fontSize="10px"
-								sx={{
-									borderBottom: "1px solid #000",
+						>
+							<Image
+								src="/3/close.png"
+								width="10px"
+								onClick={() => {
+									setHoverInfo(false)
 								}}
-							>
-								{hoverInfo.code}
-							</Text>
-						</Flex>
-					</Box>
+								sx={{ position: "absolute", right: "2px", top: "2px" }}
+							></Image>
+							<Flex alignItems="center" mt="10px" height="20px">
+								<Text fontSize="12px">色号</Text>
+								<Text
+									ml="6px"
+									fontSize="10px"
+									sx={{
+										borderBottom: "1px solid #000",
+									}}
+								>
+									{hoverInfo.code}
+								</Text>
+							</Flex>
+						</Box>
+					</Modal>
 				) : null}
 			</Box>
 
