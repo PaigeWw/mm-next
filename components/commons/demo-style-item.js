@@ -35,6 +35,7 @@ export default class A extends React.Component {
 										  }px`
 										: `${style.style.scale ? style.style.scale : 58}px`
 								}
+								styleSize={style.style.styleSize}
 								svgUrl={style.style.svgUrl}
 								id={style.style._id}
 								styleId={style.style._id}

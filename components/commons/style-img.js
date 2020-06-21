@@ -16,6 +16,7 @@ export default (props) => {
 		imgValsAttrs = [],
 		curStylesEditGroupIndex,
 		onSetEditSvgGroupIndex,
+		styleSize = 32,
 	} = props
 
 	return (
@@ -126,7 +127,8 @@ export default (props) => {
 								svg.setAttribute("width", `${svg.viewBox.baseVal.width}px`)
 							}
 							let W =
-								((color.size * svg.width.baseVal.value) / 20) * imgVals.scale
+								((color.size * svg.width.baseVal.value) / styleSize) *
+								imgVals.scale
 							let H = (W * color.height) / color.width
 
 							svgPattern.setAttribute("width", `${W}px`)
