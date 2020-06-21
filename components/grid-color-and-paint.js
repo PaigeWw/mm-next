@@ -135,7 +135,7 @@ export const PaintList = (props) => {
 					))}
 				</Box>
 			</Box>
-			{hoverInfo ? (
+			{false ? (
 				<Box
 					bg="#fff"
 					sx={{
@@ -291,7 +291,7 @@ export const ColorList = (props) => {
 						></Box>
 					))}
 				</Box>
-				{hoverInfo ? (
+				{false ? (
 					<Box
 						bg="#fff"
 						sx={{
