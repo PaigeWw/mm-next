@@ -16,7 +16,7 @@ export default (props) => {
 		imgValsAttrs = [],
 		curStylesEditGroupIndex,
 		onSetEditSvgGroupIndex,
-		styleSize = 32,
+		styleSize = 27,
 	} = props
 
 	return (
