@@ -69,10 +69,10 @@ export default () => {
 			>
 				<textarea
 					style={{
-						width: "320px",
+						width: "360px",
 					}}
-					rows={8}
-					placeholder="FeedBack"
+					rows={20}
+					placeholder="内容填写"
 					onChange={(e) => {
 						setFeedback(e.target.value)
 					}}

@@ -18,7 +18,7 @@ export default () => {
 	useEffect(() => {
 		if (info.role !== 1) return
 		const getGoodsList = async () => {
-			const req = await request("goods/getList")
+			const req = await request("goods/getVisibleList")
 			setGoodsList(req || [])
 			// console.log(req)
 		}

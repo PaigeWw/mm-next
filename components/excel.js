@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Flex } from "rebass"
 import OrderDetail from "./tables/order-detail"
-import { getPageQuery } from "../utils/helper"
+import { getPageQuery, baseUrl } from "../utils/helper"
 import request from "../utils/request.js"
 import ExcellentExport from "excellentexport"
 
@@ -26,6 +26,19 @@ export default () => {
 				setOrderDetail(req)
 			}
 		}
+
+		const getOrderFile = async () => {
+			const req = await request("order/download", {
+				_id: id,
+				rateSign,
+				rateVal,
+			})
+			if (req) {
+				console.log(req)
+				window.open(`${baseUrl}${req.url}`)
+			}
+		}
+		getOrderFile()
 		getOrderDetail()
 	}, [])
 	useEffect(() => {

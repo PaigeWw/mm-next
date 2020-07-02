@@ -17,7 +17,7 @@ html,
 #one-order-detail th,td{
     padding: 6px;
 }
-* {
+*:not(input) {
     user-select: none;
 }
 :focus {

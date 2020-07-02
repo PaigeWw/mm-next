@@ -16,7 +16,7 @@ export default () => {
 	// console.log("test test test test")
 	useEffect(() => {
 		const getGoodsList = async () => {
-			const req = await request("goods/getList", "get")
+			const req = await request("goods/getVisibleList")
 			if (req) {
 				setgoosList(req)
 			}

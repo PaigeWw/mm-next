@@ -90,8 +90,14 @@ class Select extends React.Component {
 
 		this.getUserInfo()
 	}
+	// componentWillUpdate(nextProps, nextState) {
+	// 	if (this.state.goodId !== nextState.goodId) {
+	// 		this.getGategoryList({}, nextState.goodId)
+	// 	}
+	// }
+
 	componentDidMount() {
-		// this.info = useUserInfo()
+		// this.info = useUserInfo()()
 		let query = getPageQuery()
 		// setGoodId(query.id)
 		this.setState(
@@ -208,7 +214,7 @@ class Select extends React.Component {
 			this.handleAssginSelectStyle(sid, type, top, col, styleItem, row)
 			return
 		}
-		const isLast = row >= categoryList.length - 3
+		const isLast = row >= categoryList.length - 3 && categoryList.length > 3
 		// console.log({ isLast, row })
 		// console.log(categoryList.length)
 		let pos = selectStyles.indexOf(sid)
@@ -319,12 +325,18 @@ class Select extends React.Component {
 				<GoodsSwitch
 					goodId={goodId}
 					onChangeGood={(id) => {
-						this.setState({
-							...this.state,
-							goodId: id,
-							queryKey: { tags: "ALL" },
-						})
-						this.getGategoryList({}, id)
+						console.log("goodId", id)
+						this.setState(
+							{
+								...this.state,
+								goodId: id,
+								queryKey: { tags: "ALL" },
+							},
+							() => {
+								this.getGategoryList({}, id)
+							}
+						)
+						//
 					}}
 				/>
 				{info.role === 1 || info.role === "1" ? (
@@ -347,7 +359,7 @@ class Select extends React.Component {
 								})
 							}}
 						/>
-						分配模式
+						多款同时分配模式
 					</Flex>
 				) : null}
 				<SelectBar
@@ -471,7 +483,7 @@ class Select extends React.Component {
 						<Button
 							variant="primary"
 							height="2rem"
-							width="1rem"
+							width="3.22rem"
 							bg="#FF8E6C"
 							color="#000"
 							padding="0"
@@ -487,7 +499,7 @@ class Select extends React.Component {
 								})
 							}}
 						>
-							去分配
+							分配
 						</Button>
 					</Flex>
 				) : (

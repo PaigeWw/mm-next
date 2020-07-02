@@ -4,15 +4,26 @@ import useUserInfo from "../hooks/getUserInfo"
 import Head from "../components/nav"
 import request from "../utils/request.js"
 
-const InfoLine = ({ title, info }) => (
+const InfoLine = ({ title, info, index }) => (
 	<Flex
-		mb="20px"
-		width={[1, 1 / 2]}
+		width={[1]}
 		alignItems="center"
-		justifyContent="space-between"
+		sx={{
+			border: "1px solid #e8e8e8",
+			borderTop: index ? "none" : "auto",
+		}}
 	>
-		<Text pr="100px">{title}</Text>
-		<Text>{info}</Text>
+		<Text
+			width="100px"
+			p="16px"
+			bg="#fafafa"
+			sx={{
+				borderRight: "1px solid #e8e8e8",
+			}}
+		>
+			{title}
+		</Text>
+		<Text p="16px">{info}</Text>
 	</Flex>
 )
 export default () => {
@@ -69,8 +80,10 @@ export default () => {
 				<Head></Head>
 				{info.role === 1 || info.role === "1" ? (
 					<Box width={[1]} fontSize="0.2rem" p="100px">
-						{productorInfosModal.map((item) => (
+						{productorInfosModal.map((item, index) => (
 							<InfoLine
+								key={`InfoLine-${index}`}
+								index={index}
 								title={item.cn}
 								info={
 									item.name === "channels"

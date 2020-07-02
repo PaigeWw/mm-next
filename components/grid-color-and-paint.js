@@ -141,6 +141,12 @@ export const PaintList = (props) => {
 						gridTemplateColumns: "repeat(10, 10%)",
 						gridTemplateRows: "repeat(3, 33.33%)",
 					}}
+					// onMouseMoveCapture
+					// onMouseLeave
+					onMouseLeave={() => {
+						console.log("Box onMouseMove")
+						setHoverInfo(false)
+					}}
 					width="100%"
 					height="1.9rem"
 				>
@@ -155,6 +161,10 @@ export const PaintList = (props) => {
 								border: `1px ${
 									usedPlainColorIds.indexOf(item._id) >= 0 ? "#000" : "#fff"
 								} solid`,
+							}}
+							onMouseMove={(e) => {
+								e.nativeEvent.stopPropagation()
+								e.nativeEvent.preventDefault()
 							}}
 							onMouseEnter={(e) => {
 								const domRect = e.target.getBoundingClientRect()
@@ -180,15 +190,7 @@ export const PaintList = (props) => {
 				</Box>
 			</Box>
 			{hoverInfo ? (
-				<Modal padding="0" {...hoverInfo} onClose={null}>
-					<Image
-						src="/3/close.png"
-						width="12px"
-						onClick={() => {
-							setHoverInfo(false)
-						}}
-						sx={{ position: "absolute", right: "2px", top: "2px" }}
-					></Image>
+				<Modal noPointer padding="0" {...hoverInfo} onClose={null}>
 					<Box
 						bg="#fff"
 						sx={{
@@ -333,6 +335,9 @@ export const ColorList = (props) => {
 						gridTemplateColumns: "repeat(10, 10%)",
 						gridTemplateRows: "repeat(3, 33.33%)",
 					}}
+					onMouseLeave={() => {
+						setHoverInfo(false)
+					}}
 					width="100%"
 					height="1.9rem"
 				>
@@ -382,7 +387,7 @@ export const ColorList = (props) => {
 					))}
 				</Box>
 				{hoverInfo ? (
-					<Modal padding="0" {...hoverInfo} onClose={null}>
+					<Modal padding="0" noPointer {...hoverInfo} onClose={null}>
 						<Box
 							bg="#fff"
 							sx={{
@@ -394,14 +399,6 @@ export const ColorList = (props) => {
 								border: "1px solid #ccc",
 							}}
 						>
-							<Image
-								src="/3/close.png"
-								width="10px"
-								onClick={() => {
-									setHoverInfo(false)
-								}}
-								sx={{ position: "absolute", right: "2px", top: "2px" }}
-							></Image>
 							<Flex alignItems="center" mt="10px" height="20px">
 								<Text fontSize="12px">色号</Text>
 								<Text

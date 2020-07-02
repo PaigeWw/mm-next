@@ -5,6 +5,7 @@ import OrderDetail from "./order-detail"
 import Modal from "../modal"
 import request from "../../utils/request"
 import Loading from "../commons/loading"
+import { baseUrl } from "../../utils/helper"
 
 export default (props) => {
 	const { rate, userId } = props
@@ -53,6 +54,13 @@ export default (props) => {
 
 	const handleCheckDetail = (index) => {
 		setOrderDetailMode({ visible: true, detail: orderDetailList[index] })
+	}
+
+	const getFileUrl = async (query) => {
+		const res = await request("/order/download", query)
+		if (res) {
+			window.open(`${baseUrl}${res.url}`)
+		}
 	}
 	return (
 		<Flex
@@ -106,11 +114,12 @@ export default (props) => {
 									opacity: "0.7",
 								}}
 								onClick={() => {
-									window.open(
-										`./download?id=${order.id}&rateSign=${rate.sign}&rateVal=${rate.val}`,
-										"_blank"
-									)
-									// Router.push(`/download?id=${order.id}`)
+									console.log("getFileUrl")
+									getFileUrl({
+										_id: order.id,
+										rateSign: rate.sign,
+										rateVal: rate.val,
+									})
 								}}
 							/>
 						</TableLine>

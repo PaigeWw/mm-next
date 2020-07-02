@@ -7,7 +7,7 @@ export default (props) => {
 	const [goodsList, setGoodsList] = useState([])
 	useEffect(() => {
 		const getGoodsList = async () => {
-			const req = await request("goods/getList", "get")
+			const req = await request("goods/getVisibleList", "get")
 			if (req) {
 				setGoodsList(req)
 				onLoadGoods && onLoadGoods(req)
@@ -19,6 +19,9 @@ export default (props) => {
 		getGoodsList()
 	}, [])
 
+	useEffect(() => {
+		console.log(goodId)
+	}, [goodId])
 	return (
 		<Flex
 			justifyContent="center"
@@ -40,12 +43,12 @@ export default (props) => {
 			{goodsList.map((option, index) => (
 				<Text
 					fontSize="0.22rem"
-					pr="10px"
+					pl="10px"
 					// p="10px"
 					sx={{
 						lineHeight: "0.22rem",
 						cursor: "pointer",
-						borderRight: "1px solid #000",
+						borderLeft: index ? "1px solid #000" : "none",
 						fontWeight: option._id === goodId ? "bold" : "normal",
 						color: "#000",
 					}}
