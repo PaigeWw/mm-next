@@ -60,7 +60,8 @@ const RadioInTab = (props) => (
 	</Box>
 )
 export default (props) => {
-	const [tagGroup, setTagGroup] = useState(tags[0])
+	console.log({ tagList: props.tagList })
+	const [tagGroup, setTagGroup] = useState({ list: ["ALL", ...props.tagList] })
 	return (
 		<Flex pt="10px" width="100%" bg="#FFD6CA" fontSize="0.14rem" pb="30px">
 			<Flex flexDirection="column" width="100%">

@@ -85,6 +85,7 @@ class Select extends React.Component {
 			selectAssignStyles: [],
 			selectStyles: [],
 			selectStylesType: [],
+			tagList: [],
 			queryKey: { tags: "ALL" },
 		}
 
@@ -107,8 +108,19 @@ class Select extends React.Component {
 			},
 			() => {
 				this.getGategoryList(this.state.queryKey, this.state.goodId)
+				this.getTagList()
 			}
 		)
+	}
+	async getTagList() {
+		const req = await request("style/getStyleTagList")
+		if (req) {
+			console.log(req)
+			this.setState({
+				...this.state,
+				tagList: req.map((r) => r.name),
+			})
+		}
 	}
 
 	async getGategoryList(queryKey, goodId) {
@@ -315,6 +327,7 @@ class Select extends React.Component {
 			categoryList,
 			currentSeleted,
 			isLoad,
+			tagList,
 		} = this.state
 
 		return (
@@ -362,9 +375,12 @@ class Select extends React.Component {
 						多款同时分配模式
 					</Flex>
 				) : null}
-				<SelectBar
-					onChangeQuery={this.handleChangeQuery.bind(this)}
-				></SelectBar>
+				{tagList.length > 0 ? (
+					<SelectBar
+						tagList={tagList}
+						onChangeQuery={this.handleChangeQuery.bind(this)}
+					/>
+				) : null}
 
 				<Box sx={{ position: "relative" }} mb={"1.13rem"}>
 					{isLoad ? (
