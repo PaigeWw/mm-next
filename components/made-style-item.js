@@ -30,6 +30,7 @@ export default (props) => {
 					<StyleImg
 						imgValsAttrs={style.style.attrs}
 						svgId={svgId}
+						styleSize={style.style.styleSize}
 						styleId={style.style._id}
 						key={`style-img-${index}`}
 						width={`${

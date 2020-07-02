@@ -37,7 +37,7 @@ export default () => {
 	useEffect(() => {
 		const getLoginStyleImg = async () => {
 			const req = await request("system/detail")
-			if (req) {
+			if (req && req[0]) {
 				setStyleImg(req[0].img)
 			}
 		}

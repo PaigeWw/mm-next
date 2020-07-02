@@ -47,6 +47,7 @@ export default (props) => {
 								colors={curSelectedColors[index]}
 								svgId={style._id}
 								styleId={style._id}
+								styleSize={style.styleSize}
 								shadowUrl={style.shadowUrl}
 								svgUrl={style.svgUrl}
 								onSetEditSvgGroupIndex={(index) =>
