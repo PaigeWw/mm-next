@@ -262,7 +262,7 @@ export default (props) => {
 			"/order/add",
 			{
 				orderGoodNo: 1,
-				goodId: window.localStorage.getItem("curGoodId"),
+				goodsId: goodId,
 				orderData: getOrderData(),
 			},
 			"post"

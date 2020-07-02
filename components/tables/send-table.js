@@ -8,7 +8,7 @@ import OrderDetail from "./order-detail"
 import StyleItem from "../commons/min-style-item"
 
 export default (props) => {
-	const { rate, toast } = props
+	const { rate, toast, goodId } = props
 	const [orderDetailMode, setOrderDetailMode] = useState({
 		visible: false,
 		detail: {},
@@ -19,7 +19,10 @@ export default (props) => {
 	const [loading, setLoading] = useState(false)
 	const getOrderList = async () => {
 		setLoading(true)
-		const res = await request("/order/getMyList", { isSend: 0 })
+		const res = await request("/order/getMyList", {
+			isSend: 0,
+			goodsId: goodId,
+		})
 		setLoading(false)
 		if (!res) return
 		setOrderDetailList(res)
@@ -55,7 +58,7 @@ export default (props) => {
 	}
 	useEffect(() => {
 		getOrderList()
-	}, [])
+	}, [goodId])
 	const handleSelect = (index, item) => {
 		const pos = selectList.findIndex((x) => x.index === index)
 		if (pos < 0) {

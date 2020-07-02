@@ -190,7 +190,13 @@ export const PaintList = (props) => {
 				</Box>
 			</Box>
 			{hoverInfo ? (
-				<Modal noPointer padding="0" {...hoverInfo} onClose={null}>
+				<Modal
+					noPointer
+					padding="0"
+					overflow="hidden"
+					{...hoverInfo}
+					onClose={null}
+				>
 					<Box
 						bg="#fff"
 						sx={{
@@ -200,8 +206,8 @@ export const PaintList = (props) => {
 							bottom: `0.7rem`,
 							left: `5.7rem`,
 							padding: "10px",
-
 							border: "1px solid #ccc",
+							margin: "0",
 						}}
 					>
 						<Box alignItems="center" height="40px">
@@ -387,7 +393,13 @@ export const ColorList = (props) => {
 					))}
 				</Box>
 				{hoverInfo ? (
-					<Modal padding="0" noPointer {...hoverInfo} onClose={null}>
+					<Modal
+						padding="0"
+						overflow="hidden"
+						noPointer
+						{...hoverInfo}
+						onClose={null}
+					>
 						<Box
 							bg="#fff"
 							sx={{

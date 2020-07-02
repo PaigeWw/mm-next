@@ -8,7 +8,7 @@ import Loading from "../commons/loading"
 import { baseUrl } from "../../utils/helper"
 
 export default (props) => {
-	const { rate, userId } = props
+	const { rate, userId, goodId } = props
 	const [orderDetailMode, setOrderDetailMode] = useState({
 		visible: false,
 		detail: {},
@@ -20,9 +20,13 @@ export default (props) => {
 		let res = null
 		setLoading(true)
 		if (userId) {
-			res = await request("/order/getList", { isSend: 1, userId })
+			res = await request("/order/getList", {
+				isSend: 1,
+				userId,
+				goodsId: goodId,
+			})
 		} else {
-			res = await request("/order/getMyList", { isSend: 1 })
+			res = await request("/order/getMyList", { isSend: 1, goodsId: goodId })
 		}
 		setLoading(false)
 		// console.log("----res----", res)
@@ -50,7 +54,7 @@ export default (props) => {
 	}
 	useEffect(() => {
 		getOrderList()
-	}, [])
+	}, [goodId])
 
 	const handleCheckDetail = (index) => {
 		setOrderDetailMode({ visible: true, detail: orderDetailList[index] })

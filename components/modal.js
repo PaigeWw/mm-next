@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import { Flex, Image } from "rebass"
 
 export default (props) => {
-	const { left, top, padding, onClose, noPointer } = props
+	const { left, top, padding, onClose, noPointer, overflow } = props
 	// const { left, top } = props
 	return ReactDOM.createPortal(
 		<Flex
@@ -17,7 +17,7 @@ export default (props) => {
 				pointerEvents: noPointer ? "none" : "auto",
 				maxHeight: "100%",
 				zIndex: 999999999,
-				overflow: "scroll",
+				overflow: overflow ? overflow : "scroll",
 				top: top ? `${top}px` : "50%",
 				left: left ? `${left}px` : "50%",
 				transform: top ? "" : "translate(-50%, -50%)",

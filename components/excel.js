@@ -63,26 +63,10 @@ export default () => {
 				flexDirection="column"
 				fontSize="0.14rem"
 			>
-				<div style={{ marginLeft: "20px", marginBottom: "20px" }}>
-					<a
-						ref={(v) => (window.aref = v)}
-						download="somedata.xls"
-						href="#"
-						onClick={(e) => {
-							console.log(window.aref, "eeeee")
-							ExcellentExport.excel(
-								window.aref,
-								"one-order-detail",
-								"Sheet Name Here"
-							)
-						}}
-					>
-						Export to Excel
-					</a>
-				</div>
+				<div style={{ marginLeft: "20px", marginBottom: "20px" }}></div>
 				<div style={{ height: "500px" }}>
 					{orderDetail ? (
-						<OrderDetail OrderDetail={orderDetail} imgToUrl rate={rate} />
+						<OrderDetail OrderDetail={orderDetail} rate={rate} />
 					) : null}
 				</div>
 			</Flex>
