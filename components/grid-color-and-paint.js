@@ -89,11 +89,13 @@ export const PaintList = (props) => {
 						<Flex
 							sx={{
 								fontSize: "10px",
-								textDecoration: "underline",
+								cursor: "pointer",
 							}}
 						>
 							<Text
 								mr="8px"
+								p="2px 4px"
+								bg="#eeeeee"
 								onClick={() => {
 									handleSelectAll(true)
 								}}
@@ -101,6 +103,8 @@ export const PaintList = (props) => {
 								全选
 							</Text>{" "}
 							<Text
+								bg="#eeeeee"
+								p="2px 4px"
 								onClick={() => {
 									handleSelectAll(false)
 								}}
@@ -301,11 +305,13 @@ export const ColorList = (props) => {
 						<Flex
 							sx={{
 								fontSize: "10px",
-								textDecoration: "underline",
+								cursor: "pointer",
 							}}
 						>
 							<Text
 								mr="8px"
+								p="2px 4px"
+								bg="#eeeeee"
 								onClick={() => {
 									handleSelectAll(true)
 								}}
@@ -313,6 +319,8 @@ export const ColorList = (props) => {
 								全选
 							</Text>{" "}
 							<Text
+								p="2px 4px"
+								bg="#eeeeee"
 								onClick={() => {
 									handleSelectAll(false)
 								}}

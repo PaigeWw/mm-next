@@ -95,24 +95,31 @@ export default () => {
 								bg="#000000"
 								width={[1]}
 								lineHeight="1.14rem"
+								alignItems="center"
 								sx={{
 									height: "1.14rem",
 									position: "relative",
 								}}
 								color="#fff"
 							>
-								<ReactSVG
-									onClick={() => {
-										Router.push("/mine?tab=4")
-									}}
-									src={"/icon/icon-08.svg"}
+								<div
 									style={{
+										display: "flex",
+										alignItems: "center",
+										justifyContent: "center",
 										width: "50px",
-										paddingTop: "8px",
-										fill: "#fff",
+
 										cursor: "pointer",
 									}}
-								/>
+								>
+									<img
+										onClick={() => {
+											Router.push("/mine?tab=4")
+										}}
+										src={"/icon/icon-09.svg"}
+									/>
+								</div>
+
 								<Flex
 									sx={{
 										height: "1.14rem",
@@ -147,6 +154,7 @@ export default () => {
 										sx={{
 											position: "absolute",
 											border: "1px solid #000",
+											left: "80px",
 											top: "calc(0.507rem + 20px)",
 										}}
 										color="#000"

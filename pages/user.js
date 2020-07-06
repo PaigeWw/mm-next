@@ -9,7 +9,7 @@ const InfoLine = ({ title, info, index }) => (
 		width={[1]}
 		alignItems="center"
 		sx={{
-			border: "1px solid #e8e8e8",
+			borderBottom: "1px solid #e8e8e8",
 			borderTop: index ? "none" : "auto",
 		}}
 	>
@@ -17,9 +17,11 @@ const InfoLine = ({ title, info, index }) => (
 			width="100px"
 			p="16px"
 			bg="#fafafa"
-			sx={{
-				borderRight: "1px solid #e8e8e8",
-			}}
+			sx={
+				{
+					// borderRight: "1px solid #e8e8e8",
+				}
+			}
 		>
 			{title}
 		</Text>

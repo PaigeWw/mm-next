@@ -13,6 +13,7 @@ import request from "../utils/request.js"
 export default () => {
 	const info = useUserInfo()
 	const [goosList, setgoosList] = useState([])
+	const [settings, setSettings] = useState({})
 	// console.log("test test test test")
 	useEffect(() => {
 		const getGoodsList = async () => {
@@ -24,18 +25,23 @@ export default () => {
 		}
 		getGoodsList()
 	}, [info])
-	const settings = {
-		className: "center",
-		centerMode: true,
-		infinite: true,
-		centerPadding: "0px",
-		initialSlide: 1,
-		slidesToShow: 3,
-		speed: 1000,
-		afterChange: (index) => {
-			console.log(index)
-		},
-	}
+
+	useEffect(() => {
+		// const settings =
+		setSettings({
+			className: "center",
+			centerMode: true,
+			infinite: true,
+			centerPadding: "0px",
+			initialSlide: 1,
+			slidesToShow: goosList.length > 2 ? 3 : goosList.length,
+			speed: 1000,
+			afterChange: (index) => {
+				console.log(index)
+			},
+		})
+		// settings.slidesToShow =
+	}, [goosList])
 	return (
 		<React.Fragment>
 			<Flex

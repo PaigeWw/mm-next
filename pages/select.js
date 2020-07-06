@@ -358,10 +358,14 @@ class Select extends React.Component {
 						sx={{
 							position: "absolute",
 							right: "10px",
-							top: "calc(1.2rem + 140px)",
+							top: "calc(230px)",
 						}}
 					>
 						<input
+							style={{
+								height: "20px",
+								width: "20px",
+							}}
 							type="checkbox"
 							name="Assign"
 							value="Assign"
@@ -404,7 +408,7 @@ class Select extends React.Component {
 						)}
 						pressDelay={200}
 						onSortEnd={({ oldIndex, newIndex }) => {
-							console.log("oldIndex, newIndex")
+							// console.log("oldIndex, newIndex")
 							this.setState({
 								...this.state,
 								categoryList: arrayMove(categoryList, oldIndex, newIndex),
