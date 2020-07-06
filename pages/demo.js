@@ -47,19 +47,7 @@ export default () => {
 					window.history.back()
 				}}
 			>
-				<Flex alignItems="center">
-					<ReactSVG
-						src={"/icon/icon-8.svg"}
-						style={{
-							width: "50px",
-							paddingTop: "8px",
-						}}
-					/>
-					返回
-				</Flex>
-
 				<div>款式展示</div>
-				<div></div>
 			</Flex>
 			<Flex alignItems="center" justifyContent="center" width={[1]}>
 				{favorite ? (
