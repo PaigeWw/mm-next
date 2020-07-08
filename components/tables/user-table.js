@@ -8,15 +8,20 @@ import request from "../../utils/request"
 export default (props) => {
 	const { getUserChannels, channelList, rate } = props
 	const infos = [
-		{ name: "name", required: true, cn: "客户名称" },
+		{ name: "name", required: true, cn: "名称" },
 		{ name: "account", cn: "账号名", width: "4/22", required: true },
 		{ name: "password", cn: "密码", width: "2/22", required: true },
 		{ name: "contact", cn: "联系人", width: "2/22" },
 		{ name: "phone", cn: "电话", width: "2/22" },
 		{ name: "email", cn: "邮箱", width: "2/22" },
 		{ name: "customerType", cn: "客户类型", width: "2/22" },
+		{ name: "countries", cn: "国家", width: "2/22" },
+		{ name: "postcode", cn: "邮编", width: "2/22" },
 		{ name: "address", cn: "地址", width: "2/22" },
 		{ name: "channels", cn: "通道", width: "2/22", type: "select" },
+		{ name: "shippingcountries", cn: "托运国家", width: "2/22" },
+		{ name: "shippingpostcode", cn: "托运地址邮编", width: "2/22" },
+		{ name: "shippingaddress", cn: "托运地址", width: "2/22" },
 		{ name: "remark", cn: "备注", type: "area" },
 	]
 	const [editUserInfo, setUserEditInfo] = useState(false)

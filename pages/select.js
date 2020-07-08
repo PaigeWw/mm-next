@@ -10,7 +10,7 @@ import Head from "../components/nav"
 import GoodsSwitch from "../components/commons/goods-switch"
 import SelectBar from "../components/select-bar"
 import SelectLine from "../components/select-line"
-import SelectAssignTool from "../components/select-assign-tool" //
+import SelectAssignTool from "../components/select-assign-tool"
 import SelectAssignInfo from "../components/select-assign-tool/select-assign-info"
 import SelectAssignGroupTool from "../components/select-assign-tool/group.index"
 

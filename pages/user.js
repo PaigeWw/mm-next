@@ -38,8 +38,13 @@ export default () => {
 		{ name: "phone", cn: "电话", width: "2/22" },
 		{ name: "email", cn: "邮箱", width: "2/22" },
 		{ name: "customerType", cn: "客户类型", width: "2/22" },
+		{ name: "countries", cn: "国家", width: "2/22" },
+		{ name: "postcode", cn: "邮编", width: "2/22" },
 		{ name: "address", cn: "地址", width: "2/22" },
 		{ name: "channels", cn: "通道", width: "2/22", type: "select" },
+		{ name: "shippingcountries", cn: "托运国家", width: "2/22" },
+		{ name: "shippingpostcode", cn: "托运地址邮编", width: "2/22" },
+		{ name: "shippingaddress", cn: "托运地址", width: "2/22" },
 		{ name: "remark", cn: "备注", type: "area" },
 	]
 	const productorInfosModal = [
@@ -51,11 +56,11 @@ export default () => {
 		{ name: "channels", cn: "通道", width: "2/22", type: "select" },
 		{ name: "remark", cn: "备注", type: "area" },
 	]
-	const [goodsList, setGoodsList] = useState([])
+	// const [goodsList, setGoodsList] = useState([])
 	const [channelList, setChannelList] = useState([])
-	const [assignCategoryList, setAssignCategoryList] = useState([])
-	const [currentChannel, setCurrentChannel] = useState({})
-	const [showChannels, setShowChannels] = useState(false)
+	// const [assignCategoryList, setAssignCategoryList] = useState([])
+	// const [currentChannel, setCurrentChannel] = useState({})
+	// const [showChannels, setShowChannels] = useState(false)
 	useEffect(() => {
 		// if (info.role !== 1) return
 
