@@ -58,7 +58,12 @@ export default () => {
 				</Flex>
 
 				<div>意见反馈</div>
-				<div></div>
+				<div
+					style={{
+						width: "86px",
+						height: "1px",
+					}}
+				></div>
 			</Flex>
 			<Flex
 				width={[1]}
@@ -69,7 +74,7 @@ export default () => {
 			>
 				<textarea
 					style={{
-						width: "360px",
+						width: "50%",
 					}}
 					rows={20}
 					placeholder="内容填写"

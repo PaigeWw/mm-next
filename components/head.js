@@ -23,6 +23,7 @@ html,
 :focus {
     outline: 0;
 }
+*::-webkit-scrollbar {display:none}
 .loading{
             
             text-align: center;

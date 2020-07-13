@@ -483,7 +483,7 @@ class Select extends React.Component {
 						<Box
 							alignItems="center"
 							sx={{
-								width: "calc(19.2rem - 1rem)",
+								width: "calc(19.2rem - 3.22rem)",
 								overflow: "scroll",
 							}}
 						>

@@ -35,6 +35,7 @@ export default () => {
 			<Flex
 				fontSize="18px"
 				mb="10px"
+				p="16px"
 				color="#fff"
 				bg="#000"
 				alignItems="center"

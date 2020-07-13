@@ -31,10 +31,10 @@ export default () => {
 		setSettings({
 			className: "center",
 			centerMode: true,
-			infinite: true,
+			infinite: goosList.length > 3 ? true : false,
 			centerPadding: "0px",
 			initialSlide: 1,
-			slidesToShow: goosList.length > 2 ? 3 : goosList.length,
+			slidesToShow: 3,
 			speed: 1000,
 			afterChange: (index) => {
 				console.log(index)

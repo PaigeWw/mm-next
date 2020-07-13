@@ -9,7 +9,7 @@ export const SerachInput = (props) => {
 		<input
 			onChange={props.onChange}
 			style={{
-				height: "100%",
+				height: "14px",
 				width: props.width ? props.width : "3rem",
 				background: "no-repeat",
 				backgroundSize: "14px 14px",
@@ -23,8 +23,8 @@ export const SerachInput = (props) => {
 
 const PagerButton = (props) => (
 	<Button
-		width="0.26rem"
-		height="0.26rem"
+		width="20px"
+		height="20px"
 		bg="#000"
 		p="0"
 		sx={{ borderRadius: 0 }}
@@ -42,7 +42,7 @@ const Pager = (props) => (
 		>
 			{"<"}
 		</PagerButton>
-		<Text bg="#EEEEEE" lineHeight="0.26rem" width="0.53rem" textAlign="center">
+		<Text bg="#EEEEEE" lineHeight="20px" width="40px" textAlign="center">
 			{props.current}
 		</Text>
 		<PagerButton
@@ -87,13 +87,15 @@ export const PaintList = (props) => {
 					<Text>印花</Text>
 					{handleSelectAll ? (
 						<Flex
+							justifyContent="space-between"
 							sx={{
 								fontSize: "10px",
 								cursor: "pointer",
+								display: "flex",
+								width: "80px",
 							}}
 						>
 							<Text
-								mr="8px"
 								p="2px 4px"
 								bg="#eeeeee"
 								onClick={() => {
