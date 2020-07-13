@@ -305,9 +305,12 @@ export const ColorList = (props) => {
 					<Text>颜色</Text>
 					{handleSelectAll ? (
 						<Flex
+							justifyContent="space-between"
 							sx={{
 								fontSize: "10px",
 								cursor: "pointer",
+								display: "flex",
+								width: "80px",
 							}}
 						>
 							<Text
