@@ -314,7 +314,6 @@ export const ColorList = (props) => {
 							}}
 						>
 							<Text
-								mr="8px"
 								p="2px 4px"
 								bg="#eeeeee"
 								onClick={() => {
