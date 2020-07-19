@@ -336,7 +336,6 @@ export default (props) => {
 								bg="#1B1B1B"
 								color="#fff"
 								padding="0"
-								ml="-0.7rem"
 								sx={{
 									borderRadius: 0,
 									fontSize: "0.14rem",
