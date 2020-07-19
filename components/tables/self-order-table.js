@@ -5,7 +5,7 @@ import OrderDetail from "./order-detail"
 import Modal from "../modal"
 import request from "../../utils/request"
 import Loading from "../commons/loading"
-import { baseUrl } from "../../utils/helper"
+import { downloadUrl } from "../../utils/helper"
 
 export default (props) => {
 	const { rate, userId, goodId } = props
@@ -63,7 +63,7 @@ export default (props) => {
 	const getFileUrl = async (query) => {
 		const res = await request("/order/download", query)
 		if (res) {
-			window.open(`${baseUrl}${res.url}`)
+			window.open(`${downloadUrl}${res.url}`)
 		}
 	}
 	return (

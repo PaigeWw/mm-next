@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { Flex } from "rebass"
 import OrderDetail from "./tables/order-detail"
-import { getPageQuery, baseUrl } from "../utils/helper"
+import { getPageQuery, downloadUrl } from "../utils/helper"
 import request from "../utils/request.js"
-import ExcellentExport from "excellentexport"
+// import ExcellentExport from "excellentexport"
 
 export default () => {
 	// const info = useUserInfo()
@@ -35,7 +35,7 @@ export default () => {
 			})
 			if (req) {
 				console.log(req)
-				window.open(`${baseUrl}${req.url}`)
+				window.open(`${downloadUrl}${req.url}`)
 			}
 		}
 		getOrderFile()
