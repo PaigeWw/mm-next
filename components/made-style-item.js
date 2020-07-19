@@ -12,7 +12,7 @@ export default (props) => {
 			alignItems="center"
 			justifyContent="space-evenly"
 			height="4.8rem"
-			width="4.8rem"
+			width="6.4rem"
 			bg="#E7E7E7"
 			sx={{
 				cursor: "pointer",
@@ -38,6 +38,8 @@ export default (props) => {
 						}rem`}
 						svgUrl={style.style.svgUrl}
 						shadowUrl={style.style.shadowUrl}
+						shadowUrlBack={style.style.shadowUrlBack}
+						svgUrlBack={style.style.svgUrlBack}
 						colors={style.colors}
 					/>
 				))}

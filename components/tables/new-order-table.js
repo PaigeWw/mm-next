@@ -44,8 +44,9 @@ export default (props) => {
 						if (index) {
 							text += "/"
 						}
-						text = color.code
+						text += `${color.code}/`
 					})
+					console.log("text", text)
 					prodInfo.push({
 						styleNo: x.styleId.styleNo,
 						categoryName: x.styleId.categoryName,

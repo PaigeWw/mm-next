@@ -187,7 +187,7 @@ export default () => {
 										<Text>{`${index + 1}`}</Text>
 										<Flex justifyContent="center">
 											<StyleItem
-												width="0.9rem"
+												width="1.9rem"
 												rowspan={2}
 												hasBorder={"1px solid"}
 												margin={"1px"}

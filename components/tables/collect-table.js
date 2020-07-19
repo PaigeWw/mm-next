@@ -52,7 +52,7 @@ export default (props) => {
 					if (index) {
 						text += "/"
 					}
-					text = color.code
+					text += `${color.code}`
 				})
 				prodInfo.push({
 					styleNo: x.style.styleNo,

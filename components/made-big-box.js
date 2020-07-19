@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Flex, Text, Box, Image } from "rebass"
 
 import Modal from "./modal"
-import StyleImg from "../components/commons/style-img"
+import StyleImg from "../components/commons/style-img-front"
 
 export default (props) => {
 	const { styleDetails, curStyle } = props

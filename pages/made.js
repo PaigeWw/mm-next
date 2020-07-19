@@ -20,16 +20,7 @@ export default () => {
 	const [showBigBox, setShowBigBox] = useState(false)
 	const [showEditBox, setShowEditBox] = useState(false)
 	const [curItemIndex, setCurItemIndex] = useState(0)
-	const [styleInitData, setStyleInitData] = useState([
-		[],
-		[],
-		[],
-		[],
-		[],
-		[],
-		[],
-		[],
-	])
+	const [styleInitData, setStyleInitData] = useState([[], [], [], [], [], []])
 	const [collectList, setCollectList] = useState([])
 	useEffect(() => {
 		let query = getPageQuery()
@@ -44,7 +35,7 @@ export default () => {
 			let reqList = []
 			const req = await request("style/detail", { _id: query.id }, "get")
 			reqList.push(req)
-			for (let i = 0; i < 8; i++) {
+			for (let i = 0; i < 6; i++) {
 				styleInitData[i].push({
 					style: req,
 					colors: [],
@@ -53,7 +44,7 @@ export default () => {
 			if (query.id1) {
 				const req1 = await request("style/detail", { _id: query.id1 }, "get")
 				reqList.push(req1)
-				for (let i = 0; i < 8; i++) {
+				for (let i = 0; i < 6; i++) {
 					styleInitData[i].push({ style: req1, colors: [] })
 				}
 			}

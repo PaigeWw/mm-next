@@ -19,7 +19,7 @@ export default class A extends React.Component {
 				alignItems="center"
 				justifyContent="space-evenly"
 				margin={margin ? margin : "auto"}
-				width={width ? width : "80px"}
+				width={width ? width : "150px"}
 			>
 				{Array.isArray(styleList) &&
 					styleList.map((style, index) => (
@@ -37,6 +37,8 @@ export default class A extends React.Component {
 								}
 								styleSize={style.style.styleSize}
 								svgUrl={style.style.svgUrl}
+								svgUrlBack={style.style.svgUrlBack}
+								shadowUrlBack={style.style.shadowUrlBack}
 								id={style.style._id}
 								styleId={style.style._id}
 								shadowUrl={style.style.shadowUrl}
