@@ -139,7 +139,8 @@ class Select extends React.Component {
 			...this.state,
 			isLoad: true,
 		})
-		const req = await request("goods/detail", options, "get")
+		// const req = await request("goods/detail", options, "get")
+		const req = await request("style/getUserStyleList", options, "get")
 		if (!req) return
 		const categoryList = req.category.map((c) => {
 			return {
