@@ -37,6 +37,8 @@ export default (props) => {
 		if (pcode) {
 			options.code = pcode
 		}
+		const categoryId = styleDetails[curStyleIndex].categoryId
+		options.categoryId = categoryId
 		const req = await request("color/getList", options, "get")
 		setPlainColors({ docs: req.docs, page: req.page, pages: req.pages })
 		// console.log("getChannels", req)
@@ -46,6 +48,8 @@ export default (props) => {
 		if (fcode) {
 			options.code = fcode
 		}
+		const categoryId = styleDetails[curStyleIndex].categoryId
+		options.categoryId = categoryId
 		const req = await request("color/getList", options, "get")
 		setFlowerColors({ docs: req.docs, page: req.page, pages: req.pages })
 		// console.log("getChannels", req)
@@ -65,7 +69,7 @@ export default (props) => {
 				handleChangeColorPage(1, 0)
 			}
 		}
-	}, [pcode])
+	}, [pcode, styleDetails[curStyleIndex].categoryId])
 	useEffect(() => {
 		if (assignInfo.plainColors) {
 			handleChangeColorPage(1, 0)
@@ -87,7 +91,7 @@ export default (props) => {
 				handleChangeColorPage(1, 1)
 			}
 		}
-	}, [fcode])
+	}, [fcode, styleDetails[curStyleIndex].categoryId])
 	const handleChangeColorPage = (page, type) => {
 		if (page < 1) return
 		if (userInfo.role === 1) {

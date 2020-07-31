@@ -554,7 +554,7 @@ class Select extends React.Component {
 							}
 						}}
 					>
-						下一步>
+						{"下一步>"}
 					</Button>
 				)}
 			</Flex>
