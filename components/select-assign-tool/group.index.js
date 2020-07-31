@@ -4,8 +4,7 @@ import { Title } from "./aisle-button"
 import Modal from "../modal"
 import { ColorList, PaintList } from "../grid-color-and-paint"
 import request from "../../utils/request.js"
-import { baseUrl } from "../../utils/helper.js"
-
+import { filterImageUrl } from "../../utils/helper"
 export default (props) => {
 	const { role, selectAssignStyles } = props
 
@@ -296,7 +295,7 @@ export default (props) => {
 							{selectAssignStyles.map((item) => (
 								<Box p="10px">
 									<Image
-										src={baseUrl + item.imgUrl}
+										src={filterImageUrl(item.imgUrl)}
 										width={`${((item.scale ? item.scale : 58) * 1.4) / 100}rem`}
 									/>
 								</Box>

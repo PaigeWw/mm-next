@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
-import { baseUrl } from "../../utils/helper"
+import { filterImageUrl } from "../../utils/helper"
 
 export const Title = (props) => (
 	<Flex width="100%" sx={{}} mb="0.43rem">
@@ -28,7 +28,7 @@ export const Title = (props) => (
 		</Box>
 		{props.shadowUrlBack ? (
 			<Flex justifyContent="center" alignItems="center" width={[2 / 5]}>
-				<Image src={`${baseUrl}${props.shadowUrlBack}`} width="70%" />
+				<Image src={`${filterImageUrl(props.shadowUrlBack)}`} width="70%" />
 			</Flex>
 		) : null}
 

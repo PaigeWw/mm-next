@@ -6,8 +6,8 @@ const instance = axios.create({
 	// withCredentials: true,
 	timeout: 10000,
 	headers: {
-		"content-type": "application/x-www-form-urlencoded"
-	}
+		"content-type": "application/x-www-form-urlencoded",
+	},
 })
 
 const instance2 = axios.create({
@@ -15,12 +15,12 @@ const instance2 = axios.create({
 	withCredentials: true,
 	timeout: 10000,
 	headers: {
-		"content-type": "application/x-www-form-urlencoded"
-	}
+		"content-type": "application/x-www-form-urlencoded",
+	},
 })
 
 instance.interceptors.request.use(
-	config => {
+	(config) => {
 		/**
 		 * 请求时从本地读取token，并设置headers
 		 */
@@ -32,11 +32,11 @@ instance.interceptors.request.use(
 		// console.log(config)
 		return config
 	},
-	error => Promise.reject(error)
+	(error) => Promise.reject(error)
 )
 
 instance.interceptors.response.use(
-	response => {
+	(response) => {
 		// console.log("response", response)
 		if (response.config.url.includes("user/login")) {
 			if (response.data && response.data.data) {
@@ -48,7 +48,7 @@ instance.interceptors.response.use(
 		}
 		return response.data
 	},
-	error => {
+	(error) => {
 		const response = error.response || {}
 		// console.log("错误： ", response)
 		handleErrorStatus(response.status, response.message)
@@ -69,11 +69,11 @@ export default (url = "", data = {}, method = "get", origin = false, api) => {
 	const options = method.toLowerCase() === "get" ? { params: data } : data
 	// console.log(url, "url")
 	return instance[method](url, options)
-		.then(res => {
+		.then((res) => {
 			// console.log(res, "res,....")
 			return res.data
 		})
-		.catch(err => {
+		.catch((err) => {
 			// handleErrorStatus(code, err.message)
 			// console.log("err: ", err)
 			return false

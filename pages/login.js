@@ -4,7 +4,7 @@ import { Input } from "@rebass/forms"
 import Head from "../components/head"
 import Loading from "../components/commons/loading"
 import request from "../utils/request.js"
-import { baseUrl } from "../utils/helper.js"
+import { filterImageUrl } from "../utils/helper.js"
 import useUserInfo from "../hooks/getUserInfo"
 import Router from "next/router"
 import { ReactSVG } from "react-svg"
@@ -49,7 +49,7 @@ export default () => {
 				sx={{
 					width: "100vw",
 					height: "100vh",
-					backgroundImage: `url(${baseUrl}${styleImg})`,
+					backgroundImage: `url(${filterImageUrl(styleImg)})`,
 					backgroundSize: "cover",
 				}}
 			>

@@ -7,7 +7,6 @@ import Modal from "./modal"
 import { ColorList, PaintList } from "./grid-color-and-paint"
 
 import request from "../utils/request.js"
-// import { baseUrl } from "../utils/helper"
 
 export default (props) => {
 	const { styleDetails, curStyle, userInfo = { channels: [] } } = props

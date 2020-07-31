@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react"
 import { Flex, Box, Button, Image } from "rebass"
-import { baseUrl } from "../utils/helper"
+import { filterImageUrl } from "../utils/helper"
 import { SerachInput } from "../components/color-and-paint"
 const ImageBox = (props) => {
 	const { item, id, kind, scale, col, row, onLoad = () => {} } = props
@@ -22,7 +22,7 @@ const ImageBox = (props) => {
 			}}
 		>
 			<Image
-				src={baseUrl + props.src}
+				src={`${filterImageUrl(props.src)}?tr=w-180`}
 				sx={{
 					display: "block",
 					width: `${scale ? scale : 58}%`,

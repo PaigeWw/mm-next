@@ -1,6 +1,6 @@
 import React from "react"
 import { Flex, Text, Box, Button, Input } from "rebass"
-import { baseUrl } from "../utils/helper"
+import { filterImageUrl } from "../utils/helper"
 
 export const SerachInput = (props) => {
 	return (
@@ -95,7 +95,7 @@ export const PaintList = (props) => {
 							backgroundClip: "content-box !important",
 							boxSizing: "content-box",
 							cursor: "pointer",
-							background: `url(${baseUrl + item.value})`,
+							background: `url(${filterImageUrl(item.value)})`,
 							backgroundSize: "100% 100% ",
 							border: `1px ${
 								usedPlainColorIds.indexOf(item._id) >= 0 ? "#000" : "#fff"

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { Flex, Text, Box, Image } from "rebass"
-import { baseUrl } from "../utils/helper"
-const Item = props => (
+import { filterImageUrl } from "../utils/helper"
+const Item = (props) => (
 	<Flex
 		width={props.width}
 		height={props.height}
@@ -9,16 +9,16 @@ const Item = props => (
 		justifyContent="center"
 	>
 		<Image
-			src={baseUrl + props.url}
+			src={filterImageUrl(props.url)}
 			sx={{
 				width: props.imgWidth,
 				minWidth: "14px",
-				minHeight: "14px"
+				minHeight: "14px",
 			}}
 		/>
 	</Flex>
 )
-export default props => {
+export default (props) => {
 	const { threeViews, mode } = props
 	// console.log("threeViews", threeViews)
 	return (
@@ -34,7 +34,7 @@ export default props => {
 				border: props.border ? props.border : "1px solid #000",
 				borderTop: props.border ? "" : "none",
 				borderBottom: props.border ? "" : "none",
-				borderRight: props.hideRightBorder ? "none" : ""
+				borderRight: props.hideRightBorder ? "none" : "",
 			}}
 			onClick={props.toggleMode ? props.toggleMode : null}
 		>

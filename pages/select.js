@@ -15,7 +15,7 @@ import SelectAssignInfo from "../components/select-assign-tool/select-assign-inf
 import SelectAssignGroupTool from "../components/select-assign-tool/group.index"
 
 import request from "../utils/request.js"
-import { getPageQuery, guid, baseUrl } from "../utils/helper"
+import { getPageQuery, guid, filterImageUrl } from "../utils/helper"
 
 const SortableItem = SortableElement(
 	({
@@ -492,7 +492,7 @@ class Select extends React.Component {
 								{selectAssignStyles.map((item) => (
 									<Box p="10px">
 										<Image
-											src={baseUrl + item.imgUrl}
+											src={`${filterImageUrl(item.imgUrl)}?tr=w-180`}
 											width={`${
 												((item.scale ? item.scale : 58) * 1.4) / 100
 											}rem`}

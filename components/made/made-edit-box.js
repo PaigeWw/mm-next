@@ -4,8 +4,7 @@ import { Flex, Text, Box, Image, Button } from "rebass"
 import Modal from "./modal"
 import { ColorList, PaintList } from "./color-and-paint"
 
-import { baseUrl } from "../utils/helper"
-export default props => {
+export default (props) => {
 	const { styleDetails, curStyle } = props
 	// console.log(styleDetails, curStyle)
 	let tempSelectedIds = [curStyle[0].colorId]
@@ -36,7 +35,7 @@ export default props => {
 			switch (type) {
 				case "color":
 					const cIndex = styleDetails[curStyleIndex].plainColors.findIndex(
-						x => x.colorId === item.colorId
+						(x) => x.colorId === item.colorId
 					)
 					curStyleImgs.splice(
 						curStyleIndex,
@@ -48,7 +47,7 @@ export default props => {
 					break
 				case "paint":
 					const pIndex = styleDetails[curStyleIndex].flowerColors.findIndex(
-						x => x.colorId === item.colorId
+						(x) => x.colorId === item.colorId
 					)
 
 					curStyleImgs.splice(

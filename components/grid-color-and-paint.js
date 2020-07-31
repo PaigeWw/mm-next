@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Flex, Text, Box, Button, Image } from "rebass"
-import { baseUrl } from "../utils/helper"
+import { filterImageUrl } from "../utils/helper"
 import Modal from "../components/modal"
 import Loading from "../components/commons/loading"
 
@@ -162,7 +162,7 @@ export const PaintList = (props) => {
 								backgroundClip: "content-box !important",
 								boxSizing: "content-box",
 								cursor: "pointer",
-								background: `url(${baseUrl + item.value})`,
+								background: `url(${filterImageUrl(item.value)}?tr=w-50)`,
 								backgroundSize: "100% 100% ",
 								border: `1px ${
 									usedPlainColorIds.indexOf(item._id) >= 0 ? "#000" : "#fff"
@@ -179,7 +179,7 @@ export const PaintList = (props) => {
 									_id: item._id,
 									top: domRect.top + e.target.offsetHeight,
 									left: domRect.left + domRect.width,
-									value: `${baseUrl}${item.value}`,
+									value: `${filterImageUrl(item.value)}`,
 									code: item.code,
 								})
 							}}

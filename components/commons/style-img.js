@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react"
 import { ReactSVG } from "react-svg"
 // import { Image } from "rebass"
-import { baseUrl } from "../../utils/helper"
+import { filterImageUrl } from "../../utils/helper"
 
 export default (props) => {
 	const {
@@ -31,7 +31,7 @@ export default (props) => {
 				}}
 			>
 				<img
-					src={`${baseUrl}${shadowUrl}`}
+					src={`${filterImageUrl(shadowUrl)}`}
 					style={{
 						width: width,
 						position: "absolute",
@@ -146,7 +146,7 @@ export default (props) => {
 
 								svgPatternImage.setAttribute("width", `${W}px`)
 								svgPatternImage.setAttribute("height", `${H}px`)
-								svgPatternImage.href.baseVal = `${baseUrl}${color.value}`
+								svgPatternImage.href.baseVal = `${filterImageUrl(color.value)}`
 
 								// editSvgs.svgDefs.appendChild(svgPattern)
 								svgPattern.appendChild(svgPatternImage)
@@ -155,7 +155,7 @@ export default (props) => {
 						}
 					}}
 					evalScripts="always"
-					src={`${baseUrl}${svgUrl}`}
+					src={`${filterImageUrl(svgUrl)}`}
 				/>
 			</div>
 			<div
@@ -166,7 +166,7 @@ export default (props) => {
 				}}
 			>
 				<img
-					src={`${baseUrl}${shadowUrlBack}`}
+					src={`${filterImageUrl(shadowUrlBack)}`}
 					style={{
 						width: width,
 						position: "absolute",
@@ -281,7 +281,7 @@ export default (props) => {
 
 								svgPatternImage.setAttribute("width", `${W}px`)
 								svgPatternImage.setAttribute("height", `${H}px`)
-								svgPatternImage.href.baseVal = `${baseUrl}${color.value}`
+								svgPatternImage.href.baseVal = `${filterImageUrl(color.value)}`
 
 								// editSvgs.svgDefs.appendChild(svgPattern)
 								svgPattern.appendChild(svgPatternImage)
@@ -290,7 +290,7 @@ export default (props) => {
 						}
 					}}
 					evalScripts="always"
-					src={`${baseUrl}${svgUrlBack}`}
+					src={`${filterImageUrl(svgUrlBack)}`}
 				/>
 			</div>
 		</div>

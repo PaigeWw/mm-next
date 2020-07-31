@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react"
-import { Flex, Text, Box, Button, Image } from "rebass"
-import { Title } from "./aisle-button"
+import { Flex, Text, Box, Image } from "rebass"
 import { ColorList, PaintList } from "../grid-color-and-paint"
 import request from "../../utils/request.js"
-import { baseUrl } from "../../utils/helper.js"
+import { filterImageUrl } from "../../utils/helper.js"
 
 export default (props) => {
 	const { role, currentSeleted, curChannel } = props
@@ -139,7 +138,7 @@ export default (props) => {
 					</Text>
 				</Box>
 				<Flex justifyContent="center" alignItems="center" width={[2 / 5]}>
-					<Image src={`${baseUrl}${styleItem.shadowUrlBack}`} width="70%" />
+					<Image src={filterImageUrl(styleItem.shadowUrlBack)} width="70%" />
 				</Flex>
 				<Image
 					src="/3/close.png"
