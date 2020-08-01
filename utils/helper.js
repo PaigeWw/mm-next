@@ -8,7 +8,7 @@ export const pptPx2rem = (px) => `${px / (1920 / 10)}rem`
 // export const baseUrl = "http://localhost:3001/"
 export const baseUrl = "https://we-idesign.com/"
 export const downloadUrl = "http://crm.we-idesign.com/"
-
+export const imgUrl = "https://ik.imagekit.io/"
 export const getPageQuery = () => parse(window.location.href.split("?")[1])
 export const guid = () => {
 	return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
@@ -19,13 +19,18 @@ export const guid = () => {
 }
 
 export const filterImageUrl = (url) => {
-	if (url && url.split) {
-		let arrs = url.split("/")
-		let res = url
-		if (arrs.length >= 3) {
-			res = `mrmiss//${arrs[2]}`
+	let arrs = url.split("/")
+	let res = url
+
+	// 本地数据
+	if (arrs.length >= 3) {
+		if (url.indexOf(".svg") >= 0) {
+			console.log("url", `/${url}`)
+			return `/${url}`
+		} else {
+			return `${imgUrl}mrmiss//${arrs[2]}`
 		}
-		return `https://ik.imagekit.io/${res}`
+	} else {
+		return `${imgUrl}${url}`
 	}
-	return url
 }
