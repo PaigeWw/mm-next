@@ -60,6 +60,7 @@ export default (props) => {
 								for (let i = 0; i < block.children.length; i++) {
 									let cblock = block.children[i]
 									cblock.removeAttribute("class")
+									cblock.removeAttribute("fill")
 								}
 
 								if (onSetEditSvgGroupIndex) {
@@ -195,6 +196,7 @@ export default (props) => {
 								for (let i = 0; i < block.children.length; i++) {
 									let cblock = block.children[i]
 									cblock.removeAttribute("class")
+									cblock.removeAttribute("fill")
 								}
 
 								if (onSetEditSvgGroupIndex) {

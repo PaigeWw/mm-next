@@ -11,7 +11,7 @@ export default (props) => {
 		{ code: "01", text: "选择产品分类" },
 		{ code: "02", text: "选择产品款式" },
 		{ code: "03", text: "搭配款式效果" },
-		{ code: "04", text: "操作订单" },
+		{ code: "04", text: "操作订单环节" },
 	]
 
 	return (
