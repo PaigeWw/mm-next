@@ -19,13 +19,16 @@ export const guid = () => {
 }
 
 export const filterImageUrl = (url) => {
+	if (!url || !url.split) {
+		return ""
+	}
 	let arrs = url.split("/")
 	// 本地数据
 	if (arrs.length >= 3) {
 		if (url.indexOf(".svg") >= 0) {
 			console.log("svg-url", `/${url}`)
 
-			return `/${url}`
+			return `https://we-idesign.com/${url}`
 		} else {
 			return `${imgUrl}mrmiss//${arrs[2]}`
 		}
