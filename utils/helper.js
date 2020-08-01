@@ -23,7 +23,8 @@ export const filterImageUrl = (url) => {
 	// 本地数据
 	if (arrs.length >= 3) {
 		if (url.indexOf(".svg") >= 0) {
-			console.log("url", `/${url}`)
+			console.log("svg-url", `/${url}`)
+
 			return `/${url}`
 		} else {
 			return `${imgUrl}mrmiss//${arrs[2]}`
