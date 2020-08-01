@@ -20,8 +20,6 @@ export const guid = () => {
 
 export const filterImageUrl = (url) => {
 	let arrs = url.split("/")
-	let res = url
-
 	// 本地数据
 	if (arrs.length >= 3) {
 		if (url.indexOf(".svg") >= 0) {
