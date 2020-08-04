@@ -5,7 +5,7 @@ import { ColorList, PaintList } from "../grid-color-and-paint";
 import request from "../../utils/request.js";
 
 export default (props) => {
-  const { role, currentSeleted } = props;
+  const { role, currentSeleted, goodsId } = props;
   const { sid, top, col, styleItem, channels = [], isLast } = currentSeleted;
 
   const [curChannel, setCurChannel] = useState({});
@@ -24,8 +24,8 @@ export default (props) => {
     if (pcode) {
       options.code = pcode;
     }
-    if (styleItem.categoryId) {
-      options.categoryId = styleItem.categoryId;
+    if (goodsId) {
+      options.goodsId = goodsId;
     }
     const req = await request("color/getList", options, "get");
     setColorList({ docs: req.docs, page: req.page });
@@ -35,8 +35,8 @@ export default (props) => {
     if (fcode) {
       options.code = fcode;
     }
-    if (styleItem.categoryId) {
-      options.categoryId = styleItem.categoryId;
+    if (goodsId) {
+      options.goodsId = goodsId;
     }
     const req = await request("color/getList", options, "get");
     setPaintList({ docs: req.docs, page: req.page });
