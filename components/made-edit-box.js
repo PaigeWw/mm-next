@@ -9,7 +9,7 @@ import { ColorList, PaintList } from "./grid-color-and-paint"
 import request from "../utils/request.js"
 
 export default (props) => {
-	const { styleDetails, curStyle, userInfo = { channels: [] } } = props
+	const { styleDetails, curStyle, userInfo = { channels: [] }, goodsId } = props
 
 	let tempSelectedIds = [curStyle[0].colors]
 	// let tempSelectedImgs = [curStyle[0].imgUrl]
@@ -37,8 +37,8 @@ export default (props) => {
 		if (pcode) {
 			options.code = pcode
 		}
-		const categoryId = styleDetails[curStyleIndex].categoryId
-		options.categoryId = categoryId
+		// const goodsId = styleDetails[curStyleIndex].goodsId;
+		options.goodsId = goodsId
 		const req = await request("color/getList", options, "get")
 		setPlainColors({ docs: req.docs, page: req.page, pages: req.pages })
 		// console.log("getChannels", req)
@@ -48,8 +48,8 @@ export default (props) => {
 		if (fcode) {
 			options.code = fcode
 		}
-		const categoryId = styleDetails[curStyleIndex].categoryId
-		options.categoryId = categoryId
+		// const goodsId = styleDetails[curStyleIndex].goodsId;
+		options.goodsId = goodsId
 		const req = await request("color/getList", options, "get")
 		setFlowerColors({ docs: req.docs, page: req.page, pages: req.pages })
 		// console.log("getChannels", req)
@@ -69,7 +69,7 @@ export default (props) => {
 				handleChangeColorPage(1, 0)
 			}
 		}
-	}, [pcode, styleDetails[curStyleIndex].categoryId])
+	}, [pcode])
 	useEffect(() => {
 		if (assignInfo.plainColors) {
 			handleChangeColorPage(1, 0)
@@ -91,7 +91,7 @@ export default (props) => {
 				handleChangeColorPage(1, 1)
 			}
 		}
-	}, [fcode, styleDetails[curStyleIndex].categoryId])
+	}, [fcode])
 	const handleChangeColorPage = (page, type) => {
 		if (page < 1) return
 		if (userInfo.role === 1) {
