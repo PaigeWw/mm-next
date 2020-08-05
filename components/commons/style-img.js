@@ -6,6 +6,7 @@ import { filterImageUrl } from "../../utils/helper"
 export default (props) => {
 	const {
 		width,
+		backWidth,
 		svgUrl,
 		shadowUrl,
 		svgUrlBack,
@@ -19,10 +20,11 @@ export default (props) => {
 		curStylesEditGroupIndex,
 		onSetEditSvgGroupIndex,
 		styleSize = 27,
+		styleBackSize = 27,
 	} = props
 
 	return (
-		<div style={{ display: "flex" }}>
+		<div style={{ display: "flex", alignItems: "center" }}>
 			<div
 				style={{
 					position: "relative",
@@ -163,13 +165,13 @@ export default (props) => {
 				style={{
 					position: "relative",
 
-					width: width,
+					width: backWidth,
 				}}
 			>
 				<img
 					src={`${filterImageUrl(shadowUrlBack)}`}
 					style={{
-						width: width,
+						width: backWidth,
 						position: "absolute",
 						left: 0,
 						pointerEvents: "none",
@@ -177,7 +179,7 @@ export default (props) => {
 				/>
 				<ReactSVG
 					style={{
-						width: width,
+						width: backWidth,
 						minWidth: "14px",
 						fill: "#fff",
 					}}
@@ -241,7 +243,7 @@ export default (props) => {
 							"defs"
 						)
 						svg.appendChild(svgDefs)
-						svg.setAttribute("style", `width: ${width}; height: 100%`)
+						svg.setAttribute("style", `width: ${backWidth}; height: 100%`)
 
 						for (let i = 0; i < colors.length; i++) {
 							let color = colors[i]
@@ -267,7 +269,7 @@ export default (props) => {
 									svg.setAttribute("width", `${svg.viewBox.baseVal.width}px`)
 								}
 								let W =
-									((color.size * svg.width.baseVal.value) / styleSize) *
+									((color.size * svg.width.baseVal.value) / styleBackSize) *
 									imgVals.scale
 								let H = (W * color.height) / color.width
 

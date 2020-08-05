@@ -192,6 +192,7 @@ export default (props) => {
 			setFcode(options.code)
 		}
 	} //
+
 	return (
 		<Modal onClose={props.onClose}>
 			<Box width="14rem" fontSize="0.18rem" color="#000">
@@ -200,7 +201,6 @@ export default (props) => {
 						flexDirection="column"
 						alignItems="center"
 						justifyContent="center"
-						width="6.75rem"
 						sx={{
 							cursor: "pointer",
 						}}
@@ -209,45 +209,51 @@ export default (props) => {
 						}}
 					>
 						{Array.isArray(styleDetails) &&
-							styleDetails.map((style, index) => (
-								<Flex
-									width="6.75rem"
-									padding="1rem 0"
-									alignItems="center"
-									justifyContent="center"
-									sx={{
-										position: "relative",
-										border:
-											curStyleIndex === index
-												? "1px solid #000"
-												: "1px solid #A0A0A0",
-									}}
-									onClick={() => {
-										setCurStyleIndex(index)
-									}}
-								>
-									<StyleImg
-										width={`${((style.scale ? style.scale : 58) * 5) / 100}rem`}
-										imgValsAttrs={style.attrs}
-										colors={curSelectedColors[index]}
-										svgId={style._id}
-										styleId={style._id}
-										styleSize={style.styleSize}
-										shadowUrlBack={style.shadowUrlBack}
-										shadowUrl={style.shadowUrl}
-										svgUrlBack={style.svgUrlBack}
-										svgUrl={style.svgUrl}
-										showGroupStroke={showGroupStroke}
-										curStylesEditGroupIndex={curStylesEditGroupIndex}
-										onSetEditSvgGroupIndex={(gindex) => {
-											console.log("onSetEditSvgGroupIndex -- gindex", gindex)
-											setCurStyleIndex(index)
-											setEditSvgGroupIndex(gindex)
-											setShowGroupStroke(true)
+							styleDetails.map((style, index) => {
+								const { styleBackSize = 27, styleSize = 27, scale = 58 } = style
+								return (
+									<Flex
+										padding="0.6rem 0.2rem"
+										alignItems="center"
+										justifyContent="center"
+										sx={{
+											position: "relative",
+											border:
+												curStyleIndex === index
+													? "1px solid #000"
+													: "1px solid #A0A0A0",
 										}}
-									/>
-								</Flex>
-							))}
+										onClick={() => {
+											setCurStyleIndex(index)
+										}}
+									>
+										<StyleImg
+											width={`${(scale * 5) / 100}rem`}
+											backWidth={`${
+												(((scale * 5) / 100) * styleBackSize) / styleSize
+											}rem`}
+											imgValsAttrs={style.attrs}
+											colors={curSelectedColors[index]}
+											svgId={style._id}
+											styleId={style._id}
+											styleSize={style.styleSize}
+											styleBackSize={style.styleBackSize}
+											shadowUrlBack={style.shadowUrlBack}
+											shadowUrl={style.shadowUrl}
+											svgUrlBack={style.svgUrlBack}
+											svgUrl={style.svgUrl}
+											showGroupStroke={showGroupStroke}
+											curStylesEditGroupIndex={curStylesEditGroupIndex}
+											onSetEditSvgGroupIndex={(gindex) => {
+												console.log("onSetEditSvgGroupIndex -- gindex", gindex)
+												setCurStyleIndex(index)
+												setEditSvgGroupIndex(gindex)
+												setShowGroupStroke(true)
+											}}
+										/>
+									</Flex>
+								)
+							})}
 					</Flex>
 
 					<Flex

@@ -13,6 +13,7 @@ export default class A extends React.Component {
 
 	render() {
 		const { styleList, svgId, margin, width } = this.props
+		// const { styleBackSize = 27, styleSize = 27, scale = 58 } = style
 		return (
 			<Flex
 				flexDirection="column"
@@ -22,31 +23,37 @@ export default class A extends React.Component {
 				width={width ? width : "100px"}
 			>
 				{Array.isArray(styleList) &&
-					styleList.map((style, index) => (
-						<Box p="13px">
-							<StyleImg
-								svgId={svgId}
-								key={`style-img-${index}`}
-								width={
-									width
-										? `${
-												((style.style.scale ? style.style.scale : 58) * width) /
-												100
-										  }px`
-										: `${style.style.scale ? style.style.scale : 58}px`
-								}
-								styleSize={style.style.styleSize}
-								svgUrl={style.style.svgUrl}
-								svgUrlBack={style.style.svgUrlBack}
-								id={style.style._id}
-								styleId={style.style._id}
-								shadowUrl={style.style.shadowUrl}
-								shadowUrlBack={style.style.shadowUrlBack}
-								imgValsAttrs={style.style.attrs}
-								colors={style.colors}
-							/>
-						</Box>
-					))}
+					styleList.map((style, index) => {
+						const {
+							styleBackSize = 27,
+							styleSize = 27,
+							scale = 58,
+						} = style.style
+						return (
+							<Box p="13px">
+								<StyleImg
+									svgId={svgId}
+									key={`style-img-${index}`}
+									width={width ? `${(scale * width) / 100}px` : `${scale}px`}
+									backWidth={
+										width
+											? `${(scale * width * styleBackSize) / 100 / styleSize}px`
+											: `${(scale * styleBackSize) / styleSize}px`
+									}
+									styleSize={style.style.styleSize}
+									styleBackSize={style.style.styleBackSize}
+									svgUrl={style.style.svgUrl}
+									svgUrlBack={style.style.svgUrlBack}
+									id={style.style._id}
+									styleId={style.style._id}
+									shadowUrl={style.style.shadowUrl}
+									shadowUrlBack={style.style.shadowUrlBack}
+									imgValsAttrs={style.style.attrs}
+									colors={style.colors}
+								/>
+							</Box>
+						)
+					})}
 			</Flex>
 		)
 	}

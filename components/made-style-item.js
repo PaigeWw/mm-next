@@ -1,11 +1,10 @@
 import React, { useEffect } from "react"
 import { Flex, Text, Box, Image } from "rebass"
 
-import SvgCollect from "./svgCollect"
 import StyleImg from "./commons/style-img"
 export default (props) => {
 	const { styleList, collected, index, tool, svgId } = props
-	// console.log("collected", styleList)
+
 	return (
 		<Flex
 			flexDirection="column"
@@ -26,23 +25,28 @@ export default (props) => {
 			}}
 		>
 			{Array.isArray(styleList) &&
-				styleList.map((style, index) => (
-					<StyleImg
-						imgValsAttrs={style.style.attrs}
-						svgId={svgId}
-						styleSize={style.style.styleSize}
-						styleId={style.style._id}
-						key={`style-img-${index}`}
-						width={`${
-							((style.style.scale ? style.style.scale : 58) * 3) / 100
-						}rem`}
-						svgUrl={style.style.svgUrl}
-						shadowUrl={style.style.shadowUrl}
-						shadowUrlBack={style.style.shadowUrlBack}
-						svgUrlBack={style.style.svgUrlBack}
-						colors={style.colors}
-					/>
-				))}
+				styleList.map((style, index) => {
+					const { styleBackSize = 27, styleSize = 27, scale = 58 } = style.style
+					return (
+						<StyleImg
+							imgValsAttrs={style.style.attrs}
+							svgId={svgId}
+							styleSize={style.style.styleSize}
+							styleId={style.style._id}
+							key={`style-img-${index}`}
+							width={`${(scale * 3) / 100}rem`}
+							backWidth={`${
+								(((scale * 3) / 100) * styleBackSize) / styleSize
+							}rem`}
+							svgUrl={style.style.svgUrl}
+							shadowUrl={style.style.shadowUrl}
+							shadowUrlBack={style.style.shadowUrlBack}
+							svgUrlBack={style.style.svgUrlBack}
+							styleBackSize={style.style.styleBackSize}
+							colors={style.colors}
+						/>
+					)
+				})}
 			{tool ? (
 				<Flex
 					flexDirection="column"

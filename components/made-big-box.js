@@ -58,28 +58,32 @@ export default (props) => {
 					))}
 
 				{Array.isArray(styleDetails) &&
-					styleDetails.map((style, index) => (
-						<Flex
-							width="6.75rem"
-							padding="0.4rem 0"
-							alignItems="center"
-							justifyContent="center"
-						>
-							<StyleImg
-								width={`${((style.scale ? style.scale : 58) * 5) / 100}rem`}
-								imgValsAttrs={style.attrs}
-								colors={curSelectedColors[index]}
-								svgId={style._id}
-								styleId={style._id}
-								shadowUrl={style.shadowUrlBack}
-								svgUrl={style.svgUrlBack}
-								onSetEditSvgGroupIndex={(index) =>
-									setEditSvgGroupIndex && setEditSvgGroupIndex(index)
-								}
-								// onSetEditSvgGroupIndex={(index) => setEditSvgGroupIndex(index)}
-							/>
-						</Flex>
-					))}
+					styleDetails.map((style, index) => {
+						const { styleBackSize = 27, styleSize = 27, scale = 58 } = style
+						return (
+							<Flex
+								width="6.75rem"
+								padding="0.4rem 0"
+								alignItems="center"
+								justifyContent="center"
+							>
+								<StyleImg
+									width={`${
+										(((scale * styleBackSize) / styleSize) * 5) / 100
+									}rem`}
+									styleSize={styleBackSize}
+									imgValsAttrs={style.attrs}
+									colors={curSelectedColors[index]}
+									svgId={style._id}
+									styleId={style._id}
+									shadowUrl={style.shadowUrlBack}
+									svgUrl={style.svgUrlBack}
+									onSetEditSvgGroupIndex={(index) => index}
+									// onSetEditSvgGroupIndex={(index) => setEditSvgGroupIndex(index)}
+								/>
+							</Flex>
+						)
+					})}
 			</Box>
 		</Modal>
 	)

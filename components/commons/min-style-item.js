@@ -22,31 +22,37 @@ export default class A extends React.Component {
 				width={width ? width : "150px"}
 			>
 				{Array.isArray(styleList) &&
-					styleList.map((style, index) => (
-						<Box p="13px">
-							<StyleImg
-								svgId={svgId}
-								key={`style-img-${index}`}
-								width={
-									width
-										? `${
-												((style.style.scale ? style.style.scale : 58) * 1.6) /
-												100
-										  }rem`
-										: `${style.style.scale ? style.style.scale : 58}px`
-								}
-								styleSize={style.style.styleSize}
-								svgUrl={style.style.svgUrl}
-								svgUrlBack={style.style.svgUrlBack}
-								shadowUrlBack={style.style.shadowUrlBack}
-								id={style.style._id}
-								styleId={style.style._id}
-								shadowUrl={style.style.shadowUrl}
-								imgValsAttrs={style.style.attrs}
-								colors={style.colors}
-							/>
-						</Box>
-					))}
+					styleList.map((style, index) => {
+						const {
+							styleBackSize = 27,
+							styleSize = 27,
+							scale = 58,
+						} = style.style
+						return (
+							<Box p="13px">
+								<StyleImg
+									svgId={svgId}
+									key={`style-img-${index}`}
+									width={width ? `${(scale * 1.6) / 100}rem` : `${scale}px`}
+									backWidth={
+										width
+											? `${(scale * 1.6 * styleBackSize) / styleSize / 100}rem`
+											: `${(scale * styleBackSize) / styleSize}px`
+									}
+									styleSize={style.style.styleSize}
+									styleBackSize={style.style.styleBackSize}
+									svgUrl={style.style.svgUrl}
+									svgUrlBack={style.style.svgUrlBack}
+									shadowUrlBack={style.style.shadowUrlBack}
+									id={style.style._id}
+									styleId={style.style._id}
+									shadowUrl={style.style.shadowUrl}
+									imgValsAttrs={style.style.attrs}
+									colors={style.colors}
+								/>
+							</Box>
+						)
+					})}
 			</Flex>
 		)
 	}
