@@ -11,6 +11,12 @@ export default (props) => {
 			if (req) {
 				setGoodsList(req)
 				onLoadGoods && onLoadGoods(req)
+				let curGood = req.find((x) => x._id === goodId)
+				if (goodId) {
+					onChangeGood(curGood._id, curGood.name)
+				} else if (Array.isArray(req) && req.length > 0) {
+					onChangeGood(req[0]._id, req[0].name)
+				}
 			}
 
 			// console.log(req)
@@ -54,7 +60,7 @@ export default (props) => {
 					}}
 					ml="10px"
 					onClick={() => {
-						onChangeGood(option._id)
+						onChangeGood(option._id, option.name)
 					}}
 				>
 					{option.aliasName}

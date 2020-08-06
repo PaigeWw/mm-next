@@ -11,7 +11,7 @@ import request from "../../utils/request"
 import StyleItem from "../commons/min-style-item"
 import Modal from "../../components/modal"
 export default (props) => {
-	const { selectStyles, isEditOrder, rate, toast, goodId } = props
+	const { selectStyles, isEditOrder, rate, toast, goodId, goodName } = props
 	let initData = {
 		orderData: [],
 		itemsOrderSizeNums: {},
@@ -44,9 +44,8 @@ export default (props) => {
 						if (index) {
 							text += "/"
 						}
-						text += `${color.code}/`
+						text += `${color.code}`
 					})
-					console.log("text", text)
 					prodInfo.push({
 						styleNo: x.styleId.styleNo,
 						categoryName: x.styleId.categoryName,
@@ -262,7 +261,7 @@ export default (props) => {
 		const res = await request(
 			"/order/add",
 			{
-				orderGoodNo: 1,
+				orderGoodNo: goodName,
 				goodsId: goodId,
 				orderData: getOrderData(),
 			},
