@@ -148,7 +148,17 @@ export default (props) => {
 									<Flex justifyContent="center" rowspan={2}>
 										<Box margin="8px 0">
 											{item.favorite.styleAndColor.map((x) => {
-												return <ProductInfo styleNum={x.styleId.styleNo} />
+												return (
+													<Text
+														fontSize="0.18rem"
+														style={{
+															lineHeight: "0.34rem",
+															whiteSpace: "nowrap",
+														}}
+													>
+														{x.styleId.styleNo}
+													</Text>
+												)
 											})}
 
 											{/* <ProductInfo styleNum="VERSION K2009" made="2110 YE GREEN" /> */}
@@ -160,8 +170,17 @@ export default (props) => {
 										hasBorder={"1px solid"}
 									>
 										{item.favorite.styleAndColor.map((x) => {
+											//     white-space: nowrap;
 											return x.colorIds.map((c) => (
-												<ProductInfo made={c.code}></ProductInfo>
+												<Text
+													fontSize="0.14rem"
+													style={{
+														lineHeight: "0.34rem",
+														whiteSpace: "nowrap",
+													}}
+												>
+													{c.code}
+												</Text>
 											))
 										})}
 									</Flex>
