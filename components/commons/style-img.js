@@ -24,7 +24,13 @@ export default (props) => {
 	} = props
 
 	return (
-		<div style={{ display: "flex", alignItems: "center" }}>
+		<div
+			style={{
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "space-around",
+			}}
+		>
 			<div
 				style={{
 					position: "relative",

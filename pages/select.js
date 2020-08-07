@@ -72,7 +72,7 @@ const SortableList = SortableContainer(
 class Select extends React.Component {
 	constructor(props) {
 		super(props)
-		let query = getPageQuery()
+
 		this.state = {
 			info: {},
 			isLoad: false,
@@ -80,7 +80,7 @@ class Select extends React.Component {
 			assignGroupModal: false,
 			categoryList: [{ styles: [] }],
 			currentSeleted: false,
-			goodId: query.id,
+			goodId: "",
 			selectAssignStyleIds: [],
 			selectAssignStyles: [],
 			selectStyles: [],

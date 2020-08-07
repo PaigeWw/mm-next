@@ -57,7 +57,9 @@ export default (props) => {
 		setOrderList(data)
 	}
 	useEffect(() => {
-		getOrderList()
+		if (goodId) {
+			getOrderList()
+		}
 	}, [goodId])
 	const handleSelect = (index, item) => {
 		const pos = selectList.findIndex((x) => x.index === index)

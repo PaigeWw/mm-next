@@ -45,10 +45,10 @@ export default () => {
 		setSelectStyles(order.orderData)
 		setTabSelectedIndex(1)
 	}
-	const onLoadGoods = (goods) => {
+	const onLoadGoods = (good) => {
 		if (!getPageQuery().goodId) {
-			setGoodId(goods[0]._id)
-			setGoodName(goods[0].name)
+			setGoodId(good._id)
+			setGoodName(good.name)
 		}
 	}
 	const handleDelSelectStyle = (index) => {

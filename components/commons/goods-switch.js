@@ -10,12 +10,16 @@ export default (props) => {
 			const req = await request("goods/getVisibleList", "get")
 			if (req) {
 				setGoodsList(req)
-				onLoadGoods && onLoadGoods(req)
-				let curGood = req.find((x) => x._id === goodId)
-				if (goodId) {
-					onChangeGood(curGood._id, curGood.name)
-				} else if (Array.isArray(req) && req.length > 0) {
-					onChangeGood(req[0]._id, req[0].name)
+
+				let curGood = {}
+				if (Array.isArray(req) && req.length > 0) {
+					if (goodId) {
+						curGood = req.find((x) => x._id === goodId)
+						// onChangeGood(curGood._id, curGood.name)
+					} else {
+						curGood = req[0]
+						onLoadGoods && onLoadGoods(curGood)
+					}
 				}
 			}
 

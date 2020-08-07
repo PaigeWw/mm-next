@@ -53,7 +53,9 @@ export default (props) => {
 		setOrderList(data)
 	}
 	useEffect(() => {
-		getOrderList()
+		if (goodId) {
+			getOrderList()
+		}
 	}, [goodId])
 
 	const handleCheckDetail = (index) => {

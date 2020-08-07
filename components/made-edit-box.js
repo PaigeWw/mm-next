@@ -212,11 +212,9 @@ export default (props) => {
 							styleDetails.map((style, index) => {
 								const { styleBackSize = 27, styleSize = 27, scale = 58 } = style
 								return (
-									<Flex
-										padding="0.6rem 0.2rem"
-										alignItems="center"
-										justifyContent="center"
-										sx={{
+									<div
+										style={{
+											padding: "0.4rem 0.4rem",
 											position: "relative",
 											border:
 												curStyleIndex === index
@@ -251,7 +249,7 @@ export default (props) => {
 												setShowGroupStroke(true)
 											}}
 										/>
-									</Flex>
+									</div>
 								)
 							})}
 					</Flex>
