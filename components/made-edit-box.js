@@ -199,7 +199,6 @@ export default (props) => {
 				<Flex justifyContent="space-between">
 					<Flex
 						flexDirection="column"
-						alignItems="center"
 						justifyContent="center"
 						sx={{
 							cursor: "pointer",
