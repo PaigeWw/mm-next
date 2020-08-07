@@ -34,7 +34,7 @@ export default (props) => {
 			<div
 				style={{
 					position: "relative",
-					marginRight: "20px",
+					marginRight: "4px",
 					width: width,
 				}}
 			>
