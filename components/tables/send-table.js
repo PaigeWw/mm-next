@@ -152,7 +152,7 @@ export default (props) => {
 					>
 						<Text style={{ position: "absolute" }}>{index + 1}</Text>
 						<Text>{order.date}</Text>
-						<Flex justifyContent="flex-start">
+						<Flex justifyContent="flex-start" flexWrap="wrap">
 							{order.styleListArr.map((item, col) => (
 								<StyleItem
 									margin={"1px"}

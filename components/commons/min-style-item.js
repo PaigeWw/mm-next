@@ -16,10 +16,10 @@ export default class A extends React.Component {
 		return (
 			<Flex
 				flexDirection="column"
-				alignItems="center"
+				// alignItems="center"
 				justifyContent="space-evenly"
 				margin={margin ? margin : "auto"}
-				width={width ? width : "150px"}
+				// width={width ? width : "150px"}
 			>
 				{Array.isArray(styleList) &&
 					styleList.map((style, index) => {
