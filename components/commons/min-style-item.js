@@ -31,6 +31,7 @@ export default class A extends React.Component {
 						return (
 							<Box p="13px">
 								<StyleImg
+									marginTemp="0.04rem"
 									svgId={svgId}
 									key={`style-img-${index}`}
 									width={width ? `${(scale * 1.6) / 100}rem` : `${scale}px`}

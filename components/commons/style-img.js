@@ -6,6 +6,7 @@ import { filterImageUrl } from "../../utils/helper"
 export default (props) => {
 	const {
 		width,
+		marginTemp = "0.2rem",
 		backWidth,
 		svgUrl,
 		shadowUrl,
@@ -38,6 +39,7 @@ export default (props) => {
 				}}
 				justifyContent="center"
 				alignItems="center"
+				margin={`0 ${marginTemp}`}
 			>
 				<div
 					style={{
@@ -186,6 +188,7 @@ export default (props) => {
 				}}
 				justifyContent="center"
 				alignItems="center"
+				margin={`0 ${marginTemp}`}
 			>
 				<div
 					style={{
