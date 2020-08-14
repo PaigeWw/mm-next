@@ -46,7 +46,7 @@ LOADING
 	transform: rotate(-135deg);
 	position: absolute;
 }
-.slick-current > div > div {
+.slick-current + div > div > div {
 	-webkit-filter: none !important;
 	filter: none !important;
 }

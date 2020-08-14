@@ -40,6 +40,7 @@ export default class A extends React.Component {
 											? `${(scale * 1.6 * styleBackSize) / styleSize / 100}rem`
 											: `${(scale * styleBackSize) / styleSize}px`
 									}
+									vposition={style.style.vposition}
 									styleSize={style.style.styleSize}
 									styleBackSize={style.style.styleBackSize}
 									svgUrl={style.style.svgUrl}

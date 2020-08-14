@@ -41,6 +41,7 @@ export default class A extends React.Component {
 											: `${(scale * styleBackSize) / styleSize}px`
 									}
 									styleSize={style.style.styleSize}
+									vposition={style.style.vposition}
 									styleBackSize={style.style.styleBackSize}
 									svgUrl={style.style.svgUrl}
 									svgUrlBack={style.style.svgUrlBack}

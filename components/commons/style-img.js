@@ -21,6 +21,7 @@ export default (props) => {
 		curStylesEditGroupIndex,
 		onSetEditSvgGroupIndex,
 		styleSize = 27,
+		vposition = "center",
 		styleBackSize = 27,
 	} = props
 
@@ -29,7 +30,7 @@ export default (props) => {
 		<div
 			style={{
 				display: "flex",
-				alignItems: "center",
+				alignItems: vposition,
 				justifyContent: "space-around",
 			}}
 		>

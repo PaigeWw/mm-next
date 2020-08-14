@@ -34,35 +34,48 @@ export default (props) => {
 				color="#000"
 			>
 				{Array.isArray(styleDetails) &&
-					styleDetails.map((style, index) => (
-						<Flex
-							width="6.75rem"
-							padding="0.4rem 0"
-							alignItems="center"
-							justifyContent="center"
-						>
-							<StyleImg
-								width={`${((style.scale ? style.scale : 58) * 5) / 100}rem`}
-								imgValsAttrs={style.attrs}
-								colors={curSelectedColors[index]}
-								svgId={style._id}
-								styleId={style._id}
-								styleSize={style.styleSize}
-								shadowUrl={style.shadowUrl}
-								svgUrl={style.svgUrl}
-								onSetEditSvgGroupIndex={(index) => index}
-							/>
-						</Flex>
-					))}
-
-				{Array.isArray(styleDetails) &&
 					styleDetails.map((style, index) => {
-						const { styleBackSize = 27, styleSize = 27, scale = 58 } = style
+						const {
+							styleBackSize = 27,
+							styleSize = 27,
+							scale = 58,
+							vposition = "center",
+						} = style
 						return (
 							<Flex
 								width="6.75rem"
 								padding="0.4rem 0"
-								alignItems="center"
+								alignItems={vposition}
+								justifyContent="center"
+							>
+								<StyleImg
+									width={`${(style.scale * 5) / 100}rem`}
+									imgValsAttrs={style.attrs}
+									colors={curSelectedColors[index]}
+									svgId={style._id}
+									styleId={style._id}
+									styleSize={style.styleSize}
+									shadowUrl={style.shadowUrl}
+									svgUrl={style.svgUrl}
+									onSetEditSvgGroupIndex={(index) => index}
+								/>
+							</Flex>
+						)
+					})}
+
+				{Array.isArray(styleDetails) &&
+					styleDetails.map((style, index) => {
+						const {
+							styleBackSize = 27,
+							styleSize = 27,
+							scale = 58,
+							vposition = "center",
+						} = style
+						return (
+							<Flex
+								width="6.75rem"
+								padding="0.4rem 0"
+								alignItems={vposition}
 								justifyContent="center"
 							>
 								<StyleImg

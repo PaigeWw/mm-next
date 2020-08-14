@@ -29,12 +29,14 @@ export default () => {
 	useEffect(() => {
 		// const settings =
 		setSettings({
-			className: "center",
-			centerMode: true,
+			// className: "center",
+			// centerMode: true,
 			infinite: goosList.length > 3 ? true : false,
 			centerPadding: "0px",
 			initialSlide: 1,
 			slidesToShow: 3,
+			swipeToSlide: true,
+			slidesToScroll: 3,
 			speed: 1000,
 			afterChange: (index) => {
 				console.log(index)

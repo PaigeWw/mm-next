@@ -238,6 +238,7 @@ export default (props) => {
 											shadowUrlBack={style.shadowUrlBack}
 											shadowUrl={style.shadowUrl}
 											svgUrlBack={style.svgUrlBack}
+											vposition={style.vposition}
 											svgUrl={style.svgUrl}
 											showGroupStroke={showGroupStroke}
 											curStylesEditGroupIndex={curStylesEditGroupIndex}

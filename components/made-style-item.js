@@ -42,6 +42,7 @@ export default (props) => {
 								svgId={svgId}
 								styleSize={style.style.styleSize}
 								styleId={style.style._id}
+								vposition={style.style.vposition}
 								key={`style-img-${index}`}
 								width={`${(scale * 3) / 100}rem`}
 								backWidth={`${

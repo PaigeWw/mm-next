@@ -115,117 +115,117 @@ export default () => {
 		}
 	}
 	return (
-    <>
-      <Flex flexDirection="column">
-        <Head progress={2}></Head>
+		<>
+			<Flex flexDirection="column">
+				<Head progress={2}></Head>
 
-        <Flex flexDirection="column" pt="30px">
-          <Flex
-            justifyContent="space-around"
-            alignItems="center"
-            fontSize="0.23px"
-            bg="#000"
-            color="#fff"
-            width="19.2rem"
-            height="1.12rem"
-          >
-            {styleDetails.length > 1 ? (
-              <>
-                <Text>{styleType}</Text>
-                <Text>{styleType2}</Text>
-              </>
-            ) : (
-              <Text>{styleType}</Text>
-            )}
-          </Flex>
-          <Flex flexWrap="wrap">
-            {styleInitData.map((style, index) => (
-              <StyleItem
-                key={`${index}-style-img`}
-                svgId={`${index}-style-img-svg`}
-                styleList={style}
-                index={index}
-                collected={collectList.find((x) => x.index === index)}
-                tool={true}
-                openBigBox={() => {
-                  setShowBigBox(true);
-                  setCurItemIndex(index);
-                }}
-                onAddFavorite={() => {
-                  if (collectList.find((x) => x.index === index)) {
-                    handleDelFavorite(index);
-                  } else {
-                    handleAddFavorite(index);
-                  }
-                }}
-                openEditBox={() => {
-                  setShowEditBox(true);
-                  setCurItemIndex(index);
-                }}
-              />
-            ))}
-          </Flex>
-          <Flex fontSize="0.27rem" color="#fff" justifyContent="">
-            <Button
-              height="1.13rem"
-              width="9.6rem"
-              bg="#000"
-              variant="primary"
-              padding="0"
-              height="1.13rem"
-              width="9.6rem"
-              sx={{
-                borderRadius: 0,
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                Router.back();
-              }}
-            >
-              {"< 返回"}
-            </Button>
-            <Button
-              height="1.13rem"
-              width="9.6rem"
-              bg="#FF8E6C"
-              variant="primary"
-              padding="0"
-              height="1.13rem"
-              width="9.6rem"
-              sx={{
-                borderRadius: 0,
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                Router.push(`/mine?goodId=${goodId}`);
-              }}
-            >
-              完成
-            </Button>
-          </Flex>
-        </Flex>
-        {showBigBox ? (
-          <BigBox
-            styleDetails={styleDetails}
-            curStyle={styleInitData[curItemIndex]}
-            onClose={() => {
-              setShowBigBox(false);
-            }}
-          />
-        ) : null}
-        {showEditBox ? (
-          <EditBox
-            goodsId={goodId}
-            userInfo={userInfo}
-            styleDetails={styleDetails}
-            curStyle={styleInitData[curItemIndex]}
-            confirmMade={handleConfirmMade}
-            onClose={() => {
-              setShowEditBox(false);
-            }}
-          />
-        ) : null}
-      </Flex>
-    </>
-  );
+				<Flex flexDirection="column" pt="30px">
+					<Flex
+						justifyContent="space-around"
+						alignItems="center"
+						fontSize="0.23px"
+						bg="#000"
+						color="#fff"
+						width="19.2rem"
+						height="1.12rem"
+					>
+						{styleDetails.length > 1 ? (
+							<>
+								<Text>{styleType}</Text>
+								<Text>{styleType2}</Text>
+							</>
+						) : (
+							<Text>{styleType}</Text>
+						)}
+					</Flex>
+					<Flex flexWrap="wrap">
+						{styleInitData.map((style, index) => (
+							<StyleItem
+								key={`${index}-style-img`}
+								svgId={`${index}-style-img-svg`}
+								styleList={style}
+								index={index}
+								collected={collectList.find((x) => x.index === index)}
+								tool={true}
+								openBigBox={() => {
+									setShowBigBox(true)
+									setCurItemIndex(index)
+								}}
+								onAddFavorite={() => {
+									if (collectList.find((x) => x.index === index)) {
+										handleDelFavorite(index)
+									} else {
+										handleAddFavorite(index)
+									}
+								}}
+								openEditBox={() => {
+									setShowEditBox(true)
+									setCurItemIndex(index)
+								}}
+							/>
+						))}
+					</Flex>
+					<Flex fontSize="0.27rem" color="#fff" justifyContent="">
+						<Button
+							height="1.13rem"
+							width="9.6rem"
+							bg="#000"
+							variant="primary"
+							padding="0"
+							height="1.13rem"
+							width="9.6rem"
+							sx={{
+								borderRadius: 0,
+								cursor: "pointer",
+							}}
+							onClick={() => {
+								Router.push(`/select?id=${goodId}`)
+							}}
+						>
+							{"< 返回"}
+						</Button>
+						<Button
+							height="1.13rem"
+							width="9.6rem"
+							bg="#FF8E6C"
+							variant="primary"
+							padding="0"
+							height="1.13rem"
+							width="9.6rem"
+							sx={{
+								borderRadius: 0,
+								cursor: "pointer",
+							}}
+							onClick={() => {
+								Router.push(`/mine?goodId=${goodId}`)
+							}}
+						>
+							完成
+						</Button>
+					</Flex>
+				</Flex>
+				{showBigBox ? (
+					<BigBox
+						styleDetails={styleDetails}
+						curStyle={styleInitData[curItemIndex]}
+						onClose={() => {
+							setShowBigBox(false)
+						}}
+					/>
+				) : null}
+				{showEditBox ? (
+					<EditBox
+						goodsId={goodId}
+						userInfo={userInfo}
+						styleDetails={styleDetails}
+						curStyle={styleInitData[curItemIndex]}
+						confirmMade={handleConfirmMade}
+						onClose={() => {
+							setShowEditBox(false)
+						}}
+					/>
+				) : null}
+			</Flex>
+		</>
+	)
 }
