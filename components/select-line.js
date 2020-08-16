@@ -52,6 +52,7 @@ class SelectLine extends React.Component {
 			nextProps.styles !== this.props.styles ||
 			nextProps.selectStyles !== this.props.selectStyles ||
 			nextStates.startIndex !== this.state.startIndex ||
+			nextStates.searchQuery !== this.state.searchQuery ||
 			nextProps.lineHeight !== this.props.lineHeight ||
 			nextStates.showSearch !== this.state.showSearch
 		) {
@@ -127,13 +128,18 @@ class SelectLine extends React.Component {
 						</Flex>
 
 						{showSearch ? (
-							<Box height="20px" bg="#fff">
+							<Box>
 								<SerachInput
 									width="120px"
 									onChange={(e) => {
-										if (!e.target.value) {
+										console.log("SerachInput", e.target.value)
+										if (e.target.value) {
+											console.log("SerachInput", e.target)
+											this.setState({
+												...this.stata,
+												searchQuery: e.target.value,
+											})
 										}
-										this.setState({ searchQuery: e.target.value })
 									}}
 								/>{" "}
 							</Box>

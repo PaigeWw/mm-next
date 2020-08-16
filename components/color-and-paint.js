@@ -5,7 +5,7 @@ import { filterImageUrl } from "../utils/helper"
 export const SerachInput = (props) => {
 	return (
 		<input
-			onChange={props.onChange}
+			onChange={(e) => props.onChange(e)}
 			style={{
 				height: "100%",
 				width: props.width ? props.width : "3rem",

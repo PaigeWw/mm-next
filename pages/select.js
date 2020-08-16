@@ -496,17 +496,24 @@ class Select extends React.Component {
 							}}
 						>
 							<Flex alignItems="center" width="max-content">
-								{selectAssignStyles.map((item) => (
-									<Box p="10px">
-										<Image
-											src={`${filterImageUrl(item.imgUrl)}?tr=w-180`}
-											width={`${((item.scale ? item.scale : 58) * 1) / 100}rem`}
-											sx={{
-												maxHeight: "1.1rem",
-											}}
-										/>
-									</Box>
-								))}
+								{selectAssignStyles.map((item) => {
+									const { scale = 58 } = item
+									return (
+										<Flex
+											alignItems="center"
+											margin="0 10px"
+											width={`${scale / 100}rem`}
+											height="1.1rem"
+										>
+											<Image
+												src={`${filterImageUrl(item.imgUrl)}?tr=w-180`}
+												sx={{
+													objectFit: "cover",
+												}}
+											/>
+										</Flex>
+									)
+								})}
 							</Flex>
 						</Box>
 						<Button
