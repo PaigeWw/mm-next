@@ -345,6 +345,7 @@ class Select extends React.Component {
 								...this.state,
 								goodId: id,
 								queryKey: { tags: "ALL" },
+								selectAssignStyles: [],
 							},
 							() => {
 								this.getGategoryList({}, id)
@@ -473,7 +474,7 @@ class Select extends React.Component {
 				</Box>
 				{assignMode ? (
 					<Flex
-						height="2rem"
+						height="1.13rem"
 						width="19.2rem"
 						bg="#FFD6CA"
 						alignItems="center"
@@ -496,9 +497,10 @@ class Select extends React.Component {
 									<Box p="10px">
 										<Image
 											src={`${filterImageUrl(item.imgUrl)}?tr=w-180`}
-											width={`${
-												((item.scale ? item.scale : 58) * 1.4) / 100
-											}rem`}
+											width={`${((item.scale ? item.scale : 58) * 1) / 100}rem`}
+											sx={{
+												maxHeight: "1.1rem",
+											}}
 										/>
 									</Box>
 								))}
@@ -506,7 +508,7 @@ class Select extends React.Component {
 						</Box>
 						<Button
 							variant="primary"
-							height="2rem"
+							height="1.13rem"
 							width="3.22rem"
 							bg="#FF8E6C"
 							color="#000"
