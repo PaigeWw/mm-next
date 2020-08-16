@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { Flex, Text, Box, Button, Image } from "rebass"
+import { Flex, Box, Button, Image } from "rebass"
+import { Label, Checkbox } from "@rebass/forms"
 import Router from "next/router"
 import { ToastContainer, toast } from "../components/commons/toast"
 import Loading from "../components/commons/loading"
@@ -356,29 +357,31 @@ class Select extends React.Component {
 				/>
 				{info.role === 1 || info.role === "1" ? (
 					<Flex
-						alignItems="center"
 						sx={{
 							position: "absolute",
 							right: "10px",
 							top: "calc(230px)",
 						}}
 					>
-						<input
-							style={{
-								height: "20px",
-								width: "20px",
-							}}
-							type="checkbox"
-							name="Assign"
-							value="Assign"
-							onChange={(e) => {
-								this.setState({
-									...this.state,
-									assignMode: e.target.checked,
-								})
-							}}
-						/>
-						多款同时分配模式
+						<Label alignItems="center">
+							<Checkbox
+								id="Assign"
+								name="Assign"
+								value="Assign"
+								color="#000"
+								backgroundColor="#FFD6CA !important"
+								sx={{
+									"&:focus ~svg": {},
+								}}
+								onChange={(e) => {
+									this.setState({
+										...this.state,
+										assignMode: e.target.checked,
+									})
+								}}
+							/>
+							多款同时分配模式
+						</Label>
 					</Flex>
 				) : null}
 				{tagList.length > 0 ? (
