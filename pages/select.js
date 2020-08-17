@@ -27,16 +27,19 @@ const SortableItem = SortableElement(
 		onImageOnLoad,
 		row,
 		handleChangeCategoryStartIndex,
+		handleChangeCategorySearch,
 	}) => (
 		<SelectLine
 			index={index}
 			key={`SelectLine-${index}`}
 			row={row}
 			setStartIndex={handleChangeCategoryStartIndex}
+			setSearch={handleChangeCategorySearch}
 			kind={item.name}
 			lineHeight={item.lineHeight}
 			styles={item.styles}
 			startIndex={item.startIndex}
+			search={item.search}
 			selectStyles={selectStyles}
 			onSelect={handleSelectStyle}
 			onImageOnLoad={onImageOnLoad}
@@ -51,6 +54,7 @@ const SortableList = SortableContainer(
 		onImageOnLoad,
 		selectStyles,
 		handleChangeCategoryStartIndex,
+		handleChangeCategorySearch,
 	}) => {
 		return (
 			<div>
@@ -59,6 +63,7 @@ const SortableList = SortableContainer(
 						handleSelectStyle={handleSelectStyle}
 						onImageOnLoad={onImageOnLoad}
 						handleChangeCategoryStartIndex={handleChangeCategoryStartIndex}
+						handleChangeCategorySearch={handleChangeCategorySearch}
 						selectStyles={selectStyles}
 						key={`categoryList-item-${guid()}`}
 						index={index}
@@ -159,6 +164,15 @@ class Select extends React.Component {
 	handleChangeCategoryStartIndex(index, categoryIndex) {
 		let { categoryList } = this.state
 		categoryList[categoryIndex].startIndex = index
+		this.setState({
+			...this.state,
+			categoryList: [...categoryList],
+		})
+	}
+
+	handleChangeCategorySearch(search, categoryIndex) {
+		let { categoryList } = this.state
+		categoryList[categoryIndex].search = search
 		this.setState({
 			...this.state,
 			categoryList: [...categoryList],
@@ -409,6 +423,9 @@ class Select extends React.Component {
 						onImageOnLoad={this.handleImageOnLoad.bind(this)}
 						handleSelectStyle={this.handleSelectStyle.bind(this)}
 						handleChangeCategoryStartIndex={this.handleChangeCategoryStartIndex.bind(
+							this
+						)}
+						handleChangeCategorySearch={this.handleChangeCategorySearch.bind(
 							this
 						)}
 						pressDelay={200}
