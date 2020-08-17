@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react"
 import { Flex, Box, Button, Image } from "rebass"
 import { filterImageUrl } from "../utils/helper"
-import { SerachInput } from "../components/color-and-paint"
+import { SerachInputContorl } from "../components/color-and-paint"
 const ImageBox = (props) => {
 	const { item, id, kind, scale, col, row, onLoad = () => {} } = props
 	return (
@@ -52,7 +52,6 @@ class SelectLine extends React.Component {
 			nextProps.styles !== this.props.styles ||
 			nextProps.selectStyles !== this.props.selectStyles ||
 			nextStates.startIndex !== this.state.startIndex ||
-			nextStates.searchQuery !== this.state.searchQuery ||
 			nextProps.lineHeight !== this.props.lineHeight ||
 			nextStates.showSearch !== this.state.showSearch
 		) {
@@ -75,10 +74,23 @@ class SelectLine extends React.Component {
 			this.props.setStartIndex(val, row)
 		}
 	}
+	changeSearch(val) {
+		if (val < 0) return
+		// const { search } = this.props
+		const { row } = this.props
+		this.props.setSearch(val, row)
+	}
 
 	render() {
 		const { searchQuery, showSearch } = this.state
-		const { styles, startIndex, lineHeight, onImageOnLoad, row } = this.props
+		const {
+			styles,
+			startIndex,
+			lineHeight,
+			onImageOnLoad,
+			row,
+			search = "",
+		} = this.props
 		return (
 			<Flex
 				width="100%"
@@ -127,18 +139,20 @@ class SelectLine extends React.Component {
 							></Box>
 						</Flex>
 
-						{showSearch ? (
+						{showSearch || search ? (
 							<Box>
-								<SerachInput
+								<SerachInputContorl
 									width="120px"
+									value={search}
 									onChange={(e) => {
-										console.log("SerachInput", e.target.value)
+										// console.log("SerachInput", e.target.value)
 										if (e.target.value) {
-											console.log("SerachInput", e.target)
-											this.setState({
-												...this.stata,
-												searchQuery: e.target.value,
-											})
+											// console.log("SerachInput", e.target)
+											// this.setState({
+											// 	...this.stata,
+											// 	searchQuery: e.target.value,
+											// })
+											this.changeSearch(e.target.value)
 										}
 									}}
 								/>{" "}
@@ -165,7 +179,7 @@ class SelectLine extends React.Component {
 				</Flex>
 				<Flex flex={1} alignItems="stretch">
 					{styles
-						.filter((s) => s.styleNo.indexOf(searchQuery) >= 0)
+						.filter((s) => s.styleNo.indexOf(search) >= 0)
 						.slice(startIndex, startIndex + 4)
 						.map((item, index) => (
 							<ImageBox

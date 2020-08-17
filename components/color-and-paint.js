@@ -18,7 +18,23 @@ export const SerachInput = (props) => {
 		/>
 	)
 }
-
+export const SerachInputContorl = (props) => {
+	return (
+		<input
+			value={props.value}
+			onChange={(e) => props.onChange(e)}
+			style={{
+				height: "100%",
+				width: props.width ? props.width : "3rem",
+				background: "no-repeat",
+				backgroundSize: "14px 14px",
+				backgroundImage: "url(/3/search.png)",
+				backgroundPosition: "100% center",
+				backgroundColor: "#fff",
+			}}
+		/>
+	)
+}
 const PagerButton = (props) => (
 	<Button
 		width="0.26rem"
