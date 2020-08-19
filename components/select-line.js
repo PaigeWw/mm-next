@@ -27,6 +27,7 @@ const ImageBox = (props) => {
 					display: "block",
 					width: `${scale ? scale : 58}%`,
 					boxSizing: "content-box",
+					pointerEvents: "none",
 				}}
 				onLoad={(e) => {
 					onLoad({ width: e.target.width, height: e.target.height })

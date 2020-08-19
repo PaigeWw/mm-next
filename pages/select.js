@@ -355,12 +355,16 @@ class Select extends React.Component {
 					goodId={goodId}
 					onChangeGood={(id) => {
 						console.log("goodId", id)
+						if (id !== goodId) {
+						}
 						this.setState(
 							{
 								...this.state,
 								goodId: id,
 								queryKey: { tags: "ALL" },
 								selectAssignStyles: [],
+
+								currentSeleted: false,
 							},
 							() => {
 								this.getGategoryList({}, id)
@@ -391,6 +395,7 @@ class Select extends React.Component {
 									this.setState({
 										...this.state,
 										assignMode: e.target.checked,
+										currentSeleted: false,
 									})
 								}}
 							/>
@@ -549,6 +554,8 @@ class Select extends React.Component {
 								this.setState({
 									...this.state,
 									assignGroupModal: true,
+
+									currentSeleted: false,
 								})
 							}}
 						>

@@ -120,6 +120,7 @@ export default (props) => {
 			flexDirection="column"
 			fontSize="0.18rem"
 			color="#000"
+			mb="1.13rem"
 			p="0.5rem 0.7rem 0 0.7rem"
 			sx={{
 				position: "absolute",
