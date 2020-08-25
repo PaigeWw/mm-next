@@ -87,7 +87,6 @@ export default (props) => {
 						}}
 					/>
 					<Text
-						width="40px"
 						pl="4px"
 						fontSize="0.14rem"
 						onClick={(e) => {
