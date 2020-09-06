@@ -104,7 +104,7 @@ export default () => {
 		}
 		const res = await request(
 			"/user/addFavorite",
-			{ styleAndColor: params },
+			{ styleAndColor: params, goodId: goodId },
 			"post"
 		)
 		if (res) {

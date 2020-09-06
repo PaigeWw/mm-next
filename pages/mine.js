@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Flex, Text, Box } from "rebass"
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
-import request from "../utils/request"
+import html2canvas from "html2canvas"
 import { ToastContainer, toast } from "../components/commons/toast"
 import GoodsSwitch from "../components/commons/goods-switch"
 import Head from "../components/nav"

@@ -4,7 +4,7 @@ import { ReactSVG } from "react-svg"
 import { Flex } from "rebass"
 import { getPageQuery } from "../utils/helper"
 import request from "../utils/request.js"
-
+import html2canvas from "html2canvas"
 export default () => {
 	// const info = useUserInfo()
 	const [favorite, setFavorite] = useState(false)
@@ -28,6 +28,12 @@ export default () => {
 			// console.log(req)
 		}
 		getOrderDetail()
+
+		// setTimeout(() => {
+		// 	html2canvas(document.body).then(function (canvas) {
+		// 		document.body.appendChild(canvas)
+		// 	})
+		// }, 10000)
 	}, [])
 
 	return (
