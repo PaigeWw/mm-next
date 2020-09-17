@@ -28,7 +28,7 @@ export const filterImageUrl = (url) => {
     if (url.indexOf(".svg") >= 0) {
       console.log("svg-url", `/${url}`);
 
-      return `http://8.209.64.159:4000/${url}`;
+      return `http://8.209.64.159:3006/${url}`;
     } else {
       return `${imgUrl}mrmiss//${arrs[2]}`;
     }
