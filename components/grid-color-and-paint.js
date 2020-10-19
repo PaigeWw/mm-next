@@ -458,8 +458,8 @@ export const ColorList = (props) => {
                 borderBottom: "1px solid #000",
               }}
             >
-              {showColorInfo.code}
-            </Text>{" "}
+              {showColorInfo.code}-{showColorInfo.namecn}-{showColorInfo.nameen}
+            </Text>
           </>
         ) : null}
       </Flex>
