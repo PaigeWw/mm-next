@@ -433,7 +433,7 @@ export const ColorList = (props) => {
                     borderBottom: "1px solid #000",
                   }}
                 >
-                  {hoverInfo.code}
+                  {hoverInfo.code}-{hoverInfo.namecn}-{hoverInfo.nameen}
                 </Text>
               </Flex>
             </Box>
