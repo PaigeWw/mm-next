@@ -225,10 +225,9 @@ export default (props) => {
 										}}
 									>
 										<StyleImg
-											width={`${(scale * 5) / 100}rem`}
-											backWidth={`${
-												(((scale * 5) / 100) * styleBackSize) / styleSize
-											}rem`}
+											width={`${styleBackSize / 10}rem`}
+											backWidth={`${styleBackSize / 10}rem`}
+									
 											imgValsAttrs={style.attrs}
 											colors={curSelectedColors[index]}
 											svgId={style._id}

@@ -49,7 +49,7 @@ export default (props) => {
 								justifyContent="center"
 							>
 								<StyleImg
-									width={`${(style.scale * 5) / 100}rem`}
+									width={`${style.styleSize/ 10}rem`}
 									imgValsAttrs={style.attrs}
 									colors={curSelectedColors[index]}
 									svgId={style._id}
@@ -80,7 +80,7 @@ export default (props) => {
 							>
 								<StyleImg
 									width={`${
-										(((scale * styleBackSize) / styleSize) * 5) / 100
+										styleBackSize/10
 									}rem`}
 									styleSize={styleBackSize}
 									imgValsAttrs={style.attrs}

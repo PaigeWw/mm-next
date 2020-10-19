@@ -44,10 +44,9 @@ export default (props) => {
 								styleId={style.style._id}
 								vposition={style.style.vposition}
 								key={`style-img-${index}`}
-								width={`${(scale * 3) / 100}rem`}
-								backWidth={`${
-									(((scale * 3) / 100) * styleBackSize) / styleSize
-								}rem`}
+								width={`${(styleSize * 6) / 100}rem`}
+								backWidth={`${(styleBackSize * 6) / 100}rem`}
+								
 								svgUrl={style.style.svgUrl}
 								shadowUrl={style.style.shadowUrl}
 								shadowUrlBack={style.style.shadowUrlBack}

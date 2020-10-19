@@ -34,12 +34,10 @@ export default class A extends React.Component {
 									marginTemp="0.04rem"
 									svgId={svgId}
 									key={`style-img-${index}`}
-									width={width ? `${(scale * 1.6) / 100}rem` : `${scale}px`}
-									backWidth={
-										width
-											? `${(scale * 1.6 * styleBackSize) / styleSize / 100}rem`
-											: `${(scale * styleBackSize) / styleSize}px`
-									}
+									width={width ? `${(styleSize * 3.2) / 100}rem` : `${styleSize*2}px`}
+									backWidth={width ? `${(styleBackSize * 3.2) / 100}rem` : `${styleBackSize*2}px`}
+								
+									
 									vposition={style.style.vposition}
 									styleSize={style.style.styleSize}
 									styleBackSize={style.style.styleBackSize}
