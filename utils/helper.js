@@ -2,17 +2,17 @@ import { parse } from "querystring";
 
 export const px2rem = (px) => `${px / (750 / 10)}rem`;
 export const pptPx2rem = (px) => `${px / (1920 / 10)}rem`;
-
+/***正式环境 */
 // export const baseUrl = "http://8.209.64.159:3001/"
 // export const baseUrl = "/"
 // export const baseUrl = "http://localhost:3001/"
-export const baseUrl = "http://8.209.64.159:3001/";
-export const downloadUrl = "http://8.209.64.159:3006/";
-export const imgUrl = "https://ik.imagekit.io/";
+// export const baseUrl = "http://8.209.64.159:3001/";
+// export const downloadUrl = "http://8.209.64.159:3006/";
+// export const imgUrl = "https://ik.imagekit.io/";
 
-// export const baseUrl = "https://we-idesign.com/"
-// export const downloadUrl = "https://crm.we-idesign.com/"
-// export const imgUrl = "https://ik.imagekit.io/"
+export const baseUrl = "https://we-idesign.com/"
+export const downloadUrl = "https://crm.we-idesign.com/"
+export const imgUrl = "https://ik.imagekit.io/"
 export const getPageQuery = () => parse(window.location.href.split("?")[1])
 export const guid = () => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
