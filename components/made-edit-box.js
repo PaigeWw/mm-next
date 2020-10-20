@@ -225,7 +225,7 @@ export default (props) => {
 										}}
 									>
 										<StyleImg
-											width={`${styleBackSize / 10}rem`}
+											width={`${styleSize / 10}rem`}
 											backWidth={`${styleBackSize / 10}rem`}
 									
 											imgValsAttrs={style.attrs}

@@ -449,7 +449,7 @@ export const ColorList = (props) => {
               width="20%"
               height="20px"
               bg={showColorInfo.value}
-            ></Box>
+            />
             <Text fontSize="14px">色号</Text>
             <Text
               ml="6px"

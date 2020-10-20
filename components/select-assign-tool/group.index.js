@@ -8,7 +8,7 @@ import { filterImageUrl } from "../../utils/helper";
 export default (props) => {
   const { role, selectAssignStyles, goodsId } = props;
 
-  const sid = "0000";
+//   const sid = "0000";
 
   const [curChannel, setCurChannel] = useState({});
   const [channelList, setChannelList] = useState([]);
@@ -144,6 +144,7 @@ export default (props) => {
   };
 
   const handleSelectAll = async (bool) => {
+      let options = [];
     setColorList({
       ...colorList,
       loading: true,
@@ -158,15 +159,16 @@ export default (props) => {
           curChannelAssign.plainColors.push(item);
           for (let j = 0; j < selectAssignStyles.length; j++) {
             let sid = selectAssignStyles[j]._id;
-            let options = {
+            options.push({
               styleId: sid,
               channelId: curChannel._id,
               plainColor: item._id,
-            };
-            const res1 = await request("/channel/assign", options, "post");
+            });
+            
           }
         }
       }
+      const res1 = await request("/channel/groupAssign", {options,channelId: curChannel._id,}, "post");
     } else {
       for (let i = 0; i < colorList.docs.length; i++) {
         let item = colorList.docs[i];
@@ -175,17 +177,18 @@ export default (props) => {
         );
         if (cIndex >= 0) {
           curChannelAssign.plainColors.splice(cIndex, 1);
-          for (let j = 0; j < selectAssignStyles.length; j++) {
-            let sid = selectAssignStyles[j]._id;
-            let options = {
-              styleId: sid,
-              channelId: curChannel._id,
-              plainColor: item._id,
-            };
-            const res1 = await request("/channel/unassign", options, "post");
-          }
         }
+        for (let j = 0; j < selectAssignStyles.length; j++) {
+            let sid = selectAssignStyles[j]._id;
+            loptions.push({
+              styleId: sid,
+              
+              plainColor: item._id,
+            });
+            
+          }
       }
+      const res1 = await request("/channel/groupUnassign", {options,channelId: curChannel._id,}, "post");
     }
     setColorList({
       ...colorList,
@@ -197,6 +200,7 @@ export default (props) => {
     });
   };
   const handleSelectAllPaint = async (bool) => {
+      let options = [];
     setPaintList({
       ...paintList,
       loading: true,
@@ -209,15 +213,20 @@ export default (props) => {
         );
         if (cIndex < 0) {
           curChannelAssign.flowerColors.push(item);
-          let options = {
-            styleId: sid,
-            channelId: curChannel._id,
-            flowerColor: item._id,
-          };
-          const res1 = await request("/channel/assign", options, "post");
+          for (let j = 0; j < selectAssignStyles.length; j++) {
+              let sid = selectAssignStyles[j]._id;
+              options.push({
+                styleId: sid,
+      
+                flowerColor: item._id,
+              });
+          }
+
         }
       }
+      const res1 = await request("/channel/groupAssign", {options,channelId: curChannel._id,}, "post");
     } else {
+      
       for (let i = 0; i < paintList.docs.length; i++) {
         let item = paintList.docs[i];
         const cIndex = curChannelAssign.flowerColors.findIndex(
@@ -225,15 +234,17 @@ export default (props) => {
         );
         if (cIndex >= 0) {
           curChannelAssign.flowerColors.splice(cIndex, 1);
-
-          let options = {
-            styleId: sid,
-            channelId: curChannel._id,
-            flowerColor: item._id,
-          };
-          const res1 = await request("/channel/unassign", options, "post");
         }
+        for (let j = 0; j < selectAssignStyles.length; j++) {
+              let sid = selectAssignStyles[j]._id;
+              options.push({
+                  styleId: sid,
+                  
+                  flowerColor: item._id,
+              });
+          }
       }
+      const res1 = await request("/channel/groupUnassign", {options,channelId: curChannel._id,}, "post");
     }
     setPaintList({
       ...paintList,
