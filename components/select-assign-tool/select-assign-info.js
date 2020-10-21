@@ -77,11 +77,11 @@ export default (props) => {
 
 	useEffect(() => {
 		setFlowerColors({
-			docs: curChannelAssign.flowerColors,
+			docs: curChannelAssign.flowerColors.slice(0,30),
 			page: 1,
 		})
 		setPlainColors({
-			docs: curChannelAssign.plainColors,
+			docs: curChannelAssign.plainColors.slice(0,30),
 			page: 1,
 		})
 	}, [curChannelAssign])

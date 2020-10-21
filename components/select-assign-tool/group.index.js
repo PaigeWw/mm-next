@@ -88,6 +88,7 @@ export default (props) => {
   // }, [curChannel, sid])
 
   const handleSelect = async (item, type) => {
+      let options = [];
     switch (type) {
       case "color":
         const cIndex = curChannelAssign.plainColors.findIndex(
@@ -95,20 +96,26 @@ export default (props) => {
         );
         for (let i = 0; i < selectAssignStyles.length; i++) {
           let sid = selectAssignStyles[i]._id;
-          let options = {
+          options.push({
             styleId: sid,
-            channelId: curChannel._id,
+            
             plainColor: item._id,
-          };
-          if (cIndex < 0) {
+          });
+         if (cIndex < 0) {
             curChannelAssign.plainColors.push(item);
-            const res = await request("/channel/assign", options, "post");
+          
           } else {
-            const _res = await request("/channel/unassign", options, "post");
+            
             curChannelAssign.plainColors.splice(cIndex, 1);
           }
         }
-
+        if (cIndex < 0) {
+            
+            const res = await request("/channel/groupAssign", {options,channelId: curChannel._id,}, "post");
+          } else {
+            const _res = await request("/channel/groupUnassign", {options,channelId: curChannel._id,}, "post");
+            
+          }
         setCurChannelAssign({
           ...curChannelAssign,
           plainColors: [].concat(curChannelAssign.plainColors),
@@ -120,19 +127,26 @@ export default (props) => {
         );
         for (let i = 0; i < selectAssignStyles.length; i++) {
           let sid = selectAssignStyles[i]._id;
-          let _options = {
+          options.push({
             styleId: sid,
-            channelId: curChannel._id,
+            
             flowerColor: item._id,
-          };
+          });
           if (pIndex < 0) {
             curChannelAssign.flowerColors.push(item);
-            const res1 = request("/channel/assign", _options, "post");
+           
           } else {
-            const _res1 = request("/channel/unassign", _options, "post");
+
             curChannelAssign.flowerColors.splice(pIndex, 1);
           }
         }
+        if (pIndex < 0) {
+           
+            const res1 = request("/channel/assign", {options,channelId: curChannel._id,}, "post");
+          } else {
+            const _res1 = request("/channel/unassign", {options,channelId: curChannel._id,}, "post");
+           
+          }
         setCurChannelAssign({
           ...curChannelAssign,
           flowerColors: [].concat(curChannelAssign.flowerColors),

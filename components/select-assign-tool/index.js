@@ -154,6 +154,7 @@ export default (props) => {
 			...colorList,
 			loading: true,
 		})
+        let options = [];
 		if (bool) {
 			for (let i = 0; i < colorList.docs.length; i++) {
 				let item = colorList.docs[i]
@@ -162,14 +163,14 @@ export default (props) => {
 				)
 				if (cIndex < 0) {
 					curChannelAssign.plainColors.push(item)
-					let options = {
+					options.push({
 						styleId: sid,
-						channelId: curChannel._id,
 						plainColor: item._id,
-					}
-					const res1 = await request("/channel/assign", options, "post")
+					})
+					
 				}
 			}
+            const res1 = await request("/channel/groupAssign", {options,channelId: curChannel._id,}, "post")
 		} else {
 			for (let i = 0; i < colorList.docs.length; i++) {
 				let item = colorList.docs[i]
@@ -179,14 +180,15 @@ export default (props) => {
 				if (cIndex >= 0) {
 					curChannelAssign.plainColors.splice(cIndex, 1)
 
-					let options = {
+					options.push({
 						styleId: sid,
-						channelId: curChannel._id,
+						
 						plainColor: item._id,
-					}
-					const res1 = await request("/channel/unassign", options, "post")
+					})
+					
 				}
 			}
+            const res1 = await request("/channel/groupUnassign", {options,channelId: curChannel._id,}, "post")
 		}
 		setColorList({
 			...colorList,
@@ -202,6 +204,7 @@ export default (props) => {
 			...paintList,
 			loading: true,
 		})
+        let options = []
 		if (bool) {
 			for (let i = 0; i < paintList.docs.length; i++) {
 				let item = paintList.docs[i]
@@ -210,14 +213,15 @@ export default (props) => {
 				)
 				if (cIndex < 0) {
 					curChannelAssign.flowerColors.push(item)
-					let options = {
+					options.push({
 						styleId: sid,
 						channelId: curChannel._id,
 						flowerColor: item._id,
-					}
-					const res1 = await request("/channel/assign", options, "post")
+					})
+					
 				}
 			}
+            const res1 = await request("/channel/groupAssign", {options,channelId: curChannel._id,}, "post")
 		} else {
 			for (let i = 0; i < paintList.docs.length; i++) {
 				let item = paintList.docs[i]
@@ -227,14 +231,15 @@ export default (props) => {
 				if (cIndex >= 0) {
 					curChannelAssign.flowerColors.splice(cIndex, 1)
 
-					let options = {
+					options.push({
 						styleId: sid,
 						channelId: curChannel._id,
 						flowerColor: item._id,
-					}
-					const res1 = await request("/channel/unassign", options, "post")
+					})
+					
 				}
 			}
+            const res1 = await request("/channel/groupUnassign", {options,channelId: curChannel._id,}, "post")
 		}
 		setPaintList({
 			...paintList,
