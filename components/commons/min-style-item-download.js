@@ -1,7 +1,7 @@
 import React from "react"
 import { Flex, Box } from "rebass"
 
-import StyleImg from "./style-img"
+import StyleImg from "./style-img-download"
 export default class A extends React.Component {
     shouldComponentUpdate(nextProps, nextState) {
         if (nextProps.svgId !== this.svgId) {
@@ -12,7 +12,7 @@ export default class A extends React.Component {
     }
 
     render() {
-        const { styleList, svgId, margin, width } = this.props
+        const { styleList, favoriteId, margin, width, onPngLoaded } = this.props
         return (
             <Flex
                 flexDirection="column"
@@ -32,12 +32,11 @@ export default class A extends React.Component {
                             <Box p="13px">
                                 <StyleImg
                                     marginTemp="0.04rem"
-                                    svgId={svgId}
+                                    favoriteId={favoriteId}
                                     key={`style-img-${index}`}
                                     width={width ? `${(styleSize * 3.2) / 100}rem` : `${styleSize * 2}px`}
                                     backWidth={width ? `${(styleBackSize * 3.2) / 100}rem` : `${styleBackSize * 2}px`}
-
-
+                                    onPngLoaded={onPngLoaded}
                                     vposition={style.style.vposition}
                                     styleSize={style.style.styleSize}
                                     styleBackSize={style.style.styleBackSize}

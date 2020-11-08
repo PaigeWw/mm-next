@@ -11,6 +11,7 @@
     "array-move": "^2.2.1",
     "axios": "^0.19.0",
     "excellentexport": "^3.4.2",
+    "get-dataurl": "^1.0.0",
     "html2canvas": "^1.0.0-rc.7",
     "lodash": "^4.17.15",
     "next": "^9.1.3",
