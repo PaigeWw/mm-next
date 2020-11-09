@@ -3,13 +3,13 @@ import { parse } from "querystring";
 export const px2rem = (px) => `${px / (750 / 10)}rem`;
 export const pptPx2rem = (px) => `${px / (1920 / 10)}rem`;
 /***测试环境 */
-// export const baseUrl = "http://8.209.64.159:3001/"
+export const baseUrl = "http://8.209.64.159:3001/"
 // export const baseUrl = "/"
-export const baseUrl = "http://localhost:3001/"
+// export const baseUrl = "http://localhost:3001/"
 // export const baseUrl = "http://8.209.64.159:3001/";
 
-// export const downloadUrl = "http://8.209.64.159:3006/";
-export const downloadUrl = "http://localhost:3001/";
+export const downloadUrl = "http://8.209.64.159:3006/";
+// export const downloadUrl = "http://localhost:3001/";
 
 export const imgUrl = "https://ik.imagekit.io/";
 

@@ -102,7 +102,11 @@ export default (props) => {
                         setOrderDownloadDetailMode({ visible: false, detail: {} })
                     }}
                 >
-                    <OrderDetailDownload OrderDetail={orderDownloadDetailMode.detail} rate={rate} />
+                    <OrderDetailDownload
+                        onClose={() => {
+                            setOrderDownloadDetailMode({ visible: false, detail: {} })
+                        }}
+                        OrderDetail={orderDownloadDetailMode.detail} rate={rate} />
                 </Modal>
             ) : null}
             <Flex sx={{ padding: "0 18px 18px 18px" }} alignItems="stretch">

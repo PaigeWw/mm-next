@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react"
 import { Flex, Text, Box, Button, Row, Column } from "rebass"
 import Table, { TableLine, ProductInfo } from "./base-table"
 import StyleItem from "../commons/min-style-item-download"
+import Loading from "../commons/loading"
 import _ from "lodash"
 import request from "../../utils/request"
 import svg2pngFile from "../../utils/new.svg2pngFile"
 import { filterImageUrl, downloadUrl } from "../../utils/helper"
 
 export default (props) => {
+    // const [isDownloading, setIsDownloading] = useState(true)
     const [styleSvgIdMap, setStyleSvgIdMap] = useState({})
+    let tempStyleSvgIdMapCount = {}
+
     const stylesImageInfoList = []
     const { OrderDetail, rate = { val: 1, sign: "¥" } } = props
     // const line = props.OrderDetail.orderData.length
@@ -27,7 +31,7 @@ export default (props) => {
     const [orderData, setOrderData] = useState(OrderDetail.orderData)
     let sizeInfoMaxLength = 0
     let titleIndex = 0
-    let styleImageColorCount = 0
+    // let styleImageColorCount = 0
     orderData.map((group) => {
         if (!group.size) {
             group.size = { values: [] }
@@ -64,7 +68,14 @@ export default (props) => {
                     }
                     text = color.code
                     if (color.type) {
-                        styleImageColorCount++
+                        let colorUrl = `${item.favorite}-${x.styleId}-${color.value}`
+                        if (!tempStyleSvgIdMapCount[colorUrl]) {
+                            tempStyleSvgIdMapCount[colorUrl] = 1
+                        } else {
+                            tempStyleSvgIdMapCount[colorUrl]++
+                        }
+
+
                     }
                 })
                 prodInfo.push({
@@ -96,6 +107,8 @@ export default (props) => {
             })
         })
     })
+    const [styleSvgIdMapCount, setStyleSvgIdMapCount] = useState(tempStyleSvgIdMapCount)
+    // setStyleSvgIdMapCount({ ...tempStyleSvgIdMapCount })
     const [styleGroupList, setStyleGroupList] = useState(tempStyleGroupList)
 
     const getInsertEmptyDom = (length) => {
@@ -119,22 +132,11 @@ export default (props) => {
         return { url: res.url, height }
     }
     const getFileUrl = async (query) => {
-        console.log(query)
-        // query = {
-        //     "_id": "5f9ef7b9aa9a5633fccc7ee3",
-        //     "rateSign": "€",
-        //     "rateVal": 0.1111111111111111,
-        //     "orderItemImages": {
-        //         "5f22d5ef533048108a37acce": {
-        //             "frontImageUrl": "uploads/2020-11-02/1604258707385",
-        //             "backImageUrl": "uploads/2020-11-02/1604258707588"
-        //         }
-        //     },
-        // }
         const res = await request("/order/postDownload", query, 'post')
         if (res) {
             window.open(`${downloadUrl}${res.url}`)
             setStyleSvgIdMap({})
+            props.onClose()
         }
     }
     const handleDownload = async () => {
@@ -173,10 +175,13 @@ export default (props) => {
     }
 
     useEffect(() => {
+        console.log('styleImageColorCount', Object.keys(styleSvgIdMapCount).length)
         console.log('Object.keys(styleSvgIdMap).length', Object.keys(styleSvgIdMap).length)
-        if (Object.keys(styleSvgIdMap).length >= styleImageColorCount) {
-            console.log(Object.keys(styleSvgIdMap).length)
-            handleDownload()
+        if (Object.keys(styleSvgIdMap).length >= Object.keys(styleSvgIdMapCount).length) {
+            setTimeout(() => {
+                handleDownload()
+            }, 1500)
+
         }
     }, [styleSvgIdMap])
     return (
@@ -189,6 +194,17 @@ export default (props) => {
                 width: "100%",
             }}
         >
+            <Flex flexDirection="column" justifyContent='center' alignItems='center' bg="#fff" sx={{
+                height: "100%",
+                width: "100%",
+                position: 'absolute',
+                top: 0,
+                bottom: 0,
+                zIndex: 99,
+            }}>
+                <Loading type="loading5 black" />
+                正在生成订单文件...
+            </Flex>
             <Box
                 sx={{
                     padding: "0 18px 18px 18px",
