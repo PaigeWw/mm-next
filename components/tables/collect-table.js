@@ -118,7 +118,7 @@ export default (props) => {
         const editCollect = getCollectById(editId)
         let params = [
             {
-                goodId: props.goodId,
+
                 styleId: editCollect.prodInfo[0].id,
                 colorIds: colorIds[0].map((x) => x._id),
             },
@@ -133,7 +133,7 @@ export default (props) => {
         }
         const res = await request(
             "/user/updateFavorite",
-            { _id: editCollect.id, styleAndColor: params },
+            { _id: editCollect.id, styleAndColor: params, goodId: props.goodId, },
             "post"
         )
         // setStyleDetails([].concat(styleDetails))
