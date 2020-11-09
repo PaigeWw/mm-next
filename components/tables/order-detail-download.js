@@ -9,7 +9,7 @@ import svg2pngFile from "../../utils/new.svg2pngFile"
 import { filterImageUrl, downloadUrl } from "../../utils/helper"
 
 export default (props) => {
-    // const [isDownloading, setIsDownloading] = useState(true)
+    const [isDownloading, setIsDownloading] = useState(true)
     const [styleSvgIdMap, setStyleSvgIdMap] = useState({})
     let tempStyleSvgIdMapCount = {}
 
@@ -175,9 +175,10 @@ export default (props) => {
     }
 
     useEffect(() => {
-        console.log('styleImageColorCount', Object.keys(styleSvgIdMapCount).length)
-        console.log('Object.keys(styleSvgIdMap).length', Object.keys(styleSvgIdMap).length)
-        if (Object.keys(styleSvgIdMap).length >= Object.keys(styleSvgIdMapCount).length) {
+        // console.log('styleImageColorCount', Object.keys(styleSvgIdMapCount).length)
+        // console.log('Object.keys(styleSvgIdMap).length', Object.keys(styleSvgIdMap).length)
+        if (Object.keys(styleSvgIdMap).length >= Object.keys(styleSvgIdMapCount).length && isDownloading) {
+            setIsDownloading(false)
             setTimeout(() => {
                 handleDownload()
             }, 1500)
