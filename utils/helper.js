@@ -6,7 +6,7 @@ export const pptPx2rem = (px) => `${px / (1920 / 10)}rem`;
 // export const baseUrl = "http://8.209.64.159:3001/"
 // export const baseUrl = "/"
 // export const baseUrl = "http://localhost:3001/"
-export const baseUrl = "http://8.209.64.159:3001/";
+export const baseUrl = "https://we-idesign.com/";
 
 export const downloadUrl = "http://8.209.64.159:3006/";
 // export const downloadUrl = "http://localhost:3001/";

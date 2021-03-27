@@ -252,7 +252,6 @@ export default (props) => {
                             </TableLine>
                         ) : (
                                 <>
-                                    {" "}
                                     <TableLine noEdit key={`selectline-${item._id}`}>
                                         <Text rowspan={2} hasBorder={"1px solid"}>
                                             {index - titleCount + 1}

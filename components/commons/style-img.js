@@ -24,7 +24,8 @@ export default (props) => {
 		vposition = "center",
 		styleBackSize = 27,
 	} = props
-
+    console.log('styleSize',styleSize)
+    console.log('styleBackSize',styleBackSize)
 	const maxWidth = styleSize > styleBackSize ? width : backWidth
 	return (
 		<div
@@ -104,7 +105,7 @@ export default (props) => {
 									) {
 										let block = svg.children[i]
 										block.style.fill = colors[j].type
-											? `url("#${styleId}-${colors[j]._id}-${j}")`
+											? `url("#${styleId}-${colors[j]._id}-${j}-f")`
 											: colors[j].value
 									}
 									j++
@@ -141,7 +142,7 @@ export default (props) => {
 										"pattern"
 									)
 
-									svgPattern.setAttribute("id", `${styleId}-${color._id}-${i}`)
+									svgPattern.setAttribute("id", `${styleId}-${color._id}-${i}-f`)
 									// editPatterns[color._id] = svgPattern
 									svgPattern.setAttribute("patternUnits", "userSpaceOnUse")
 									svgPattern.setAttribute(
@@ -155,7 +156,9 @@ export default (props) => {
 										((color.size * svg.width.baseVal.value) / styleSize) *
 										imgVals.scale
 									let H = (W * color.height) / color.width
-
+                                    console.log("width", `${W}px`)
+                                    console.log("svg.width.baseVal.value",svg.width.baseVal.value)
+                                    console.log("color.size",color.size)
 									svgPattern.setAttribute("width", `${W}px`)
 									svgPattern.setAttribute("height", `${H}px`)
 									svgPattern.x.baseVal.value = imgVals.x
@@ -253,7 +256,7 @@ export default (props) => {
 									) {
 										let block = svg.children[i]
 										block.style.fill = colors[j].type
-											? `url("#${styleId}-${colors[j]._id}-${j}")`
+											? `url("#${styleId}-${colors[j]._id}-${j}-b")`
 											: colors[j].value
 									}
 									j++
@@ -290,7 +293,7 @@ export default (props) => {
 										"pattern"
 									)
 
-									svgPattern.setAttribute("id", `${styleId}-${color._id}-${i}`)
+									svgPattern.setAttribute("id", `${styleId}-${color._id}-${i}-b`)
 									// editPatterns[color._id] = svgPattern
 									svgPattern.setAttribute("patternUnits", "userSpaceOnUse")
 									svgPattern.setAttribute(
@@ -304,7 +307,9 @@ export default (props) => {
 										((color.size * svg.width.baseVal.value) / styleBackSize) *
 										imgVals.scale
 									let H = (W * color.height) / color.width
-
+                                    console.log("back width", `${W}px`)
+                                    console.log("back svg.width.baseVal.value",svg.width.baseVal.value)
+                                    console.log("back color.size",color.size)
 									svgPattern.setAttribute("width", `${W}px`)
 									svgPattern.setAttribute("height", `${H}px`)
 									svgPattern.x.baseVal.value = imgVals.x
